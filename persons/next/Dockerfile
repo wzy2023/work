@@ -9,7 +9,7 @@ WORKDIR /${ROOT}
 COPY . /${ROOT}
 
 # 安装生产依赖并构建应用
-RUN bun install --production && \
+RUN bun install && \
     bun run build
 
 # 第二阶段：运行时阶段
@@ -20,7 +20,9 @@ ARG ROOT=app
 WORKDIR /${ROOT}
 
 # 从构建阶段复制构建结果
-COPY --from=builder /${ROOT}/dist /${ROOT}/dist
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/node_modules ./node_modules
 
 # 暴露应用端口
 EXPOSE 3000
