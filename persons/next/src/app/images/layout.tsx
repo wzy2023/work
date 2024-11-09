@@ -1,4 +1,4 @@
-export default ({ children, modal }) => {
+export default ({ children, modal }: any) => {
   return (
     <div>
       {children}
