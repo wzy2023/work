@@ -1,0 +1,17 @@
+{
+  "name": "@wzyjs/antd",
+  "version": "0.3.0",
+  "description": "description",
+  "author": "wzy",
+  "main": "src/index.ts",
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "@ant-design/icons": "^5.3.7",
+    "@ant-design/pro-components": "^2.8.2",
+    "@wzyjs/utils": "link:@wzyjs/utils",
+    "@wzyjs/hooks": "link:@wzyjs/hooks",
+    "antd": "^5.19.2"
+  }
+}

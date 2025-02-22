@@ -3,9 +3,16 @@
   "private": true,
   "version": "1.0.0",
   "workspaces": [
+    "libs/*",
     "persons/*",
     "products/*",
-    "uis/*",
-    "libs/*"
-  ]
+    "uis/*"
+  ],
+  "scripts": {
+    "clean": "lerna clean --yes",
+    "bootstrap": "bun install",
+    "re-install": "npm run clean && npm run bootstrap",
+    "libs-dev": "lerna run dev --parallel --scope @wzyjs/*",
+    "libs-build": "lerna run build --parallel --scope @wzyjs/*"
+  }
 }

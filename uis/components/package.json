@@ -1,0 +1,36 @@
+{
+  "name": "@wzyjs/components",
+  "version": "0.3.0",
+  "description": "description",
+  "author": "wzy",
+  "main": "src/index.ts",
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "ali-oss": "^6.21.0",
+    "echarts": "^5.4.3",
+    "echarts-for-react": "^3.0.2",
+    "handlebars": "^4.7.8",
+    "html2canvas": "^1.4.1",
+    "js-beautify": "^1.14.7",
+    "prettier": "^2.8.1",
+    "prismjs": "^1.29.0",
+    "react": "^19.0.0",
+    "react-json-view": "^1.21.3",
+    "react-syntax-highlighter": "^15.5.0"
+  },
+  "peerDependencies": {
+    "@wzyjs/antd": "link:@wzyjs/antd",
+    "@wzyjs/utils": "link:@wzyjs/utils",
+    "@wzyjs/hooks": "link:@wzyjs/hooks",
+    "@wzyjs/types": "link:@wzyjs/types"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "@types/js-beautify": "^1.13.3",
+    "@types/prettier": "^2.7.2",
+    "@types/prismjs": "^1.26.0",
+    "@types/react-syntax-highlighter": "^15.5.5"
+  }
+}

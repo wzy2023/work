@@ -1,0 +1,10 @@
+{
+  "packages": [
+    "libs/*",
+    "persons/*",
+    "products/*",
+    "uis/*"
+  ],
+  "npmClient": "bun",
+  "version": "0.2.36"
+}

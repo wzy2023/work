@@ -1,0 +1,16 @@
+{
+  "name": "@wzyjs/pages",
+  "version": "0.3.0",
+  "description": "description",
+  "author": "wzy",
+  "main": "src/index.ts",
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "@wzyjs/antd": "link:@wzyjs/antd",
+    "@wzyjs/hooks": "link:@wzyjs/hooks",
+    "@wzyjs/types": "link:@wzyjs/types",
+    "@wzyjs/utils": "link:@wzyjs/utils"
+  }
+}

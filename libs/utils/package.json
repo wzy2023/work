@@ -1,0 +1,65 @@
+{
+  "name": "@wzyjs/utils",
+  "version": "0.3.5",
+  "description": "description",
+  "author": "wzy",
+  "scripts": {
+    "build-browser-esm": "bun build ./src/browser.ts --outfile dist/browser.esm.js --format esm",
+    "build-browser-cjs": "bun build ./src/browser.ts --outfile dist/browser.cjs.js --format cjs",
+    "build-node-esm": "bun build ./src/node.ts --outfile dist/node.esm.js --format esm --target bun",
+    "build-node-cjs": "bun build ./src/node.ts --outfile dist/node.cjs.js --format cjs --target bun",
+    "build": "npm run build-browser-esm && npm run build-browser-cjs && npm run build-node-esm && npm run build-node-cjs && tsc"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/browser.esm.js",
+      "require": "./dist/browser.cjs.js"
+    },
+    "./node": {
+      "import": "./dist/node.esm.js",
+      "require": "./dist/node.cjs.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/browser.d.ts"
+      ],
+      "*": [
+        "./dist/browser.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@types/papaparse": "^5.3.15",
+    "ali-oss": "^6.21.0",
+    "animejs": "^3.2.1",
+    "axios": "^1.6.2",
+    "classnames": "^2.3.2",
+    "consola": "^2.15.3",
+    "copy-to-clipboard": "^3.3.3",
+    "dayjs": "^1.11.12",
+    "fs-extra": "^10.1.0",
+    "js-base64": "^3.7.7",
+    "json5": "^2.2.3",
+    "localforage": "^1.10.0",
+    "lodash": "^4.17.21",
+    "md5": "^2.3.0",
+    "nedb": "^1.8.0",
+    "nodemailer": "^6.9.1",
+    "papaparse": "^5.5.1",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@types/ali-oss": "^6.16.11",
+    "@types/animejs": "^3.1.6",
+    "@types/fs-extra": "^9.0.13",
+    "@types/lodash": "^4.14.189",
+    "@types/md5": "^2.3.2",
+    "@types/nedb": "^1.8.16",
+    "@types/nodemailer": "^6.4.7"
+  }
+}

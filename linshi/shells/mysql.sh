@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# 复制数据库备份文件
+docker cp mysql:/video.sql /Users/wangzhenyu/同步空间/6.其它/mysql\ data/video.sql
+
+
+# 启动 OpenWebui 容器
+docker run -d --name open-webui \
+              -p 3000:8080 \
+              -v open-webui:/app/backend/data \
+              --restart always \
+              ghcr.io/open-webui/open-webui:main
+
+
+# 创建网络
+docker network create --driver bridge mysql-network
+
+
+# 启动 LobeChat 容器
+docker run -d --name lobe-chat \
+              -p 3210:3210 \
+              lobehub/lobe-chat
+
+
+# 启动 MySQL 容器
+docker run -d --name mysql \
+           --network mysql-network \
+           -p 3306:3306 \
+           -e MYSQL_ROOT_PASSWORD=root \
+           --restart always \
+           mysql:latest
+
+
+# 启动 phpMyAdmin 容器
+docker run -d --name phpmyadmin \
+           --network mysql-network \
+           -p 8080:80 \
+           -e PMA_HOST=mysql \
+           -e MYSQL_ROOT_PASSWORD=root \
+           --restart always \
+           phpmyadmin:latest
+
+
+# 启动 redis 容器
+#docker run -d --name \
+#              -p 6379:6379 redis \
+#              redis

@@ -1,0 +1,7 @@
+{
+  "name": "@wzyjs/types",
+  "version": "0.3.0",
+  "description": "description",
+  "author": "wzy",
+  "main": "src/index.ts"
+}

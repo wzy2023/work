@@ -1,0 +1,12 @@
+{
+  "name": "ai-run",
+  "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^4.20.0",
+    "@tensorflow/tfjs-node-gpu": "^4.20.0",
+    "jstat": "^1.9.6"
+  }
+}
