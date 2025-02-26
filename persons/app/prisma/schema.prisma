@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,11 +7,38 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model HabitGroup {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  isDeleted Boolean?  @default(false)
 
-  @@index([name])
+  name String
+  sort Int?
+
+  children Habit[]
 }
+
+model Habit {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  isDeleted Boolean?  @default(false)
+
+  name String
+  sort Int?
+
+  habitGroupId Int
+  habitGroup   HabitGroup @relation(fields: [habitGroupId], references: [id]) // 建立关系
+}
+
+enum HabitRecordStatus {
+  UNSTARTED // 未开启
+  IN_PROGRESS // 进行中
+  DONE // 完成
+  CANCELED // 取消
+  FAILED // 失败
+  PAUSED // 暂停
+}
+
+// 习惯记录：习惯ID、创建时间、完成时间、失败时间、状态、备注

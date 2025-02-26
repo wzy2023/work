@@ -2,6 +2,7 @@ import '@/styles/globals.css'
 
 import { type ReactNode } from 'react'
 import { type Metadata } from 'next'
+import { AntdRegistry } from '@ant-design/nextjs-registry'
 
 import { TRPCReactProvider } from '@/trpc/react'
 import { GeistSans } from 'geist/font/sans'
@@ -15,7 +16,11 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang='en' className={`${GeistSans.variable}`}>
       <body>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+        <AntdRegistry>
+          <TRPCReactProvider>
+            {children}
+          </TRPCReactProvider>
+        </AntdRegistry>
       </body>
     </html>
   )
