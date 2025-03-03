@@ -1,7 +1,6 @@
 import { ReactNode } from 'react'
 import { Card } from 'antd'
 import { DragOutlined } from '@ant-design/icons'
-import { spans } from 'next/dist/build/webpack/plugins/profiling-plugin'
 
 interface GroupProps {
   item: any
@@ -15,7 +14,7 @@ export const Group = (props: GroupProps) => {
   return (
     <Card
       size='small'
-      title={item}
+      title={item.name}
       extra={<DragOutlined {...provided.dragHandleProps} />}
     >
       {children}

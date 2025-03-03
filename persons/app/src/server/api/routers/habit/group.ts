@@ -23,8 +23,9 @@ export default createTRPCRouter({
   delete: publicProcedure
   .input(z.object({ id: z.number() }))
   .mutation(async ({ ctx, input }) => {
-    return ctx.db.habitGroup.delete({
+    return ctx.db.habitGroup.update({
       where: { id: input.id },
+      data: { isDeleted: true },
     })
   }),
 

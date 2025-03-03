@@ -7,6 +7,8 @@ import { AntdRegistry } from '@ant-design/nextjs-registry'
 import { TRPCReactProvider } from '@/trpc/react'
 import { GeistSans } from 'geist/font/sans'
 
+import '@ant-design/v5-patch-for-react-19'
+
 export const metadata: Metadata = {
   title: 'App',
   icons: [{ rel: 'icon', url: '/favicon.ico' }],
@@ -14,13 +16,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang='en' className={`${GeistSans.variable}`}>
+    <html lang='zh-cn' className={`${GeistSans.variable}`}>
       <body>
-        <AntdRegistry>
-          <TRPCReactProvider>
+        <TRPCReactProvider>
+          <AntdRegistry>
             {children}
-          </TRPCReactProvider>
-        </AntdRegistry>
+          </AntdRegistry>
+        </TRPCReactProvider>
       </body>
     </html>
   )

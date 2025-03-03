@@ -1,49 +1,43 @@
 'use client'
 
-import { api } from '@/trpc/react'
+import { Space } from 'antd'
 import { Group } from './components/Group'
-import { useEffect, useState } from 'react'
-import { Card, Space } from 'antd'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { DragOutlined } from '@ant-design/icons'
+import { CreateButton } from './components/CreateButton'
+
+import { api } from '@/trpc/react'
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
 export default () => {
-  // const listState = api.habitGroup.list.useQuery()
-
-  const [list, setList] = useState<string[]>([])
-
-  useEffect(() => {
-    setList([
-      'Item 1',
-      'Item 2',
-      'Item 3',
-      'Item 4',
-    ])
-  }, [])
+  const listState = api.habitGroup.list.useQuery()
 
   const onDragEnd = (result: any) => {
     if (!result.destination) return
 
-    const newItemsOrder = Array.from(list)
-    const [removed] = newItemsOrder.splice(result.source.index, 1)
-    newItemsOrder.splice(result.destination.index, 0, removed!)
-
-    setList([...newItemsOrder])
+    // const newItemsOrder = Array.from(list)
+    // const [removed] = newItemsOrder.splice(result.source.index, 1)
+    // newItemsOrder.splice(result.destination.index, 0, removed!)
+    //
+    // setList([...newItemsOrder])
   }
 
   return (
-    <div className='p-5'>
+    <div className='p-5 max-w-4xl mx-auto'>
+      <div className='flex justify-between items-center mb-6'>
+        <h1 className='text-2xl font-medium text-gray-900'>习惯管理</h1>
+        <CreateButton onSuccess={listState.refetch} />
+      </div>
+
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId='list' direction='vertical'>
           {provided => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
               <Space direction='vertical' style={{ width: '100%' }}>
-                {list.map((item, index) => (
-                  <Draggable key={item} draggableId={item} index={index}>
+                {listState.data?.map((item, index) => (
+                  <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
                     {provided => (
                       <div ref={provided.innerRef} {...provided.draggableProps}>
                         <Group item={item} provided={provided}>
-                          123
+                          <span></span>
                         </Group>
                       </div>
                     )}
