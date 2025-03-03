@@ -16,7 +16,8 @@ export default createTRPCRouter({
   list: publicProcedure
   .query(async ({ ctx }) => {
     return ctx.db.habitGroup.findMany({
-      orderBy: { createdAt: 'desc' },
+      orderBy: { sort: 'asc' },
+      where: { isDeleted: false },
     })
   }),
 
@@ -36,5 +37,16 @@ export default createTRPCRouter({
       where: { id: input.id },
       data: input.data,
     })
+  }),
+
+  updateSort: publicProcedure
+  .input(z.array(z.object({ id: z.number(), sort: z.number() })))
+  .mutation(async ({ ctx, input }) => {
+    return ctx.db.$transaction(input.map(item =>
+      ctx.db.habitGroup.update({
+        where: { id: item.id },
+        data: { sort: item.sort },
+      }),
+    ))
   }),
 })

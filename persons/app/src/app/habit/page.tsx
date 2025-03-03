@@ -9,15 +9,30 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
 export default () => {
   const listState = api.habitGroup.list.useQuery()
+  const utils = api.useUtils()
+
+  const deleteState = api.habitGroup.delete.useMutation({
+    onSuccess: () => listState.refetch(),
+  })
+
+  const updateSortState = api.habitGroup.updateSort.useMutation({
+    onSuccess: () => listState.refetch(),
+  })
 
   const onDragEnd = (result: any) => {
     if (!result.destination) return
 
-    // const newItemsOrder = Array.from(list)
-    // const [removed] = newItemsOrder.splice(result.source.index, 1)
-    // newItemsOrder.splice(result.destination.index, 0, removed!)
-    //
-    // setList([...newItemsOrder])
+    const newItemsOrder = Array.from(listState.data || [])
+    const [removed] = newItemsOrder.splice(result.source.index, 1)
+    newItemsOrder.splice(result.destination.index, 0, removed!)
+
+    // 乐观更新
+    utils.habitGroup.list.setData(undefined, newItemsOrder)
+
+    updateSortState.mutate(newItemsOrder.map((item, index) => ({
+      id: item.id,
+      sort: index,
+    })))
   }
 
   return (
@@ -36,7 +51,11 @@ export default () => {
                   <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
                     {provided => (
                       <div ref={provided.innerRef} {...provided.draggableProps}>
-                        <Group item={item} provided={provided}>
+                        <Group
+                          item={item}
+                          provided={provided}
+                          onDelete={() => deleteState.mutate({ id: item.id })}
+                        >
                           <span></span>
                         </Group>
                       </div>
