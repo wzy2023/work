@@ -37,6 +37,15 @@ const config = {
         },
       },
     ],
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/prefer-nullish-coalescing': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'off',
+    'react/display-name': 'off',
+    'import/no-anonymous-default-export': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
   },
 }
 

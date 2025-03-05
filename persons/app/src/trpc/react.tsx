@@ -11,6 +11,8 @@ import SuperJSON from 'superjson'
 import { type AppRouter } from '@/server/api/root'
 import { createQueryClient } from './query-client'
 
+import '@ant-design/v5-patch-for-react-19'
+
 // 定义一个全局变量用于保存客户端查询实例，确保在浏览器环境中仅初始化一次
 let clientQueryClientSingleton: QueryClient | undefined = undefined
 
@@ -75,13 +77,13 @@ export function TRPCReactProvider(props: { children: ReactNode }) {
 // 获取基础URL函数，根据不同的执行环境返回相应的基础URL
 function getBaseUrl() {
   // 浏览器环境直接使用window对象获取当前页面的基础URL
-  if (typeof window !== 'undefined') {
-    return window.location.origin
-  }
+  // if (typeof window !== 'undefined') {
+  //   return window.location.origin
+  // }
   // Vercel环境下返回部署的应用URL
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`
-  }
+  // if (process.env.VERCEL_URL) {
+  //   return `https://${process.env.VERCEL_URL}`
+  // }
   // 本地开发环境则返回localhost加默认或配置的端口号
   return `http://localhost:${process.env.PORT ?? 3000}`
 }

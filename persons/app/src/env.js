@@ -1,5 +1,5 @@
-import { createEnv } from '@t3-oss/env-nextjs'
 import { z } from 'zod'
+import { createEnv } from '@t3-oss/env-nextjs'
 
 export const env = createEnv({
   /**
@@ -8,9 +8,7 @@ export const env = createEnv({
    */
   server: {
     DATABASE_URL: z.string().url(),
-    NODE_ENV: z
-    .enum(['development', 'test', 'production'])
-    .default('development'),
+    NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
   },
 
   /**
@@ -32,11 +30,13 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
+
   /**
    * 使用 `SKIP_ENV_VALIDATION` 运行 `build` 或 `dev` 可以跳过环境变量验证。
    * 这在 Docker 构建时特别有用。
    */
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
+
   /**
    * 使空字符串被视为未定义。
    * 例如：`SOME_VAR: z.string()` 和 `SOME_VAR=''` 将抛出错误。

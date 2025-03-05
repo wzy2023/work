@@ -1,15 +1,19 @@
 'use client'
 
+import React from 'react'
+
 import { Space } from 'antd'
-import { Group } from './components/Group'
 import { CreateButton } from './components/CreateButton'
+import { Group } from './components/Group'
 
 import { api } from '@/trpc/react'
+
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
 export default () => {
-  const listState = api.habitGroup.list.useQuery()
   const utils = api.useUtils()
+
+  const listState = api.habitGroup.list.useQuery()
 
   const deleteState = api.habitGroup.delete.useMutation({
     onSuccess: () => listState.refetch(),
@@ -43,7 +47,7 @@ export default () => {
       </div>
 
       <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId='list' direction='vertical'>
+        <Droppable droppableId='list' direction='vertical' isDropDisabled={false} isCombineEnabled={false} ignoreContainerClipping>
           {provided => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
               <Space direction='vertical' style={{ width: '100%' }}>

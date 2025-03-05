@@ -14,5 +14,8 @@
     "re-install": "npm run clean && npm run bootstrap",
     "libs-dev": "lerna run dev --parallel --scope @wzyjs/*",
     "libs-build": "lerna run build --parallel --scope @wzyjs/*"
+  },
+  "devDependencies": {
+    "eslint-plugin-simple-import-sort": "^12.1.1"
   }
 }

@@ -1,15 +1,13 @@
-import { z } from 'zod'
 import { createTRPCRouter, publicProcedure } from '@/server/api/trpc'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 export default createTRPCRouter({
   create: publicProcedure
-  .input(z.object({ name: z.string().min(1) }))
+  .input(z.object({ name: z.string().min(1), color: z.string() }))
   .mutation(async ({ ctx, input }) => {
     return ctx.db.habitGroup.create({
-      data: {
-        name: input.name,
-      },
+      data: input,
     })
   }),
 

@@ -1,5 +1,4 @@
 module.exports = {
-  // extends: require.resolve('@umijs/max/eslint'),
   plugins: ['simple-import-sort'],
   rules: {
     'simple-import-sort/imports': [
@@ -7,13 +6,13 @@ module.exports = {
       {
         groups: [
           // 框架相关的
-          [`^react$`, `^@umijs/max$`],
+          ['^react$', '^@umijs/max$', 'next'],
           // 组件相关的
-          [`^antd$`, `^@ant-design/icons$`, `^@/components$`, `^\\./`],
+          ['^antd$', '^@ant-design/*', '^@/components$', '^\\./'],
           // npm包相关的
-          [`^dayjs`, `^lodash$`, `^ahooks$`, `^@/utils$`, `^@/hooks`, `^@/services`, `^@/const`, `^@/types`, `./utils$`],
+          ['^dayjs', '^lodash$', '^ahooks$', '^@/utils$', '^@/hooks', '^@/trpc', '^@/services', '^@/const', '^@/types', './utils$'],
           // 样式相关的
-          [`^\\./index\\.less$`, `^@/asset/.*$`],
+          [ '^@/asset/.*$', '/font/', '.*\\.css$'],
         ],
       },
     ],

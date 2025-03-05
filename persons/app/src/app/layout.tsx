@@ -1,13 +1,12 @@
-import '@/styles/globals.css'
-
 import { type ReactNode } from 'react'
 import { type Metadata } from 'next'
+
 import { AntdRegistry } from '@ant-design/nextjs-registry'
 
 import { TRPCReactProvider } from '@/trpc/react'
-import { GeistSans } from 'geist/font/sans'
 
-import '@ant-design/v5-patch-for-react-19'
+import { GeistSans } from 'geist/font/sans'
+import '@/styles/globals.css'
 
 export const metadata: Metadata = {
   title: 'App',

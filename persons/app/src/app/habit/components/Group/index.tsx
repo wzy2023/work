@@ -1,6 +1,9 @@
 import { ReactNode } from 'react'
-import { Card, Space, Popconfirm } from 'antd'
-import { DragOutlined, DeleteOutlined } from '@ant-design/icons'
+
+import { Card, Popconfirm, Space } from 'antd'
+import { DeleteOutlined, DragOutlined } from '@ant-design/icons'
+import { GroupTitle } from './GroupTitle'
+
 import { useBoolean } from 'ahooks'
 
 interface GroupProps {
@@ -17,12 +20,18 @@ export const Group = (props: GroupProps) => {
   return (
     <Card
       size='small'
-      title={item.name}
+      title={<GroupTitle item={item} />}
       onMouseEnter={setTrue}
       onMouseLeave={setFalse}
+      style={{
+        background: `linear-gradient(to bottom, ${item.color}40 0%, ${item.color}10 100%)`,
+        borderColor: item.color,
+        borderWidth: '1px',
+        borderStyle: 'solid',
+      }}
       extra={
         <Space className={`transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
-          <DragOutlined {...provided.dragHandleProps} />
+          <DragOutlined {...provided.dragHandleProps} className='cursor-grab' />
           <Popconfirm
             title='确定要删除吗？'
             okText='确定'

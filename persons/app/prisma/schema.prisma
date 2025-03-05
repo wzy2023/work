@@ -13,8 +13,9 @@ model HabitGroup {
   updatedAt DateTime? @updatedAt
   isDeleted Boolean?  @default(false)
 
-  name String
-  sort Int?
+  name  String
+  color String
+  sort  Int?
 
   children Habit[]
 }
