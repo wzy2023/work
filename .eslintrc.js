@@ -1,19 +1,55 @@
 module.exports = {
-  plugins: ['simple-import-sort'],
+  plugins: ['perfectionist'],
   rules: {
-    'simple-import-sort/imports': [
+    'perfectionist/sort-imports': [
       'error',
       {
+        type: 'line-length',
+        environment: 'bun',
+        maxLineLength: 120,
+        sortSideEffects: true,
         groups: [
-          // 框架相关的
-          ['^react$', '^@umijs/max$', 'next'],
-          // 组件相关的
-          ['^antd$', '^@ant-design/*', '^@/components$', '^\\./'],
-          // npm包相关的
-          ['^dayjs', '^lodash$', '^ahooks$', '^@/utils$', '^@/hooks', '^@/trpc', '^@/services', '^@/const', '^@/types', './utils$'],
-          // 样式相关的
-          [ '^@/asset/.*$', '/font/', '.*\\.css$'],
+          ['serverOnly'],
+
+          ['react'],
+          { newlinesBetween: 'never' },
+          ['next'],
+          { newlinesBetween: 'never' },
+          ['umi'],
+
+          ['antd'],
+          { newlinesBetween: 'ignore' },
+          ['component'],
+          { newlinesBetween: 'ignore' },
+          ['components'],
+
+          ['other'],
+          { newlinesBetween: 'ignore' },
+          ['hooks'],
+          { newlinesBetween: 'ignore' },
+          ['trpc'],
+
+          ['css', 'font'],
+          { newlinesBetween: 'ignore' },
+          ['asset'],
         ],
+        customGroups: {
+          value: {
+            serverOnly: ['server-only'],
+            react: ['^react$', '^react-dom$'],
+            umi: ['^@umijs/max$'],
+            next: ['^next$', '^next/'],
+            antd: ['^antd$', '^@ant-design/*'],
+            component: ['react-beautiful-dnd'],
+            components: ['@/components/', './components/'],
+            trpc: ['^@trpc/', '@/trpc', './trpc'],
+            hooks: ['^ahooks$', '^@/hooks', './hooks'],
+            other: ['superjson', 'lodash', 'dayjs', 'zod', '@prisma/client'],
+            css: ['.css$'],
+            asset: ['^@/asset/.*$'],
+            font: ['/font/'],
+          },
+        },
       },
     ],
   },

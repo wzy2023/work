@@ -1,10 +1,11 @@
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 
 import { Card, Popconfirm, Space } from 'antd'
 import { DeleteOutlined, DragOutlined } from '@ant-design/icons'
-import { GroupTitle } from './GroupTitle'
 
 import { useBoolean } from 'ahooks'
+
+import { GroupTitle } from './GroupTitle'
 
 interface GroupProps {
   item: any

@@ -3,12 +3,12 @@
 import React from 'react'
 
 import { Space } from 'antd'
-import { CreateButton } from './components/CreateButton'
-import { Group } from './components/Group'
-
-import { api } from '@/trpc/react'
-
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
+
+import { Group } from './components/Group'
+import { CreateButton } from './components/CreateButton'
+
+import { api } from '@/server/trpc/react'
 
 export default () => {
   const utils = api.useUtils()

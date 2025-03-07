@@ -2,11 +2,13 @@
 // 1. 你想要修改请求上下文（见第1部分）。
 // 2. 你想要创建一个新的中间件或类型的 procedure（见第3部分）。
 // 简而言之 - 这里是所有 tRPC 服务器相关代码被创建和插入的地方。你需要使用的部分在文档末尾有相应的说明。
-import { initTRPC } from '@trpc/server'
-import superjson from 'superjson'
-import { ZodError } from 'zod'
 
-import { db } from '@/server/db'
+import { ZodError } from 'zod'
+import superjson from 'superjson'
+
+import { initTRPC } from '@trpc/server'
+
+import { db } from './db'
 
 // 1. 上下文
 // 本节定义了在后端 API 中可用的“上下文”。

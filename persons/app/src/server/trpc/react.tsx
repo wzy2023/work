@@ -3,16 +3,18 @@
 import { type ReactNode, useState } from 'react'
 
 import { message } from 'antd'
-import { createQueryClient } from './query-client'
-
 import '@ant-design/v5-patch-for-react-19'
-import { type AppRouter } from '@/server/api/root'
-import { type QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { loggerLink, TRPCClientError, type TRPCLink, unstable_httpBatchStreamLink } from '@trpc/client'
-import { createTRPCReact } from '@trpc/react-query'
-import { type inferRouterInputs, type inferRouterOutputs } from '@trpc/server'
-import { observable } from '@trpc/server/observable'
+
 import SuperJSON from 'superjson'
+
+import { createTRPCReact } from '@trpc/react-query'
+import { observable } from '@trpc/server/observable'
+import { type inferRouterInputs, type inferRouterOutputs } from '@trpc/server'
+import { loggerLink, type TRPCLink, unstable_httpBatchStreamLink } from '@trpc/client'
+
+import { type AppRouter } from '../root'
+import { createQueryClient } from './query-client'
+import { type QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 // 定义一个全局变量用于保存客户端查询实例，确保在浏览器环境中仅初始化一次
 let clientQueryClientSingleton: QueryClient | undefined = undefined

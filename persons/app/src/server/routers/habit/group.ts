@@ -1,6 +1,7 @@
-import { createTRPCRouter, publicProcedure } from '@/server/api/trpc'
-import type { Prisma } from '@prisma/client'
 import { z } from 'zod'
+import type { Prisma } from '@prisma/client'
+
+import { createTRPCRouter, publicProcedure } from '@/server/trpc'
 
 export default createTRPCRouter({
   create: publicProcedure

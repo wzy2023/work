@@ -5,7 +5,8 @@ import { PlusOutlined } from '@ant-design/icons'
 import { BetaSchemaForm } from '@ant-design/pro-components'
 
 import { useBoolean } from 'ahooks'
-import { api } from '@/trpc/react'
+
+import { api } from '@/server/trpc/react'
 
 interface CreateButtonProps {
   onSuccess?: () => void

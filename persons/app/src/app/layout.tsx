@@ -3,10 +3,10 @@ import { type Metadata } from 'next'
 
 import { AntdRegistry } from '@ant-design/nextjs-registry'
 
-import { TRPCReactProvider } from '@/trpc/react'
+import { TRPCReactProvider } from '@/server/trpc/react'
 
-import { GeistSans } from 'geist/font/sans'
 import '@/styles/globals.css'
+import { GeistSans } from 'geist/font/sans'
 
 export const metadata: Metadata = {
   title: 'App',
