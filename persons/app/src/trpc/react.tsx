@@ -1,17 +1,18 @@
 'use client'
 
-import { ReactNode, useState } from 'react'
-import { createTRPCReact } from '@trpc/react-query'
-import { loggerLink, unstable_httpBatchStreamLink } from '@trpc/client'
-import { QueryClientProvider, type QueryClient } from '@tanstack/react-query'
-import { type inferRouterInputs, type inferRouterOutputs } from '@trpc/server'
+import { type ReactNode, useState } from 'react'
 
-import SuperJSON from 'superjson'
-
-import { type AppRouter } from '@/server/api/root'
+import { message } from 'antd'
 import { createQueryClient } from './query-client'
 
 import '@ant-design/v5-patch-for-react-19'
+import { type AppRouter } from '@/server/api/root'
+import { type QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { loggerLink, TRPCClientError, type TRPCLink, unstable_httpBatchStreamLink } from '@trpc/client'
+import { createTRPCReact } from '@trpc/react-query'
+import { type inferRouterInputs, type inferRouterOutputs } from '@trpc/server'
+import { observable } from '@trpc/server/observable'
+import SuperJSON from 'superjson'
 
 // 定义一个全局变量用于保存客户端查询实例，确保在浏览器环境中仅初始化一次
 let clientQueryClientSingleton: QueryClient | undefined = undefined
@@ -35,6 +36,22 @@ export type RouterInputs = inferRouterInputs<AppRouter>;
 // 输出推断辅助器。示例：type HelloOutput = RouterOutputs['example']['hello']
 export type RouterOutputs = inferRouterOutputs<AppRouter>;
 
+const errorLink: TRPCLink<AppRouter> = () => {
+  return ({ next, op }) => {
+    return observable((observer) => {
+      const subscription = next(op).subscribe({
+        next: (value) => observer.next(value),
+        error: (err) => {
+          message.error(err.message || '操作失败')
+          observer.error(err)
+        },
+        complete: () => observer.complete(),
+      })
+      return () => subscription.unsubscribe()
+    })
+  }
+}
+
 // TRPC React提供者组件，用于包裹应用中的组件树
 export function TRPCReactProvider(props: { children: ReactNode }) {
   // 获取或创建查询客户端实例
@@ -50,6 +67,8 @@ export function TRPCReactProvider(props: { children: ReactNode }) {
             return process.env.NODE_ENV === 'development' || (op.direction === 'down' && op.result instanceof Error)
           },
         }),
+        // 添加错误处理链接，用于处理TRPC客户端错误
+        errorLink,
         // 添加批量处理HTTP请求的链接，并设置Transformer、URL和自定义Headers
         unstable_httpBatchStreamLink({
           transformer: SuperJSON,
