@@ -1,4 +1,4 @@
-import { HydrateClient } from '@/server/trpc/server'
+import { HydrateClient } from '@/api/server'
 
 export default async () => {
   return (

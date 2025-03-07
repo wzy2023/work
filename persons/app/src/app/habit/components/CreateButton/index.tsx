@@ -6,7 +6,7 @@ import { BetaSchemaForm } from '@ant-design/pro-components'
 
 import { useBoolean } from 'ahooks'
 
-import { api } from '@/server/trpc/react'
+import { api } from '@/api/react'
 
 interface CreateButtonProps {
   onSuccess?: () => void

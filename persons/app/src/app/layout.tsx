@@ -3,7 +3,7 @@ import { type Metadata } from 'next'
 
 import { AntdRegistry } from '@ant-design/nextjs-registry'
 
-import { TRPCReactProvider } from '@/server/trpc/react'
+import { TRPCReactProvider } from '@/api/react'
 
 import '@/styles/globals.css'
 import { GeistSans } from 'geist/font/sans'

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { Input, message } from 'antd'
 
-import { api } from '@/server/trpc/react'
+import { api } from '@/api/react'
 
 interface GroupTitleProps {
   item: any

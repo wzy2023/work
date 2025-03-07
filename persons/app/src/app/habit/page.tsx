@@ -8,7 +8,17 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { Group } from './components/Group'
 import { CreateButton } from './components/CreateButton'
 
-import { api } from '@/server/trpc/react'
+import { api } from '@/api/react'
+
+async function doAsyncJob() {
+  const generalSettings = await Promise.resolve()
+  const settings = await Promise.resolve()
+  const config = await Promise.resolve()
+
+  return [generalSettings, settings, config]
+}
+
+doAsyncJob()
 
 export default () => {
   const utils = api.useUtils()

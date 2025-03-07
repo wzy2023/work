@@ -7,14 +7,20 @@ import '@ant-design/v5-patch-for-react-19'
 
 import SuperJSON from 'superjson'
 
+import { type ApiRouter } from './trpc/apiRouter'
+import { createQueryClient } from './trpc/client'
 import { createTRPCReact } from '@trpc/react-query'
 import { observable } from '@trpc/server/observable'
 import { type inferRouterInputs, type inferRouterOutputs } from '@trpc/server'
 import { loggerLink, type TRPCLink, unstable_httpBatchStreamLink } from '@trpc/client'
 
-import { type AppRouter } from '../root'
-import { createQueryClient } from './query-client'
 import { type QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+// 输入推断辅助器。示例：type HelloInput = ApiRouterInput['example']['hello']
+export type ApiRouterInput = inferRouterInputs<ApiRouter>
+
+// 输出推断辅助器。示例：type HelloOutput = ApiRouterOutput['example']['hello']
+export type ApiRouterOutput = inferRouterOutputs<ApiRouter>
 
 // 定义一个全局变量用于保存客户端查询实例，确保在浏览器环境中仅初始化一次
 let clientQueryClientSingleton: QueryClient | undefined = undefined
@@ -29,21 +35,23 @@ const getQueryClient = () => {
   return (clientQueryClientSingleton ??= createQueryClient())
 }
 
-// 创建TRPC的React集成实例
-export const api = createTRPCReact<AppRouter>()
+// 获取基础URL函数，根据不同的执行环境返回相应的基础URL
+const getBaseUrl = () => {
+  // 浏览器环境直接使用window对象获取当前页面的基础URL
+  if (typeof window !== 'undefined') {
+    return window.location.origin
+  }
+  // 本地开发环境则返回localhost加默认或配置的端口号
+  return `http://localhost:${process.env.PORT ?? 3000}`
+}
 
-// 输入推断辅助器。示例：type HelloInput = RouterInputs['example']['hello']
-export type RouterInputs = inferRouterInputs<AppRouter>;
-
-// 输出推断辅助器。示例：type HelloOutput = RouterOutputs['example']['hello']
-export type RouterOutputs = inferRouterOutputs<AppRouter>;
-
-const errorLink: TRPCLink<AppRouter> = () => {
+// 错误处理
+const errorLink: TRPCLink<ApiRouter> = () => {
   return ({ next, op }) => {
-    return observable((observer) => {
+    return observable(observer => {
       const subscription = next(op).subscribe({
-        next: (value) => observer.next(value),
-        error: (err) => {
+        next: value => observer.next(value),
+        error: err => {
           message.error(err.message || '操作失败')
           observer.error(err)
         },
@@ -54,8 +62,11 @@ const errorLink: TRPCLink<AppRouter> = () => {
   }
 }
 
+// 创建TRPC的React集成实例
+export const api = createTRPCReact<ApiRouter>()
+
 // TRPC React提供者组件，用于包裹应用中的组件树
-export function TRPCReactProvider(props: { children: ReactNode }) {
+export const TRPCReactProvider = (props: { children: ReactNode }) => {
   // 获取或创建查询客户端实例
   const queryClient = getQueryClient()
 
@@ -65,7 +76,7 @@ export function TRPCReactProvider(props: { children: ReactNode }) {
       links: [
         // 添加日志记录链接，用于开发环境或错误发生时的日志记录
         loggerLink({
-          enabled: (op) => {
+          enabled: op => {
             return process.env.NODE_ENV === 'development' || (op.direction === 'down' && op.result instanceof Error)
           },
         }),
@@ -93,18 +104,4 @@ export function TRPCReactProvider(props: { children: ReactNode }) {
       </api.Provider>
     </QueryClientProvider>
   )
-}
-
-// 获取基础URL函数，根据不同的执行环境返回相应的基础URL
-function getBaseUrl() {
-  // 浏览器环境直接使用window对象获取当前页面的基础URL
-  // if (typeof window !== 'undefined') {
-  //   return window.location.origin
-  // }
-  // Vercel环境下返回部署的应用URL
-  // if (process.env.VERCEL_URL) {
-  //   return `https://${process.env.VERCEL_URL}`
-  // }
-  // 本地开发环境则返回localhost加默认或配置的端口号
-  return `http://localhost:${process.env.PORT ?? 3000}`
 }
