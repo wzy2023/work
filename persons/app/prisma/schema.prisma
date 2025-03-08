@@ -17,10 +17,10 @@ model HabitGroup {
   color String
   sort  Int?
 
-  children Habit[]
+  children HabitItem[]
 }
 
-model Habit {
+model HabitItem {
   id        Int       @id @default(autoincrement())
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt

@@ -27,6 +27,8 @@ module.exports = {
           { newlinesBetween: 'ignore' },
           ['hooks'],
           { newlinesBetween: 'ignore' },
+          ['api'],
+          { newlinesBetween: 'ignore' },
           ['trpc'],
 
           ['css', 'font'],
@@ -43,6 +45,7 @@ module.exports = {
             component: ['react-beautiful-dnd'],
             components: ['@/components/', './components/'],
             trpc: ['^@trpc/', '@/trpc', './trpc'],
+            api: ['^@/api'],
             hooks: ['^ahooks$', '^@/hooks', './hooks'],
             other: ['superjson', 'lodash', 'dayjs', 'zod', '@prisma/client'],
             css: ['.css$'],
