@@ -14,7 +14,7 @@ model HabitGroup {
   isDeleted Boolean?  @default(false)
 
   name  String
-  color String
+  color String?
   sort  Int?
 
   children HabitItem[]

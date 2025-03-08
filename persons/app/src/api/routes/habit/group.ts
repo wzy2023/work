@@ -5,7 +5,7 @@ import { publicProcedure } from '@/api/trpc/procedures'
 
 export const group = {
   create: publicProcedure
-    .input(z.object({ name: z.string().min(1), color: z.string() }))
+    .input(z.object({ name: z.string().min(1), color: z.string().optional() }))
     .mutation(async ({ ctx, input }) => {
       return ctx.db.habitGroup.create({
         data: input,

@@ -12,21 +12,31 @@ export const item = {
       })
     }),
 
-  list: publicProcedure.query(async ({ ctx }) => {
-    return ctx.db.habitItem.findMany({
-      orderBy: { createdAt: 'desc' },
-    })
-  }),
+  list: publicProcedure
+    .input(z.object({ id: z.number() }))
+    .query(async ({ ctx, input }) => {
+      return ctx.db.habitItem.findMany({
+        where: { habitGroupId: input.id },
+        orderBy: { createdAt: 'desc' },
+      })
+    }),
 
-  delete: publicProcedure.input(z.object({ id: z.number() })).mutation(async ({ ctx, input }) => {
-    return ctx.db.habitItem.update({
-      where: { id: input.id },
-      data: { isDeleted: true },
-    })
-  }),
+  delete: publicProcedure
+    .input(z.object({ id: z.number() }))
+    .mutation(async ({ ctx, input }) => {
+      return ctx.db.habitItem.update({
+        where: { id: input.id },
+        data: { isDeleted: true },
+      })
+    }),
 
   update: publicProcedure
-    .input(z.object({ id: z.number(), data: z.custom<Prisma.HabitItemUpdateInput>() }))
+    .input(
+      z.object({
+        id: z.number(),
+        data: z.custom<Prisma.HabitItemUpdateInput>(),
+      }),
+    )
     .mutation(async ({ ctx, input }) => {
       return ctx.db.habitItem.update({
         where: { id: input.id },

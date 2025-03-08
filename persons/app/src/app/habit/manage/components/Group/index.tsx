@@ -1,9 +1,11 @@
 import { type ReactNode } from 'react'
 
-import { Card, Popconfirm, Space } from 'antd'
+import { Card, message, Popconfirm, Space } from 'antd'
 import { DeleteOutlined, DragOutlined } from '@ant-design/icons'
 
 import { useBoolean } from 'ahooks'
+
+import { api } from '@/api/react'
 
 import { GroupTitle } from './GroupTitle'
 
@@ -11,12 +13,20 @@ interface GroupProps {
   item: any
   children: ReactNode | ReactNode[]
   provided: any
-  onDelete?: () => void
+  onSuccess?: () => void
 }
 
 export const Group = (props: GroupProps) => {
-  const { item, children, provided, onDelete } = props
+  const { item, children, provided, onSuccess } = props
+
   const [isHovered, { setTrue, setFalse }] = useBoolean(false)
+
+  const deleteState = api.habit.group.delete.useMutation({
+    onSuccess: () => {
+      message.success('删除成功')
+      onSuccess?.()
+    },
+  })
 
   return (
     <Card
@@ -37,7 +47,7 @@ export const Group = (props: GroupProps) => {
             title='确定要删除吗？'
             okText='确定'
             cancelText='取消'
-            onConfirm={onDelete}
+            onConfirm={() => deleteState.mutate({ id: item.id })}
           >
             <DeleteOutlined className='cursor-pointer' />
           </Popconfirm>

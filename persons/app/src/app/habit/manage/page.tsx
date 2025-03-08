@@ -5,8 +5,9 @@ import React from 'react'
 import { Space } from 'antd'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
+import { List } from './components/List'
 import { Group } from './components/Group'
-import { CreateButton } from './components/CreateButton'
+import { Create } from './components/Group/Create'
 
 import { api } from '@/api/react'
 
@@ -14,10 +15,6 @@ export default () => {
   const utils = api.useUtils()
 
   const listState = api.habit.group.list.useQuery()
-
-  const deleteState = api.habit.group.delete.useMutation({
-    onSuccess: () => listState.refetch(),
-  })
 
   const updateSortState = api.habit.group.updateSort.useMutation({
     onSuccess: () => listState.refetch(),
@@ -33,21 +30,29 @@ export default () => {
     // 乐观更新
     utils.habit.group.list.setData(undefined, newItemsOrder)
 
-    updateSortState.mutate(newItemsOrder.map((item, index) => ({
-      id: item.id,
-      sort: index,
-    })))
+    updateSortState.mutate(
+      newItemsOrder.map((item, index) => ({
+        id: item.id,
+        sort: index,
+      })),
+    )
   }
 
   return (
     <div className='p-5 max-w-4xl mx-auto'>
       <div className='flex justify-between items-center mb-6'>
         <h1 className='text-2xl font-medium text-gray-900'>习惯管理</h1>
-        <CreateButton onSuccess={listState.refetch} />
+        <Create onSuccess={listState.refetch} />
       </div>
 
       <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId='list' direction='vertical' isDropDisabled={false} isCombineEnabled={false} ignoreContainerClipping>
+        <Droppable
+          droppableId='list'
+          direction='vertical'
+          isDropDisabled={false}
+          isCombineEnabled={false}
+          ignoreContainerClipping
+        >
           {provided => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
               <Space direction='vertical' style={{ width: '100%' }}>
@@ -58,9 +63,9 @@ export default () => {
                         <Group
                           item={item}
                           provided={provided}
-                          onDelete={() => deleteState.mutate({ id: item.id })}
+                          onSuccess={listState.refetch}
                         >
-                          <span></span>
+                          <List groupId={item.id} />
                         </Group>
                       </div>
                     )}

@@ -8,7 +8,7 @@ import { useBoolean } from 'ahooks'
 
 import { api } from '@/api/react'
 
-interface CreateButtonProps {
+interface CreateProps {
   onSuccess?: () => void
 }
 
@@ -17,7 +17,7 @@ interface Values {
   color: string
 }
 
-export const CreateButton = (props: CreateButtonProps) => {
+export const Create = (props: CreateProps) => {
   const { onSuccess } = props
 
   const [isModalOpen, { setTrue, setFalse }] = useBoolean(false)
