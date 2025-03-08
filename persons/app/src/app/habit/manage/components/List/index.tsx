@@ -1,4 +1,4 @@
-import { Space, Dropdown } from 'antd'
+import { Space, Dropdown, Popconfirm, message } from 'antd'
 
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
@@ -7,6 +7,7 @@ import { useBoolean } from 'ahooks'
 import { api } from '@/api/react'
 
 import { Create } from './Create'
+import { Delete } from './Delete'
 
 interface ListProps {
   groupId: number
@@ -52,7 +53,7 @@ export const List = (props: ListProps) => {
         >
           {provided => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
-              <Space direction='horizontal' style={{ width: '100%' }}>
+              <Space direction='horizontal' style={{ width: '100%' }} wrap>
                 {listState.data?.map((item, index) => (
                   <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
                     {provided => (
@@ -73,8 +74,8 @@ export const List = (props: ListProps) => {
                             },
                             {
                               key: 'delete',
-                              label: '删除',
                               danger: true,
+                              label: <Delete id={item.id} onSuccess={listState.refetch} />,
                             },
                           ],
                         }}

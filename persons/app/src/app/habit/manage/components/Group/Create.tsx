@@ -48,8 +48,7 @@ export const Create = (props: CreateProps) => {
             const { color, ...rest } = values
             setValues({
               ...rest,
-              // @ts-ignore
-              color: color?.toHex(),
+              color: (color as any)?.toHex(),
             })
           }}
           layout='horizontal'
@@ -70,8 +69,10 @@ export const Create = (props: CreateProps) => {
               },
               fieldProps: {
                 showText: true,
-                format: 'hex',
-                defaultFormat: 'hex',
+                style: {
+                  width: 110,
+                  display: 'flex',
+                },
                 presets: [
                   {
                     label: '暖色系',

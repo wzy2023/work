@@ -16,7 +16,7 @@ export const item = {
     .input(z.object({ id: z.number() }))
     .query(async ({ ctx, input }) => {
       return ctx.db.habitItem.findMany({
-        where: { habitGroupId: input.id },
+        where: { habitGroupId: input.id, isDeleted: false },
         orderBy: { sort: 'asc' },
       })
     }),

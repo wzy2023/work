@@ -22,6 +22,7 @@ export const Create = (props: CreateHabitProps) => {
   const createState = api.habit.item.create.useMutation({
     onSuccess: () => {
       message.success('创建成功')
+      setFalse()
       onSubmit()
     },
   })
@@ -29,6 +30,7 @@ export const Create = (props: CreateHabitProps) => {
   const updateState = api.habit.item.update.useMutation({
     onSuccess: () => {
       message.success('修改成功')
+      setFalse()
       onSubmit()
     },
   })
@@ -39,7 +41,7 @@ export const Create = (props: CreateHabitProps) => {
 
     if (id) {
       updateState.mutate({
-        id: 1,
+        id,
         data: values,
       })
       return
@@ -67,7 +69,7 @@ export const Create = (props: CreateHabitProps) => {
         />
       )}
 
-      <Modal title={id ? '修改习惯' : '新建习惯'} open={visible} onOk={onOk} onCancel={setFalse}>
+      <Modal title={id ? '修改习惯 ' + id : '新建习惯'} open={visible} onOk={onOk} onCancel={setFalse}>
         <BetaSchemaForm
           form={form}
           submitter={false}
