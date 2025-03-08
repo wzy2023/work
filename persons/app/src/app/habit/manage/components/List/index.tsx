@@ -1,4 +1,4 @@
-import { Space } from 'antd'
+import { Space, Dropdown } from 'antd'
 
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
@@ -56,16 +56,38 @@ export const List = (props: ListProps) => {
                 {listState.data?.map((item, index) => (
                   <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
                     {provided => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        className='flex items-center justify-center h-12 w-12 rounded-full
-                            bg-blue-500 text-white hover:bg-blue-600 transition-colors
-                            cursor-grab shadow-md hover:shadow-lg'
+                      <Dropdown
+                        trigger={['contextMenu']}
+                        menu={{
+                          items: [
+                            {
+                              key: 'edit',
+                              label: (
+                                <Create
+                                  id={item.id}
+                                  initialValues={item}
+                                  habitGroupId={groupId}
+                                  onSubmit={listState.refetch}
+                                />
+                              ),
+                            },
+                            {
+                              key: 'delete',
+                              label: '删除',
+                              danger: true,
+                            },
+                          ],
+                        }}
                       >
-                        {item.name}
-                      </div>
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          className='flex items-center justify-center h-12 w-12 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors cursor-grab shadow-md hover:shadow-lg'
+                        >
+                          {item.name}
+                        </div>
+                      </Dropdown>
                     )}
                   </Draggable>
                 ))}

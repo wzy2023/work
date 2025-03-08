@@ -1,17 +1,19 @@
-import { Button, Modal, Form } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
+import { Button, Modal, Form, message } from 'antd'
 import { BetaSchemaForm } from '@ant-design/pro-components'
 
 import { useBoolean } from 'ahooks'
 import { api } from '@/api/react'
 
 interface CreateHabitProps {
+  id?: number
   habitGroupId: number
+  initialValues?: any
   onSubmit: () => void
 }
 
 export const Create = (props: CreateHabitProps) => {
-  const { habitGroupId, onSubmit } = props
+  const { id, initialValues, habitGroupId, onSubmit } = props
 
   const [form] = Form.useForm()
 
@@ -19,11 +21,30 @@ export const Create = (props: CreateHabitProps) => {
 
   const createState = api.habit.item.create.useMutation({
     onSuccess: () => {
+      message.success('创建成功')
       onSubmit()
     },
   })
 
-  const onOk = (values: any) => {
+  const updateState = api.habit.item.update.useMutation({
+    onSuccess: () => {
+      message.success('修改成功')
+      onSubmit()
+    },
+  })
+
+  const onOk = async () => {
+    await form.validateFields()
+    const values = form.getFieldsValue()
+
+    if (id) {
+      updateState.mutate({
+        id: 1,
+        data: values,
+      })
+      return
+    }
+
     createState.mutate({
       ...values,
       habitGroupId,
@@ -32,18 +53,25 @@ export const Create = (props: CreateHabitProps) => {
 
   return (
     <>
-      <Button
-        type='dashed'
-        shape='circle'
-        size='large'
-        icon={<PlusOutlined />}
-        onClick={setTrue}
-      />
+      {id ? (
+        <span onClick={setTrue}>
+          修改
+        </span>
+      ) : (
+        <Button
+          type='dashed'
+          shape='circle'
+          size='large'
+          icon={<PlusOutlined />}
+          onClick={setTrue}
+        />
+      )}
 
-      <Modal title='新建习惯' open={visible} onOk={onOk} onCancel={setFalse}>
+      <Modal title={id ? '修改习惯' : '新建习惯'} open={visible} onOk={onOk} onCancel={setFalse}>
         <BetaSchemaForm
           form={form}
           submitter={false}
+          initialValues={initialValues}
           columns={[
             {
               title: '名称',
