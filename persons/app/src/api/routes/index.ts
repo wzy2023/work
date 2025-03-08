@@ -1,7 +1,5 @@
-import habit from './habit'
-import habitGroup from './habit/group'
+import * as habit from './habit'
 
 export default {
   habit,
-  habitGroup,
 }

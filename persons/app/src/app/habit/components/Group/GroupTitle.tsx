@@ -17,7 +17,7 @@ export const GroupTitle = (props: GroupTitleProps) => {
     setIsEditing(true)
   }
 
-  const updateMutation = api.habitGroup.update.useMutation({
+  const updateMutation = api.habit.group.update.useMutation({
     onSuccess: () => {
       message.success('名称更新成功')
     },

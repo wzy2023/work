@@ -24,7 +24,7 @@ export const CreateButton = (props: CreateButtonProps) => {
 
   const [values, setValues] = useState<Values>()
 
-  const createState = api.habitGroup.create.useMutation({
+  const createState = api.habit.group.create.useMutation({
     onSuccess: () => {
       message.success('创建成功')
       onSuccess?.()

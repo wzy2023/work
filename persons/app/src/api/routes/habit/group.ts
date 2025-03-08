@@ -3,7 +3,7 @@ import type { Prisma } from '@prisma/client'
 
 import { publicProcedure } from '@/api/trpc/procedures'
 
-export default {
+export const group = {
   create: publicProcedure
     .input(z.object({ name: z.string().min(1), color: z.string() }))
     .mutation(async ({ ctx, input }) => {

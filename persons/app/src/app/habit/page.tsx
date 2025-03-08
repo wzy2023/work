@@ -10,26 +10,16 @@ import { CreateButton } from './components/CreateButton'
 
 import { api } from '@/api/react'
 
-async function doAsyncJob() {
-  const generalSettings = await Promise.resolve()
-  const settings = await Promise.resolve()
-  const config = await Promise.resolve()
-
-  return [generalSettings, settings, config]
-}
-
-doAsyncJob()
-
 export default () => {
   const utils = api.useUtils()
 
-  const listState = api.habitGroup.list.useQuery()
+  const listState = api.habit.group.list.useQuery()
 
-  const deleteState = api.habitGroup.delete.useMutation({
+  const deleteState = api.habit.group.delete.useMutation({
     onSuccess: () => listState.refetch(),
   })
 
-  const updateSortState = api.habitGroup.updateSort.useMutation({
+  const updateSortState = api.habit.group.updateSort.useMutation({
     onSuccess: () => listState.refetch(),
   })
 
@@ -41,7 +31,7 @@ export default () => {
     newItemsOrder.splice(result.destination.index, 0, removed!)
 
     // 乐观更新
-    utils.habitGroup.list.setData(undefined, newItemsOrder)
+    utils.habit.group.list.setData(undefined, newItemsOrder)
 
     updateSortState.mutate(newItemsOrder.map((item, index) => ({
       id: item.id,
