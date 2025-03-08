@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang='zh-cn' className={`${GeistSans.variable}`}>
+    <html lang='zh-CN' className={`${GeistSans.variable}`}>
       <body>
         <TRPCReactProvider>
           <AntdRegistry>

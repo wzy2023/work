@@ -6,4 +6,4 @@ jsxSingleQuote: true
 semi: false
 useTabs: false
 arrowParens: avoid
-printWidth: 90
+printWidth: Infinity

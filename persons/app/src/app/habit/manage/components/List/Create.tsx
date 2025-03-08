@@ -32,15 +32,13 @@ export const Create = (props: CreateHabitProps) => {
 
   return (
     <>
-      <div className='text-center'>
-        <Button
-          type='dashed'
-          shape='circle'
-          icon={<PlusOutlined />}
-          className='w-16 h-16 text-2xl shadow-sm hover:shadow-md transition-shadow'
-          onClick={setTrue}
-        />
-      </div>
+      <Button
+        type='dashed'
+        shape='circle'
+        size='large'
+        icon={<PlusOutlined />}
+        onClick={setTrue}
+      />
 
       <Modal title='新建习惯' open={visible} onOk={onOk} onCancel={setFalse}>
         <BetaSchemaForm

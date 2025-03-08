@@ -17,7 +17,7 @@ export const item = {
     .query(async ({ ctx, input }) => {
       return ctx.db.habitItem.findMany({
         where: { habitGroupId: input.id },
-        orderBy: { createdAt: 'desc' },
+        orderBy: { sort: 'asc' },
       })
     }),
 
@@ -43,4 +43,17 @@ export const item = {
         data: input.data,
       })
     }),
+
+  updateSort: publicProcedure
+  .input(z.array(z.object({ id: z.number(), sort: z.number() })))
+  .mutation(async ({ ctx, input }) => {
+    return ctx.db.$transaction(
+      input.map(item =>
+        ctx.db.habitItem.update({
+          where: { id: item.id },
+          data: { sort: item.sort },
+        }),
+      ),
+    )
+  }),
 }
