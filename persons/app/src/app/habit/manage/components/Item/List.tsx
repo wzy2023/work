@@ -38,7 +38,7 @@ export const List = (props: ListProps) => {
 
     updateSort.mutate(newItems.map((item, index) => ({
       id: item.id,
-      sort: index,
+      sort: index + 1,
     })))
   }
 

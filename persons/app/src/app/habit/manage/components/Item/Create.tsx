@@ -49,7 +49,8 @@ export const Create = (props: CreateHabitProps) => {
 
     createState.mutate({
       groupId,
-      data: values,
+      sort: 99999,
+      ...values,
     })
   }
 

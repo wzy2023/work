@@ -51,11 +51,11 @@ const errorLink: TRPCLink<ApiRouter> = () => {
     return observable(observer => {
       const subscription = next(op).subscribe({
         next: value => observer.next(value),
+        complete: () => observer.complete(),
         error: err => {
           message.error(err.message || '操作失败')
           observer.error(err)
         },
-        complete: () => observer.complete(),
       })
       return () => subscription.unsubscribe()
     })

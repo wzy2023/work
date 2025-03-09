@@ -1,13 +1,9 @@
 import { BetaSchemaForm } from '@ant-design/pro-components'
 
-enum HabitItemFrequencyType {
-  DAILY = 1, // 每天
-  WEEKLY = 2, // 每周
-  MONTHLY = 3, // 每月
-}
+import { FrequencyType } from '../../../../../api/routes/habit/item/types'
 
 interface Value {
-  type: HabitItemFrequencyType
+  type: FrequencyType
   weekDays: number[]
   dayOfMonth: number[]
 }
@@ -32,10 +28,12 @@ export const CreateFrequency = (props: CreateFrequencyProps) => {
           valueType: 'radio',
           formItemProps: { rules: [{ required: true }] },
           fieldProps: {
+            optionType: 'button',
+            buttonStyle: 'solid',
             options: [
-              { label: '每天', value: HabitItemFrequencyType.DAILY },
-              { label: '每周', value: HabitItemFrequencyType.WEEKLY },
-              { label: '每月', value: HabitItemFrequencyType.MONTHLY },
+              { label: '每天', value: FrequencyType.DAILY },
+              { label: '每周', value: FrequencyType.WEEKLY },
+              { label: '每月', value: FrequencyType.MONTHLY },
             ],
           },
         },

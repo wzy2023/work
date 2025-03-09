@@ -1,12 +1,12 @@
 import { z } from 'zod'
 
-import { type Prisma } from '@prisma/client'
-
 import { publicProcedure } from '@/api/trpc/procedures'
+
+import type { CreateParams, ListParams, RemoveParams, UpdateParams, UpdateSortParams } from './types'
 
 export const item = {
   list: publicProcedure
-  .input(z.object({ groupId: z.number() }))
+  .input(z.custom<ListParams>())
   .query(async ({ ctx, input }) => {
     return ctx.db.habitItem.findMany({
       where: { groupId: input.groupId, isDeleted: false },
@@ -15,36 +15,15 @@ export const item = {
   }),
 
   create: publicProcedure
-  .input(z.object({
-    groupId: z.number(),
-    data: z.object({
-      name: z.string().min(1),
-      count: z.object({
-        total: z.number(),
-        times: z.number().optional(),
-        single: z.number().optional(),
-      }),
-      frequency: z.object({
-        type: z.number(),
-        weekDays: z.array(z.number()).optional(),
-        dayOfMonth: z.array(z.number()).optional(),
-      }),
-    }),
-  }))
+  .input(z.custom<CreateParams>())
   .mutation(async ({ ctx, input }) => {
     return ctx.db.habitItem.create({
-      data: {
-        groupId: input.groupId,
-        ...input.data,
-      },
+      data: input,
     })
   }),
 
   update: publicProcedure
-  .input(z.object({
-    id: z.number(),
-    data: z.custom<Prisma.HabitItemUpdateInput>(),
-  }))
+  .input(z.custom<UpdateParams>())
   .mutation(async ({ ctx, input }) => {
     return ctx.db.habitItem.update({
       where: { id: input.id },
@@ -53,7 +32,7 @@ export const item = {
   }),
 
   remove: publicProcedure
-  .input(z.object({ id: z.number() }))
+  .input(z.custom<RemoveParams>())
   .mutation(async ({ ctx, input }) => {
     return ctx.db.habitItem.update({
       where: { id: input.id },
@@ -62,7 +41,7 @@ export const item = {
   }),
 
   updateSort: publicProcedure
-  .input(z.array(z.object({ id: z.number(), sort: z.number() })))
+  .input(z.custom<UpdateSortParams>())
   .mutation(async ({ ctx, input }) => {
     return ctx.db.$transaction(
       input.map(item =>
