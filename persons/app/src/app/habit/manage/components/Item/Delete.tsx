@@ -8,7 +8,7 @@ interface DeleteProps {
 }
 
 export const Delete = ({ id, onSuccess }: DeleteProps) => {
-  const deleteState = api.habit.item.delete.useMutation({
+  const removeState = api.habit.item.remove.useMutation({
     onSuccess: () => {
       message.success('删除成功')
       onSuccess?.()
@@ -20,7 +20,7 @@ export const Delete = ({ id, onSuccess }: DeleteProps) => {
       title='确定要删除吗？'
       okText='确定'
       cancelText='取消'
-      onConfirm={() => deleteState.mutate({ id })}
+      onConfirm={() => removeState.mutate({ id })}
     >
       <span className='text-red-500 cursor-pointer'>删除</span>
     </Popconfirm>

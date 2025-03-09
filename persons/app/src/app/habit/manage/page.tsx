@@ -2,41 +2,13 @@
 
 import React from 'react'
 
-import { Space } from 'antd'
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
-
-import { List } from './components/List'
-import { Group } from './components/Group'
+import { List } from './components/Group/List'
 import { Create } from './components/Group/Create'
 
 import { api } from '@/api/react'
 
 export default () => {
-  const utils = api.useUtils()
-
   const listState = api.habit.group.list.useQuery()
-
-  const updateSortState = api.habit.group.updateSort.useMutation({
-    onSuccess: () => listState.refetch(),
-  })
-
-  const onDragEnd = (result: any) => {
-    if (!result.destination) return
-
-    const newItemsOrder = Array.from(listState.data || [])
-    const [removed] = newItemsOrder.splice(result.source.index, 1)
-    newItemsOrder.splice(result.destination.index, 0, removed!)
-
-    // 乐观更新
-    utils.habit.group.list.setData(undefined, newItemsOrder)
-
-    updateSortState.mutate(
-      newItemsOrder.map((item, index) => ({
-        id: item.id,
-        sort: index,
-      })),
-    )
-  }
 
   return (
     <div className='p-5 max-w-4xl mx-auto'>
@@ -45,38 +17,10 @@ export default () => {
         <Create onSuccess={listState.refetch} />
       </div>
 
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable
-          droppableId='list'
-          direction='vertical'
-          isDropDisabled={false}
-          isCombineEnabled={false}
-          ignoreContainerClipping
-        >
-          {provided => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>
-              <Space direction='vertical' style={{ width: '100%' }}>
-                {listState.data?.map((item, index) => (
-                  <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
-                    {provided => (
-                      <div ref={provided.innerRef} {...provided.draggableProps}>
-                        <Group
-                          item={item}
-                          provided={provided}
-                          onSuccess={listState.refetch}
-                        >
-                          <List groupId={item.id} />
-                        </Group>
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-                {provided.placeholder}
-              </Space>
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
+      <List
+        list={listState.data}
+        onSuccess={listState.refetch}
+      />
     </div>
   )
 }

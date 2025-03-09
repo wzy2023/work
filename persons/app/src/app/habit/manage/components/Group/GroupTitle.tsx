@@ -2,45 +2,37 @@ import React, { useState } from 'react'
 
 import { Input, message } from 'antd'
 
+import { useBoolean } from 'ahooks'
+
 import { api } from '@/api/react'
 
-interface GroupTitleProps {
-  item: any
+interface GroupTitleProps<I> {
+  item: I
 }
 
-export const GroupTitle = (props: GroupTitleProps) => {
+export const GroupTitle = <I extends { id: number, name: string }>(props: GroupTitleProps<I>) => {
   const { item } = props
-  const [isEditing, setIsEditing] = useState(false)
-  const [inputValue, setInputValue] = useState(item.name)
 
-  const onDoubleClick = () => {
-    setIsEditing(true)
-  }
+  const [isEditing, { setTrue, setFalse }] = useBoolean(false)
+
+  const [name, setName] = useState(item.name)
 
   const updateMutation = api.habit.group.update.useMutation({
     onSuccess: () => {
       message.success('名称更新成功')
-    },
-    onError: () => {
-      message.error('名称更新失败')
-    },
+      setFalse()
+    }
   })
 
-  const onSubmit = async () => {
-    if (!inputValue.trim()) return
+  const onSubmit = () => {
+    if (!name.trim()) return
 
-    try {
-      await updateMutation.mutateAsync({
-        id: item.id,
-        data: {
-          name: inputValue.trim(),
-        },
-      })
-      // 更新本地数据
-      item.name = inputValue.trim()
-    } finally {
-      setIsEditing(false)
-    }
+    updateMutation.mutate({
+      id: item.id,
+      data: {
+        name: name.trim(),
+      },
+    })
   }
 
   const onKeyDown = (e: React.KeyboardEvent) => {
@@ -50,19 +42,17 @@ export const GroupTitle = (props: GroupTitleProps) => {
   }
 
   return (
-    <div onDoubleClick={onDoubleClick} style={{ cursor: 'text' }}>
-      {isEditing ? (
+    <div onDoubleClick={setTrue} style={{ cursor: 'text' }}>
+      {!isEditing ? name : (
         <Input
-          value={inputValue}
-          onChange={ev => setInputValue(ev.target.value)}
+          value={name}
+          onChange={ev => setName(ev.target.value)}
           onBlur={onSubmit}
           onKeyDown={onKeyDown}
           autoFocus
           size='small'
           style={{ width: 200 }}
         />
-      ) : (
-        item.name
       )}
     </div>
   )

@@ -1,7 +1,5 @@
-import { useState } from 'react'
-
-import { Button, message, Modal } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
+import { Button, Form, message, Modal } from 'antd'
 import { BetaSchemaForm } from '@ant-design/pro-components'
 
 import { useBoolean } from 'ahooks'
@@ -20,37 +18,33 @@ interface Values {
 export const Create = (props: CreateProps) => {
   const { onSuccess } = props
 
-  const [isModalOpen, { setTrue, setFalse }] = useBoolean(false)
+  const [form] = Form.useForm<Values>()
 
-  const [values, setValues] = useState<Values>()
+  const [isModalOpen, { setTrue, setFalse }] = useBoolean(false)
 
   const createState = api.habit.group.create.useMutation({
     onSuccess: () => {
       message.success('创建成功')
+      setFalse()
       onSuccess?.()
     },
   })
 
   const onOk = async () => {
-    if (!values) {
-      return
-    }
-    await createState.mutateAsync(values)
-    setFalse()
+    await form.validateFields()
+
+    const values = form.getFieldsValue()
+    values.color = (values.color as any)?.toHex()
+
+    createState.mutate(values)
   }
 
   return (
     <>
       <Modal title='创建分组' open={isModalOpen} onCancel={setFalse} onOk={onOk}>
         <BetaSchemaForm<Values>
+          form={form}
           submitter={false}
-          onValuesChange={(_, values) => {
-            const { color, ...rest } = values
-            setValues({
-              ...rest,
-              color: (color as any)?.toHex(),
-            })
-          }}
           layout='horizontal'
           columns={[
             {
@@ -64,9 +58,6 @@ export const Create = (props: CreateProps) => {
               title: '颜色',
               dataIndex: 'color',
               valueType: 'color',
-              formItemProps: {
-                rules: [{ required: true, message: '请选择颜色' }],
-              },
               fieldProps: {
                 showText: true,
                 style: {

@@ -1,5 +1,5 @@
 import { PlusOutlined } from '@ant-design/icons'
-import { Button, Modal, Form, message } from 'antd'
+import { Button, Form, message, Modal } from 'antd'
 import { BetaSchemaForm } from '@ant-design/pro-components'
 
 import { useBoolean } from 'ahooks'
@@ -7,13 +7,13 @@ import { api } from '@/api/react'
 
 interface CreateHabitProps {
   id?: number
-  habitGroupId: number
+  groupId: number
   initialValues?: any
   onSubmit: () => void
 }
 
 export const Create = (props: CreateHabitProps) => {
-  const { id, initialValues, habitGroupId, onSubmit } = props
+  const { id, initialValues, groupId, onSubmit } = props
 
   const [form] = Form.useForm()
 
@@ -40,16 +40,13 @@ export const Create = (props: CreateHabitProps) => {
     const values = form.getFieldsValue()
 
     if (id) {
-      updateState.mutate({
-        id,
-        data: values,
-      })
+      updateState.mutate({ id, data: values })
       return
     }
 
     createState.mutate({
-      ...values,
-      habitGroupId,
+      groupId,
+      data: values,
     })
   }
 

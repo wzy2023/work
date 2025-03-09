@@ -1,27 +1,27 @@
-import { type ReactNode } from 'react'
+import React from 'react'
 
 import { Card, message, Popconfirm, Space } from 'antd'
 import { DeleteOutlined, DragOutlined } from '@ant-design/icons'
 
-import { useBoolean } from 'ahooks'
-
-import { api } from '@/api/react'
-
 import { GroupTitle } from './GroupTitle'
+import { List as ItemList } from '../Item/List'
+
+import { useHovered } from '@/hooks'
+import { api } from '@/api/react'
 
 interface GroupProps {
   item: any
-  children: ReactNode | ReactNode[]
   provided: any
+  // TODO store
   onSuccess?: () => void
 }
 
 export const Group = (props: GroupProps) => {
-  const { item, children, provided, onSuccess } = props
+  const { item, provided, onSuccess } = props
 
-  const [isHovered, { setTrue, setFalse }] = useBoolean(false)
+  const { isHovered, onMouseEnter, onMouseLeave } = useHovered()
 
-  const deleteState = api.habit.group.delete.useMutation({
+  const removeState = api.habit.group.remove.useMutation({
     onSuccess: () => {
       message.success('删除成功')
       onSuccess?.()
@@ -32,8 +32,8 @@ export const Group = (props: GroupProps) => {
     <Card
       size='small'
       title={<GroupTitle item={item} />}
-      onMouseEnter={setTrue}
-      onMouseLeave={setFalse}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       style={{
         background: `linear-gradient(to bottom, ${item.color}40 0%, ${item.color}10 100%)`,
         borderColor: item.color,
@@ -47,14 +47,14 @@ export const Group = (props: GroupProps) => {
             title='确定要删除吗？'
             okText='确定'
             cancelText='取消'
-            onConfirm={() => deleteState.mutate({ id: item.id })}
+            onConfirm={() => removeState.mutate({ id: item.id })}
           >
             <DeleteOutlined className='cursor-pointer' />
           </Popconfirm>
         </Space>
       }
     >
-      {children}
+      <ItemList groupId={item.id} />
     </Card>
   )
 }

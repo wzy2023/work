@@ -29,8 +29,8 @@ model HabitItem {
   name String
   sort Int?
 
-  habitGroupId Int
-  habitGroup   HabitGroup @relation(fields: [habitGroupId], references: [id]) // 建立关系
+  groupId Int
+  group   HabitGroup @relation(fields: [groupId], references: [id]) // 建立关系
 }
 
 enum HabitRecordStatus {
