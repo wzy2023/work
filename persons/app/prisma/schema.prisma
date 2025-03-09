@@ -29,6 +29,10 @@ model HabitItem {
   name String
   sort Int?
 
+  count Json? @default("{\"total\": 0, \"times\": 0, \"single\": 0}")
+
+  frequency Json? @default("{\"type\": 0, \"weekDays\": [], \"dayOfMonth\": []}")
+
   groupId Int
   group   HabitGroup @relation(fields: [groupId], references: [id]) // 建立关系
 }

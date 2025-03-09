@@ -2,6 +2,9 @@ import { PlusOutlined } from '@ant-design/icons'
 import { Button, Form, message, Modal } from 'antd'
 import { BetaSchemaForm } from '@ant-design/pro-components'
 
+import { CreateNums } from './CreateNums'
+import { CreateFrequency } from './CreateFrequency'
+
 import { useBoolean } from 'ahooks'
 import { api } from '@/api/react'
 
@@ -76,6 +79,16 @@ export const Create = (props: CreateHabitProps) => {
               title: '名称',
               dataIndex: 'name',
               formItemProps: { rules: [{ required: true }] },
+            },
+            {
+              title: '频率',
+              dataIndex: 'frequency',
+              renderFormItem: () => <CreateFrequency />,
+            },
+            {
+              title: '数量',
+              dataIndex: 'count',
+              renderFormItem: () => <CreateNums />,
             },
           ]}
         />

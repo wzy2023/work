@@ -17,7 +17,19 @@ export const item = {
   create: publicProcedure
   .input(z.object({
     groupId: z.number(),
-    data: z.object({ name: z.string().min(1) }),
+    data: z.object({
+      name: z.string().min(1),
+      count: z.object({
+        total: z.number(),
+        times: z.number().optional(),
+        single: z.number().optional(),
+      }),
+      frequency: z.object({
+        type: z.number(),
+        weekDays: z.array(z.number()).optional(),
+        dayOfMonth: z.array(z.number()).optional(),
+      }),
+    }),
   }))
   .mutation(async ({ ctx, input }) => {
     return ctx.db.habitItem.create({
