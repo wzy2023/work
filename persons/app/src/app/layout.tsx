@@ -2,14 +2,11 @@ import { type ReactNode } from 'react'
 import { type Metadata } from 'next'
 
 import { ConfigProvider } from 'antd'
-import { AntdRegistry } from '@ant-design/nextjs-registry'
+import { AntdRegistry, zh_CN } from '@wzyjs/antd'
 
 import { TRPCReactProvider } from '@/api/react'
 
 import '@/styles/globals.css'
-import { GeistSans } from 'geist/font/sans'
-
-import locale from 'antd/locale/zh_CN'
 
 export const metadata: Metadata = {
   title: 'App',
@@ -18,11 +15,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang='zh-CN' className={`${GeistSans.variable}`}>
+    <html lang='zh-CN'>
       <body>
         <TRPCReactProvider>
           <AntdRegistry>
-            <ConfigProvider locale={locale}>
+            <ConfigProvider locale={zh_CN}>
               {children}
             </ConfigProvider>
           </AntdRegistry>

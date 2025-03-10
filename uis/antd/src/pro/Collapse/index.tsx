@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { Collapse, CollapseProps } from 'antd'
 import { Item, CollapseItemProps } from './components/Item'

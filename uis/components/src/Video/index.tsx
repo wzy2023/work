@@ -1,3 +1,5 @@
+'use client'
+
 import React, { CSSProperties, useRef } from 'react'
 
 interface VideoProps {

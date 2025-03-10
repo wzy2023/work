@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { InputNumber, InputNumberProps, Space } from 'antd'
 import { _ } from '@wzyjs/utils'

@@ -1,0 +1,10 @@
+import "@wzyjs/next/dist/Base"
+import "./HabitItem"
+
+model HabitGroup extends Base {
+  name  String
+  color String?
+  sort  Int?
+
+  children HabitItem[]
+}

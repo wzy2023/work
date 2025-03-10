@@ -1,0 +1,19 @@
+{
+  "name": "@wzyjs/next",
+  "version": "0.2.36",
+  "description": "description",
+  "author": "wzy",
+  "main": "dist/index.js",
+  "scripts": {
+    "build:plugin": "tsc src/plugin/store/index.ts --outDir dist --skipLibCheck --module CommonJS",
+    "cp1": "cp src/prisma/Base.zmodel dist/Base.zmodel",
+    "cp2": "cp src/plugin/store/useHabitGroupCRUD.ts dist/useHabitGroupCRUD.ts",
+    "build": "npm run build:plugin && npm run cp1 && npm run cp2"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@zenstackhq/sdk": "^2.12.3"
+  }
+}

@@ -1,32 +1,22 @@
-import { PlusOutlined } from '@ant-design/icons'
-import { Button, Form, message, Modal } from 'antd'
-import { BetaSchemaForm } from '@ant-design/pro-components'
+import { Button, Form, Modal, PlusOutlined, BetaSchemaForm } from '@/components'
 
 import { useBoolean } from 'ahooks'
 
-import { api } from '@/api/react'
-
-interface CreateProps {
-  onSuccess?: () => void
-}
+import { useHabitGroupCRUD } from '@/api/generated/store'
 
 interface Values {
   name: string
   color: string
 }
 
-export const Create = (props: CreateProps) => {
-  const { onSuccess } = props
-
+export const Create = () => {
   const [form] = Form.useForm<Values>()
 
   const [isModalOpen, { setTrue, setFalse }] = useBoolean(false)
 
-  const createState = api.habit.group.create.useMutation({
-    onSuccess: () => {
-      message.success('创建成功')
-      setFalse()
-      onSuccess?.()
+  const { createState } = useHabitGroupCRUD({
+    create: {
+      onSuccess: setFalse,
     },
   })
 

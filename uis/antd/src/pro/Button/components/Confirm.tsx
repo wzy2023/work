@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { _ } from '@wzyjs/utils'
 import { Button, Popconfirm, PopconfirmProps, ButtonProps } from 'antd'

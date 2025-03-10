@@ -1,6 +1,6 @@
-import { BetaSchemaForm } from '@ant-design/pro-components'
+import { BetaSchemaForm } from '@/components'
 
-import { FrequencyType } from '../../../../../api/routes/habit/item/types'
+import { FrequencyType } from '../../../types'
 
 interface Value {
   type: FrequencyType

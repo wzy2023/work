@@ -1,3 +1,5 @@
+'use client'
+
 import { getRequire } from '../utils'
 import { Apis, Column } from '../types'
 

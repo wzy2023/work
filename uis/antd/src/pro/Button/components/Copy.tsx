@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, ReactNode } from 'react'
 
 import { Button, ButtonProps, message } from 'antd'

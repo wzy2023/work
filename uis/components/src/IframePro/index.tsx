@@ -1,7 +1,8 @@
+'use client'
+
 import React, { useEffect, CSSProperties } from 'react'
 import { Spin } from 'antd'
 import { useBoolean } from '@wzyjs/hooks'
-import styles from './index.module.less'
 
 export interface IframeProProps {
   url: string;
@@ -38,7 +39,7 @@ export const IframePro = (props: IframeProProps) => {
   }
 
   return (
-    <Spin spinning={loading && isShowLoading} wrapperClassName={styles.wrapper}>
+    <Spin spinning={loading && isShowLoading}>
       <iframe
         src={url}
         width='100%'

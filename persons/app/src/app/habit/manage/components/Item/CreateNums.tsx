@@ -1,4 +1,6 @@
-import { BetaSchemaForm } from '@ant-design/pro-components'
+import { useEffect } from 'react'
+
+import { Form, BetaSchemaForm } from '@/components'
 
 interface Value {
   total: number
@@ -14,42 +16,56 @@ interface CreateNumsProps {
 export const CreateNums = (props: CreateNumsProps) => {
   const { value, onChange } = props
 
+  const [form] = Form.useForm()
+
+  useEffect(() => {
+    form.setFieldsValue(value)
+  }, [form, value])
+
   return (
     <BetaSchemaForm<Value>
-      initialValues={value}
+      form={form}
+      initialValues={value || { times: 1, single: 1, total: 1 }}
       submitter={false}
       layout='inline'
-      onValuesChange={(_, values) => onChange?.(values)}
+      onValuesChange={(_, values) => {
+        values.total = values.times * values.single
+        onChange?.(values)
+      }}
       columns={[
         {
-          dataIndex: 'total',
-          title: '总量',
+          dataIndex: 'times',
+          title: '每天想执行几次',
           valueType: 'digit',
           formItemProps: { rules: [{ required: true }] },
           fieldProps: {
             step: 1,
             precision: 0,
             style: { width: 100 },
-          },
-        },
-        {
-          dataIndex: 'times',
-          title: '次数',
-          valueType: 'digit',
-          fieldProps: {
-            step: 1,
-            precision: 0,
-            style: { width: 100 },
+            min: 1,
           },
         },
         {
           dataIndex: 'single',
-          title: '单次数量',
+          title: '每次执行的数量',
+          valueType: 'digit',
+          formItemProps: { rules: [{ required: true }] },
+          fieldProps: {
+            step: 1,
+            precision: 0,
+            style: { width: 100 },
+            min: 1,
+          },
+        },
+        {
+          dataIndex: 'total',
+          title: '累计',
           valueType: 'digit',
           fieldProps: {
             step: 1,
             precision: 0,
             style: { width: 100 },
+            disabled: true,
           },
         },
       ]}

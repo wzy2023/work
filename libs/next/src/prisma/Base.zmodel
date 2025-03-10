@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+plugin prisma {
+    provider = '@core/prisma'
+    output = './schema.prisma'
+}
+
+plugin enhancer {
+    provider = '@core/enhancer'
+    output = '../src/api/generated/enhancer'
+    preserveTsFiles = true
+}
+
+plugin zod {
+    provider = '@core/zod'
+    output = '../src/api/generated/zod'
+    compile = false
+}
+
+plugin trpc {
+    provider = '@zenstackhq/trpc'
+    output = '../src/api/generated/trpc'
+    version = 'v11'
+    generateClientHelpers = 'next'
+    importCreateRouter = "@/api/trpc/trpc"
+    importProcedure = "@/api/trpc/procedures"
+    zodSchemasImport = '@/api/generated/zod'
+    generateModelActions = 'findMany, findUnique, create, update, delete'
+}
+
+plugin store {
+    provider = '@wzyjs/next'
+    title = 'Generate useModelStore'
+    output = 'src/api/generated/store'
+}
+
+abstract  model Base {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  isDeleted Boolean?  @default(false) @omit
+
+  @@allow('all', !isDeleted)
+}

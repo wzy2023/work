@@ -1,18 +1,17 @@
 import React from 'react'
 
-import { Card, message, Popconfirm, Space } from 'antd'
-import { DeleteOutlined, DragOutlined } from '@ant-design/icons'
+import { Card, Popconfirm, Space, DeleteOutlined, DragOutlined } from '@/components'
 
 import { GroupTitle } from './GroupTitle'
 import { List as ItemList } from '../Item/List'
 
 import { useHovered } from '@/hooks'
-import { api } from '@/api/react'
+
+import { useHabitGroupCRUD } from '@/api/generated/store'
 
 interface GroupProps {
   item: any
   provided: any
-  // TODO store
   onSuccess?: () => void
 }
 
@@ -21,11 +20,8 @@ export const Group = (props: GroupProps) => {
 
   const { isHovered, onMouseEnter, onMouseLeave } = useHovered()
 
-  const removeState = api.habit.group.remove.useMutation({
-    onSuccess: () => {
-      message.success('删除成功')
-      onSuccess?.()
-    },
+  const { removeState } = useHabitGroupCRUD({
+    remove: { onSuccess },
   })
 
   return (
@@ -47,7 +43,7 @@ export const Group = (props: GroupProps) => {
             title='确定要删除吗？'
             okText='确定'
             cancelText='取消'
-            onConfirm={() => removeState.mutate({ id: item.id })}
+            onConfirm={() => removeState.mutate(item.id)}
           >
             <DeleteOutlined className='cursor-pointer' />
           </Popconfirm>

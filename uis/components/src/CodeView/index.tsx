@@ -1,3 +1,5 @@
+'use client'
+
 import React, { CSSProperties, useEffect, useMemo, useRef } from 'react'
 
 import Prism from 'prismjs'
@@ -27,8 +29,6 @@ import 'prismjs/components/prism-ignore'
 import 'prismjs/components/prism-yaml'
 
 import 'prismjs/themes/prism.css'
-
-import styles from './index.less'
 
 interface CodeViewProps {
   language?: 'html' | 'jsx' | 'tsx' | 'vue' | 'json' | 'javascript' | 'typescript' | 'css' | 'less' | 'sass' | 'scss' | 'bash' | 'http' | 'editorconfig' | 'dockerfile' | 'git' | 'ignore' | 'yaml'
@@ -74,8 +74,8 @@ export const CodeView = (props: CodeViewProps) => {
   }, [code])
 
   return (
-    <div style={style} className={styles.codeView}>
-      <pre className={styles.pre}>
+    <div style={{ overflow: 'scroll', ...style }}>
+      <pre style={{ margin: 0, backgroundColor: 'transparent' }}>
         <code ref={preRef} className={`language-${language}`}>
           {beautifydCode}
         </code>

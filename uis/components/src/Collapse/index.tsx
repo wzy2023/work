@@ -1,3 +1,5 @@
+'use client'
+
 import { ReactNode } from 'react'
 import { useBoolean } from 'ahooks'
 import { RightOutlined, LeftOutlined } from '@ant-design/icons'

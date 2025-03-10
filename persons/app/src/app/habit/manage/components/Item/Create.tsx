@@ -1,40 +1,31 @@
-import { PlusOutlined } from '@ant-design/icons'
-import { Button, Form, message, Modal } from 'antd'
-import { BetaSchemaForm } from '@ant-design/pro-components'
+import { Button, Form, Modal, PlusOutlined, BetaSchemaForm } from '@/components'
 
 import { CreateNums } from './CreateNums'
 import { CreateFrequency } from './CreateFrequency'
 
 import { useBoolean } from 'ahooks'
-import { api } from '@/api/react'
+import { useHabitItemCRUD } from '@/api/generated/store'
 
 interface CreateHabitProps {
   id?: number
   groupId: number
   initialValues?: any
-  onSubmit: () => void
+  onSuccess: () => void
 }
 
 export const Create = (props: CreateHabitProps) => {
-  const { id, initialValues, groupId, onSubmit } = props
+  const { id, initialValues, groupId, onSuccess } = props
 
   const [form] = Form.useForm()
 
   const [visible, { setFalse, setTrue }] = useBoolean()
 
-  const createState = api.habit.item.create.useMutation({
-    onSuccess: () => {
-      message.success('创建成功')
-      setFalse()
-      onSubmit()
+  const { createState, updateState } = useHabitItemCRUD({
+    create: {
+      onSuccess,
     },
-  })
-
-  const updateState = api.habit.item.update.useMutation({
-    onSuccess: () => {
-      message.success('修改成功')
-      setFalse()
-      onSubmit()
+    update: {
+      onSuccess,
     },
   })
 
@@ -43,7 +34,7 @@ export const Create = (props: CreateHabitProps) => {
     const values = form.getFieldsValue()
 
     if (id) {
-      updateState.mutate({ id, data: values })
+      updateState.mutate(id, values)
       return
     }
 

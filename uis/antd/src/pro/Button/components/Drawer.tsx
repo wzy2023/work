@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { _ } from '@wzyjs/utils'
 import { Button, Drawer as AntdDrawer, DrawerProps as AntdDrawerProps, ButtonProps } from 'antd'

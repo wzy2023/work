@@ -1,0 +1,14 @@
+import "@wzyjs/next/dist/Base"
+import "./HabitGroup"
+
+model HabitItem extends Base {
+  name String
+  sort Int?
+
+  count Json?
+
+  frequency Json?
+
+  groupId Int
+  group   HabitGroup @relation(fields: [groupId], references: [id]) // 建立关系
+}

@@ -25,3 +25,5 @@ export const createTRPCRouter = t.router
 export const createTRPCMiddleware = t.middleware
 
 export const createTRPCProcedure = t.procedure
+
+export const mergeTRPCRouters = t.mergeRouters

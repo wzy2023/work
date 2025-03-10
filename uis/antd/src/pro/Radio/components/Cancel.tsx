@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { Checkbox, CheckboxProps, CheckboxOptionType } from 'antd'
 

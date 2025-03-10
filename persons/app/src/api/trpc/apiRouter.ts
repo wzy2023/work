@@ -1,7 +1,5 @@
-import { createTRPCRouter } from './trpc'
-
 import routes from '../routes'
 
-export const apiRouter = createTRPCRouter(routes)
+export const apiRouter = routes
 
 export type ApiRouter = typeof apiRouter

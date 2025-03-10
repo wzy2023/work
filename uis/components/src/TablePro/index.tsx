@@ -1,3 +1,5 @@
+'use client'
+
 import React, { ReactNode, useImperativeHandle, useRef } from 'react'
 import { _ } from '@wzyjs/utils'
 import {
@@ -33,10 +35,10 @@ const defaultTableProps = {
 export const TablePro = <T extends Record<string, any>, U extends ParamsType, ValueType = 'text'>(props: TableProProps<T, U, ValueType>) => {
   const tableProps = _.merge(_.cloneDeep(defaultTableProps), props)
 
-  const actionRef = useRef<ActionType>()
+  const actionRef = useRef<ActionType>(undefined)
   useImperativeHandle(props.actionRef, () => actionRef?.current, [actionRef])
 
-  const formRef = useRef<ProFormInstance>()
+  const formRef = useRef<ProFormInstance>(undefined)
   useImperativeHandle(props.formRef, () => formRef?.current, [formRef])
 
   const defaultsSummary = (data: readonly T[]) => {

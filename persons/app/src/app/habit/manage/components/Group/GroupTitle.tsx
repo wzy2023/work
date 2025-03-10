@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 
-import { Input, message } from 'antd'
+import { Input } from '@/components'
 
 import { useBoolean } from 'ahooks'
 
-import { api } from '@/api/react'
+import { useHabitGroupCRUD } from '@/api/generated/store'
 
 interface GroupTitleProps<I> {
   item: I
@@ -13,25 +13,21 @@ interface GroupTitleProps<I> {
 export const GroupTitle = <I extends { id: number, name: string }>(props: GroupTitleProps<I>) => {
   const { item } = props
 
-  const [isEditing, { setTrue, setFalse }] = useBoolean(false)
-
   const [name, setName] = useState(item.name)
 
-  const updateMutation = api.habit.group.update.useMutation({
-    onSuccess: () => {
-      message.success('名称更新成功')
-      setFalse()
-    }
+  const [isEditing, { setTrue, setFalse }] = useBoolean(false)
+
+  const { updateState } = useHabitGroupCRUD({
+    update: {
+      onSuccess: setFalse,
+    },
   })
 
   const onSubmit = () => {
     if (!name.trim()) return
 
-    updateMutation.mutate({
-      id: item.id,
-      data: {
-        name: name.trim(),
-      },
+    updateState.mutate(item.id, {
+      name: name.trim(),
     })
   }
 

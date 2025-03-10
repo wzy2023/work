@@ -1,11 +1,11 @@
+'use client'
+
 import React, { useMemo } from 'react'
 
-import { Typography, GetProp } from 'antd'
+import { Typography } from 'antd'
 import { TextProps } from 'antd/lib/typography/Text'
 
 import { replaceByRules } from '@wzyjs/utils'
-
-import styles from './index.less'
 
 export interface StringProps extends TextProps {
   isCopy?: boolean;
@@ -58,17 +58,15 @@ export const String = (props: StringProps) => {
   }, [isCopy, source])
 
   return (
-    <div className={styles.container}>
-      <Typography.Paragraph
-        {...props}
-        ellipsis={ellipsis}
-        copyable={copyable}
-      >
-        <span
-          style={{ whiteSpace: 'pre' }}
-          dangerouslySetInnerHTML={{ __html: __html || source }}
-        />
-      </Typography.Paragraph>
-    </div>
+    <Typography.Paragraph
+      {...props}
+      ellipsis={ellipsis}
+      copyable={copyable}
+    >
+      <span
+        style={{ whiteSpace: 'pre' }}
+        dangerouslySetInnerHTML={{ __html: __html || source }}
+      />
+    </Typography.Paragraph>
   )
 }

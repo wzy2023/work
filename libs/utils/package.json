@@ -13,11 +13,13 @@
   "exports": {
     ".": {
       "import": "./dist/browser.esm.js",
-      "require": "./dist/browser.cjs.js"
+      "require": "./dist/browser.cjs.js",
+      "types": "./dist/browser.d.ts"
     },
     "./node": {
       "import": "./dist/node.esm.js",
-      "require": "./dist/node.cjs.js"
+      "require": "./dist/node.cjs.js",
+      "types": "./dist/node.d.ts"
     }
   },
   "typesVersions": {
@@ -25,8 +27,8 @@
       ".": [
         "./dist/browser.d.ts"
       ],
-      "*": [
-        "./dist/browser.d.ts"
+      "./node": [
+        "./dist/node.d.ts"
       ]
     }
   },
@@ -34,7 +36,6 @@
     "dist"
   ],
   "dependencies": {
-    "@types/papaparse": "^5.3.15",
     "ali-oss": "^6.21.0",
     "animejs": "^3.2.1",
     "axios": "^1.6.2",
@@ -42,6 +43,7 @@
     "consola": "^2.15.3",
     "copy-to-clipboard": "^3.3.3",
     "dayjs": "^1.11.12",
+    "decimal.js": "^10.5.0",
     "fs-extra": "^10.1.0",
     "js-base64": "^3.7.7",
     "json5": "^2.2.3",
@@ -51,9 +53,11 @@
     "nedb": "^1.8.0",
     "nodemailer": "^6.9.1",
     "papaparse": "^5.5.1",
+    "proxy-agent": "^6.5.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@types/papaparse": "^5.3.15",
     "@types/ali-oss": "^6.16.11",
     "@types/animejs": "^3.1.6",
     "@types/fs-extra": "^9.0.13",

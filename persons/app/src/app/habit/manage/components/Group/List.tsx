@@ -16,7 +16,7 @@ export const List = <I extends { id: number }>(props: ListProps<I>) => {
   const utils = api.useUtils()
 
   const updateSortState = api.habit.group.updateSort.useMutation({
-    onSuccess: () => onSuccess(),
+    onSuccess: onSuccess,
   })
 
   const onDragEnd = (result: any) => {
@@ -29,7 +29,7 @@ export const List = <I extends { id: number }>(props: ListProps<I>) => {
     }
 
     // 乐观更新
-    utils.habit.group.list.setData(undefined, newItemsOrder as any)
+    utils.habitGroup.findMany.setData(undefined, newItemsOrder as any)
 
     updateSortState.mutate(
       newItemsOrder.map((item, index) => ({

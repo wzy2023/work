@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useRef, useEffect, forwardRef } from 'react'
 import { Card, Button, CardProps } from 'antd'
 import { DownOutlined, UpOutlined } from '@ant-design/icons'

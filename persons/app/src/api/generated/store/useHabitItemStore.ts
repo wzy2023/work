@@ -1,0 +1,108 @@
+// @ts-nocheck
+
+// @ts-ignore
+import { message } from '@/components'
+
+// @ts-ignore
+import { api } from '@/api/react'
+
+interface Option {
+  list?: Parameters<typeof api.habitItem.findMany.useQuery>[0],
+  create?: Parameters<typeof api.habitItem.create.useMutation>[0],
+  update?: Parameters<typeof api.habitItem.update.useMutation>[0],
+  remove?: Parameters<typeof api.habitItem.update.useMutation>[0],
+}
+
+export const useHabitItemCRUD = (option: Option = {}) => {
+  const { list, create, update, remove } = option
+
+  const apiUtils = api.useUtils()
+
+  const listState = api.habitItem.findMany.useQuery(list)
+
+  const onSuccess = (tip: string) => {
+    message.destroy()
+    message.success(tip)
+    listState.refetch()
+  }
+
+  const baseCreateState = api.habitItem.create.useMutation({
+    ...create,
+    onSuccess: (...args) => {
+      if (create?.onSuccess) {
+        create.onSuccess(...args)
+      }
+      onSuccess('创建成功')
+    },
+  })
+
+  const createState = {
+    ...baseCreateState as unknown as typeof baseCreateState,
+    mutate: (data: Parameters<typeof baseCreateState.mutate>[0]['data']) => {
+      return baseCreateState.mutate({ data })
+    },
+    mutateAsync: (data: Parameters<typeof baseCreateState.mutateAsync>[0]['data']) => {
+      return baseCreateState.mutateAsync({ data })
+    },
+  }
+
+  const baseUpdateState = api.habitItem.update.useMutation({
+    ...update,
+    onSuccess: (...args) => {
+      if (update?.onSuccess) {
+        update.onSuccess(...args)
+      }
+      onSuccess('更新成功')
+    },
+  })
+
+  const updateState = {
+    ...baseUpdateState as unknown as typeof baseUpdateState,
+    mutate: (id: number, data: Parameters<typeof baseUpdateState.mutate>[0]['data']) => {
+      return baseUpdateState.mutate({
+        where: { id },
+        data,
+      })
+    },
+    mutateAsync: (id: number, data: Parameters<typeof baseUpdateState.mutateAsync>[0]['data']) => {
+      return baseUpdateState.mutateAsync({
+        where: { id },
+        data,
+      })
+    },
+  }
+
+  const baseRemoveState = api.habitItem.update.useMutation({
+    ...remove,
+    onSuccess: (...args) => {
+      if (remove?.onSuccess) {
+        remove.onSuccess(...args)
+      }
+      onSuccess('删除成功')
+    },
+  })
+
+  const removeState = {
+    ...baseRemoveState as unknown as typeof baseRemoveState,
+    mutate: (id: number) => {
+      return baseRemoveState.mutate({
+        where: { id },
+        data: { isDeleted: true },
+      })
+    },
+    mutateAsync: (id: number) => {
+      return baseRemoveState.mutateAsync({
+        where: { id },
+        data: { isDeleted: true },
+      })
+    },
+  }
+
+  return {
+    listState,
+    createState,
+    removeState,
+    updateState,
+    apiUtils,
+  }
+}

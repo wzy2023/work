@@ -1,3 +1,5 @@
+'use client'
+
 import { useRef } from 'react'
 
 import {
@@ -32,7 +34,7 @@ export const LoginPage = <U extends any>(props: LoginPageProps<U>) => {
     backgroundImageUrl = defaultBackgroundImageUrl,
   } = props
 
-  const formRef = useRef<ProFormInstance<Values>>()
+  const formRef = useRef<ProFormInstance<Values>>(null)
 
   // const { runAsync, loading } = useRequestPro(apis.login, {
   //   manual: true,

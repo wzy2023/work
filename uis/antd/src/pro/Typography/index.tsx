@@ -1,3 +1,5 @@
+'use client'
+
 import { String as String_ } from './components/String'
 
 export const TypographyPro = {

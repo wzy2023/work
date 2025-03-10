@@ -1,6 +1,6 @@
-import { Popconfirm, message } from 'antd'
+import { Popconfirm } from '@/components'
 
-import { api } from '@/api/react'
+import { useHabitItemCRUD } from '@/api/generated/store'
 
 interface DeleteProps {
   id: number
@@ -8,10 +8,9 @@ interface DeleteProps {
 }
 
 export const Delete = ({ id, onSuccess }: DeleteProps) => {
-  const removeState = api.habit.item.remove.useMutation({
-    onSuccess: () => {
-      message.success('删除成功')
-      onSuccess?.()
+  const { removeState } = useHabitItemCRUD({
+    remove: {
+      onSuccess,
     },
   })
 
@@ -20,7 +19,7 @@ export const Delete = ({ id, onSuccess }: DeleteProps) => {
       title='确定要删除吗？'
       okText='确定'
       cancelText='取消'
-      onConfirm={() => removeState.mutate({ id })}
+      onConfirm={() => removeState.mutate(id)}
     >
       <span className='text-red-500 cursor-pointer'>删除</span>
     </Popconfirm>

@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useRef, ReactNode } from 'react'
 import html2canvas from 'html2canvas'
 import { useDebounceFn } from '@wzyjs/hooks'

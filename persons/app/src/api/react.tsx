@@ -2,8 +2,7 @@
 
 import { type ReactNode, useState } from 'react'
 
-import { message } from 'antd'
-import '@ant-design/v5-patch-for-react-19'
+import { message } from '@/components'
 
 import SuperJSON from 'superjson'
 
@@ -11,9 +10,10 @@ import { type ApiRouter } from './trpc/apiRouter'
 import { createQueryClient } from './trpc/client'
 import { createTRPCReact } from '@trpc/react-query'
 import { observable } from '@trpc/server/observable'
+import { type TRPCLink, unstable_httpBatchStreamLink } from '@trpc/client'
 import { type inferRouterInputs, type inferRouterOutputs } from '@trpc/server'
-import { loggerLink, type TRPCLink, unstable_httpBatchStreamLink } from '@trpc/client'
 
+import { printConsoleLog } from '@/utils'
 import { type QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 // 输入推断辅助器。示例：type HelloInput = ApiRouterInput['example']['hello']
@@ -50,7 +50,10 @@ const errorLink: TRPCLink<ApiRouter> = () => {
   return ({ next, op }) => {
     return observable(observer => {
       const subscription = next(op).subscribe({
-        next: value => observer.next(value),
+        next: value => {
+          printConsoleLog(op.type, op.path, op.input, value.result.data)
+          return observer.next(value)
+        },
         complete: () => observer.complete(),
         error: err => {
           message.error(err.message || '操作失败')
@@ -74,12 +77,6 @@ export const TRPCReactProvider = (props: { children: ReactNode }) => {
   const [trpcClient] = useState(() => {
     return api.createClient({
       links: [
-        // 添加日志记录链接，用于开发环境或错误发生时的日志记录
-        loggerLink({
-          enabled: op => {
-            return process.env.NODE_ENV === 'development' || (op.direction === 'down' && op.result instanceof Error)
-          },
-        }),
         // 添加错误处理链接，用于处理TRPC客户端错误
         errorLink,
         // 添加批量处理HTTP请求的链接，并设置Transformer、URL和自定义Headers

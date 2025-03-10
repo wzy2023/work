@@ -1,7 +1,4 @@
-import { Dropdown } from 'antd'
-
-import { type DropResult } from 'react-beautiful-dnd'
-import { DragSort } from '@/components'
+import { DragSort, Dropdown, type DropResult } from '@/components'
 import { Create } from './Create'
 import { Delete } from './Delete'
 
@@ -9,6 +6,7 @@ import { useHovered } from '@/hooks'
 
 import { api } from '@/api/react'
 import { type HabitItem } from '@prisma/client'
+import { useHabitItemCRUD } from '@/api/generated/store'
 
 interface ListProps {
   groupId: number
@@ -17,11 +15,13 @@ interface ListProps {
 export const List = (props: ListProps) => {
   const { groupId } = props
 
-  const utils = api.useUtils()
-
   const { isHovered, onMouseEnter, onMouseLeave } = useHovered()
 
-  const listState = api.habit.item.list.useQuery({ groupId })
+  const { listState, apiUtils } = useHabitItemCRUD({
+    list: {
+      where: { groupId },
+    },
+  })
 
   const updateSort = api.habit.item.updateSort.useMutation({
     onSuccess: () => listState.refetch(),
@@ -34,7 +34,7 @@ export const List = (props: ListProps) => {
     const [removed] = newItems.splice(result.source.index, 1)
     newItems.splice(result.destination.index, 0, removed!)
 
-    utils.habit.item.list.setData({ groupId }, newItems)
+    apiUtils.habitItem.findMany.setData({ where: { groupId } }, newItems)
 
     updateSort.mutate(newItems.map((item, index) => ({
       id: item.id,
@@ -51,7 +51,7 @@ export const List = (props: ListProps) => {
             id={item.id}
             groupId={groupId}
             initialValues={item}
-            onSubmit={listState.refetch}
+            onSuccess={listState.refetch}
           />
         ),
       },
@@ -77,7 +77,7 @@ export const List = (props: ListProps) => {
         onDragEnd={onDragEnd}
         lastChildren={(
           <div className={`transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
-            <Create groupId={groupId} onSubmit={listState.refetch} />
+            <Create groupId={groupId} onSuccess={listState.refetch} />
           </div>
         )}
       >

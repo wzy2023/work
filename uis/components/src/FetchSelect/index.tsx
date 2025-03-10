@@ -1,12 +1,13 @@
-import { useImperativeHandle, forwardRef } from 'react'
+'use client'
+
+import { useImperativeHandle } from 'react'
 import { Select, SelectProps, Spin } from 'antd'
 import { useRequest } from 'ahooks'
-import { ApiResult } from '@/types'
 
 export interface FetchSelectProps<I> extends SelectProps {
   selectRef?: any,
   isDetail?: boolean, // 只返回id 还是返回整个信息
-  searchApi: (params: { search: string }) => Promise<ApiResult<I[]>>,
+  searchApi: (params: { search: string }) => Promise<any>,
   convertData?: (data: I[]) => any[],
   onChange?: (value: any) => void
 }

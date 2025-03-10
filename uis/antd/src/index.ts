@@ -1,6 +1,14 @@
+import '@ant-design/v5-patch-for-react-19'
+
 export * from 'antd'
 
 export * from '@ant-design/icons'
+
+export { default as zh_CN } from 'antd/locale/zh_CN'
+
+export {
+  AntdRegistry,
+} from '@ant-design/nextjs-registry'
 
 export {
   PageLoading,
@@ -8,14 +16,15 @@ export {
 
   ProCard,
   ProList,
+
   ProFormText,
   ProFormCaptcha,
   ProFormCheckbox,
   ProFormUploadButton,
-
-  CheckCard,
   LoginForm,
   BetaSchemaForm,
+
+  CheckCard,
   EditableProTable,
 } from '@ant-design/pro-components'
 

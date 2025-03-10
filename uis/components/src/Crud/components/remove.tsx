@@ -1,5 +1,7 @@
+'use client'
+
 import React from 'react'
-import { ButtonPro } from '../../../antd-pro'
+import { ButtonPro } from '@wzyjs/antd'
 import { Apis } from '../types'
 
 interface RemoveProps<I> {

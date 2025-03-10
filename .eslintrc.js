@@ -1,5 +1,8 @@
 module.exports = {
   plugins: ['perfectionist'],
+  parserOptions: {
+    sourceType: 'module',
+  },
   rules: {
     'perfectionist/sort-imports': [
       'error',
@@ -43,7 +46,7 @@ module.exports = {
             react: ['^react$', '^react-dom$'],
             umi: ['^@umijs/max$'],
             next: ['^next$', '^next/'],
-            antd: ['^antd$', '^@ant-design/*'],
+            antd: ['^antd$', '^@ant-design/*', '@wzyjs/antd'],
             component: ['react-beautiful-dnd'],
             components: ['@/components', './components/'],
             com: ['^.+/+[A-Z][a-z]+'],

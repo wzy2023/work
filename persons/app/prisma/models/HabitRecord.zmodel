@@ -1,0 +1,14 @@
+import "@wzyjs/next/dist/Base"
+
+model HabitRecord extends Base {
+  p         String    @password
+}
+
+enum HabitRecordStatus {
+  UNSTARTED // 未开启
+  IN_PROGRESS // 进行中
+  DONE // 完成
+  CANCELED // 取消
+  FAILED // 失败
+  PAUSED // 暂停
+}

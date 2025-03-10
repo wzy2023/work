@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useEffect, useMemo } from 'react'
 import { Input, InputProps } from 'antd'
 import { getStrLength } from '@wzyjs/utils'

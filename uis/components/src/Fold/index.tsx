@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { Button } from 'antd'
 import { DownOutlined, UpOutlined } from '@ant-design/icons'
