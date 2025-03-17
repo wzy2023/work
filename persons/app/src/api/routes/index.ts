@@ -8,9 +8,9 @@ export default mergeTRPCRouters(
   createRouter(),
 
   createTRPCRouter({
-    habit: {
-      group: habitGroup,
-      item: habitItem,
+    custom: {
+      habitGroup,
+      habitItem,
     },
   }),
 )

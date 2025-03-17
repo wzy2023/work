@@ -12,7 +12,7 @@ export const CheckboxButton = (props: CheckboxButtonProps) => {
       <Row>
         {options.map(i => (
           <Col key={i.value}>
-            <CheckCard title={i.label} value={i.value} style={{ width: 50 }} />
+            <CheckCard title={i.label} value={i.value} style={{ width: 60, height: 30 }} />
           </Col>
         ))}
       </Row>

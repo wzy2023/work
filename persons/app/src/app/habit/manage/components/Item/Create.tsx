@@ -73,7 +73,6 @@ export const Create = (props: CreateHabitProps) => {
               formItemProps: { rules: [{ required: true }] },
             },
             {
-              title: '频率',
               dataIndex: 'frequency',
               renderFormItem: () => <CreateFrequency />,
             },

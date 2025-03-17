@@ -23,7 +23,7 @@ export const List = (props: ListProps) => {
     },
   })
 
-  const updateSort = api.habit.item.updateSort.useMutation({
+  const updateSortState = api.custom.habitItem.updateSort.useMutation({
     onSuccess: () => listState.refetch(),
   })
 
@@ -36,7 +36,7 @@ export const List = (props: ListProps) => {
 
     apiUtils.habitItem.findMany.setData({ where: { groupId } }, newItems)
 
-    updateSort.mutate(newItems.map((item, index) => ({
+    updateSortState.mutate(newItems.map((item, index) => ({
       id: item.id,
       sort: index + 1,
     })))

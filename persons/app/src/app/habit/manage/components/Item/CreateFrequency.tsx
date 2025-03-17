@@ -1,4 +1,4 @@
-import { BetaSchemaForm } from '@/components'
+import { BetaSchemaForm, CheckboxButton } from '@/components'
 
 import { FrequencyType } from '../../../types'
 
@@ -24,7 +24,7 @@ export const CreateFrequency = (props: CreateFrequencyProps) => {
       columns={[
         {
           dataIndex: 'type',
-          title: '频率',
+          title: '周期',
           valueType: 'radio',
           formItemProps: { rules: [{ required: true }] },
           fieldProps: {
@@ -40,18 +40,24 @@ export const CreateFrequency = (props: CreateFrequencyProps) => {
         {
           dataIndex: 'weekDays',
           title: '周几',
-          valueType: 'checkbox',
-          fieldProps: {
-            options: Array(7).fill(true).map((_, index) => ({ label: '周' + (index + 1), value: index + 1 })),
-          },
+          renderFormItem: () => (
+            <div className='checkboxSmall'>
+              <CheckboxButton
+                options={Array(7).fill(true).map((_, index) => ({ label: '周' + (index + 1), value: index + 1 }))}
+              />
+            </div>
+          ),
         },
         {
           dataIndex: 'dayOfMonth',
           title: '几号',
-          valueType: 'checkbox',
-          fieldProps: {
-            options: Array(31).fill(true).map((_, index) => ({ label: index + 1, value: index + 1 })),
-          },
+          renderFormItem: () => (
+            <div className='checkboxSmall'>
+              <CheckboxButton
+                options={Array(31).fill(true).map((_, index) => ({ label: index + 1 + '', value: index + 1 }))}
+              />
+            </div>
+          ),
         },
       ]}
     />

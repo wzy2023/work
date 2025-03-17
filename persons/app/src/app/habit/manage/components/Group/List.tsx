@@ -15,7 +15,7 @@ export const List = <I extends { id: number }>(props: ListProps<I>) => {
 
   const utils = api.useUtils()
 
-  const updateSortState = api.habit.group.updateSort.useMutation({
+  const updateSortState = api.custom.habitGroup.updateSort.useMutation({
     onSuccess: onSuccess,
   })
 

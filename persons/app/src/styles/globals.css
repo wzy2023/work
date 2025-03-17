@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.checkboxSmall .ant-pro-checkcard-content {
+  padding: 0 !important;
+}
+
+.checkboxSmall .ant-pro-checkcard {
+  margin-bottom: 0 !important;
+  text-align: center !important;
+  display: flex;
+  justify-content: center;
+  border-radius: 0 !important;
+}
+
+.checkboxSmall .ant-pro-checkcard-title {
+  height: 100%;
+}
+
+.checkboxSmall .ant-pro-checkcard div {
+  width: 100%;
+  font-weight: 400 !important;
+  height: 30px !important;
+  line-height: 28px !important;
+}
