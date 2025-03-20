@@ -23,5 +23,6 @@ export const HabitItemOrderByWithAggregationInputObjectSchema: SchemaType = z.ob
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), name: z.lazy(() => SortOrderSchema).optional(), sort: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), count: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), frequency: z.union([z.lazy(() => SortOrderSchema),
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), enable: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), groupId: z.lazy(() => SortOrderSchema).optional(), _count: z.lazy(() => HabitItemCountOrderByAggregateInputObjectSchema).optional(), _avg: z.lazy(() => HabitItemAvgOrderByAggregateInputObjectSchema).optional(), _max: z.lazy(() => HabitItemMaxOrderByAggregateInputObjectSchema).optional(), _min: z.lazy(() => HabitItemMinOrderByAggregateInputObjectSchema).optional(), _sum: z.lazy(() => HabitItemSumOrderByAggregateInputObjectSchema).optional()
 }).strict() as SchemaType;

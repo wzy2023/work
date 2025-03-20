@@ -7,7 +7,10 @@ import { message } from '@/components'
 import { api } from '@/api/react'
 
 interface Option {
-  list?: Parameters<typeof api.habitGroup.findMany.useQuery>[0],
+  list?: false | {
+    query?: Parameters<typeof api.habitGroup.findMany.useQuery>[0],
+    option?: Parameters<typeof api.habitGroup.findMany.useQuery>[1],
+  },
   create?: Parameters<typeof api.habitGroup.create.useMutation>[0],
   update?: Parameters<typeof api.habitGroup.update.useMutation>[0],
   remove?: Parameters<typeof api.habitGroup.update.useMutation>[0],
@@ -18,12 +21,17 @@ export const useHabitGroupCRUD = (option: Option = {}) => {
 
   const apiUtils = api.useUtils()
 
-  const listState = api.habitGroup.findMany.useQuery(list)
+  const listState = api.habitGroup.findMany.useQuery(list && list.query, {
+    enabled: list !== false,
+    ...list.option,
+  })
 
   const onSuccess = (tip: string) => {
     message.destroy()
     message.success(tip)
-    listState.refetch()
+    if (list) {
+      listState.refetch()
+    }
   }
 
   const baseCreateState = api.habitGroup.create.useMutation({

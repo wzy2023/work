@@ -4,11 +4,14 @@ import { useHabitItemCRUD } from '@/api/generated/store'
 
 interface DeleteProps {
   id: number
-  onSuccess?: () => void
+  onSuccess: () => void
 }
 
-export const Delete = ({ id, onSuccess }: DeleteProps) => {
+export const Delete = (props: DeleteProps) => {
+  const { id, onSuccess } = props
+
   const { removeState } = useHabitItemCRUD({
+    list: false,
     remove: {
       onSuccess,
     },
@@ -21,7 +24,7 @@ export const Delete = ({ id, onSuccess }: DeleteProps) => {
       cancelText='取消'
       onConfirm={() => removeState.mutate(id)}
     >
-      <span className='text-red-500 cursor-pointer'>删除</span>
+      <span>删除</span>
     </Popconfirm>
   )
 }

@@ -95,6 +95,10 @@ const metadata = {
                     name: "frequency",
                     type: "Json",
                     isOptional: true,
+                }, enable: {
+                    name: "enable",
+                    type: "Boolean",
+                    isOptional: true,
                 }, groupId: {
                     name: "groupId",
                     type: "Int",

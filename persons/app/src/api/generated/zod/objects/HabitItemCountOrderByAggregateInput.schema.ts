@@ -12,5 +12,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitItemCountOrderByAggregateInput>;
 export const HabitItemCountOrderByAggregateInputObjectSchema: SchemaType = z.object({
-    id: z.lazy(() => SortOrderSchema).optional(), createdAt: z.lazy(() => SortOrderSchema).optional(), updatedAt: z.lazy(() => SortOrderSchema).optional(), isDeleted: z.lazy(() => SortOrderSchema).optional(), name: z.lazy(() => SortOrderSchema).optional(), sort: z.lazy(() => SortOrderSchema).optional(), count: z.lazy(() => SortOrderSchema).optional(), frequency: z.lazy(() => SortOrderSchema).optional(), groupId: z.lazy(() => SortOrderSchema).optional()
+    id: z.lazy(() => SortOrderSchema).optional(), createdAt: z.lazy(() => SortOrderSchema).optional(), updatedAt: z.lazy(() => SortOrderSchema).optional(), isDeleted: z.lazy(() => SortOrderSchema).optional(), name: z.lazy(() => SortOrderSchema).optional(), sort: z.lazy(() => SortOrderSchema).optional(), count: z.lazy(() => SortOrderSchema).optional(), frequency: z.lazy(() => SortOrderSchema).optional(), enable: z.lazy(() => SortOrderSchema).optional(), groupId: z.lazy(() => SortOrderSchema).optional()
 }).strict() as SchemaType;

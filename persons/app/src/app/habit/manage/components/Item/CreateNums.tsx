@@ -19,13 +19,18 @@ export const CreateNums = (props: CreateNumsProps) => {
   const [form] = Form.useForm()
 
   useEffect(() => {
-    form.setFieldsValue(value)
-  }, [form, value])
+    if (value) {
+      form.setFieldsValue(value)
+      return
+    }
+    form.setFieldsValue({ times: 1, single: 1, total: 1 })
+    onChange?.({ times: 1, single: 1, total: 1 })
+  }, [value])
 
   return (
     <BetaSchemaForm<Value>
       form={form}
-      initialValues={value || { times: 1, single: 1, total: 1 }}
+      initialValues={value}
       submitter={false}
       layout='inline'
       onValuesChange={(_, values) => {

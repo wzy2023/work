@@ -23,5 +23,6 @@ export const HabitItemCreateManyInputObjectSchema: SchemaType = z.object({
     z.null()]).optional().nullable(), name: z.string(), sort: z.union([z.number(),
     z.null()]).optional().nullable(), count: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
         jsonSchema]).optional(), frequency: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
-            jsonSchema]).optional(), groupId: z.number()
+            jsonSchema]).optional(), enable: z.union([z.boolean(),
+            z.null()]).optional().nullable(), groupId: z.number()
 }).strict() as SchemaType;

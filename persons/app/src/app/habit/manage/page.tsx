@@ -9,14 +9,16 @@ import { useHabitGroupCRUD } from '@/api/generated/store'
 
 export default () => {
   const { listState } = useHabitGroupCRUD({
-    list: { orderBy: { sort: 'asc' } },
+    list: {
+      query: { orderBy: { sort: 'asc' } },
+    },
   })
 
   return (
     <div className='p-5 max-w-4xl mx-auto'>
       <div className='flex justify-between items-center mb-6'>
         <h1 className='text-2xl font-medium text-gray-900'>习惯管理</h1>
-        <Create />
+        <Create onSuccess={listState.refetch} />
       </div>
 
       <List

@@ -21,13 +21,14 @@ export const Group = (props: GroupProps) => {
   const { isHovered, onMouseEnter, onMouseLeave } = useHovered()
 
   const { removeState } = useHabitGroupCRUD({
+    list: false,
     remove: { onSuccess },
   })
 
   return (
     <Card
       size='small'
-      title={<GroupTitle item={item} />}
+      title={<GroupTitle item={item} onSuccess={onSuccess} />}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       style={{

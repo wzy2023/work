@@ -9,14 +9,24 @@ interface Values {
   color: string
 }
 
-export const Create = () => {
+interface CreateProps {
+  onSuccess: () => void
+}
+
+export const Create = (props: CreateProps) => {
+  const { onSuccess } = props
+
   const [form] = Form.useForm<Values>()
 
   const [isModalOpen, { setTrue, setFalse }] = useBoolean(false)
 
   const { createState } = useHabitGroupCRUD({
+    list: false,
     create: {
-      onSuccess: setFalse,
+      onSuccess: () => {
+        setFalse()
+        onSuccess?.()
+      },
     },
   })
 

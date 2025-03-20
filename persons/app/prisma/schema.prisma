@@ -41,6 +41,7 @@ model HabitItem {
   sort      Int?
   count     Json?
   frequency Json?
+  enable    Boolean?
   groupId   Int
   group     HabitGroup @relation(fields: [groupId], references: [id])
 }

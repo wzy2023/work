@@ -35,6 +35,8 @@ export const HabitItemUncheckedUpdateInputObjectSchema: SchemaType = z.object({
     z.lazy(() => NullableIntFieldUpdateOperationsInputObjectSchema),
     z.null()]).optional().nullable(), count: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
         jsonSchema]).optional(), frequency: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
-            jsonSchema]).optional(), groupId: z.union([z.number(),
+            jsonSchema]).optional(), enable: z.union([z.boolean(),
+            z.lazy(() => NullableBoolFieldUpdateOperationsInputObjectSchema),
+            z.null()]).optional().nullable(), groupId: z.union([z.number(),
             z.lazy(() => IntFieldUpdateOperationsInputObjectSchema)]).optional()
 }).strict() as SchemaType;

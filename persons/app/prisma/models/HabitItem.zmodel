@@ -9,6 +9,8 @@ model HabitItem extends Base {
 
   frequency Json?
 
+  enable Boolean?
+
   groupId Int
   group   HabitGroup @relation(fields: [groupId], references: [id]) // 建立关系
 }

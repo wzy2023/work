@@ -7,7 +7,10 @@ import { message } from '@/components'
 import { api } from '@/api/react'
 
 interface Option {
-  list?: Parameters<typeof api.habitRecord.findMany.useQuery>[0],
+  list?: false | {
+    query?: Parameters<typeof api.habitRecord.findMany.useQuery>[0],
+    option?: Parameters<typeof api.habitRecord.findMany.useQuery>[1],
+  },
   create?: Parameters<typeof api.habitRecord.create.useMutation>[0],
   update?: Parameters<typeof api.habitRecord.update.useMutation>[0],
   remove?: Parameters<typeof api.habitRecord.update.useMutation>[0],
@@ -18,12 +21,17 @@ export const useHabitRecordCRUD = (option: Option = {}) => {
 
   const apiUtils = api.useUtils()
 
-  const listState = api.habitRecord.findMany.useQuery(list)
+  const listState = api.habitRecord.findMany.useQuery(list && list.query, {
+    enabled: list !== false,
+    ...list.option,
+  })
 
   const onSuccess = (tip: string) => {
     message.destroy()
     message.success(tip)
-    listState.refetch()
+    if (list) {
+      listState.refetch()
+    }
   }
 
   const baseCreateState = api.habitRecord.create.useMutation({

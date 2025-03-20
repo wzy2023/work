@@ -16,7 +16,7 @@ export const List = <I extends { id: number }>(props: ListProps<I>) => {
   const utils = api.useUtils()
 
   const updateSortState = api.custom.habitGroup.updateSort.useMutation({
-    onSuccess: onSuccess,
+    onSuccess,
   })
 
   const onDragEnd = (result: any) => {
@@ -29,7 +29,7 @@ export const List = <I extends { id: number }>(props: ListProps<I>) => {
     }
 
     // 乐观更新
-    utils.habitGroup.findMany.setData(undefined, newItemsOrder as any)
+    utils.habitGroup.findMany.setData({ orderBy: { sort: 'asc' } }, newItemsOrder as any)
 
     updateSortState.mutate(
       newItemsOrder.map((item, index) => ({
@@ -43,6 +43,7 @@ export const List = <I extends { id: number }>(props: ListProps<I>) => {
     <DragSort list={list} onDragEnd={onDragEnd}>
       {(item, provided: any) => (
         <Group
+          key={item.id}
           item={item}
           provided={provided}
           onSuccess={onSuccess}

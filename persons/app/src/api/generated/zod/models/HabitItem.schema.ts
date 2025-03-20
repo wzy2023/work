@@ -15,6 +15,7 @@ const baseSchema = z.object({
     sort: z.number().nullish(),
     count: z.any().nullish(),
     frequency: z.any().nullish(),
+    enable: z.boolean().nullish(),
 }
 ).strict();
 const relationSchema = z.object({
@@ -59,7 +60,8 @@ export const HabitItemPrismaUpdateSchema = z.object({
     name: z.string(),
     sort: z.union([z.number().nullish(), z.record(z.unknown())]),
     count: z.any().nullish(),
-    frequency: z.any().nullish()
+    frequency: z.any().nullish(),
+    enable: z.boolean().nullish()
 }).partial().passthrough();
 
 

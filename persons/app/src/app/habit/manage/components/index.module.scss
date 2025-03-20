@@ -1,0 +1,9 @@
+.menu {
+  :global(.ant-dropdown-menu-item) {
+    padding: 0 !important;
+  }
+
+  li span {
+    padding: 5px 8px;
+  }
+}

@@ -8,18 +8,23 @@ import { useHabitGroupCRUD } from '@/api/generated/store'
 
 interface GroupTitleProps<I> {
   item: I
+  onSuccess?: () => void
 }
 
 export const GroupTitle = <I extends { id: number, name: string }>(props: GroupTitleProps<I>) => {
-  const { item } = props
+  const { item, onSuccess } = props
 
   const [name, setName] = useState(item.name)
 
   const [isEditing, { setTrue, setFalse }] = useBoolean(false)
 
   const { updateState } = useHabitGroupCRUD({
+    list: false,
     update: {
-      onSuccess: setFalse,
+      onSuccess: () => {
+        setFalse()
+        onSuccess?.()
+      },
     },
   })
 

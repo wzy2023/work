@@ -8,6 +8,8 @@ import { api } from '@/api/react'
 import { type HabitItem } from '@prisma/client'
 import { useHabitItemCRUD } from '@/api/generated/store'
 
+import styles from '../index.module.scss'
+
 interface ListProps {
   groupId: number
 }
@@ -19,7 +21,10 @@ export const List = (props: ListProps) => {
 
   const { listState, apiUtils } = useHabitItemCRUD({
     list: {
-      where: { groupId },
+      query: {
+        where: { groupId },
+        orderBy: { sort: 'asc' },
+      },
     },
   })
 
@@ -34,7 +39,10 @@ export const List = (props: ListProps) => {
     const [removed] = newItems.splice(result.source.index, 1)
     newItems.splice(result.destination.index, 0, removed!)
 
-    apiUtils.habitItem.findMany.setData({ where: { groupId } }, newItems)
+    apiUtils.habitItem.findMany.setData({
+      where: { groupId },
+      orderBy: { sort: 'asc' },
+    }, newItems)
 
     updateSortState.mutate(newItems.map((item, index) => ({
       id: item.id,
@@ -82,14 +90,18 @@ export const List = (props: ListProps) => {
         )}
       >
         {(item, provided) => (
-          <Dropdown trigger={['contextMenu']} menu={{ items: menuItems(item) }}>
-            <div
-              {...provided.dragHandleProps}
-              className='flex items-center justify-center h-12 w-12 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors cursor-grab shadow-md hover:shadow-lg'
-            >
-              {item.name}
-            </div>
-          </Dropdown>
+          <div className={styles.menu}>
+            <Dropdown getPopupContainer={a => a} trigger={['contextMenu']} menu={{ items: menuItems(item) }}>
+              <div
+                {...provided.dragHandleProps}
+                className={`flex items-center justify-center h-12 w-12 rounded-full text-white ${item.enable ? 'bg-blue-500 hover:bg-blue-600' : 'bg-gray-400 hover:bg-gray-500'} transition-colors cursor-grab shadow-md hover:shadow-lg`}
+              >
+                <span className='text-xs'>
+                  {item.name}
+                </span>
+              </div>
+            </Dropdown>
+          </div>
         )}
       </DragSort>
     </div>
