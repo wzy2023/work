@@ -1,16 +1,17 @@
 import React from 'react'
 
-import { DragSort } from '@/components'
+import { DragSort, type DropResult } from '@/components'
 import { Group } from './Group'
 
 import { api } from '@/api/react'
+import { type Habit } from '@/api/types'
 
-interface ListProps<I> {
-  list?: I[]
+interface ListProps {
+  list?: Habit.Group[]
   onSuccess: () => void
 }
 
-export const List = <I extends { id: number }>(props: ListProps<I>) => {
+export const List = (props: ListProps) => {
   const { list, onSuccess } = props
 
   const utils = api.useUtils()
@@ -19,7 +20,7 @@ export const List = <I extends { id: number }>(props: ListProps<I>) => {
     onSuccess,
   })
 
-  const onDragEnd = (result: any) => {
+  const onDragEnd = (result: DropResult) => {
     if (!result.destination) return
 
     const newItemsOrder = Array.from(list || [])
@@ -29,7 +30,7 @@ export const List = <I extends { id: number }>(props: ListProps<I>) => {
     }
 
     // 乐观更新
-    utils.habitGroup.findMany.setData({ orderBy: { sort: 'asc' } }, newItemsOrder as any)
+    utils.habitGroup.findMany.setData({ orderBy: { sort: 'asc' } }, newItemsOrder)
 
     updateSortState.mutate(
       newItemsOrder.map((item, index) => ({
@@ -41,7 +42,7 @@ export const List = <I extends { id: number }>(props: ListProps<I>) => {
 
   return (
     <DragSort list={list} onDragEnd={onDragEnd}>
-      {(item, provided: any) => (
+      {(item, provided) => (
         <Group
           key={item.id}
           item={item}

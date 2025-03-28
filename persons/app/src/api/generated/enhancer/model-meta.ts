@@ -32,13 +32,14 @@ const metadata = {
                 }, name: {
                     name: "name",
                     type: "String",
-                }, color: {
-                    name: "color",
-                    type: "String",
-                    isOptional: true,
                 }, sort: {
                     name: "sort",
                     type: "Int",
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": 999 }] }],
+                }, color: {
+                    name: "color",
+                    type: "String",
                     isOptional: true,
                 }, children: {
                     name: "children",
@@ -87,6 +88,11 @@ const metadata = {
                     name: "sort",
                     type: "Int",
                     isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": 999 }] }],
+                }, enable: {
+                    name: "enable",
+                    type: "Boolean",
+                    isOptional: true,
                 }, count: {
                     name: "count",
                     type: "Json",
@@ -94,10 +100,6 @@ const metadata = {
                 }, frequency: {
                     name: "frequency",
                     type: "Json",
-                    isOptional: true,
-                }, enable: {
-                    name: "enable",
-                    type: "Boolean",
                     isOptional: true,
                 }, groupId: {
                     name: "groupId",
@@ -112,6 +114,12 @@ const metadata = {
                     backLink: 'children',
                     isRelationOwner: true,
                     foreignKeyMapping: { "id": "groupId" },
+                }, records: {
+                    name: "records",
+                    type: "HabitRecord",
+                    isDataModel: true,
+                    isArray: true,
+                    backLink: 'habit',
                 },
             }
             , uniqueConstraints: {
@@ -146,10 +154,32 @@ const metadata = {
                     type: "Boolean",
                     isOptional: true,
                     attributes: [{ "name": "@default", "args": [{ "value": false }] }, { "name": "@omit", "args": [] }],
-                }, p: {
-                    name: "p",
+                }, date: {
+                    name: "date",
+                    type: "DateTime",
+                }, execList: {
+                    name: "execList",
+                    type: "Json",
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": "[]" }] }],
+                }, reason: {
+                    name: "reason",
                     type: "String",
-                    attributes: [{ "name": "@password", "args": [] }],
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": "" }] }],
+                }, habit: {
+                    name: "habit",
+                    type: "HabitItem",
+                    isDataModel: true,
+                    attributes: [{ "name": "@relation", "args": [] }],
+                    backLink: 'records',
+                    isRelationOwner: true,
+                    foreignKeyMapping: { "id": "habitId" },
+                }, habitId: {
+                    name: "habitId",
+                    type: "Int",
+                    isForeignKey: true,
+                    relationField: 'habit',
                 },
             }
             , uniqueConstraints: {

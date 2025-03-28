@@ -2,19 +2,25 @@
 
 import React from 'react'
 
-import { DragDropContext, Draggable, Droppable, type OnDragEndResponder } from 'react-beautiful-dnd'
+import {
+  DragDropContext,
+  Draggable,
+  Droppable,
+  type OnDragEndResponder,
+  type DraggableProvided,
+} from 'react-beautiful-dnd'
 import { Space } from 'antd'
 
 interface DragSortProps<T> {
   direction?: 'vertical' | 'horizontal'
   droppableId?: string
   list?: T[]
-  children: (item: T, provided: any) => React.ReactNode
+  children: (item: T, provided: DraggableProvided) => React.ReactNode
   lastChildren?: React.ReactNode
   onDragEnd: OnDragEndResponder
 }
 
-export { type DropResult } from 'react-beautiful-dnd'
+export { type DropResult, type DraggableProvided } from 'react-beautiful-dnd'
 
 export const DragSort = <T extends { id: number }>(props: DragSortProps<T>) => {
   const { direction = 'vertical', droppableId = 'list', list, children, lastChildren, onDragEnd } = props

@@ -29,8 +29,8 @@ export const HabitItemScalarWhereWithAggregatesInputObjectSchema: SchemaType = z
     z.null()]).optional().nullable(), name: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
     z.string()]).optional(), sort: z.union([z.lazy(() => IntNullableWithAggregatesFilterObjectSchema),
     z.number(),
-    z.null()]).optional().nullable(), count: z.lazy(() => JsonNullableWithAggregatesFilterObjectSchema).optional(), frequency: z.lazy(() => JsonNullableWithAggregatesFilterObjectSchema).optional(), enable: z.union([z.lazy(() => BoolNullableWithAggregatesFilterObjectSchema),
+    z.null()]).optional().nullable(), enable: z.union([z.lazy(() => BoolNullableWithAggregatesFilterObjectSchema),
     z.boolean(),
-    z.null()]).optional().nullable(), groupId: z.union([z.lazy(() => IntWithAggregatesFilterObjectSchema),
+    z.null()]).optional().nullable(), count: z.lazy(() => JsonNullableWithAggregatesFilterObjectSchema).optional(), frequency: z.lazy(() => JsonNullableWithAggregatesFilterObjectSchema).optional(), groupId: z.union([z.lazy(() => IntWithAggregatesFilterObjectSchema),
     z.number()]).optional()
 }).strict() as SchemaType;

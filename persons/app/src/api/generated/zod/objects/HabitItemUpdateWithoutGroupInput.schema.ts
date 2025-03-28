@@ -12,6 +12,7 @@ import { NullableBoolFieldUpdateOperationsInputObjectSchema } from './NullableBo
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
 import { NullableIntFieldUpdateOperationsInputObjectSchema } from './NullableIntFieldUpdateOperationsInput.schema';
 import { NullableJsonNullValueInputSchema } from '../enums/NullableJsonNullValueInput.schema';
+import { HabitRecordUpdateManyWithoutHabitNestedInputObjectSchema } from './HabitRecordUpdateManyWithoutHabitNestedInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -31,9 +32,9 @@ export const HabitItemUpdateWithoutGroupInputObjectSchema: SchemaType = z.object
     z.null()]).optional().nullable(), name: z.union([z.string(),
     z.lazy(() => StringFieldUpdateOperationsInputObjectSchema)]).optional(), sort: z.union([z.number(),
     z.lazy(() => NullableIntFieldUpdateOperationsInputObjectSchema),
+    z.null()]).optional().nullable(), enable: z.union([z.boolean(),
+    z.lazy(() => NullableBoolFieldUpdateOperationsInputObjectSchema),
     z.null()]).optional().nullable(), count: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
         jsonSchema]).optional(), frequency: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
-            jsonSchema]).optional(), enable: z.union([z.boolean(),
-            z.lazy(() => NullableBoolFieldUpdateOperationsInputObjectSchema),
-            z.null()]).optional().nullable()
+            jsonSchema]).optional(), records: z.lazy(() => HabitRecordUpdateManyWithoutHabitNestedInputObjectSchema).optional()
 }).strict() as SchemaType;

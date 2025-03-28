@@ -4,19 +4,17 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "npm run generate && next dev --turbo",
+    "dev": "npm run rm:next && npm run generate && next dev --turbo",
     "build": "npm run generate && next build",
     "start": "next start",
     "preview": "npm run build && npm run start",
-
+    "rm:next": "rm -rf .next",
     "rm:generated": "rm -rf src/api/generated",
     "generate": "npm run rm:generated && zenstack generate --no-compile --schema ./prisma/schema.zmodel",
-
     "db:migrate": "prisma migrate dev",
     "db:migrate:deploy": "prisma migrate deploy",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
-
     "check": "next lint && tsc --noEmit",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
     "format:write": "prettier --write \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
@@ -36,13 +34,15 @@
     "@wzyjs/hooks": "link:@wzyjs/hooks",
     "@wzyjs/next": "link:@wzyjs/next",
     "@wzyjs/utils": "link:@wzyjs/utils",
+    "@xyflow/react": "^12.5.3",
     "antd": "^5.24.3",
     "next": "^15.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "server-only": "^0.0.1",
     "superjson": "^2.2.1",
-    "zod": "^3.23.3"
+    "zod": "^3.23.3",
+    "zod-validation-error": "^3.4.0"
   },
   "devDependencies": {
     "@types/node": "^20.14.10",

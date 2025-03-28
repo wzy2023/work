@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, forwardRef, useImperativeHandle } from 'react'
 
-import { Form, BetaSchemaForm } from '@/components'
+import { Form, BetaSchemaForm, type FormInstance } from '@/components'
 
 interface Value {
   total: number
@@ -13,10 +13,12 @@ interface CreateNumsProps {
   onChange?: (value: Value) => void
 }
 
-export const CreateNums = (props: CreateNumsProps) => {
+export const CreateNums = forwardRef<FormInstance, CreateNumsProps>((props, ref) => {
   const { value, onChange } = props
 
   const [form] = Form.useForm()
+
+  useImperativeHandle(ref, () => form)
 
   useEffect(() => {
     if (value) {
@@ -25,7 +27,7 @@ export const CreateNums = (props: CreateNumsProps) => {
     }
     form.setFieldsValue({ times: 1, single: 1, total: 1 })
     onChange?.({ times: 1, single: 1, total: 1 })
-  }, [value])
+  }, [form, onChange, value])
 
   return (
     <BetaSchemaForm<Value>
@@ -34,25 +36,26 @@ export const CreateNums = (props: CreateNumsProps) => {
       submitter={false}
       layout='inline'
       onValuesChange={(_, values) => {
-        values.total = values.times * values.single
+        if (values.total && values.single) {
+          values.times = values.total / values.single
+        }
         onChange?.(values)
       }}
       columns={[
         {
-          dataIndex: 'times',
-          title: '每天想执行几次',
+          dataIndex: 'total',
+          title: '执行总量',
           valueType: 'digit',
           formItemProps: { rules: [{ required: true }] },
           fieldProps: {
             step: 1,
             precision: 0,
             style: { width: 100 },
-            min: 1,
           },
         },
         {
           dataIndex: 'single',
-          title: '每次执行的数量',
+          title: '每次执行量',
           valueType: 'digit',
           formItemProps: { rules: [{ required: true }] },
           fieldProps: {
@@ -63,17 +66,19 @@ export const CreateNums = (props: CreateNumsProps) => {
           },
         },
         {
-          dataIndex: 'total',
-          title: '累计',
+          dataIndex: 'times',
+          title: '执行几次',
           valueType: 'digit',
+          formItemProps: { rules: [{ required: true }] },
           fieldProps: {
             step: 1,
             precision: 0,
             style: { width: 100 },
+            min: 1,
             disabled: true,
           },
         },
       ]}
     />
   )
-}
+})

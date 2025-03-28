@@ -1,14 +1,12 @@
 import "@wzyjs/next/dist/Base"
+import "./HabitItem"
 
 model HabitRecord extends Base {
-  p         String    @password
-}
+  date DateTime
 
-enum HabitRecordStatus {
-  UNSTARTED // 未开启
-  IN_PROGRESS // 进行中
-  DONE // 完成
-  CANCELED // 取消
-  FAILED // 失败
-  PAUSED // 暂停
+  execList Json? @default("[]")
+  reason  String? @default("")
+
+  habit     HabitItem @relation(fields: [habitId], references: [id])
+  habitId   Int
 }

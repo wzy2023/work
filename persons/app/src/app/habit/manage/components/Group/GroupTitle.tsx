@@ -29,11 +29,22 @@ export const GroupTitle = <I extends { id: number, name: string }>(props: GroupT
   })
 
   const onSubmit = () => {
-    if (!name.trim()) return
+    if (!name.trim()) {
+      return
+    }
+
+    if (item.name === name) {
+      setFalse()
+      return
+    }
 
     updateState.mutate(item.id, {
       name: name.trim(),
     })
+  }
+
+  const onBlur = () => {
+    onSubmit()
   }
 
   const onKeyDown = (e: React.KeyboardEvent) => {
@@ -48,7 +59,7 @@ export const GroupTitle = <I extends { id: number, name: string }>(props: GroupT
         <Input
           value={name}
           onChange={ev => setName(ev.target.value)}
-          onBlur={onSubmit}
+          onBlur={onBlur}
           onKeyDown={onKeyDown}
           autoFocus
           size='small'

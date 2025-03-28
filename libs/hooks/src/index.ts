@@ -6,11 +6,13 @@ export { useCopyToClipboard, useCookie, useUpdate } from 'react-use'
 
 export * from './base/useEffectValue'
 export * from './base/useVisibleInfo'
+export * from './base/useClick'
 
 export * from './antd/useForm'
 export * from './antd/useHideFooter'
 export * from './antd/useHovered'
 export * from './antd/useModalFooter'
+export * from './antd/useImperativeHandleForm'
 
 export * from './dom/useElementScrollVisible'
 

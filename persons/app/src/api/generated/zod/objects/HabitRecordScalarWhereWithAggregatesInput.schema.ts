@@ -10,7 +10,8 @@ import { IntWithAggregatesFilterObjectSchema } from './IntWithAggregatesFilter.s
 import { DateTimeWithAggregatesFilterObjectSchema } from './DateTimeWithAggregatesFilter.schema';
 import { DateTimeNullableWithAggregatesFilterObjectSchema } from './DateTimeNullableWithAggregatesFilter.schema';
 import { BoolNullableWithAggregatesFilterObjectSchema } from './BoolNullableWithAggregatesFilter.schema';
-import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema';
+import { JsonNullableWithAggregatesFilterObjectSchema } from './JsonNullableWithAggregatesFilter.schema';
+import { StringNullableWithAggregatesFilterObjectSchema } from './StringNullableWithAggregatesFilter.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -24,6 +25,9 @@ export const HabitRecordScalarWhereWithAggregatesInputObjectSchema: SchemaType =
     z.union([z.date(), z.string().datetime().optional()]),
     z.null()]).optional().nullable(), isDeleted: z.union([z.lazy(() => BoolNullableWithAggregatesFilterObjectSchema),
     z.boolean(),
-    z.null()]).optional().nullable(), p: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
-    z.string()]).optional()
+    z.null()]).optional().nullable(), date: z.union([z.lazy(() => DateTimeWithAggregatesFilterObjectSchema),
+    z.union([z.date(), z.string().datetime().optional()])]).optional(), execList: z.lazy(() => JsonNullableWithAggregatesFilterObjectSchema).optional(), reason: z.union([z.lazy(() => StringNullableWithAggregatesFilterObjectSchema),
+    z.string(),
+    z.null()]).optional().nullable(), habitId: z.union([z.lazy(() => IntWithAggregatesFilterObjectSchema),
+    z.number()]).optional()
 }).strict() as SchemaType;

@@ -12,8 +12,8 @@ const baseSchema = z.object({
     updatedAt: z.coerce.date().nullish(),
     isDeleted: z.boolean().default(false).nullish(),
     name: z.string(),
+    sort: z.number().default(999).nullish(),
     color: z.string().nullish(),
-    sort: z.number().nullish(),
 }
 ).strict();
 const relationSchema = z.object({
@@ -52,8 +52,8 @@ export const HabitGroupPrismaUpdateSchema = z.object({
     updatedAt: z.coerce.date().nullish(),
     isDeleted: z.boolean().default(false).nullish(),
     name: z.string(),
-    color: z.string().nullish(),
-    sort: z.union([z.number().nullish(), z.record(z.unknown())])
+    sort: z.union([z.number().default(999).nullish(), z.record(z.unknown())]),
+    color: z.string().nullish()
 }).partial().passthrough();
 
 
@@ -61,7 +61,7 @@ export const HabitGroupPrismaUpdateSchema = z.object({
  * `HabitGroup` schema for create operations excluding foreign keys and relations.
  */
 export const HabitGroupCreateScalarSchema = baseSchema.partial({
-    id: true, createdAt: true, updatedAt: true, isDeleted: true
+    id: true, createdAt: true, updatedAt: true, isDeleted: true, sort: true
 });
 
 
@@ -69,7 +69,7 @@ export const HabitGroupCreateScalarSchema = baseSchema.partial({
  * `HabitGroup` schema for create operations including scalar fields, foreign key fields, and validations.
  */
 export const HabitGroupCreateSchema = baseSchema.partial({
-    id: true, createdAt: true, updatedAt: true, isDeleted: true
+    id: true, createdAt: true, updatedAt: true, isDeleted: true, sort: true
 });
 
 

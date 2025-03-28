@@ -21,8 +21,8 @@
 //     },
 //   })
 //
-//   // 将列表数据转换成 options
-//   const options = useMemo(() => {
+//   // 将列表数据转换成 enableOptions
+//   const enableOptions = useMemo(() => {
 //     return data?.data.map((item: any) => ({ label: item.name, value: item.id })) || []
 //   }, [data])
 //
@@ -38,7 +38,7 @@
 //
 //   return {
 //     loading,
-//     options,
+//     enableOptions,
 //     value,
 //     onChange: setValue,
 //     currentData,

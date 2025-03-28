@@ -11,8 +11,8 @@ import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldU
 import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema';
 import { NullableBoolFieldUpdateOperationsInputObjectSchema } from './NullableBoolFieldUpdateOperationsInput.schema';
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
-import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema';
 import { NullableIntFieldUpdateOperationsInputObjectSchema } from './NullableIntFieldUpdateOperationsInput.schema';
+import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema';
 import { HabitItemUncheckedUpdateManyWithoutGroupNestedInputObjectSchema } from './HabitItemUncheckedUpdateManyWithoutGroupNestedInput.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -26,9 +26,9 @@ export const HabitGroupUncheckedUpdateInputObjectSchema: SchemaType = z.object({
     z.null()]).optional().nullable(), isDeleted: z.union([z.boolean(),
     z.lazy(() => NullableBoolFieldUpdateOperationsInputObjectSchema),
     z.null()]).optional().nullable(), name: z.union([z.string(),
-    z.lazy(() => StringFieldUpdateOperationsInputObjectSchema)]).optional(), color: z.union([z.string(),
-    z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
-    z.null()]).optional().nullable(), sort: z.union([z.number(),
+    z.lazy(() => StringFieldUpdateOperationsInputObjectSchema)]).optional(), sort: z.union([z.number(),
     z.lazy(() => NullableIntFieldUpdateOperationsInputObjectSchema),
+    z.null()]).optional().nullable(), color: z.union([z.string(),
+    z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
     z.null()]).optional().nullable(), children: z.lazy(() => HabitItemUncheckedUpdateManyWithoutGroupNestedInputObjectSchema).optional()
 }).strict() as SchemaType;

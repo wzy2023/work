@@ -11,8 +11,8 @@ import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema';
 import { DateTimeNullableFilterObjectSchema } from './DateTimeNullableFilter.schema';
 import { BoolNullableFilterObjectSchema } from './BoolNullableFilter.schema';
 import { StringFilterObjectSchema } from './StringFilter.schema';
-import { StringNullableFilterObjectSchema } from './StringNullableFilter.schema';
 import { IntNullableFilterObjectSchema } from './IntNullableFilter.schema';
+import { StringNullableFilterObjectSchema } from './StringNullableFilter.schema';
 import { HabitItemListRelationFilterObjectSchema } from './HabitItemListRelationFilter.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -27,9 +27,9 @@ export const HabitGroupWhereUniqueInputObjectSchema: SchemaType = z.object({
     z.null()]).optional().nullable(), isDeleted: z.union([z.lazy(() => BoolNullableFilterObjectSchema),
     z.boolean(),
     z.null()]).optional().nullable(), name: z.union([z.lazy(() => StringFilterObjectSchema),
-    z.string()]).optional(), color: z.union([z.lazy(() => StringNullableFilterObjectSchema),
-    z.string(),
-    z.null()]).optional().nullable(), sort: z.union([z.lazy(() => IntNullableFilterObjectSchema),
+    z.string()]).optional(), sort: z.union([z.lazy(() => IntNullableFilterObjectSchema),
     z.number(),
+    z.null()]).optional().nullable(), color: z.union([z.lazy(() => StringNullableFilterObjectSchema),
+    z.string(),
     z.null()]).optional().nullable(), children: z.lazy(() => HabitItemListRelationFilterObjectSchema).optional()
 }).strict() as SchemaType;

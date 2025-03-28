@@ -36,7 +36,7 @@ export const Create = (props: CreateProps) => {
     const values = form.getFieldsValue()
     values.color = (values.color as any)?.toHex()
 
-    createState.mutate(values)
+    createState.mutate({ ...values, sort: 99 })
   }
 
   return (

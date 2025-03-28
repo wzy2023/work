@@ -6,11 +6,12 @@
 // @ts-nocheck
 
 import { z } from 'zod';
-
+import { HabitItemDefaultArgsObjectSchema } from './HabitItemDefaultArgs.schema';
 
 import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitRecordSelect>;
 export const HabitRecordSelectObjectSchema: SchemaType = z.object({
-    id: z.boolean().optional(), createdAt: z.boolean().optional(), updatedAt: z.boolean().optional(), isDeleted: z.boolean().optional(), p: z.boolean().optional()
+    id: z.boolean().optional(), createdAt: z.boolean().optional(), updatedAt: z.boolean().optional(), isDeleted: z.boolean().optional(), date: z.boolean().optional(), execList: z.boolean().optional(), reason: z.boolean().optional(), habit: z.union([z.boolean(),
+    z.lazy(() => HabitItemDefaultArgsObjectSchema)]).optional(), habitId: z.boolean().optional()
 }).strict() as SchemaType;

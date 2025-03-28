@@ -1,6 +1,6 @@
 import { Option } from '@wzyjs/types'
 
-// options 转 valueEnum
+// enableOptions 转 valueEnum
 export const options2valueEnum = (options: string[]): { [key: string]: { text: string } } => {
   return (options || []).reduce<{
     [key: string]: { text: string }
@@ -10,7 +10,7 @@ export const options2valueEnum = (options: string[]): { [key: string]: { text: s
   }, {})
 }
 
-// 字符串转 options
+// 字符串转 enableOptions
 export const transformOptions = (inputArray?: string[] | Option[]): Option[] => {
   if (!inputArray?.length) {
     return []

@@ -7,6 +7,7 @@ import { message } from '@/components'
 import { api } from '@/api/react'
 
 interface Option {
+  showTip?: boolean,
   list?: false | {
     query?: Parameters<typeof api.habitGroup.findMany.useQuery>[0],
     option?: Parameters<typeof api.habitGroup.findMany.useQuery>[1],
@@ -17,7 +18,7 @@ interface Option {
 }
 
 export const useHabitGroupCRUD = (option: Option = {}) => {
-  const { list, create, update, remove } = option
+  const { list, create, update, remove, showTip = true } = option
 
   const apiUtils = api.useUtils()
 
@@ -28,7 +29,9 @@ export const useHabitGroupCRUD = (option: Option = {}) => {
 
   const onSuccess = (tip: string) => {
     message.destroy()
-    message.success(tip)
+    if (showTip) {
+      message.success(tip)
+    }
     if (list) {
       listState.refetch()
     }

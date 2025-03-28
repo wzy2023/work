@@ -63,10 +63,10 @@
 //   }
 //
 //   // 用户配置与默认配置合并
-//   const options = Object.assign(defaultOptions, omit(userOptions, ['onSuccess', 'onError']))
+//   const enableOptions = Object.assign(defaultOptions, omit(userOptions, ['onSuccess', 'onError']))
 //
 //   // 取出 data 里的 data
-//   const state = useRequest(reqPromise, options)
+//   const state = useRequest(reqPromise, enableOptions)
 //   state.data = state.data?.data
 //
 //   return state

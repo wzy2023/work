@@ -1,4 +1,5 @@
-import { BetaSchemaForm, Button, Form, Modal, PlusOutlined } from '@/components'
+import { useRef } from 'react'
+import { BetaSchemaForm, Button, Form, type FormInstance, Modal, PlusOutlined } from '@/components'
 
 import { CreateNums } from './CreateNums'
 import { CreateFrequency } from './CreateFrequency'
@@ -17,6 +18,9 @@ export const Create = (props: CreateHabitProps) => {
   const { id, initialValues = { enable: true }, groupId, onSuccess } = props
 
   const [form] = Form.useForm()
+
+  const frequencyRef = useRef<FormInstance>(null)
+  const numsRef = useRef<FormInstance>(null)
 
   const [visible, { setFalse, setTrue }] = useBoolean()
 
@@ -37,7 +41,12 @@ export const Create = (props: CreateHabitProps) => {
   })
 
   const onOk = async () => {
-    await form.validateFields()
+    await Promise.all([
+      form.validateFields(),
+      frequencyRef.current?.validateFields(),
+      numsRef.current?.validateFields(),
+    ])
+
     const values = form.getFieldsValue()
 
     if (id) {
@@ -47,7 +56,7 @@ export const Create = (props: CreateHabitProps) => {
 
     createState.mutate({
       groupId,
-      sort: 99999,
+      sort: 99,
       ...values,
     })
   }
@@ -82,28 +91,25 @@ export const Create = (props: CreateHabitProps) => {
             {
               title: '名称',
               dataIndex: 'name',
-              formItemProps: { rules: [{ required: true }] },
-            },
-            {
-              dataIndex: 'frequency',
-              renderFormItem: () => <CreateFrequency />,
               formItemProps: {
                 rules: [
-                  {
-                    validator: async (_, value) => {
-                      if (!value) {
-                        return Promise.reject('请选择频率')
-                      }
-                      return Promise.resolve()
-                    },
-                  },
+                  { required: true },
+                  { max: 8 },
                 ],
               },
             },
             {
+              dataIndex: 'frequency',
+              renderFormItem: () => (
+                <CreateFrequency ref={frequencyRef} />
+              ),
+            },
+            {
               title: '数量',
               dataIndex: 'count',
-              renderFormItem: () => <CreateNums />,
+              renderFormItem: () => (
+                <CreateNums ref={numsRef} />
+              ),
             },
           ]}
         />

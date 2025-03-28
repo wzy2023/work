@@ -56,7 +56,7 @@ const errorLink: TRPCLink<ApiRouter> = () => {
         },
         complete: () => observer.complete(),
         error: err => {
-          message.error(err.message || '操作失败')
+          message.error(err.data?.formattedError || err.message || '操作失败')
           observer.error(err)
         },
       })

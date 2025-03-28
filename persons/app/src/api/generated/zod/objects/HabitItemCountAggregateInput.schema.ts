@@ -12,5 +12,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitItemCountAggregateInputType>;
 export const HabitItemCountAggregateInputObjectSchema: SchemaType = z.object({
-    id: z.literal(true).optional(), createdAt: z.literal(true).optional(), updatedAt: z.literal(true).optional(), isDeleted: z.literal(true).optional(), name: z.literal(true).optional(), sort: z.literal(true).optional(), count: z.literal(true).optional(), frequency: z.literal(true).optional(), enable: z.literal(true).optional(), groupId: z.literal(true).optional(), _all: z.literal(true).optional()
+    id: z.literal(true).optional(), createdAt: z.literal(true).optional(), updatedAt: z.literal(true).optional(), isDeleted: z.literal(true).optional(), name: z.literal(true).optional(), sort: z.literal(true).optional(), enable: z.literal(true).optional(), count: z.literal(true).optional(), frequency: z.literal(true).optional(), groupId: z.literal(true).optional(), _all: z.literal(true).optional()
 }).strict() as SchemaType;

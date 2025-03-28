@@ -12,38 +12,30 @@ generator client {
   provider = "prisma-client-js"
 }
 
-enum HabitRecordStatus {
-  UNSTARTED
-  IN_PROGRESS
-  DONE
-  CANCELED
-  FAILED
-  PAUSED
-}
-
 model HabitGroup {
   id        Int         @id() @default(autoincrement())
   createdAt DateTime    @default(now())
   updatedAt DateTime?   @updatedAt()
   isDeleted Boolean?    @default(false)
   name      String
+  sort      Int?        @default(999)
   color     String?
-  sort      Int?
   children  HabitItem[]
 }
 
 model HabitItem {
-  id        Int        @id() @default(autoincrement())
-  createdAt DateTime   @default(now())
-  updatedAt DateTime?  @updatedAt()
-  isDeleted Boolean?   @default(false)
+  id        Int           @id() @default(autoincrement())
+  createdAt DateTime      @default(now())
+  updatedAt DateTime?     @updatedAt()
+  isDeleted Boolean?      @default(false)
   name      String
-  sort      Int?
+  sort      Int?          @default(999)
+  enable    Boolean?
   count     Json?
   frequency Json?
-  enable    Boolean?
   groupId   Int
-  group     HabitGroup @relation(fields: [groupId], references: [id])
+  group     HabitGroup    @relation(fields: [groupId], references: [id])
+  records   HabitRecord[]
 }
 
 model HabitRecord {
@@ -51,5 +43,9 @@ model HabitRecord {
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt()
   isDeleted Boolean?  @default(false)
-  p         String
+  date      DateTime
+  execList  Json?     @default("[]")
+  reason    String?   @default("")
+  habit     HabitItem @relation(fields: [habitId], references: [id])
+  habitId   Int
 }

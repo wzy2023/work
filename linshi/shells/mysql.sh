@@ -16,12 +16,6 @@ docker run -d --name open-webui \
 docker network create --driver bridge mysql-network
 
 
-# 启动 LobeChat 容器
-docker run -d --name lobe-chat \
-              -p 3210:3210 \
-              lobehub/lobe-chat
-
-
 # 启动 MySQL 容器
 docker run -d --name mysql \
            --network mysql-network \

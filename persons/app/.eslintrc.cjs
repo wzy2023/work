@@ -48,6 +48,8 @@ const config = {
     '@typescript-eslint/no-unsafe-return': 'off',
     '@typescript-eslint/no-unnecessary-type-assertion': 'off',
     '@typescript-eslint/prefer-promise-reject-errors': 'off',
+    '@typescript-eslint/no-namespace': 'off',
+    '@typescript-eslint/consistent-indexed-object-style': 'off',
   },
 }
 

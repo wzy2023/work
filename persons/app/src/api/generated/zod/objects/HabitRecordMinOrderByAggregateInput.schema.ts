@@ -12,5 +12,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitRecordMinOrderByAggregateInput>;
 export const HabitRecordMinOrderByAggregateInputObjectSchema: SchemaType = z.object({
-    id: z.lazy(() => SortOrderSchema).optional(), createdAt: z.lazy(() => SortOrderSchema).optional(), updatedAt: z.lazy(() => SortOrderSchema).optional(), isDeleted: z.lazy(() => SortOrderSchema).optional(), p: z.lazy(() => SortOrderSchema).optional()
+    id: z.lazy(() => SortOrderSchema).optional(), createdAt: z.lazy(() => SortOrderSchema).optional(), updatedAt: z.lazy(() => SortOrderSchema).optional(), isDeleted: z.lazy(() => SortOrderSchema).optional(), date: z.lazy(() => SortOrderSchema).optional(), reason: z.lazy(() => SortOrderSchema).optional(), habitId: z.lazy(() => SortOrderSchema).optional()
 }).strict() as SchemaType;

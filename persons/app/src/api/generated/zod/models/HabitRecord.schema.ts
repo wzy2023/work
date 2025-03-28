@@ -11,9 +11,19 @@ const baseSchema = z.object({
     createdAt: z.coerce.date().default(() => new Date()),
     updatedAt: z.coerce.date().nullish(),
     isDeleted: z.boolean().default(false).nullish(),
-    p: z.string(),
+    date: z.coerce.date(),
+    execList: z.any().default("[]").nullish(),
+    reason: z.string().default("").nullish(),
 }
 ).strict();
+const relationSchema = z.object({
+    habit: z.record(z.unknown()),
+}
+);
+const fkSchema = z.object({
+    habitId: z.number(),
+}
+);
 
 /**
  * `HabitRecord` schema excluding foreign keys and relations.
@@ -26,7 +36,7 @@ export const HabitRecordScalarSchema = baseSchema.omit({
 /**
  * `HabitRecord` schema including all fields (scalar, foreign key, and relations) and validations.
  */
-export const HabitRecordSchema = HabitRecordScalarSchema;
+export const HabitRecordSchema = HabitRecordScalarSchema.merge(fkSchema).merge(relationSchema.partial());
 
 
 /**
@@ -45,7 +55,9 @@ export const HabitRecordPrismaUpdateSchema = z.object({
     createdAt: z.coerce.date().default(() => new Date()),
     updatedAt: z.coerce.date().nullish(),
     isDeleted: z.boolean().default(false).nullish(),
-    p: z.string()
+    date: z.coerce.date(),
+    execList: z.any().default("[]").nullish(),
+    reason: z.string().default("").nullish()
 }).partial().passthrough();
 
 
@@ -53,16 +65,14 @@ export const HabitRecordPrismaUpdateSchema = z.object({
  * `HabitRecord` schema for create operations excluding foreign keys and relations.
  */
 export const HabitRecordCreateScalarSchema = baseSchema.partial({
-    id: true, createdAt: true, updatedAt: true, isDeleted: true
+    id: true, createdAt: true, updatedAt: true, isDeleted: true, execList: true, reason: true
 });
 
 
 /**
  * `HabitRecord` schema for create operations including scalar fields, foreign key fields, and validations.
  */
-export const HabitRecordCreateSchema = baseSchema.partial({
-    id: true, createdAt: true, updatedAt: true, isDeleted: true
-});
+export const HabitRecordCreateSchema = HabitRecordCreateScalarSchema.merge(fkSchema);
 
 
 /**
@@ -74,5 +84,5 @@ export const HabitRecordUpdateScalarSchema = baseSchema.partial();
 /**
  * `HabitRecord` schema for update operations including scalar fields, foreign key fields, and validations.
  */
-export const HabitRecordUpdateSchema = HabitRecordUpdateScalarSchema;
+export const HabitRecordUpdateSchema = HabitRecordUpdateScalarSchema.merge(fkSchema.partial());
 

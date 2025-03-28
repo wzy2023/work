@@ -17,4 +17,3 @@ export * from './JsonNullValueFilter.schema';
 export * from './QueryMode.schema';
 export * from './HabitItemOrderByRelevanceFieldEnum.schema';
 export * from './HabitRecordOrderByRelevanceFieldEnum.schema';
-export * from './HabitRecordStatus.schema';

@@ -8,6 +8,7 @@
 import { z } from 'zod';
 import { SortOrderSchema } from '../enums/SortOrder.schema';
 import { SortOrderInputObjectSchema } from './SortOrderInput.schema';
+import { HabitItemOrderByWithRelationInputObjectSchema } from './HabitItemOrderByWithRelationInput.schema';
 import { HabitRecordOrderByRelevanceInputObjectSchema } from './HabitRecordOrderByRelevanceInput.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -16,5 +17,7 @@ type SchemaType = z.ZodType<Prisma.HabitRecordOrderByWithRelationInput>;
 export const HabitRecordOrderByWithRelationInputObjectSchema: SchemaType = z.object({
     id: z.lazy(() => SortOrderSchema).optional(), createdAt: z.lazy(() => SortOrderSchema).optional(), updatedAt: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), isDeleted: z.union([z.lazy(() => SortOrderSchema),
-    z.lazy(() => SortOrderInputObjectSchema)]).optional(), p: z.lazy(() => SortOrderSchema).optional(), _relevance: z.lazy(() => HabitRecordOrderByRelevanceInputObjectSchema).optional()
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), date: z.lazy(() => SortOrderSchema).optional(), execList: z.union([z.lazy(() => SortOrderSchema),
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), reason: z.union([z.lazy(() => SortOrderSchema),
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), habitId: z.lazy(() => SortOrderSchema).optional(), habit: z.lazy(() => HabitItemOrderByWithRelationInputObjectSchema).optional(), _relevance: z.lazy(() => HabitRecordOrderByRelevanceInputObjectSchema).optional()
 }).strict() as SchemaType;

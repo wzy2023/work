@@ -11,8 +11,8 @@ import { DateTimeWithAggregatesFilterObjectSchema } from './DateTimeWithAggregat
 import { DateTimeNullableWithAggregatesFilterObjectSchema } from './DateTimeNullableWithAggregatesFilter.schema';
 import { BoolNullableWithAggregatesFilterObjectSchema } from './BoolNullableWithAggregatesFilter.schema';
 import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema';
-import { StringNullableWithAggregatesFilterObjectSchema } from './StringNullableWithAggregatesFilter.schema';
 import { IntNullableWithAggregatesFilterObjectSchema } from './IntNullableWithAggregatesFilter.schema';
+import { StringNullableWithAggregatesFilterObjectSchema } from './StringNullableWithAggregatesFilter.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -27,9 +27,9 @@ export const HabitGroupScalarWhereWithAggregatesInputObjectSchema: SchemaType = 
     z.null()]).optional().nullable(), isDeleted: z.union([z.lazy(() => BoolNullableWithAggregatesFilterObjectSchema),
     z.boolean(),
     z.null()]).optional().nullable(), name: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
-    z.string()]).optional(), color: z.union([z.lazy(() => StringNullableWithAggregatesFilterObjectSchema),
-    z.string(),
-    z.null()]).optional().nullable(), sort: z.union([z.lazy(() => IntNullableWithAggregatesFilterObjectSchema),
+    z.string()]).optional(), sort: z.union([z.lazy(() => IntNullableWithAggregatesFilterObjectSchema),
     z.number(),
+    z.null()]).optional().nullable(), color: z.union([z.lazy(() => StringNullableWithAggregatesFilterObjectSchema),
+    z.string(),
     z.null()]).optional().nullable()
 }).strict() as SchemaType;

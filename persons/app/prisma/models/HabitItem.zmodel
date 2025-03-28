@@ -1,16 +1,17 @@
 import "@wzyjs/next/dist/Base"
 import "./HabitGroup"
+import "./HabitRecord"
 
 model HabitItem extends Base {
   name String
-  sort Int?
+  sort Int? @default(999)
+  enable Boolean?
 
   count Json?
-
   frequency Json?
-
-  enable Boolean?
 
   groupId Int
   group   HabitGroup @relation(fields: [groupId], references: [id]) // 建立关系
+
+  records   HabitRecord[]
 }

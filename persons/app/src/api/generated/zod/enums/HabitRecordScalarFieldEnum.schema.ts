@@ -7,4 +7,4 @@
 
 import { z } from 'zod';
 
-export const HabitRecordScalarFieldEnumSchema = z.enum(["id", "createdAt", "updatedAt", "isDeleted", "p"])
+export const HabitRecordScalarFieldEnumSchema = z.enum(["id", "createdAt", "updatedAt", "isDeleted", "date", "execList", "reason", "habitId"])

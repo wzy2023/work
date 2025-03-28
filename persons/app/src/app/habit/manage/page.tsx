@@ -2,12 +2,17 @@
 
 import React from 'react'
 
+import { Spin, RadioButton } from '@/components'
 import { List } from './components/Group/List'
 import { Create } from './components/Group/Create'
 
+import { enableOptions } from '../const'
+import { useHabitManageStore } from './store'
 import { useHabitGroupCRUD } from '@/api/generated/store'
 
 export default () => {
+  const { filterValues, setFilterValues } = useHabitManageStore()
+
   const { listState } = useHabitGroupCRUD({
     list: {
       query: { orderBy: { sort: 'asc' } },
@@ -21,10 +26,20 @@ export default () => {
         <Create onSuccess={listState.refetch} />
       </div>
 
-      <List
-        list={listState.data}
-        onSuccess={listState.refetch}
-      />
+      <div className='flex justify-between items-center mb-4'>
+        <RadioButton
+          value={filterValues.enable}
+          options={enableOptions.enable}
+          onChange={enable => setFilterValues({ enable })}
+        />
+      </div>
+
+      <Spin spinning={listState.isLoading} delay={100}>
+        <List
+          list={listState.data}
+          onSuccess={listState.refetch}
+        />
+      </Spin>
     </div>
   )
 }

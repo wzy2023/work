@@ -3,8 +3,8 @@ import "./HabitItem"
 
 model HabitGroup extends Base {
   name  String
+  sort  Int? @default(999)
   color String?
-  sort  Int?
 
   children HabitItem[]
 }

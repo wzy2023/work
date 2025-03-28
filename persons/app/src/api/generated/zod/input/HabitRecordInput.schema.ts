@@ -11,7 +11,7 @@ import type { Prisma } from '@prisma/client';
 
 ;
 import { HabitRecordSelectObjectSchema } from '../objects/HabitRecordSelect.schema';
-;
+import { HabitRecordIncludeObjectSchema } from '../objects/HabitRecordInclude.schema';
 import { HabitRecordWhereUniqueInputObjectSchema } from '../objects/HabitRecordWhereUniqueInput.schema';
 import { HabitRecordWhereInputObjectSchema } from '../objects/HabitRecordWhereInput.schema';
 import { HabitRecordOrderByWithRelationInputObjectSchema } from '../objects/HabitRecordOrderByWithRelationInput.schema';
@@ -49,25 +49,25 @@ type HabitRecordInputSchemaType = {
 
 export const HabitRecordInputSchema = {
     findUnique: z.object({
-        select: z.lazy(() => HabitRecordSelectObjectSchema.optional()), where: HabitRecordWhereUniqueInputObjectSchema
+        select: z.lazy(() => HabitRecordSelectObjectSchema.optional()), include: z.lazy(() => HabitRecordIncludeObjectSchema.optional()), where: HabitRecordWhereUniqueInputObjectSchema
     }).strict(), findFirst: z.object({
-        select: z.lazy(() => HabitRecordSelectObjectSchema.optional()), where: HabitRecordWhereInputObjectSchema.optional(), orderBy: z.union([HabitRecordOrderByWithRelationInputObjectSchema, HabitRecordOrderByWithRelationInputObjectSchema.array()]).optional(), cursor: HabitRecordWhereUniqueInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), distinct: z.array(HabitRecordScalarFieldEnumSchema).optional()
+        select: z.lazy(() => HabitRecordSelectObjectSchema.optional()), include: z.lazy(() => HabitRecordIncludeObjectSchema.optional()), where: HabitRecordWhereInputObjectSchema.optional(), orderBy: z.union([HabitRecordOrderByWithRelationInputObjectSchema, HabitRecordOrderByWithRelationInputObjectSchema.array()]).optional(), cursor: HabitRecordWhereUniqueInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), distinct: z.array(HabitRecordScalarFieldEnumSchema).optional()
     }).strict(), findMany: z.object({
-        select: z.lazy(() => HabitRecordSelectObjectSchema.optional()), where: HabitRecordWhereInputObjectSchema.optional(), orderBy: z.union([HabitRecordOrderByWithRelationInputObjectSchema, HabitRecordOrderByWithRelationInputObjectSchema.array()]).optional(), cursor: HabitRecordWhereUniqueInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), distinct: z.array(HabitRecordScalarFieldEnumSchema).optional()
+        select: z.lazy(() => HabitRecordSelectObjectSchema.optional()), include: z.lazy(() => HabitRecordIncludeObjectSchema.optional()), where: HabitRecordWhereInputObjectSchema.optional(), orderBy: z.union([HabitRecordOrderByWithRelationInputObjectSchema, HabitRecordOrderByWithRelationInputObjectSchema.array()]).optional(), cursor: HabitRecordWhereUniqueInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), distinct: z.array(HabitRecordScalarFieldEnumSchema).optional()
     }).strict(), create: z.object({
-        select: z.lazy(() => HabitRecordSelectObjectSchema.optional()), data: z.union([HabitRecordCreateInputObjectSchema, HabitRecordUncheckedCreateInputObjectSchema])
+        select: z.lazy(() => HabitRecordSelectObjectSchema.optional()), include: z.lazy(() => HabitRecordIncludeObjectSchema.optional()), data: z.union([HabitRecordCreateInputObjectSchema, HabitRecordUncheckedCreateInputObjectSchema])
     }).strict(), createMany: z.object({
         data: z.union([HabitRecordCreateManyInputObjectSchema, z.array(HabitRecordCreateManyInputObjectSchema)]), skipDuplicates: z.boolean().optional()
     }).strict(), 'delete': z.object({
-        select: z.lazy(() => HabitRecordSelectObjectSchema.optional()), where: HabitRecordWhereUniqueInputObjectSchema
+        select: z.lazy(() => HabitRecordSelectObjectSchema.optional()), include: z.lazy(() => HabitRecordIncludeObjectSchema.optional()), where: HabitRecordWhereUniqueInputObjectSchema
     }).strict(), deleteMany: z.object({
         where: HabitRecordWhereInputObjectSchema.optional()
     }).strict(), update: z.object({
-        select: z.lazy(() => HabitRecordSelectObjectSchema.optional()), data: z.union([HabitRecordUpdateInputObjectSchema, HabitRecordUncheckedUpdateInputObjectSchema]), where: HabitRecordWhereUniqueInputObjectSchema
+        select: z.lazy(() => HabitRecordSelectObjectSchema.optional()), include: z.lazy(() => HabitRecordIncludeObjectSchema.optional()), data: z.union([HabitRecordUpdateInputObjectSchema, HabitRecordUncheckedUpdateInputObjectSchema]), where: HabitRecordWhereUniqueInputObjectSchema
     }).strict(), updateMany: z.object({
         data: z.union([HabitRecordUpdateManyMutationInputObjectSchema, HabitRecordUncheckedUpdateManyInputObjectSchema]), where: HabitRecordWhereInputObjectSchema.optional()
     }).strict(), upsert: z.object({
-        select: z.lazy(() => HabitRecordSelectObjectSchema.optional()), where: HabitRecordWhereUniqueInputObjectSchema, create: z.union([HabitRecordCreateInputObjectSchema, HabitRecordUncheckedCreateInputObjectSchema]), update: z.union([HabitRecordUpdateInputObjectSchema, HabitRecordUncheckedUpdateInputObjectSchema])
+        select: z.lazy(() => HabitRecordSelectObjectSchema.optional()), include: z.lazy(() => HabitRecordIncludeObjectSchema.optional()), where: HabitRecordWhereUniqueInputObjectSchema, create: z.union([HabitRecordCreateInputObjectSchema, HabitRecordUncheckedCreateInputObjectSchema]), update: z.union([HabitRecordUpdateInputObjectSchema, HabitRecordUncheckedUpdateInputObjectSchema])
     }).strict(), aggregate: z.object({
         where: HabitRecordWhereInputObjectSchema.optional(), orderBy: z.union([HabitRecordOrderByWithRelationInputObjectSchema, HabitRecordOrderByWithRelationInputObjectSchema.array()]).optional(), cursor: HabitRecordWhereUniqueInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), _count: z.union([z.literal(true), HabitRecordCountAggregateInputObjectSchema]).optional(), _min: HabitRecordMinAggregateInputObjectSchema.optional(), _max: HabitRecordMaxAggregateInputObjectSchema.optional(), _avg: HabitRecordAvgAggregateInputObjectSchema.optional(), _sum: HabitRecordSumAggregateInputObjectSchema.optional()
     }).strict(), groupBy: z.object({
