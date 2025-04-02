@@ -12,6 +12,8 @@ import type { DeepOverrideAtPath } from './utils';
 import { ClientType as HabitGroupClientType } from "./HabitGroup.next.type";
 import { ClientType as HabitItemClientType } from "./HabitItem.next.type";
 import { ClientType as HabitRecordClientType } from "./HabitRecord.next.type";
+import { ClientType as TaskNodeClientType } from "./TaskNode.next.type";
+import { ClientType as TaskEdgeClientType } from "./TaskEdge.next.type";
 
 export function createTRPCNext<
     TRouter extends AnyRouter,
@@ -26,4 +28,6 @@ export interface ClientType<AppRouter extends AnyRouter> {
     habitGroup: HabitGroupClientType<AppRouter>;
     habitItem: HabitItemClientType<AppRouter>;
     habitRecord: HabitRecordClientType<AppRouter>;
+    taskNode: TaskNodeClientType<AppRouter>;
+    taskEdge: TaskEdgeClientType<AppRouter>;
 }

@@ -119,6 +119,78 @@ const policy: PolicyDef = {
             ,
         }
         ,
+        taskNode: {
+            modelLevel: {
+                read: {
+                    guard: TaskNode_read,
+                }
+                ,
+                create: {
+                    guard: TaskNode_create,
+                }
+                ,
+                update: {
+                    guard: TaskNode_update,
+                }
+                ,
+                postUpdate: {
+                    guard: TaskNode_postUpdate,
+                }
+                ,
+                delete: {
+                    guard: TaskNode_delete,
+                }
+            }
+            ,
+            fieldLevel: {
+                read:
+                {
+                }
+                ,
+                update:
+                {
+                }
+                ,
+            }
+            ,
+        }
+        ,
+        taskEdge: {
+            modelLevel: {
+                read: {
+                    guard: TaskEdge_read,
+                }
+                ,
+                create: {
+                    guard: TaskEdge_create,
+                }
+                ,
+                update: {
+                    guard: TaskEdge_update,
+                }
+                ,
+                postUpdate: {
+                    guard: TaskEdge_postUpdate,
+                }
+                ,
+                delete: {
+                    guard: TaskEdge_delete,
+                }
+            }
+            ,
+            fieldLevel: {
+                read:
+                {
+                }
+                ,
+                update:
+                {
+                }
+                ,
+            }
+            ,
+        }
+        ,
     }
     ,
     validation: {
@@ -131,6 +203,14 @@ const policy: PolicyDef = {
         }
         ,
         habitRecord: {
+            hasValidation: false
+        }
+        ,
+        taskNode: {
+            hasValidation: false
+        }
+        ,
+        taskEdge: {
             hasValidation: false
         }
         ,
@@ -325,6 +405,134 @@ function HabitRecord_delete(context: QueryContext, db: CrudContract): any {
 }
 
 function $check_HabitRecord_delete(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function TaskNode_read(context: QueryContext, db: CrudContract): any {
+    return {
+        NOT: {
+            isDeleted: true
+        }
+    };
+}
+
+function $check_TaskNode_read(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function TaskNode_create(context: QueryContext, db: CrudContract): any {
+    return {
+        NOT: {
+            isDeleted: true
+        }
+    };
+}
+
+function $check_TaskNode_create(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function TaskNode_update(context: QueryContext, db: CrudContract): any {
+    return {
+        NOT: {
+            isDeleted: true
+        }
+    };
+}
+
+function $check_TaskNode_update(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function TaskNode_postUpdate(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_TaskNode_postUpdate(input: any, context: QueryContext): any {
+    return true;
+}
+
+function TaskNode_delete(context: QueryContext, db: CrudContract): any {
+    return {
+        NOT: {
+            isDeleted: true
+        }
+    };
+}
+
+function $check_TaskNode_delete(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function TaskEdge_read(context: QueryContext, db: CrudContract): any {
+    return {
+        NOT: {
+            isDeleted: true
+        }
+    };
+}
+
+function $check_TaskEdge_read(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function TaskEdge_create(context: QueryContext, db: CrudContract): any {
+    return {
+        NOT: {
+            isDeleted: true
+        }
+    };
+}
+
+function $check_TaskEdge_create(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function TaskEdge_update(context: QueryContext, db: CrudContract): any {
+    return {
+        NOT: {
+            isDeleted: true
+        }
+    };
+}
+
+function $check_TaskEdge_update(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function TaskEdge_postUpdate(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_TaskEdge_postUpdate(input: any, context: QueryContext): any {
+    return true;
+}
+
+function TaskEdge_delete(context: QueryContext, db: CrudContract): any {
+    return {
+        NOT: {
+            isDeleted: true
+        }
+    };
+}
+
+function $check_TaskEdge_delete(input: any, context: QueryContext): any {
     if ((!input?.isDeleted)) { return true; }
 
     return false;

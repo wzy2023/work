@@ -26,6 +26,20 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             };
 
     };
+    deleteMany: {
+
+        useMutation: <T extends Prisma.HabitRecordDeleteManyArgs>(opts?: UseTRPCMutationOptions<
+            Prisma.HabitRecordDeleteManyArgs,
+            TRPCClientErrorLike<AppRouter>,
+            Prisma.BatchPayload,
+            Context
+        >) =>
+            Omit<UseTRPCMutationResult<Prisma.BatchPayload, TRPCClientErrorLike<AppRouter>, Prisma.SelectSubset<T, Prisma.HabitRecordDeleteManyArgs>, Context>, 'mutateAsync'> & {
+                mutateAsync:
+                <T extends Prisma.HabitRecordDeleteManyArgs>(variables?: T, opts?: UseTRPCMutationOptions<T, TRPCClientErrorLike<AppRouter>, Prisma.BatchPayload, Context>) => Promise<Prisma.BatchPayload>
+            };
+
+    };
     delete: {
 
         useMutation: <T extends Prisma.HabitRecordDeleteArgs>(opts?: UseTRPCMutationOptions<

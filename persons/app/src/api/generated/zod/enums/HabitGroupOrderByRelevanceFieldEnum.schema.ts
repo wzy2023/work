@@ -7,4 +7,4 @@
 
 import { z } from 'zod';
 
-export const HabitGroupOrderByRelevanceFieldEnumSchema = z.enum(["name", "color"])
+export const HabitGroupOrderByRelevanceFieldEnumSchema = z.enum(["id", "name", "color"])

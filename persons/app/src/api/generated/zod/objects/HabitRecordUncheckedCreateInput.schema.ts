@@ -18,9 +18,9 @@ const jsonSchema: z.ZodType<Prisma.InputJsonValue> = z.lazy(() =>
 
 type SchemaType = z.ZodType<Prisma.HabitRecordUncheckedCreateInput>;
 export const HabitRecordUncheckedCreateInputObjectSchema: SchemaType = z.object({
-    id: z.number().optional(), createdAt: z.union([z.date().optional(), z.string().datetime().optional()]), updatedAt: z.union([z.union([z.date(), z.string().datetime().optional()]),
+    id: z.string().optional(), createdAt: z.union([z.date().optional(), z.string().datetime().optional()]), updatedAt: z.union([z.union([z.date(), z.string().datetime().optional()]),
     z.null()]).optional().nullable(), isDeleted: z.union([z.boolean(),
     z.null()]).optional().nullable(), date: z.union([z.date(), z.string().datetime()]), execList: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
         jsonSchema]).optional(), reason: z.union([z.string(),
-        z.null()]).optional().nullable(), habitId: z.number()
+        z.null()]).optional().nullable(), habitId: z.string()
 }).strict() as SchemaType;

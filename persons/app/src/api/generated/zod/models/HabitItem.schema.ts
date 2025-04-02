@@ -7,7 +7,7 @@
 
 import { z } from 'zod';
 const baseSchema = z.object({
-    id: z.number(),
+    id: z.string(),
     createdAt: z.coerce.date().default(() => new Date()),
     updatedAt: z.coerce.date().nullish(),
     isDeleted: z.boolean().default(false).nullish(),
@@ -24,7 +24,7 @@ const relationSchema = z.object({
 }
 );
 const fkSchema = z.object({
-    groupId: z.number(),
+    groupId: z.string(),
 }
 );
 
@@ -54,7 +54,7 @@ export const HabitItemPrismaCreateSchema = baseSchema.partial().passthrough();
  * @private
  */
 export const HabitItemPrismaUpdateSchema = z.object({
-    id: z.union([z.number(), z.record(z.unknown())]),
+    id: z.string(),
     createdAt: z.coerce.date().default(() => new Date()),
     updatedAt: z.coerce.date().nullish(),
     isDeleted: z.boolean().default(false).nullish(),

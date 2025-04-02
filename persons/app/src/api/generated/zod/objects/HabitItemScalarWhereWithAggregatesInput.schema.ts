@@ -6,11 +6,10 @@
 // @ts-nocheck
 
 import { z } from 'zod';
-import { IntWithAggregatesFilterObjectSchema } from './IntWithAggregatesFilter.schema';
+import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema';
 import { DateTimeWithAggregatesFilterObjectSchema } from './DateTimeWithAggregatesFilter.schema';
 import { DateTimeNullableWithAggregatesFilterObjectSchema } from './DateTimeNullableWithAggregatesFilter.schema';
 import { BoolNullableWithAggregatesFilterObjectSchema } from './BoolNullableWithAggregatesFilter.schema';
-import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema';
 import { IntNullableWithAggregatesFilterObjectSchema } from './IntNullableWithAggregatesFilter.schema';
 import { JsonNullableWithAggregatesFilterObjectSchema } from './JsonNullableWithAggregatesFilter.schema';
 
@@ -20,8 +19,8 @@ type SchemaType = z.ZodType<Prisma.HabitItemScalarWhereWithAggregatesInput>;
 export const HabitItemScalarWhereWithAggregatesInputObjectSchema: SchemaType = z.object({
     AND: z.union([z.lazy(() => HabitItemScalarWhereWithAggregatesInputObjectSchema),
     z.lazy(() => HabitItemScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), OR: z.lazy(() => HabitItemScalarWhereWithAggregatesInputObjectSchema).array().optional(), NOT: z.union([z.lazy(() => HabitItemScalarWhereWithAggregatesInputObjectSchema),
-    z.lazy(() => HabitItemScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), id: z.union([z.lazy(() => IntWithAggregatesFilterObjectSchema),
-    z.number()]).optional(), createdAt: z.union([z.lazy(() => DateTimeWithAggregatesFilterObjectSchema),
+    z.lazy(() => HabitItemScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), id: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
+    z.string()]).optional(), createdAt: z.union([z.lazy(() => DateTimeWithAggregatesFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()])]).optional(), updatedAt: z.union([z.lazy(() => DateTimeNullableWithAggregatesFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()]),
     z.null()]).optional().nullable(), isDeleted: z.union([z.lazy(() => BoolNullableWithAggregatesFilterObjectSchema),
@@ -31,6 +30,6 @@ export const HabitItemScalarWhereWithAggregatesInputObjectSchema: SchemaType = z
     z.number(),
     z.null()]).optional().nullable(), enable: z.union([z.lazy(() => BoolNullableWithAggregatesFilterObjectSchema),
     z.boolean(),
-    z.null()]).optional().nullable(), count: z.lazy(() => JsonNullableWithAggregatesFilterObjectSchema).optional(), frequency: z.lazy(() => JsonNullableWithAggregatesFilterObjectSchema).optional(), groupId: z.union([z.lazy(() => IntWithAggregatesFilterObjectSchema),
-    z.number()]).optional()
+    z.null()]).optional().nullable(), count: z.lazy(() => JsonNullableWithAggregatesFilterObjectSchema).optional(), frequency: z.lazy(() => JsonNullableWithAggregatesFilterObjectSchema).optional(), groupId: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
+    z.string()]).optional()
 }).strict() as SchemaType;

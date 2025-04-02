@@ -10,7 +10,7 @@ model HabitItem extends Base {
   count Json?
   frequency Json?
 
-  groupId Int
+  groupId String
   group   HabitGroup @relation(fields: [groupId], references: [id]) // 建立关系
 
   records   HabitRecord[]

@@ -1,0 +1,26 @@
+@import "@xyflow/react/dist/style.css";
+
+.task {
+  width: 100vw;
+  height: 100vh;
+
+  // 去除 react-flow 的默认样式
+  :global(.react-flow__node) {
+    width: auto;
+    padding: 0;
+    border: none;
+    box-shadow: none !important;
+
+    &:hover {
+      border: none;
+    }
+  }
+
+  .highlight > div > div > div {
+    outline: solid 2px rgba(24, 144, 255, 1);
+  }
+
+  .snap > div > div > div {
+    outline: solid 2px rgba(24, 144, 255, 1);
+  }
+}

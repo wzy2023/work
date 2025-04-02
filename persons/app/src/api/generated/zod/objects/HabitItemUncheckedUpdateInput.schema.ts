@@ -6,11 +6,10 @@
 // @ts-nocheck
 
 import { z } from 'zod';
-import { IntFieldUpdateOperationsInputObjectSchema } from './IntFieldUpdateOperationsInput.schema';
+import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema';
 import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema';
 import { NullableBoolFieldUpdateOperationsInputObjectSchema } from './NullableBoolFieldUpdateOperationsInput.schema';
-import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
 import { NullableIntFieldUpdateOperationsInputObjectSchema } from './NullableIntFieldUpdateOperationsInput.schema';
 import { NullableJsonNullValueInputSchema } from '../enums/NullableJsonNullValueInput.schema';
 import { HabitRecordUncheckedUpdateManyWithoutHabitNestedInputObjectSchema } from './HabitRecordUncheckedUpdateManyWithoutHabitNestedInput.schema';
@@ -25,8 +24,8 @@ const jsonSchema: z.ZodType<Prisma.InputJsonValue> = z.lazy(() =>
 
 type SchemaType = z.ZodType<Prisma.HabitItemUncheckedUpdateInput>;
 export const HabitItemUncheckedUpdateInputObjectSchema: SchemaType = z.object({
-    id: z.union([z.number(),
-    z.lazy(() => IntFieldUpdateOperationsInputObjectSchema)]).optional(), createdAt: z.union([z.union([z.date(), z.string().datetime().optional()]),
+    id: z.union([z.string(),
+    z.lazy(() => StringFieldUpdateOperationsInputObjectSchema)]).optional(), createdAt: z.union([z.union([z.date(), z.string().datetime().optional()]),
     z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema)]).optional(), updatedAt: z.union([z.union([z.date(), z.string().datetime().optional()]),
     z.lazy(() => NullableDateTimeFieldUpdateOperationsInputObjectSchema),
     z.null()]).optional().nullable(), isDeleted: z.union([z.boolean(),
@@ -38,6 +37,6 @@ export const HabitItemUncheckedUpdateInputObjectSchema: SchemaType = z.object({
     z.lazy(() => NullableBoolFieldUpdateOperationsInputObjectSchema),
     z.null()]).optional().nullable(), count: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
         jsonSchema]).optional(), frequency: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
-            jsonSchema]).optional(), groupId: z.union([z.number(),
-            z.lazy(() => IntFieldUpdateOperationsInputObjectSchema)]).optional(), records: z.lazy(() => HabitRecordUncheckedUpdateManyWithoutHabitNestedInputObjectSchema).optional()
+            jsonSchema]).optional(), groupId: z.union([z.string(),
+            z.lazy(() => StringFieldUpdateOperationsInputObjectSchema)]).optional(), records: z.lazy(() => HabitRecordUncheckedUpdateManyWithoutHabitNestedInputObjectSchema).optional()
 }).strict() as SchemaType;

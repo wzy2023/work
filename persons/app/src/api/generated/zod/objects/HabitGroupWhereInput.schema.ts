@@ -6,11 +6,10 @@
 // @ts-nocheck
 
 import { z } from 'zod';
-import { IntFilterObjectSchema } from './IntFilter.schema';
+import { StringFilterObjectSchema } from './StringFilter.schema';
 import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema';
 import { DateTimeNullableFilterObjectSchema } from './DateTimeNullableFilter.schema';
 import { BoolNullableFilterObjectSchema } from './BoolNullableFilter.schema';
-import { StringFilterObjectSchema } from './StringFilter.schema';
 import { IntNullableFilterObjectSchema } from './IntNullableFilter.schema';
 import { StringNullableFilterObjectSchema } from './StringNullableFilter.schema';
 import { HabitItemListRelationFilterObjectSchema } from './HabitItemListRelationFilter.schema';
@@ -21,8 +20,8 @@ type SchemaType = z.ZodType<Prisma.HabitGroupWhereInput>;
 export const HabitGroupWhereInputObjectSchema: SchemaType = z.object({
     AND: z.union([z.lazy(() => HabitGroupWhereInputObjectSchema),
     z.lazy(() => HabitGroupWhereInputObjectSchema).array()]).optional(), OR: z.lazy(() => HabitGroupWhereInputObjectSchema).array().optional(), NOT: z.union([z.lazy(() => HabitGroupWhereInputObjectSchema),
-    z.lazy(() => HabitGroupWhereInputObjectSchema).array()]).optional(), id: z.union([z.lazy(() => IntFilterObjectSchema),
-    z.number()]).optional(), createdAt: z.union([z.lazy(() => DateTimeFilterObjectSchema),
+    z.lazy(() => HabitGroupWhereInputObjectSchema).array()]).optional(), id: z.union([z.lazy(() => StringFilterObjectSchema),
+    z.string()]).optional(), createdAt: z.union([z.lazy(() => DateTimeFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()])]).optional(), updatedAt: z.union([z.lazy(() => DateTimeNullableFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()]),
     z.null()]).optional().nullable(), isDeleted: z.union([z.lazy(() => BoolNullableFilterObjectSchema),

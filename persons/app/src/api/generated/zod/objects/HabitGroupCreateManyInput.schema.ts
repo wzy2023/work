@@ -12,7 +12,7 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitGroupCreateManyInput>;
 export const HabitGroupCreateManyInputObjectSchema: SchemaType = z.object({
-    id: z.number().optional(), createdAt: z.union([z.date().optional(), z.string().datetime().optional()]), updatedAt: z.union([z.union([z.date(), z.string().datetime().optional()]),
+    id: z.string().optional(), createdAt: z.union([z.date().optional(), z.string().datetime().optional()]), updatedAt: z.union([z.union([z.date(), z.string().datetime().optional()]),
     z.null()]).optional().nullable(), isDeleted: z.union([z.boolean(),
     z.null()]).optional().nullable(), name: z.string(), sort: z.union([z.number(),
     z.null()]).optional().nullable(), color: z.union([z.string(),

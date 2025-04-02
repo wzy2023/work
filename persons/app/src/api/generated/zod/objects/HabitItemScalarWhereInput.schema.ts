@@ -6,11 +6,10 @@
 // @ts-nocheck
 
 import { z } from 'zod';
-import { IntFilterObjectSchema } from './IntFilter.schema';
+import { StringFilterObjectSchema } from './StringFilter.schema';
 import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema';
 import { DateTimeNullableFilterObjectSchema } from './DateTimeNullableFilter.schema';
 import { BoolNullableFilterObjectSchema } from './BoolNullableFilter.schema';
-import { StringFilterObjectSchema } from './StringFilter.schema';
 import { IntNullableFilterObjectSchema } from './IntNullableFilter.schema';
 import { JsonNullableFilterObjectSchema } from './JsonNullableFilter.schema';
 
@@ -20,8 +19,8 @@ type SchemaType = z.ZodType<Prisma.HabitItemScalarWhereInput>;
 export const HabitItemScalarWhereInputObjectSchema: SchemaType = z.object({
     AND: z.union([z.lazy(() => HabitItemScalarWhereInputObjectSchema),
     z.lazy(() => HabitItemScalarWhereInputObjectSchema).array()]).optional(), OR: z.lazy(() => HabitItemScalarWhereInputObjectSchema).array().optional(), NOT: z.union([z.lazy(() => HabitItemScalarWhereInputObjectSchema),
-    z.lazy(() => HabitItemScalarWhereInputObjectSchema).array()]).optional(), id: z.union([z.lazy(() => IntFilterObjectSchema),
-    z.number()]).optional(), createdAt: z.union([z.lazy(() => DateTimeFilterObjectSchema),
+    z.lazy(() => HabitItemScalarWhereInputObjectSchema).array()]).optional(), id: z.union([z.lazy(() => StringFilterObjectSchema),
+    z.string()]).optional(), createdAt: z.union([z.lazy(() => DateTimeFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()])]).optional(), updatedAt: z.union([z.lazy(() => DateTimeNullableFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()]),
     z.null()]).optional().nullable(), isDeleted: z.union([z.lazy(() => BoolNullableFilterObjectSchema),
@@ -31,6 +30,6 @@ export const HabitItemScalarWhereInputObjectSchema: SchemaType = z.object({
     z.number(),
     z.null()]).optional().nullable(), enable: z.union([z.lazy(() => BoolNullableFilterObjectSchema),
     z.boolean(),
-    z.null()]).optional().nullable(), count: z.lazy(() => JsonNullableFilterObjectSchema).optional(), frequency: z.lazy(() => JsonNullableFilterObjectSchema).optional(), groupId: z.union([z.lazy(() => IntFilterObjectSchema),
-    z.number()]).optional()
+    z.null()]).optional().nullable(), count: z.lazy(() => JsonNullableFilterObjectSchema).optional(), frequency: z.lazy(() => JsonNullableFilterObjectSchema).optional(), groupId: z.union([z.lazy(() => StringFilterObjectSchema),
+    z.string()]).optional()
 }).strict() as SchemaType;

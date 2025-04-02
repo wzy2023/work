@@ -46,7 +46,7 @@ export const HabitButton = (props: HabitButtonProps) => {
   const tag = map[(data?.frequency)?.type]
 
   return (
-    <Badge color='#f50' count={tag} offset={[-8, 8]}>
+    <Badge color='#f50' count={tag} offset={[-8, 8]} style={{ zoom: 0.9 }}>
       <ProgressButton
         colors={statusColors[status]}
         progress={item.record?.progress}

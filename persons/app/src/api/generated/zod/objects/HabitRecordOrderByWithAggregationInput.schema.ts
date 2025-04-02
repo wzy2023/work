@@ -9,10 +9,8 @@ import { z } from 'zod';
 import { SortOrderSchema } from '../enums/SortOrder.schema';
 import { SortOrderInputObjectSchema } from './SortOrderInput.schema';
 import { HabitRecordCountOrderByAggregateInputObjectSchema } from './HabitRecordCountOrderByAggregateInput.schema';
-import { HabitRecordAvgOrderByAggregateInputObjectSchema } from './HabitRecordAvgOrderByAggregateInput.schema';
 import { HabitRecordMaxOrderByAggregateInputObjectSchema } from './HabitRecordMaxOrderByAggregateInput.schema';
 import { HabitRecordMinOrderByAggregateInputObjectSchema } from './HabitRecordMinOrderByAggregateInput.schema';
-import { HabitRecordSumOrderByAggregateInputObjectSchema } from './HabitRecordSumOrderByAggregateInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -22,5 +20,5 @@ export const HabitRecordOrderByWithAggregationInputObjectSchema: SchemaType = z.
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), isDeleted: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), date: z.lazy(() => SortOrderSchema).optional(), execList: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), reason: z.union([z.lazy(() => SortOrderSchema),
-    z.lazy(() => SortOrderInputObjectSchema)]).optional(), habitId: z.lazy(() => SortOrderSchema).optional(), _count: z.lazy(() => HabitRecordCountOrderByAggregateInputObjectSchema).optional(), _avg: z.lazy(() => HabitRecordAvgOrderByAggregateInputObjectSchema).optional(), _max: z.lazy(() => HabitRecordMaxOrderByAggregateInputObjectSchema).optional(), _min: z.lazy(() => HabitRecordMinOrderByAggregateInputObjectSchema).optional(), _sum: z.lazy(() => HabitRecordSumOrderByAggregateInputObjectSchema).optional()
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), habitId: z.lazy(() => SortOrderSchema).optional(), _count: z.lazy(() => HabitRecordCountOrderByAggregateInputObjectSchema).optional(), _max: z.lazy(() => HabitRecordMaxOrderByAggregateInputObjectSchema).optional(), _min: z.lazy(() => HabitRecordMinOrderByAggregateInputObjectSchema).optional()
 }).strict() as SchemaType;

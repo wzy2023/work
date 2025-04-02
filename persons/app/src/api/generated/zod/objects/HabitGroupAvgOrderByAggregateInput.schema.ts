@@ -12,5 +12,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitGroupAvgOrderByAggregateInput>;
 export const HabitGroupAvgOrderByAggregateInputObjectSchema: SchemaType = z.object({
-    id: z.lazy(() => SortOrderSchema).optional(), sort: z.lazy(() => SortOrderSchema).optional()
+    sort: z.lazy(() => SortOrderSchema).optional()
 }).strict() as SchemaType;

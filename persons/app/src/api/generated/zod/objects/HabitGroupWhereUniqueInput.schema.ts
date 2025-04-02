@@ -19,7 +19,7 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitGroupWhereUniqueInput>;
 export const HabitGroupWhereUniqueInputObjectSchema: SchemaType = z.object({
-    id: z.number().optional(), AND: z.union([z.lazy(() => HabitGroupWhereInputObjectSchema),
+    id: z.string().optional(), AND: z.union([z.lazy(() => HabitGroupWhereInputObjectSchema),
     z.lazy(() => HabitGroupWhereInputObjectSchema).array()]).optional(), OR: z.lazy(() => HabitGroupWhereInputObjectSchema).array().optional(), NOT: z.union([z.lazy(() => HabitGroupWhereInputObjectSchema),
     z.lazy(() => HabitGroupWhereInputObjectSchema).array()]).optional(), createdAt: z.union([z.lazy(() => DateTimeFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()])]).optional(), updatedAt: z.union([z.lazy(() => DateTimeNullableFilterObjectSchema),

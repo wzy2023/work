@@ -6,11 +6,10 @@
 // @ts-nocheck
 
 import { z } from 'zod';
-import { IntFilterObjectSchema } from './IntFilter.schema';
+import { StringFilterObjectSchema } from './StringFilter.schema';
 import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema';
 import { DateTimeNullableFilterObjectSchema } from './DateTimeNullableFilter.schema';
 import { BoolNullableFilterObjectSchema } from './BoolNullableFilter.schema';
-import { StringFilterObjectSchema } from './StringFilter.schema';
 import { IntNullableFilterObjectSchema } from './IntNullableFilter.schema';
 import { JsonNullableFilterObjectSchema } from './JsonNullableFilter.schema';
 import { HabitGroupScalarRelationFilterObjectSchema } from './HabitGroupScalarRelationFilter.schema';
@@ -23,8 +22,8 @@ type SchemaType = z.ZodType<Prisma.HabitItemWhereInput>;
 export const HabitItemWhereInputObjectSchema: SchemaType = z.object({
     AND: z.union([z.lazy(() => HabitItemWhereInputObjectSchema),
     z.lazy(() => HabitItemWhereInputObjectSchema).array()]).optional(), OR: z.lazy(() => HabitItemWhereInputObjectSchema).array().optional(), NOT: z.union([z.lazy(() => HabitItemWhereInputObjectSchema),
-    z.lazy(() => HabitItemWhereInputObjectSchema).array()]).optional(), id: z.union([z.lazy(() => IntFilterObjectSchema),
-    z.number()]).optional(), createdAt: z.union([z.lazy(() => DateTimeFilterObjectSchema),
+    z.lazy(() => HabitItemWhereInputObjectSchema).array()]).optional(), id: z.union([z.lazy(() => StringFilterObjectSchema),
+    z.string()]).optional(), createdAt: z.union([z.lazy(() => DateTimeFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()])]).optional(), updatedAt: z.union([z.lazy(() => DateTimeNullableFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()]),
     z.null()]).optional().nullable(), isDeleted: z.union([z.lazy(() => BoolNullableFilterObjectSchema),
@@ -34,7 +33,7 @@ export const HabitItemWhereInputObjectSchema: SchemaType = z.object({
     z.number(),
     z.null()]).optional().nullable(), enable: z.union([z.lazy(() => BoolNullableFilterObjectSchema),
     z.boolean(),
-    z.null()]).optional().nullable(), count: z.lazy(() => JsonNullableFilterObjectSchema).optional(), frequency: z.lazy(() => JsonNullableFilterObjectSchema).optional(), groupId: z.union([z.lazy(() => IntFilterObjectSchema),
-    z.number()]).optional(), group: z.union([z.lazy(() => HabitGroupScalarRelationFilterObjectSchema),
+    z.null()]).optional().nullable(), count: z.lazy(() => JsonNullableFilterObjectSchema).optional(), frequency: z.lazy(() => JsonNullableFilterObjectSchema).optional(), groupId: z.union([z.lazy(() => StringFilterObjectSchema),
+    z.string()]).optional(), group: z.union([z.lazy(() => HabitGroupScalarRelationFilterObjectSchema),
     z.lazy(() => HabitGroupWhereInputObjectSchema)]).optional(), records: z.lazy(() => HabitRecordListRelationFilterObjectSchema).optional()
 }).strict() as SchemaType;

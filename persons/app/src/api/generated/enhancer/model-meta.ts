@@ -11,10 +11,9 @@ const metadata = {
             name: 'HabitGroup', fields: {
                 id: {
                     name: "id",
-                    type: "Int",
+                    type: "String",
                     isId: true,
                     attributes: [{ "name": "@id", "args": [] }, { "name": "@default", "args": [] }],
-                    isAutoIncrement: true,
                 }, createdAt: {
                     name: "createdAt",
                     type: "DateTime",
@@ -63,10 +62,9 @@ const metadata = {
             name: 'HabitItem', fields: {
                 id: {
                     name: "id",
-                    type: "Int",
+                    type: "String",
                     isId: true,
                     attributes: [{ "name": "@id", "args": [] }, { "name": "@default", "args": [] }],
-                    isAutoIncrement: true,
                 }, createdAt: {
                     name: "createdAt",
                     type: "DateTime",
@@ -103,7 +101,7 @@ const metadata = {
                     isOptional: true,
                 }, groupId: {
                     name: "groupId",
-                    type: "Int",
+                    type: "String",
                     isForeignKey: true,
                     relationField: 'group',
                 }, group: {
@@ -136,10 +134,9 @@ const metadata = {
             name: 'HabitRecord', fields: {
                 id: {
                     name: "id",
-                    type: "Int",
+                    type: "String",
                     isId: true,
                     attributes: [{ "name": "@id", "args": [] }, { "name": "@default", "args": [] }],
-                    isAutoIncrement: true,
                 }, createdAt: {
                     name: "createdAt",
                     type: "DateTime",
@@ -177,9 +174,90 @@ const metadata = {
                     foreignKeyMapping: { "id": "habitId" },
                 }, habitId: {
                     name: "habitId",
-                    type: "Int",
+                    type: "String",
                     isForeignKey: true,
                     relationField: 'habit',
+                },
+            }
+            , uniqueConstraints: {
+                id: {
+                    name: "id",
+                    fields: ["id"]
+                },
+            }
+            ,
+            attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
+        }
+        ,
+        taskNode: {
+            name: 'TaskNode', fields: {
+                id: {
+                    name: "id",
+                    type: "String",
+                    isId: true,
+                    attributes: [{ "name": "@id", "args": [] }],
+                }, createdAt: {
+                    name: "createdAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@default", "args": [] }],
+                }, updatedAt: {
+                    name: "updatedAt",
+                    type: "DateTime",
+                    isOptional: true,
+                    attributes: [{ "name": "@updatedAt", "args": [] }],
+                }, isDeleted: {
+                    name: "isDeleted",
+                    type: "Boolean",
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": false }] }, { "name": "@omit", "args": [] }],
+                }, type: {
+                    name: "type",
+                    type: "String",
+                }, data: {
+                    name: "data",
+                    type: "Json",
+                },
+            }
+            , uniqueConstraints: {
+                id: {
+                    name: "id",
+                    fields: ["id"]
+                },
+            }
+            ,
+            attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
+        }
+        ,
+        taskEdge: {
+            name: 'TaskEdge', fields: {
+                id: {
+                    name: "id",
+                    type: "String",
+                    isId: true,
+                    attributes: [{ "name": "@id", "args": [] }],
+                }, createdAt: {
+                    name: "createdAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@default", "args": [] }],
+                }, updatedAt: {
+                    name: "updatedAt",
+                    type: "DateTime",
+                    isOptional: true,
+                    attributes: [{ "name": "@updatedAt", "args": [] }],
+                }, isDeleted: {
+                    name: "isDeleted",
+                    type: "Boolean",
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": false }] }, { "name": "@omit", "args": [] }],
+                }, type: {
+                    name: "type",
+                    type: "String",
+                }, source: {
+                    name: "source",
+                    type: "String",
+                }, target: {
+                    name: "target",
+                    type: "String",
                 },
             }
             , uniqueConstraints: {

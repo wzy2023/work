@@ -8,5 +8,5 @@ model HabitRecord extends Base {
   reason  String? @default("")
 
   habit     HabitItem @relation(fields: [habitId], references: [id])
-  habitId   Int
+  habitId   String
 }

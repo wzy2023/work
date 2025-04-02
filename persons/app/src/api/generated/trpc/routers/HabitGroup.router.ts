@@ -17,6 +17,8 @@ export default function createRouter() {
 
         create: procedure.input($Schema.HabitGroupInputSchema.create).mutation(async ({ ctx, input }) => checkMutate(db(ctx).habitGroup.create(input as any))),
 
+        deleteMany: procedure.input($Schema.HabitGroupInputSchema.deleteMany.optional()).mutation(async ({ ctx, input }) => checkMutate(db(ctx).habitGroup.deleteMany(input as any))),
+
         delete: procedure.input($Schema.HabitGroupInputSchema.delete).mutation(async ({ ctx, input }) => checkMutate(db(ctx).habitGroup.delete(input as any))),
 
         findMany: procedure.input($Schema.HabitGroupInputSchema.findMany.optional()).query(({ ctx, input }) => checkRead(db(ctx).habitGroup.findMany(input as any))),

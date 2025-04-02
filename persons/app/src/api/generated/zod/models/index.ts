@@ -8,3 +8,5 @@
 export * from './HabitGroup.schema';
 export * from './HabitItem.schema';
 export * from './HabitRecord.schema';
+export * from './TaskNode.schema';
+export * from './TaskEdge.schema';

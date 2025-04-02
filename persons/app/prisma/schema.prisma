@@ -13,7 +13,7 @@ generator client {
 }
 
 model HabitGroup {
-  id        Int         @id() @default(autoincrement())
+  id        String      @id() @default(cuid())
   createdAt DateTime    @default(now())
   updatedAt DateTime?   @updatedAt()
   isDeleted Boolean?    @default(false)
@@ -24,7 +24,7 @@ model HabitGroup {
 }
 
 model HabitItem {
-  id        Int           @id() @default(autoincrement())
+  id        String        @id() @default(cuid())
   createdAt DateTime      @default(now())
   updatedAt DateTime?     @updatedAt()
   isDeleted Boolean?      @default(false)
@@ -33,13 +33,13 @@ model HabitItem {
   enable    Boolean?
   count     Json?
   frequency Json?
-  groupId   Int
+  groupId   String
   group     HabitGroup    @relation(fields: [groupId], references: [id])
   records   HabitRecord[]
 }
 
 model HabitRecord {
-  id        Int       @id() @default(autoincrement())
+  id        String    @id() @default(cuid())
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt()
   isDeleted Boolean?  @default(false)
@@ -47,5 +47,24 @@ model HabitRecord {
   execList  Json?     @default("[]")
   reason    String?   @default("")
   habit     HabitItem @relation(fields: [habitId], references: [id])
-  habitId   Int
+  habitId   String
+}
+
+model TaskNode {
+  id        String    @id()
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt()
+  isDeleted Boolean?  @default(false)
+  type      String
+  data      Json
+}
+
+model TaskEdge {
+  id        String    @id()
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt()
+  isDeleted Boolean?  @default(false)
+  type      String
+  source    String
+  target    String
 }

@@ -32,7 +32,7 @@ plugin trpc {
     importCreateRouter = "@/api/trpc/trpc"
     importProcedure = "@/api/trpc/procedures"
     zodSchemasImport = '@/api/generated/zod'
-    generateModelActions = 'findMany, findUnique, create, update, delete'
+    generateModelActions = 'findMany, findUnique, create, update, delete, deleteMany'
 }
 
 plugin store {
@@ -42,7 +42,7 @@ plugin store {
 }
 
 abstract  model Base {
-  id        Int       @id @default(autoincrement())
+  id        String    @id @default(cuid())
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
   isDeleted Boolean?  @default(false) @omit

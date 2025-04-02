@@ -1,0 +1,31 @@
+.border {
+  position: relative;
+  outline: solid .5px #aaa;
+  border-radius: 6px;
+
+  &.hover {
+    box-shadow: 0 0 2px rgba(24, 144, 255, 0.5);
+    outline-color: rgba(24, 144, 255, 0.5);
+  }
+
+  &.selected {
+    box-shadow: 0 0 2px rgba(24, 144, 255, 0.5);
+    outline-color: rgba(24, 144, 255, 1);
+  }
+}
+
+.add {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, 0);
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  span[role="img"] {
+    border-radius: 50%;
+  }
+}

@@ -1,79 +1,74 @@
 'use client'
 
-import React, { useCallback, type MouseEvent } from 'react'
-import {
-  ReactFlow,
-  Background,
-  Controls,
-  useReactFlow,
-  useNodesState,
-  type Edge,
-  type Node,
-} from '@xyflow/react'
+import React, { type KeyboardEvent } from 'react'
+import { Background, ReactFlow } from '@xyflow/react'
 
-const initialNodes: Node[] = [
-  {
-    id: '1',
-    data: { label: 'Node 1' },
-    position: { x: 0, y: 0 },
-    style: {
-      width: 200,
-      height: 100,
-    },
-  },
-  {
-    id: '2',
-    data: { label: 'Node 2' },
-    position: { x: 0, y: 150 },
-  },
-  {
-    id: '3',
-    data: { label: 'Node 3' },
-    position: { x: 250, y: 0 },
-  },
-  {
-    id: '4',
-    data: { label: 'Node' },
-    position: { x: 350, y: 150 },
-    style: {
-      width: 50,
-      height: 50,
-    },
-  },
-]
-
-const initialEdges: Edge[] = []
+import { nodeTypes } from './nodes'
+import { type NodeType } from './types'
+import { createNodeEdge } from './utils'
+import { useChange, useDrag, useFlowData } from './hooks'
 
 export default () => {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
-  const { getIntersectingNodes } = useReactFlow()
+  const { nodes, edges, setEdges, setNodes, onNodesChange, onEdgesChange } = useFlowData()
 
-  const onNodeDrag = useCallback((_: MouseEvent, node: Node) => {
-    const intersections = getIntersectingNodes(node).map((n) => n.id)
+  const { preview, isPreview, onNodeDrag, onNodeDragStop } = useDrag({
+    nodes,
+    edges,
+    setEdges,
+  })
 
-    setNodes((ns) =>
-      ns.map((n) => ({
-        ...n,
-        className: intersections.includes(n.id) ? 'highlight' : '',
-      })),
-    )
-  }, [])
+  const { onEdgesChange_, onNodesChange_ } = useChange({
+    isPreview,
+    onNodesChange,
+    onEdgesChange,
+  })
+
+  const onKeyDown = (ev: KeyboardEvent<HTMLElement>) => {
+    const nodeId = (ev.target as any).dataset.id
+    const node = nodes.find(item => item.id === nodeId)
+
+    const fatherId = edges.find(item => item.target === nodeId)?.source
+    const father = nodes.find(item => item.id === fatherId)
+
+    switch (ev.key) {
+      case 'Enter':
+        if (!father || !node?.type) {
+          return
+        }
+
+        console.log(666, 38, 'createNodeEdge', createNodeEdge)
+        const { node: n, edge: e } = createNodeEdge(father, node.type as NodeType)
+
+        setNodes(nodes => {
+          nodes.push(n)
+          return [...nodes]
+        })
+
+        setEdges(edges => {
+          edges.push(e)
+          return [...edges]
+        })
+        break
+    }
+  }
 
   return (
     <ReactFlow
-      style={{ backgroundColor: '#F7F9FB' }}
-      nodes={nodes}
-      edges={initialEdges}
-      onNodesChange={onNodesChange}
-      onNodeDrag={onNodeDrag}
-      className='intersection-flow'
-      minZoom={0.2}
-      maxZoom={4}
+      nodes={preview.nodes || nodes}
+      edges={preview.edges || edges}
+      nodeTypes={nodeTypes}
+      minZoom={1}
+      maxZoom={1}
       fitView
       selectNodesOnDrag={false}
+      fitViewOptions={{ padding: 0.5 }}
+      onNodesChange={onNodesChange_}
+      onEdgesChange={onEdgesChange_}
+      onNodeDrag={onNodeDrag}
+      onNodeDragStop={onNodeDragStop}
+      onKeyDown={onKeyDown}
     >
       <Background />
-      <Controls />
     </ReactFlow>
   )
 }

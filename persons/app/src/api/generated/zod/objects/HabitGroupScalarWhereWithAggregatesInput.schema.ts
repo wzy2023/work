@@ -6,11 +6,10 @@
 // @ts-nocheck
 
 import { z } from 'zod';
-import { IntWithAggregatesFilterObjectSchema } from './IntWithAggregatesFilter.schema';
+import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema';
 import { DateTimeWithAggregatesFilterObjectSchema } from './DateTimeWithAggregatesFilter.schema';
 import { DateTimeNullableWithAggregatesFilterObjectSchema } from './DateTimeNullableWithAggregatesFilter.schema';
 import { BoolNullableWithAggregatesFilterObjectSchema } from './BoolNullableWithAggregatesFilter.schema';
-import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema';
 import { IntNullableWithAggregatesFilterObjectSchema } from './IntNullableWithAggregatesFilter.schema';
 import { StringNullableWithAggregatesFilterObjectSchema } from './StringNullableWithAggregatesFilter.schema';
 
@@ -20,8 +19,8 @@ type SchemaType = z.ZodType<Prisma.HabitGroupScalarWhereWithAggregatesInput>;
 export const HabitGroupScalarWhereWithAggregatesInputObjectSchema: SchemaType = z.object({
     AND: z.union([z.lazy(() => HabitGroupScalarWhereWithAggregatesInputObjectSchema),
     z.lazy(() => HabitGroupScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), OR: z.lazy(() => HabitGroupScalarWhereWithAggregatesInputObjectSchema).array().optional(), NOT: z.union([z.lazy(() => HabitGroupScalarWhereWithAggregatesInputObjectSchema),
-    z.lazy(() => HabitGroupScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), id: z.union([z.lazy(() => IntWithAggregatesFilterObjectSchema),
-    z.number()]).optional(), createdAt: z.union([z.lazy(() => DateTimeWithAggregatesFilterObjectSchema),
+    z.lazy(() => HabitGroupScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), id: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
+    z.string()]).optional(), createdAt: z.union([z.lazy(() => DateTimeWithAggregatesFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()])]).optional(), updatedAt: z.union([z.lazy(() => DateTimeNullableWithAggregatesFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()]),
     z.null()]).optional().nullable(), isDeleted: z.union([z.lazy(() => BoolNullableWithAggregatesFilterObjectSchema),

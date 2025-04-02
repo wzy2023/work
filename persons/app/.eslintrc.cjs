@@ -50,6 +50,7 @@ const config = {
     '@typescript-eslint/prefer-promise-reject-errors': 'off',
     '@typescript-eslint/no-namespace': 'off',
     '@typescript-eslint/consistent-indexed-object-style': 'off',
+    '@typescript-eslint/no-inferrable-types': 'off',
   },
 }
 

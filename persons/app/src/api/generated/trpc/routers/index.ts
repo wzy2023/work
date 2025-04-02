@@ -11,6 +11,8 @@ import { createTRPCRouter } from "@/api/trpc/trpc";
 import createHabitGroupRouter from "./HabitGroup.router";
 import createHabitItemRouter from "./HabitItem.router";
 import createHabitRecordRouter from "./HabitRecord.router";
+import createTaskNodeRouter from "./TaskNode.router";
+import createTaskEdgeRouter from "./TaskEdge.router";
 
 export function db(ctx: any) {
     if (!ctx.prisma) {
@@ -24,6 +26,8 @@ export function createRouter() {
         habitGroup: createHabitGroupRouter(),
         habitItem: createHabitItemRouter(),
         habitRecord: createHabitRecordRouter(),
+        taskNode: createTaskNodeRouter(),
+        taskEdge: createTaskEdgeRouter(),
     }
     );
 }

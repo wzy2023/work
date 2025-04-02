@@ -6,10 +6,10 @@
 // @ts-nocheck
 
 import { z } from 'zod';
+import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema';
 import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema';
 import { NullableBoolFieldUpdateOperationsInputObjectSchema } from './NullableBoolFieldUpdateOperationsInput.schema';
-import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
 import { NullableIntFieldUpdateOperationsInputObjectSchema } from './NullableIntFieldUpdateOperationsInput.schema';
 import { NullableJsonNullValueInputSchema } from '../enums/NullableJsonNullValueInput.schema';
 import { HabitGroupUpdateOneRequiredWithoutChildrenNestedInputObjectSchema } from './HabitGroupUpdateOneRequiredWithoutChildrenNestedInput.schema';
@@ -25,7 +25,8 @@ const jsonSchema: z.ZodType<Prisma.InputJsonValue> = z.lazy(() =>
 
 type SchemaType = z.ZodType<Prisma.HabitItemUpdateInput>;
 export const HabitItemUpdateInputObjectSchema: SchemaType = z.object({
-    createdAt: z.union([z.union([z.date(), z.string().datetime().optional()]),
+    id: z.union([z.string(),
+    z.lazy(() => StringFieldUpdateOperationsInputObjectSchema)]).optional(), createdAt: z.union([z.union([z.date(), z.string().datetime().optional()]),
     z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema)]).optional(), updatedAt: z.union([z.union([z.date(), z.string().datetime().optional()]),
     z.lazy(() => NullableDateTimeFieldUpdateOperationsInputObjectSchema),
     z.null()]).optional().nullable(), isDeleted: z.union([z.boolean(),

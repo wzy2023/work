@@ -12,5 +12,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitItemAvgAggregateInputType>;
 export const HabitItemAvgAggregateInputObjectSchema: SchemaType = z.object({
-    id: z.literal(true).optional(), sort: z.literal(true).optional(), groupId: z.literal(true).optional()
+    sort: z.literal(true).optional()
 }).strict() as SchemaType;
