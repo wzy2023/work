@@ -2,6 +2,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator json {
+  provider = "prisma-json-types-generator"
+}
+
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
@@ -35,10 +39,10 @@ plugin trpc {
     generateModelActions = 'findMany, findUnique, create, update, delete, deleteMany'
 }
 
-plugin store {
+plugin crud {
     provider = '@wzyjs/next'
-    title = 'Generate useModelStore'
-    output = 'src/api/generated/store'
+    title = 'Generate useModelCRUD'
+    output = 'src/api/generated/crud'
 }
 
 abstract  model Base {

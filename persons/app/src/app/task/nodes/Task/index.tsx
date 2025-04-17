@@ -2,16 +2,14 @@ import React, { useEffect } from 'react'
 import type { Node } from '@xyflow/react'
 
 import { ActionButtons, Dates, Description, Edit, ExecutionRecords, Tags, Title, PreTaskStatus } from './components'
-import { Add } from '../Base/Add'
-import { Hover } from '../Base/Hover'
-import { Handle } from '../Base/Handle'
-import { Border } from '../Base/Border'
-
-import { useBoolean } from '@/hooks'
-import { useFlowState, useTaskStatus } from '../../hooks'
+import { Right, Border, Handle, Hover } from '../../components'
 
 import { _ } from '@/utils'
+import { useBoolean } from '@/hooks'
 import type { NodeRecord, Task } from '../../types'
+import { useFlowState, useTaskStatus } from '../../hooks'
+
+import { useTaskStore } from '@/app/task/store'
 
 export const TaskCard = (props: NodeRecord) => {
   const { selected, dragging, data } = props
@@ -29,12 +27,17 @@ export const TaskCard = (props: NodeRecord) => {
 
   const [isEditing, { setTrue, setFalse }] = useBoolean(false)
 
+  const { setEditing } = useTaskStore()
+  useEffect(() => {
+    setEditing(isEditing)
+  }, [isEditing, setEditing])
+
   const isDragging = nodes.some(item => item.dragging)
   useEffect(() => {
     if (isDragging) {
       setFalse()
     }
-  }, [isDragging])
+  }, [isDragging, setFalse])
 
   const { status, statusStyle } = useTaskStatus(props as unknown as Node, nodes, edges)
 
@@ -59,7 +62,7 @@ export const TaskCard = (props: NodeRecord) => {
       <Hover>
         {({ isHovered }) => (
           <Border selected={selected} isHovered={isHovered} style={statusStyle}>
-            <Add
+            <Right
               parentNode={props}
               {...{ showAddBtn: false, isHovered, selected, dragging }}
             >
@@ -115,7 +118,7 @@ export const TaskCard = (props: NodeRecord) => {
                 />
               </div>
             </div>
-            </Add>
+            </Right>
           </Border>
         )}
       </Hover>

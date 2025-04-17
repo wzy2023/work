@@ -64,7 +64,7 @@ export const ActionButtons = (props: ActionButtonsProps) => {
       {isExecuting && (
         <div className='flex items-center'>
           <div className='animate-spin h-2.5 w-2.5 border border-blue-500 border-t-transparent rounded-full' />
-          <span className='ml-1 text-[11px] text-blue-500'>执行中</span>
+          <span className='ml-1 text-[11px] text-blue-500 whitespace-nowrap'>执行中</span>
         </div>
       )}
 

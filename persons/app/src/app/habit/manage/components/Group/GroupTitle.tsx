@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
 
 import { Input } from '@/components'
+import { useBoolean } from '@/hooks'
 
-import { useBoolean } from 'ahooks'
-
-import { useHabitGroupCRUD } from '@/api/generated/store'
+import { useHabitGroupCRUD } from '@/api/generated/crud'
 
 interface GroupTitleProps<I> {
   item: I
   onSuccess?: () => void
 }
 
-export const GroupTitle = <I extends { id: number, name: string }>(props: GroupTitleProps<I>) => {
+export const GroupTitle = <I extends { id: string, name: string }>(props: GroupTitleProps<I>) => {
   const { item, onSuccess } = props
 
   const [name, setName] = useState(item.name)

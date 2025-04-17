@@ -68,11 +68,11 @@ const errorLink: TRPCLink<ApiRouter> = () => {
 // 创建TRPC的React集成实例
 export const api = createTRPCReact<ApiRouter>()
 
+// 获取或创建查询客户端实例
+export const queryClient = getQueryClient()
+
 // TRPC React提供者组件，用于包裹应用中的组件树
 export const TRPCReactProvider = (props: { children: ReactNode }) => {
-  // 获取或创建查询客户端实例
-  const queryClient = getQueryClient()
-
   // 创建并维护TRPC客户端实例的状态
   const [trpcClient] = useState(() => {
     return api.createClient({

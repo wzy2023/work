@@ -1,8 +1,8 @@
-import { Button, Form, Modal, PlusOutlined, BetaSchemaForm } from '@/components'
+import { BetaSchemaForm, Button, Form, Modal, PlusOutlined } from '@/components'
 
-import { useBoolean } from 'ahooks'
+import { useBoolean } from '@/hooks'
 
-import { useHabitGroupCRUD } from '@/api/generated/store'
+import { useHabitGroupCRUD } from '@/api/generated/crud'
 
 interface Values {
   name: string

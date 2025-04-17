@@ -1,16 +1,20 @@
 {
   "name": "@wzyjs/pages",
-  "version": "0.3.0",
+  "version": "0.2.41",
   "description": "description",
   "author": "wzy",
   "main": "src/index.ts",
   "files": [
     "src"
   ],
-  "dependencies": {
-    "@wzyjs/antd": "link:@wzyjs/antd",
-    "@wzyjs/hooks": "link:@wzyjs/hooks",
-    "@wzyjs/types": "link:@wzyjs/types",
-    "@wzyjs/utils": "link:@wzyjs/utils"
+  "peerDependencies": {
+    "@wzyjs/antd": "^0.2.37",
+    "@wzyjs/hooks": "^0.2.37",
+    "@wzyjs/types": "^0.2.37",
+    "@wzyjs/utils": "^0.2.37"
+  },
+  "gitHead": "272513ecd0b28d577a444785b05f7a9ec962e79d",
+  "publishConfig": {
+    "access": "public"
   }
 }

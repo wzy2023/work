@@ -12,5 +12,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.StringFieldUpdateOperationsInput>;
 export const StringFieldUpdateOperationsInputObjectSchema: SchemaType = z.object({
-    set: z.string().optional()
+    set: z.string().optional().optional()
 }).strict() as SchemaType;

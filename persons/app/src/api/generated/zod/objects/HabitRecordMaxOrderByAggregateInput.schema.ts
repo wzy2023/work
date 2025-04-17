@@ -12,5 +12,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitRecordMaxOrderByAggregateInput>;
 export const HabitRecordMaxOrderByAggregateInputObjectSchema: SchemaType = z.object({
-    id: z.lazy(() => SortOrderSchema).optional(), createdAt: z.lazy(() => SortOrderSchema).optional(), updatedAt: z.lazy(() => SortOrderSchema).optional(), isDeleted: z.lazy(() => SortOrderSchema).optional(), date: z.lazy(() => SortOrderSchema).optional(), reason: z.lazy(() => SortOrderSchema).optional(), habitId: z.lazy(() => SortOrderSchema).optional()
+    id: z.lazy(() => SortOrderSchema).optional().optional(), createdAt: z.lazy(() => SortOrderSchema).optional().optional(), updatedAt: z.lazy(() => SortOrderSchema).optional().optional(), isDeleted: z.lazy(() => SortOrderSchema).optional().optional(), date: z.lazy(() => SortOrderSchema).optional().optional(), reason: z.lazy(() => SortOrderSchema).optional().optional(), habitId: z.lazy(() => SortOrderSchema).optional().optional()
 }).strict() as SchemaType;

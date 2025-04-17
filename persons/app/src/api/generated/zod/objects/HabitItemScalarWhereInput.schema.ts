@@ -18,7 +18,7 @@ import type { Prisma } from '@prisma/client';
 type SchemaType = z.ZodType<Prisma.HabitItemScalarWhereInput>;
 export const HabitItemScalarWhereInputObjectSchema: SchemaType = z.object({
     AND: z.union([z.lazy(() => HabitItemScalarWhereInputObjectSchema),
-    z.lazy(() => HabitItemScalarWhereInputObjectSchema).array()]).optional(), OR: z.lazy(() => HabitItemScalarWhereInputObjectSchema).array().optional(), NOT: z.union([z.lazy(() => HabitItemScalarWhereInputObjectSchema),
+    z.lazy(() => HabitItemScalarWhereInputObjectSchema).array()]).optional(), OR: z.lazy(() => HabitItemScalarWhereInputObjectSchema).array().optional().optional(), NOT: z.union([z.lazy(() => HabitItemScalarWhereInputObjectSchema),
     z.lazy(() => HabitItemScalarWhereInputObjectSchema).array()]).optional(), id: z.union([z.lazy(() => StringFilterObjectSchema),
     z.string()]).optional(), createdAt: z.union([z.lazy(() => DateTimeFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()])]).optional(), updatedAt: z.union([z.lazy(() => DateTimeNullableFilterObjectSchema),
@@ -28,8 +28,8 @@ export const HabitItemScalarWhereInputObjectSchema: SchemaType = z.object({
     z.null()]).optional().nullable(), name: z.union([z.lazy(() => StringFilterObjectSchema),
     z.string()]).optional(), sort: z.union([z.lazy(() => IntNullableFilterObjectSchema),
     z.number(),
-    z.null()]).optional().nullable(), enable: z.union([z.lazy(() => BoolNullableFilterObjectSchema),
+    z.null()]).optional().nullable(), enabled: z.union([z.lazy(() => BoolNullableFilterObjectSchema),
     z.boolean(),
-    z.null()]).optional().nullable(), count: z.lazy(() => JsonNullableFilterObjectSchema).optional(), frequency: z.lazy(() => JsonNullableFilterObjectSchema).optional(), groupId: z.union([z.lazy(() => StringFilterObjectSchema),
+    z.null()]).optional().nullable(), count: z.lazy(() => JsonNullableFilterObjectSchema).optional().optional(), frequency: z.lazy(() => JsonNullableFilterObjectSchema).optional().optional(), groupId: z.union([z.lazy(() => StringFilterObjectSchema),
     z.string()]).optional()
 }).strict() as SchemaType;

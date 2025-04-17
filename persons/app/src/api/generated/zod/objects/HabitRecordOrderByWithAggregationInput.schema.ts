@@ -16,9 +16,9 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitRecordOrderByWithAggregationInput>;
 export const HabitRecordOrderByWithAggregationInputObjectSchema: SchemaType = z.object({
-    id: z.lazy(() => SortOrderSchema).optional(), createdAt: z.lazy(() => SortOrderSchema).optional(), updatedAt: z.union([z.lazy(() => SortOrderSchema),
+    id: z.lazy(() => SortOrderSchema).optional().optional(), createdAt: z.lazy(() => SortOrderSchema).optional().optional(), updatedAt: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), isDeleted: z.union([z.lazy(() => SortOrderSchema),
-    z.lazy(() => SortOrderInputObjectSchema)]).optional(), date: z.lazy(() => SortOrderSchema).optional(), execList: z.union([z.lazy(() => SortOrderSchema),
-    z.lazy(() => SortOrderInputObjectSchema)]).optional(), reason: z.union([z.lazy(() => SortOrderSchema),
-    z.lazy(() => SortOrderInputObjectSchema)]).optional(), habitId: z.lazy(() => SortOrderSchema).optional(), _count: z.lazy(() => HabitRecordCountOrderByAggregateInputObjectSchema).optional(), _max: z.lazy(() => HabitRecordMaxOrderByAggregateInputObjectSchema).optional(), _min: z.lazy(() => HabitRecordMinOrderByAggregateInputObjectSchema).optional()
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), date: z.lazy(() => SortOrderSchema).optional().optional(), reason: z.union([z.lazy(() => SortOrderSchema),
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), execList: z.union([z.lazy(() => SortOrderSchema),
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), habitId: z.lazy(() => SortOrderSchema).optional().optional(), _count: z.lazy(() => HabitRecordCountOrderByAggregateInputObjectSchema).optional().optional(), _max: z.lazy(() => HabitRecordMaxOrderByAggregateInputObjectSchema).optional().optional(), _min: z.lazy(() => HabitRecordMinOrderByAggregateInputObjectSchema).optional().optional()
 }).strict() as SchemaType;

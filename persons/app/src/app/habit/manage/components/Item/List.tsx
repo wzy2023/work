@@ -1,22 +1,22 @@
-import { DragSort, Dropdown, type DropResult } from '@/components'
+import { DragSort, Dropdown } from '@/components'
 import { HabitButton } from '../../../components/HabitButton'
+
 import { Create } from './Create'
 import { Delete } from './Delete'
 
 import { useHovered } from '@/hooks'
-import { type Habit, HabitStatusMode } from '@/api/types'
 
 import styles from '../index.module.scss'
+import { HabitStatusMode } from '@/api/types'
 
 interface ListProps {
-  groupId: number
-  data: Habit.Item[]
-  onDragEnd: (dropResult: DropResult) => void
-  onSuccess: () => void
+  groupId: string
+  data?: Habit.Item[]
+  onSuccess?: () => void
 }
 
 export const List = (props: ListProps) => {
-  const { data, groupId, onDragEnd, onSuccess } = props
+  const { data, groupId, onSuccess } = props
 
   const { isHovered, onMouseEnter, onMouseLeave } = useHovered()
 
@@ -51,8 +51,9 @@ export const List = (props: ListProps) => {
       <DragSort<Habit.Item>
         direction='horizontal'
         droppableId={`group-${groupId}`}
-        list={data}
-        onDragEnd={onDragEnd}
+        list={data?.sort((a, b) => (a.sort || 0) - (b.sort || 0)) || []}
+        hasContext={false}
+        dropType='habit'
         lastChildren={(
           <div className={`transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
             <Create groupId={groupId} onSuccess={onSuccess} />

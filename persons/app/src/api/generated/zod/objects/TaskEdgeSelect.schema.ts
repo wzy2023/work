@@ -12,5 +12,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.TaskEdgeSelect>;
 export const TaskEdgeSelectObjectSchema: SchemaType = z.object({
-    id: z.boolean().optional(), createdAt: z.boolean().optional(), updatedAt: z.boolean().optional(), isDeleted: z.boolean().optional(), type: z.boolean().optional(), source: z.boolean().optional(), target: z.boolean().optional()
+    id: z.boolean().optional().optional(), createdAt: z.boolean().optional().optional(), updatedAt: z.boolean().optional().optional(), isDeleted: z.boolean().optional().optional(), type: z.boolean().optional().optional(), source: z.boolean().optional().optional(), target: z.boolean().optional().optional()
 }).strict() as SchemaType;

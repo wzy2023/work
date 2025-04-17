@@ -1,17 +1,17 @@
 import { _, dayjs, type Dayjs } from '@wzyjs/utils'
-import { type Habit, HabitFrequencyType, HabitProgressStatus, HabitStatusMode } from '../types'
+import { HabitFrequencyType, HabitProgressStatus, HabitStatusMode } from '@/api/types'
 
 // 计算[习惯]和[习惯记录]的状态
-export const calcStatus = (data: Habit.ItemRecord, date: Dayjs) => {
+export const calcStatus = (data: Habit.RunTime.ItemRecord, date: Dayjs) => {
   const check = () => {
     const isPastTime = {
       [HabitFrequencyType.DAILY]: date.startOf('day').valueOf() < dayjs().startOf('day').valueOf(),
       [HabitFrequencyType.WEEKLY]: date.startOf('week').valueOf() < dayjs().startOf('week').valueOf(),
       [HabitFrequencyType.MONTHLY]: date.startOf('month').valueOf() < dayjs().startOf('month').valueOf(),
-    }[data?.frequency?.type]
+    }[data?.frequency!.type]
 
     // 已经过去的 但没打卡，显示为[失败]还是[未打卡]
-    const faildStatus = HabitProgressStatus.Faild // 显示为[失败]
+    const faildStatus = HabitProgressStatus.Failed // 显示为[失败]
     // const faildStatus = HabitProgressStatus.Pending // 显示为[未打卡]
 
     // 没有执行记录
@@ -33,15 +33,15 @@ export const calcStatus = (data: Habit.ItemRecord, date: Dayjs) => {
   }
 
   return {
-    [HabitStatusMode.Habit]: data.enable ? HabitProgressStatus.Enabled : HabitProgressStatus.Disabled,
+    [HabitStatusMode.Habit]: data.enabled ? HabitProgressStatus.Enabled : HabitProgressStatus.Disabled,
     [HabitStatusMode.Record]: check(),
   }
 }
 
 // 计算进度
-export const calcProgress = (data: Habit.ItemRecord, execList?: Habit.Exec[]) => {
-  const total = (execList || []).reduce((acc: number, cur: Habit.Exec) => acc + cur.count, 0)
-  return total / data.count?.total
+export const calcProgress = (data: Habit.RunTime.ItemRecord) => {
+  const total = (data.record?.execList || []).reduce((acc: number, cur: Habit.Exec) => acc + cur.count, 0)
+  return total / data.count!.total
 }
 
 // 获取指定日期所在天的起止时间

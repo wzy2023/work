@@ -1,6 +1,9 @@
 export * from './useFlowData'
+export * from './useFlowUpdate'
+
 export * from './useFlowState'
-export * from './useIntersecting'
-export * from './useChange'
-export * from './useDrag'
+
+export * from './useEvent'
+export * from './useFlowHandle'
+
 export * from './useTaskStatus'

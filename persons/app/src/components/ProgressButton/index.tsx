@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react'
-import './index.scss'
+import styles from './index.module.scss'
 
 interface ProgressButtonProps {
   colors: { bg: string, ring: string },
@@ -29,7 +29,7 @@ export const ProgressButton = (props: ProgressButtonProps) => {
   const offset = circumference * (1 - progress)
 
   return (
-    <div className='progress-button'>
+    <div className={styles.progressButton}>
       <div
         style={{ width: size, height: size }}
         className={`relative rounded-full
@@ -79,7 +79,12 @@ export const ProgressButton = (props: ProgressButtonProps) => {
           </>
         )}
 
-        <div className={`relative z-10 text-white text-xs text-center whitespace-pre select-none ${className ? 'animate-counter-rotate' : ''}`}>
+        <div
+          className={`
+            relative z-10 text-white text-xs text-center whitespace-pre select-none
+            ${className ? 'animate-counter-rotate' : ''}
+          `}
+        >
           {children}
         </div>
       </div>

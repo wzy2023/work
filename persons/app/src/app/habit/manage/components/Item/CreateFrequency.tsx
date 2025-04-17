@@ -2,11 +2,11 @@ import { forwardRef } from 'react'
 
 import { BetaSchemaForm, CheckboxButton, type FormInstance } from '@/components'
 
-import { HabitFrequencyType } from '@/api/types'
 import { useImperativeHandleForm } from '@/hooks'
+import { HabitFrequencyType } from '@/api/types'
 
 interface Value {
-  type: HabitFrequencyType
+  type: Habit.FrequencyType
   weekDays: number[]
   dayOfMonth: number[]
 }

@@ -4,15 +4,15 @@ import { type FormInstance, Modal, SpacePro } from '@/components'
 import { HabitButton } from '../../../components/HabitButton'
 import { Detail } from './Detail'
 
-import { getNewExecItem } from '../../../const'
+import { getNewExecItem } from '../../../utils'
 import { useHabitRecordStore } from '../../store'
 
 import { useClick } from '@/hooks'
-import { type Habit, HabitStatusMode } from '@/api/types'
-import { useHabitRecordCRUD } from '@/api/generated/store'
+import { useHabitRecordCRUD } from '@/api/generated/crud'
+import { HabitStatusMode } from '@/api/types'
 
 interface ItemListProps {
-  list: Habit.ItemRecord[]
+  list: Habit.RunTime.ItemRecord[]
   onSuccess?: () => void
 }
 
@@ -34,7 +34,7 @@ export const ItemList = (props: ItemListProps) => {
     },
   })
 
-  const save = (habit: Habit.ItemRecord, values: Partial<Pick<Habit.Record, 'execList' | 'reason'>>) => {
+  const save = (habit: Habit.RunTime.ItemRecord, values: Partial<Pick<Habit.Record, 'execList' | 'reason'>>) => {
     if (!values.execList) {
       return
     }
@@ -54,7 +54,7 @@ export const ItemList = (props: ItemListProps) => {
     })
   }
 
-  const onDoubleClick = (habit: Habit.ItemRecord) => {
+  const onDoubleClick = (habit: Habit.RunTime.ItemRecord) => {
     Modal.confirm({
       title: `习惯 [${habit.name}]`,
       width: 600,
@@ -69,7 +69,7 @@ export const ItemList = (props: ItemListProps) => {
     })
   }
 
-  const onClick = (habit: Habit.ItemRecord) => {
+  const onClick = (habit: Habit.RunTime.ItemRecord) => {
     if (Number(habit.record?.progress) >= 1) {
       return
     }
@@ -79,7 +79,7 @@ export const ItemList = (props: ItemListProps) => {
     save(habit, { execList })
   }
 
-  const onClickAction = useClick<Habit.ItemRecord>({
+  const onClickAction = useClick<Habit.RunTime.ItemRecord>({
     onClick,
     onDoubleClick,
   })

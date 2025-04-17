@@ -1,10 +1,10 @@
 import { Popconfirm } from '@/components'
 
-import { useHabitItemCRUD } from '@/api/generated/store'
+import { useHabitItemCRUD } from '@/api/generated/crud'
 
 interface DeleteProps {
-  id: number
-  onSuccess: () => void
+  id: string
+  onSuccess?: () => void
 }
 
 export const Delete = (props: DeleteProps) => {

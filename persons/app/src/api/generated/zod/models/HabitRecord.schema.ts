@@ -12,8 +12,8 @@ const baseSchema = z.object({
     updatedAt: z.coerce.date().nullish(),
     isDeleted: z.boolean().default(false).nullish(),
     date: z.coerce.date(),
-    execList: z.any().default("[]").nullish(),
     reason: z.string().default("").nullish(),
+    execList: z.any().default("[]").nullish(),
 }
 ).strict();
 const relationSchema = z.object({
@@ -56,8 +56,8 @@ export const HabitRecordPrismaUpdateSchema = z.object({
     updatedAt: z.coerce.date().nullish(),
     isDeleted: z.boolean().default(false).nullish(),
     date: z.coerce.date(),
-    execList: z.any().default("[]").nullish(),
-    reason: z.string().default("").nullish()
+    reason: z.string().default("").nullish(),
+    execList: z.any().default("[]").nullish()
 }).partial().passthrough();
 
 
@@ -65,7 +65,7 @@ export const HabitRecordPrismaUpdateSchema = z.object({
  * `HabitRecord` schema for create operations excluding foreign keys and relations.
  */
 export const HabitRecordCreateScalarSchema = baseSchema.partial({
-    id: true, createdAt: true, updatedAt: true, isDeleted: true, execList: true, reason: true
+    id: true, createdAt: true, updatedAt: true, isDeleted: true, reason: true, execList: true
 });
 
 

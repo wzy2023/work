@@ -12,6 +12,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator json {
+  provider = "prisma-json-types-generator"
+}
+
 model HabitGroup {
   id        String      @id() @default(cuid())
   createdAt DateTime    @default(now())
@@ -30,8 +34,10 @@ model HabitItem {
   isDeleted Boolean?      @default(false)
   name      String
   sort      Int?          @default(999)
-  enable    Boolean?
+  enabled   Boolean?
+  /// ![Habit.Count]
   count     Json?
+  /// ![Habit.Frequency]
   frequency Json?
   groupId   String
   group     HabitGroup    @relation(fields: [groupId], references: [id])
@@ -44,23 +50,25 @@ model HabitRecord {
   updatedAt DateTime? @updatedAt()
   isDeleted Boolean?  @default(false)
   date      DateTime
-  execList  Json?     @default("[]")
   reason    String?   @default("")
+  /// ![Habit.ExecList]
+  execList  Json?     @default("[]")
   habit     HabitItem @relation(fields: [habitId], references: [id])
   habitId   String
 }
 
 model TaskNode {
-  id        String    @id()
+  id        String    @id() @default(cuid())
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt()
   isDeleted Boolean?  @default(false)
   type      String
+  /// ![TaskNode.Data]
   data      Json
 }
 
 model TaskEdge {
-  id        String    @id()
+  id        String    @id() @default(cuid())
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt()
   isDeleted Boolean?  @default(false)

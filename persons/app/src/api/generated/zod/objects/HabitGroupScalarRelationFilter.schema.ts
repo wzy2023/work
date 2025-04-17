@@ -12,5 +12,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitGroupScalarRelationFilter>;
 export const HabitGroupScalarRelationFilterObjectSchema: SchemaType = z.object({
-    is: z.lazy(() => HabitGroupWhereInputObjectSchema).optional(), isNot: z.lazy(() => HabitGroupWhereInputObjectSchema).optional()
+    is: z.lazy(() => HabitGroupWhereInputObjectSchema).optional().optional(), isNot: z.lazy(() => HabitGroupWhereInputObjectSchema).optional().optional()
 }).strict() as SchemaType;

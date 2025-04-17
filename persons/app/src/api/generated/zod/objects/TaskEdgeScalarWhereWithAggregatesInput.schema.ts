@@ -16,7 +16,7 @@ import type { Prisma } from '@prisma/client';
 type SchemaType = z.ZodType<Prisma.TaskEdgeScalarWhereWithAggregatesInput>;
 export const TaskEdgeScalarWhereWithAggregatesInputObjectSchema: SchemaType = z.object({
     AND: z.union([z.lazy(() => TaskEdgeScalarWhereWithAggregatesInputObjectSchema),
-    z.lazy(() => TaskEdgeScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), OR: z.lazy(() => TaskEdgeScalarWhereWithAggregatesInputObjectSchema).array().optional(), NOT: z.union([z.lazy(() => TaskEdgeScalarWhereWithAggregatesInputObjectSchema),
+    z.lazy(() => TaskEdgeScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), OR: z.lazy(() => TaskEdgeScalarWhereWithAggregatesInputObjectSchema).array().optional().optional(), NOT: z.union([z.lazy(() => TaskEdgeScalarWhereWithAggregatesInputObjectSchema),
     z.lazy(() => TaskEdgeScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), id: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
     z.string()]).optional(), createdAt: z.union([z.lazy(() => DateTimeWithAggregatesFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()])]).optional(), updatedAt: z.union([z.lazy(() => DateTimeNullableWithAggregatesFilterObjectSchema),

@@ -1,7 +1,8 @@
 {
   "name": "@wzyjs/types",
-  "version": "0.3.0",
+  "version": "0.2.41",
   "description": "description",
   "author": "wzy",
-  "main": "src/index.ts"
+  "main": "src/index.ts",
+  "gitHead": "272513ecd0b28d577a444785b05f7a9ec962e79d"
 }

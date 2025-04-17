@@ -1,0 +1,15 @@
+.border {
+  position: relative;
+  outline: solid .5px #aaa;
+  border-radius: 6px;
+
+  &.hover {
+    box-shadow: 0 0 2px rgba(24, 144, 255, 0.5);
+    outline-color: rgba(24, 144, 255, 0.5);
+  }
+
+  &.selected {
+    box-shadow: 0 0 2px rgba(24, 144, 255, 0.5);
+    outline-color: rgba(24, 144, 255, 1);
+  }
+}

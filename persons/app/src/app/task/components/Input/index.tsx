@@ -31,7 +31,10 @@ export const Input = (props: InputProps) => {
   }
 
   return (
-    <div style={{ color: !value ? '#ddd' : '', marginBottom: 2 }}>
+    <div
+      className='overflow-hidden text-ellipsis whitespace-pre'
+      style={{ color: !value ? '#ddd' : '' }}
+    >
       {value || '请输入内容'}
     </div>
   )

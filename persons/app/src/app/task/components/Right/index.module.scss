@@ -1,0 +1,19 @@
+.add {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, 0);
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  div {
+    zoom: 0.9;
+  }
+
+  span[role="img"] {
+    border-radius: 50%;
+  }
+}

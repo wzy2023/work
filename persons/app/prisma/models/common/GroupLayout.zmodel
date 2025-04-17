@@ -1,0 +1,6 @@
+import "@wzyjs/next/dist/Base"
+
+model CommonGroupLayout extends Base {
+  /// ![{  }]
+  data Json
+}

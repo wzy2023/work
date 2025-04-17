@@ -12,5 +12,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.TaskNodeMinAggregateInputType>;
 export const TaskNodeMinAggregateInputObjectSchema: SchemaType = z.object({
-    id: z.literal(true).optional(), createdAt: z.literal(true).optional(), updatedAt: z.literal(true).optional(), isDeleted: z.literal(true).optional(), type: z.literal(true).optional()
+    id: z.literal(true).optional().optional(), createdAt: z.literal(true).optional().optional(), updatedAt: z.literal(true).optional().optional(), isDeleted: z.literal(true).optional().optional(), type: z.literal(true).optional().optional()
 }).strict() as SchemaType;

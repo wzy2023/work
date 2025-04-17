@@ -1,7 +1,8 @@
 module.exports = {
+  parser: '@typescript-eslint/parser',
   // plugins: ['perfectionist'],
   parserOptions: {
-    sourceType: 'module',
+    // sourceType: 'module',
   },
   rules: {
     // 'perfectionist/sort-imports': [

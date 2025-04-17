@@ -2,12 +2,10 @@ import { forwardRef } from 'react'
 
 import { Button, Form, type FormInstance, InputNumber, SpacePro, Input, Select } from '@/components'
 
-import type { Habit } from '@/api/types'
-
-import { getNewExecItem } from '../../../const'
+import { getNewExecItem } from '../../../utils'
 
 interface DetailProps {
-  data: Habit.ItemRecord
+  data: Habit.RunTime.ItemRecord
 }
 
 export const Detail = forwardRef<FormInstance, DetailProps>((props, ref) => {

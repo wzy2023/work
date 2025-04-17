@@ -1,20 +1,33 @@
-import { type ChangeEvent, type KeyboardEvent, useMemo, useState } from 'react'
+import { type ChangeEvent, type KeyboardEvent, useEffect, useMemo, useState } from 'react'
 import type { Node } from '@xyflow/react'
 
 import { Input } from '@/components'
-import { Add } from '../Base/Add'
-import { Hover } from '../Base/Hover'
-import { Handle } from '../Base/Handle'
-import { Border } from '../Base/Border'
+import { Border, Handle, Hover, Right } from '../../components'
 
 import { useFlowState } from '../../hooks'
 import type { NodeRecord } from '../../types'
 import { getDescendantNodes } from '../../utils'
 
+import { useTaskStore } from '@/app/task/store'
+
 export const Group = (props: NodeRecord) => {
-  const { selected, dragging } = props
+  const { selected, dragging, data } = props
+
+  const { setEditing } = useTaskStore()
 
   const [isEditing, setIsEditing] = useState(false)
+  useEffect(() => {
+    setEditing(isEditing)
+  }, [isEditing, setEditing])
+
+  useEffect(() => {
+    if (data.editing) {
+      delete data.editing
+      setIsEditing(true)
+      setTimeout(() => document.querySelector('input')?.focus(), 300)
+    }
+  }, [data, setIsEditing])
+
   const [inputValue, setInputValue] = useState(props?.data.title || '')
 
   const { nodes, edges, setNodes } = useFlowState()
@@ -52,8 +65,6 @@ export const Group = (props: NodeRecord) => {
     if (ev.key === 'Enter') {
       if (isEditing) {
         handleSave()
-      } else {
-        console.log(666, 56, '1', 1)
       }
     }
   }
@@ -63,34 +74,35 @@ export const Group = (props: NodeRecord) => {
       <Hover>
         {({ isHovered }) => (
           <Border selected={selected} isHovered={isHovered}>
-            <Add
+            <Right
               parentNode={props}
               {...{ showAddBtn, isHovered, selected, dragging }}
             >
-
-              {isEditing ? (
-                <div style={{ padding: 5 }} onDragOver={(e) => e.preventDefault()}>
-                  <Input
-                    autoFocus
-                    bordered={false}
-                    value={inputValue}
-                    onChange={onInput}
-                    onBlur={onBlur}
-                    onKeyDown={onKeyDown}
-                  />
-                </div>
-              ) : (
-                <div
-                  onDoubleClick={onDoubleClick}
-                  style={{
-                    padding: 10,
-                    color: !props?.data.title ? '#ddd' : '',
-                  }}
-                >
-                  {props?.data.title}
-                </div>
-              )}
-            </Add>
+              <div style={{ backgroundColor: 'rgb(249, 250, 251)' }}>
+                {isEditing ? (
+                  <div style={{ padding: 5 }} onDragOver={(e) => e.preventDefault()}>
+                    <Input
+                      autoFocus
+                      bordered={false}
+                      value={inputValue}
+                      onChange={onInput}
+                      onBlur={onBlur}
+                      onKeyDown={onKeyDown}
+                    />
+                  </div>
+                ) : (
+                  <div
+                    onDoubleClick={onDoubleClick}
+                    style={{
+                      padding: '5px 10px',
+                      color: !props?.data.title ? '#ddd' : '',
+                    }}
+                  >
+                    {props?.data.title || '双击编辑'}
+                  </div>
+                )}
+              </div>
+            </Right>
           </Border>
         )}
       </Hover>

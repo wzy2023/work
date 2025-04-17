@@ -17,7 +17,7 @@ import type { Prisma } from '@prisma/client';
 type SchemaType = z.ZodType<Prisma.TaskNodeScalarWhereWithAggregatesInput>;
 export const TaskNodeScalarWhereWithAggregatesInputObjectSchema: SchemaType = z.object({
     AND: z.union([z.lazy(() => TaskNodeScalarWhereWithAggregatesInputObjectSchema),
-    z.lazy(() => TaskNodeScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), OR: z.lazy(() => TaskNodeScalarWhereWithAggregatesInputObjectSchema).array().optional(), NOT: z.union([z.lazy(() => TaskNodeScalarWhereWithAggregatesInputObjectSchema),
+    z.lazy(() => TaskNodeScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), OR: z.lazy(() => TaskNodeScalarWhereWithAggregatesInputObjectSchema).array().optional().optional(), NOT: z.union([z.lazy(() => TaskNodeScalarWhereWithAggregatesInputObjectSchema),
     z.lazy(() => TaskNodeScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), id: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
     z.string()]).optional(), createdAt: z.union([z.lazy(() => DateTimeWithAggregatesFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()])]).optional(), updatedAt: z.union([z.lazy(() => DateTimeNullableWithAggregatesFilterObjectSchema),
@@ -25,5 +25,5 @@ export const TaskNodeScalarWhereWithAggregatesInputObjectSchema: SchemaType = z.
     z.null()]).optional().nullable(), isDeleted: z.union([z.lazy(() => BoolNullableWithAggregatesFilterObjectSchema),
     z.boolean(),
     z.null()]).optional().nullable(), type: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
-    z.string()]).optional(), data: z.lazy(() => JsonWithAggregatesFilterObjectSchema).optional()
+    z.string()]).optional(), data: z.lazy(() => JsonWithAggregatesFilterObjectSchema).optional().optional()
 }).strict() as SchemaType;

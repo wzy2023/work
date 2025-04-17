@@ -12,7 +12,7 @@ export const Title = (props: TitleProps) => {
   const { isEdit, title, onChange } = props
 
   return (
-    <div className='text-sm font-medium text-gray-900 truncate'>
+    <div className='text-sm font-medium text-gray-900 truncate w-full'>
       <div style={{ color: !title ? '#ccc' : '' }}>
         <Input
           isEdit={isEdit}

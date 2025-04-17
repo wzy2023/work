@@ -5,9 +5,12 @@ import "./HabitRecord"
 model HabitItem extends Base {
   name String
   sort Int? @default(999)
-  enable Boolean?
+  enabled Boolean?
 
+  /// ![Habit.Count]
   count Json?
+
+  /// ![Habit.Frequency]
   frequency Json?
 
   groupId String

@@ -14,8 +14,8 @@ export const Item = (props: CollapseItemProps) => {
 
   return (
     <Collapse.Panel
-      {...props}
       key={String(header)}
+      {...props}
       header={step ? `第${index}步: ${header}` : header}
     >
       {space ? (

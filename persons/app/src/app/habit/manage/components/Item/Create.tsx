@@ -1,26 +1,26 @@
 import { useRef } from 'react'
-import { BetaSchemaForm, Button, Form, type FormInstance, Modal, PlusOutlined } from '@/components'
+import { BetaSchemaForm, Button, type FormInstance, Modal, PlusOutlined } from '@/components'
 
 import { CreateNums } from './CreateNums'
 import { CreateFrequency } from './CreateFrequency'
 
-import { useBoolean } from 'ahooks'
-import { useHabitItemCRUD } from '@/api/generated/store'
+import { useBoolean, useForm } from '@/hooks'
+import { useHabitItemCRUD } from '@/api/generated/crud'
 
 interface CreateHabitProps {
-  id?: number
-  groupId: number
+  id?: string
+  groupId: string
   initialValues?: any
   onSuccess?: () => void
 }
 
 export const Create = (props: CreateHabitProps) => {
-  const { id, initialValues = { enable: true }, groupId, onSuccess } = props
+  const { id, initialValues = { enabled: true }, groupId, onSuccess } = props
 
-  const [form] = Form.useForm()
+  const { form, formValues, formProps } = useForm()
 
-  const frequencyRef = useRef<FormInstance>(null)
   const numsRef = useRef<FormInstance>(null)
+  const frequencyRef = useRef<FormInstance>(null)
 
   const [visible, { setFalse, setTrue }] = useBoolean()
 
@@ -82,10 +82,11 @@ export const Create = (props: CreateHabitProps) => {
           form={form}
           submitter={false}
           initialValues={initialValues}
+          onValuesChange={formProps.onValuesChange}
           columns={[
             {
               title: '启用',
-              dataIndex: 'enable',
+              dataIndex: 'enabled',
               valueType: 'switch',
             },
             {
@@ -107,8 +108,12 @@ export const Create = (props: CreateHabitProps) => {
             {
               title: '数量',
               dataIndex: 'count',
+              dependencies: ['frequency'],
               renderFormItem: () => (
-                <CreateNums ref={numsRef} />
+                <CreateNums
+                  ref={numsRef}
+                  type={formValues?.frequency.type}
+                />
               ),
             },
           ]}

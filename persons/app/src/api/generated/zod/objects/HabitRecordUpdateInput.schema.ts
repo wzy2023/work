@@ -10,8 +10,8 @@ import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdat
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema';
 import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema';
 import { NullableBoolFieldUpdateOperationsInputObjectSchema } from './NullableBoolFieldUpdateOperationsInput.schema';
-import { NullableJsonNullValueInputSchema } from '../enums/NullableJsonNullValueInput.schema';
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema';
+import { NullableJsonNullValueInputSchema } from '../enums/NullableJsonNullValueInput.schema';
 import { HabitItemUpdateOneRequiredWithoutRecordsNestedInputObjectSchema } from './HabitItemUpdateOneRequiredWithoutRecordsNestedInput.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -31,8 +31,8 @@ export const HabitRecordUpdateInputObjectSchema: SchemaType = z.object({
     z.null()]).optional().nullable(), isDeleted: z.union([z.boolean(),
     z.lazy(() => NullableBoolFieldUpdateOperationsInputObjectSchema),
     z.null()]).optional().nullable(), date: z.union([z.union([z.date(), z.string().datetime().optional()]),
-    z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema)]).optional(), execList: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
-        jsonSchema]).optional(), reason: z.union([z.string(),
-        z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
-        z.null()]).optional().nullable(), habit: z.lazy(() => HabitItemUpdateOneRequiredWithoutRecordsNestedInputObjectSchema).optional()
+    z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema)]).optional(), reason: z.union([z.string(),
+    z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
+    z.null()]).optional().nullable(), execList: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
+        jsonSchema]).optional(), habit: z.lazy(() => HabitItemUpdateOneRequiredWithoutRecordsNestedInputObjectSchema).optional().optional()
 }).strict() as SchemaType;

@@ -18,7 +18,7 @@ import type { Prisma } from '@prisma/client';
 type SchemaType = z.ZodType<Prisma.HabitItemScalarWhereWithAggregatesInput>;
 export const HabitItemScalarWhereWithAggregatesInputObjectSchema: SchemaType = z.object({
     AND: z.union([z.lazy(() => HabitItemScalarWhereWithAggregatesInputObjectSchema),
-    z.lazy(() => HabitItemScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), OR: z.lazy(() => HabitItemScalarWhereWithAggregatesInputObjectSchema).array().optional(), NOT: z.union([z.lazy(() => HabitItemScalarWhereWithAggregatesInputObjectSchema),
+    z.lazy(() => HabitItemScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), OR: z.lazy(() => HabitItemScalarWhereWithAggregatesInputObjectSchema).array().optional().optional(), NOT: z.union([z.lazy(() => HabitItemScalarWhereWithAggregatesInputObjectSchema),
     z.lazy(() => HabitItemScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), id: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
     z.string()]).optional(), createdAt: z.union([z.lazy(() => DateTimeWithAggregatesFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()])]).optional(), updatedAt: z.union([z.lazy(() => DateTimeNullableWithAggregatesFilterObjectSchema),
@@ -28,8 +28,8 @@ export const HabitItemScalarWhereWithAggregatesInputObjectSchema: SchemaType = z
     z.null()]).optional().nullable(), name: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
     z.string()]).optional(), sort: z.union([z.lazy(() => IntNullableWithAggregatesFilterObjectSchema),
     z.number(),
-    z.null()]).optional().nullable(), enable: z.union([z.lazy(() => BoolNullableWithAggregatesFilterObjectSchema),
+    z.null()]).optional().nullable(), enabled: z.union([z.lazy(() => BoolNullableWithAggregatesFilterObjectSchema),
     z.boolean(),
-    z.null()]).optional().nullable(), count: z.lazy(() => JsonNullableWithAggregatesFilterObjectSchema).optional(), frequency: z.lazy(() => JsonNullableWithAggregatesFilterObjectSchema).optional(), groupId: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
+    z.null()]).optional().nullable(), count: z.lazy(() => JsonNullableWithAggregatesFilterObjectSchema).optional().optional(), frequency: z.lazy(() => JsonNullableWithAggregatesFilterObjectSchema).optional().optional(), groupId: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
     z.string()]).optional()
 }).strict() as SchemaType;

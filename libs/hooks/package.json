@@ -1,6 +1,6 @@
 {
   "name": "@wzyjs/hooks",
-  "version": "0.2.36",
+  "version": "0.2.41",
   "description": "description",
   "author": "wzy",
   "main": "dist/index.js",
@@ -16,7 +16,8 @@
     "react-use": "^17.4.0"
   },
   "peerDependencies": {
-    "react": "^18.0.0 || ^19.0.0",
-    "antd": "^5.24.3"
-  }
+    "antd": "^5.24.3",
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "gitHead": "272513ecd0b28d577a444785b05f7a9ec962e79d"
 }

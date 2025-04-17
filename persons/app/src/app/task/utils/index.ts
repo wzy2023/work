@@ -2,9 +2,7 @@ import type { Edge, Node } from '@xyflow/react'
 
 import dagre from 'dagre'
 import { Chain } from './Chain'
-import { NodeType } from '../types'
-
-import styles from '../styles/index.module.scss'
+import { type Elements, NodeType } from '../types'
 
 export const PREVIEW_NODE_ID = 'preview-node'
 export const PREVIEW_EDGE_ID = 'preview-edge'
@@ -74,23 +72,52 @@ export const createPreviewNode = (node: Node) => {
 }
 
 // 重新布局
-export const getLayoutedElements = (nodes: Node[], edges: Edge[]): Node[] => {
+export const layoutedElements = (elements: Elements): Elements => {
+  const { edges, nodes } = elements
+
   const dagreGraph = new dagre.graphlib.Graph().setDefaultEdgeLabel(() => ({}))
   dagreGraph.setGraph({ rankdir: 'LR', nodesep: 10, ranksep: 50 })
 
-  edges.forEach(edge => dagreGraph.setEdge(edge.source, edge.target))
-  nodes.forEach(node => {
+  edges?.forEach(edge => dagreGraph.setEdge(edge.source, edge.target))
+  nodes?.forEach(node => {
     dagreGraph.setNode(node.id, { ...node, width: node.measured?.width ?? 0, height: node.measured?.height ?? 0 })
   })
 
   dagre.layout(dagreGraph)
 
-  return nodes.map(node => {
-    const nodeWithPosition = dagreGraph.node(node.id)
-    const x = nodeWithPosition.x - (node.type === 'taskCard' ? (node.measured?.width ?? 0) / 2.4 : 0)
-    const y = nodeWithPosition.y - (node.measured?.height ?? 0) / 2
-    return { ...node, position: { x, y } }
+  return {
+    edges,
+    nodes: nodes?.map(node => {
+      const nodeWithPosition = dagreGraph.node(node.id)
+      const x = nodeWithPosition.x - (node.type === 'taskCard' ? (node.measured?.width ?? 0) / 3 : 0)
+      const y = nodeWithPosition.y - (node.measured?.height ?? 0) / 2
+      // const x = nodeWithPosition.x - (node.measured?.width ?? 0) / 2
+      // const y = nodeWithPosition.y - (node.measured?.height ?? 0) / 2
+      return { ...node, position: { x, y } }
+    }),
+  }
+}
+
+// 过滤节点
+export const filterElements = (elements: Elements) => {
+  const { nodes, edges } = elements
+
+  nodes.forEach(node => {
+    const { descendantNodes, descendantEdges } = getDescendantAndEdges(node as unknown as Node, nodes, edges)
+
+    descendantNodes.forEach(item => {
+      item.style = { display: node.data.fold ? 'none' : 'block' }
+    })
+
+    descendantEdges.forEach(item => {
+      item.style = { display: node.data.fold ? 'none' : 'block' }
+    })
   })
+
+  return {
+    nodes,
+    edges,
+  }
 }
 
 // 计算两个点之间的距离
@@ -153,6 +180,23 @@ export const getParentNodes = (node: Node, nodes: Node[], edges: Edge[]) => {
   return nodes.filter(item => parentIds.includes(item.id))
 }
 
+// 获取后代节点和边的id
+export const getDescendantAndEdges = (node: Node, nodes: Node[], edges: Edge[]) => {
+  const descendantIds = getDescendantIds(node, edges)
+  const descendantEdgeIds = edges.filter(edge => descendantIds.includes(edge.target)).map(item => item.id)
+  return {
+    descendantIds,
+    descendantEdgeIds,
+    descendantNodes: nodes.filter(item => descendantIds.includes(item.id)),
+    descendantEdges: edges.filter(item => descendantEdgeIds.includes(item.id)),
+  }
+}
+
+// 获取节点相关联的边
+export const getEdgesByNode = (node: Node, edges: Edge[]) => {
+  return edges.filter(edge => edge.source === node.id || edge.target === node.id)
+}
+
 // 获取后代节点 跟随拖拽节点 位置更新后的数据
 export const getMovedDescendantNodes = (option: { node: Node; nodes: Node[]; descendantIds: string[] }) => {
   const { node, nodes, descendantIds } = option
@@ -174,7 +218,7 @@ export const getMovedDescendantNodes = (option: { node: Node; nodes: Node[]; des
     if (descendantIds?.includes(nd.id) || node.id === nd.id) {
       nd.position.x += deltaX
       nd.position.y += deltaY
-      nd.style = { zIndex: 1 }
+      nd.style = { ...nd.style, zIndex: 1 }
     }
     return nd
   })
@@ -182,8 +226,15 @@ export const getMovedDescendantNodes = (option: { node: Node; nodes: Node[]; des
 }
 
 // 获取拖拽时的吸附节点
-export const getSnapNode = (option: { node?: Node; nodes?: Node[]; intersectingNodes?: Node[] }): Node | undefined => {
-  const { node, nodes, intersectingNodes } = option
+export const getSnapNode = (option: {
+  node: Node;
+  nodes: Node[];
+  edges: Edge[];
+  intersectingNodes?: Node[]
+}): Node | undefined => {
+  const { node, nodes, edges, intersectingNodes } = option
+
+  const descendantIds = getDescendantIds(node, edges)
 
   if (!node || !nodes?.length) {
     return
@@ -193,7 +244,7 @@ export const getSnapNode = (option: { node?: Node; nodes?: Node[]; intersectingN
   let snapToNode: Node | undefined
 
   // 查找交叉节点
-  if (intersectingNodes?.length === 1 && intersectingNodes[0]) {
+  if (intersectingNodes?.length === 1 && intersectingNodes[0] && intersectingNodes[0].id !== PREVIEW_NODE_ID) {
     snapToNode = intersectingNodes[0]
 
   } else {
@@ -201,8 +252,11 @@ export const getSnapNode = (option: { node?: Node; nodes?: Node[]; intersectingN
     const distanceNodes = nodes.map(item => ({
       node: item,
       distance: getDistance(node.position, item.position),
-    })).filter(item => item.node.id !== node.id).sort((a, b) => a.distance - b.distance)
-    if ((distanceNodes[0]?.distance || 0) < SNAP_THRESHOLD) {
+    }))
+    .filter(item => item.node.id !== node.id && !descendantIds.includes(item.node.id))
+    .sort((a, b) => a.distance - b.distance)
+
+    if ((distanceNodes[0]?.distance || 0) < SNAP_THRESHOLD && distanceNodes[0]?.node.id !== PREVIEW_NODE_ID) {
       snapToNode = distanceNodes[0]?.node
     }
   }
@@ -211,17 +265,6 @@ export const getSnapNode = (option: { node?: Node; nodes?: Node[]; intersectingN
   if (node.type === NodeType.Group && snapToNode?.type === NodeType.TaskCard) {
     snapToNode = undefined
   }
-
-  // 给吸附节点添加高亮样式
-  nodes.forEach(item => {
-    if (item.id === snapToNode?.id) {
-      if (!item.className?.includes(styles.snap!)) {
-        item.className = (item.className || '') + styles.snap
-      }
-    } else {
-      item.className = item.className?.replace(styles.snap! as string, '')
-    }
-  })
 
   return snapToNode
 }

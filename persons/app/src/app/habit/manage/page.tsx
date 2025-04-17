@@ -6,16 +6,19 @@ import { Spin, RadioButton } from '@/components'
 import { List } from './components/Group/List'
 import { Create } from './components/Group/Create'
 
-import { enableOptions } from '../const'
+import { enableOptions } from '@/consts'
 import { useHabitManageStore } from './store'
-import { useHabitGroupCRUD } from '@/api/generated/store'
+import { useHabitGroupCRUD } from '@/api/generated/crud'
 
 export default () => {
   const { filterValues, setFilterValues } = useHabitManageStore()
 
   const { listState } = useHabitGroupCRUD({
     list: {
-      query: { orderBy: { sort: 'asc' } },
+      query: {
+        orderBy: { sort: 'asc' },
+        include: { children: true },
+      },
     },
   })
 
@@ -28,15 +31,15 @@ export default () => {
 
       <div className='flex justify-between items-center mb-4'>
         <RadioButton
-          value={filterValues.enable}
-          options={enableOptions.enable}
-          onChange={enable => setFilterValues({ enable })}
+          value={filterValues.enabled}
+          options={enableOptions}
+          onChange={enabled => setFilterValues({ enabled })}
         />
       </div>
 
       <Spin spinning={listState.isLoading} delay={100}>
         <List
-          list={listState.data}
+          list={listState.data as Habit.RunTime.GroupChildren[]}
           onSuccess={listState.refetch}
         />
       </Spin>

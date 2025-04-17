@@ -9,6 +9,7 @@ export * from './MultiImageDisplay'
 export * from './DownloadLink'
 export * from './Fold'
 export * from './DragSort'
+export * from './DateSwitcher'
 
 // export * from './JsonView'
 // export * from './Crud'

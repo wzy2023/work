@@ -13,7 +13,7 @@ const baseSchema = z.object({
     isDeleted: z.boolean().default(false).nullish(),
     name: z.string(),
     sort: z.number().default(999).nullish(),
-    enable: z.boolean().nullish(),
+    enabled: z.boolean().nullish(),
     count: z.any().nullish(),
     frequency: z.any().nullish(),
 }
@@ -60,7 +60,7 @@ export const HabitItemPrismaUpdateSchema = z.object({
     isDeleted: z.boolean().default(false).nullish(),
     name: z.string(),
     sort: z.union([z.number().default(999).nullish(), z.record(z.unknown())]),
-    enable: z.boolean().nullish(),
+    enabled: z.boolean().nullish(),
     count: z.any().nullish(),
     frequency: z.any().nullish()
 }).partial().passthrough();

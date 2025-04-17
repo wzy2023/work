@@ -1,74 +1,69 @@
 import type { HabitGroup, HabitItem, HabitRecord } from '@prisma/client'
 import { type calcStatus } from '../utils'
 
-export enum HabitProgressStatus {
-  Disabled = 'disabled',
-  Enabled = 'enabled',
-  Pending = 'pending',
-  Doing = 'doing',
-  Done = 'done',
-  Faild = 'faild',
-}
-
-export const habitProgressStatusText = {
-  [HabitProgressStatus.Disabled]: '已禁用',
-  [HabitProgressStatus.Enabled]: '已启用',
-  [HabitProgressStatus.Pending]: '待开始',
-  [HabitProgressStatus.Doing]: '进行中',
-  [HabitProgressStatus.Done]: '已完成',
-  [HabitProgressStatus.Faild]: '已失败',
-}
-
-export enum HabitStatusMode {
-  Habit = 'habit',
-  Record = 'record'
-}
-
 export enum HabitFrequencyType {
   DAILY = 'DAILY',
   WEEKLY = 'WEEKLY',
   MONTHLY = 'MONTHLY',
 }
 
-export const HabitFrequencyTypeText = {
-  [HabitFrequencyType.DAILY]: '每日',
-  [HabitFrequencyType.WEEKLY]: '每周',
-  [HabitFrequencyType.MONTHLY]: '每月',
+export enum HabitProgressStatus {
+  Disabled = 'disabled',
+  Enabled = 'enabled',
+  Pending = 'pending',
+  Doing = 'doing',
+  Done = 'done',
+  Failed = 'failed',
 }
 
-export namespace Habit {
-  export type Group = HabitGroup
+export enum HabitStatusMode {
+  Habit = 'habit',
+  Record = 'record',
+}
 
-  export type Item = HabitItem
+declare global {
+  export namespace Habit {
+    export type Group = HabitGroup;
+    export type Item = HabitItem;
+    export type Record = HabitRecord;
 
-  export type Record = HabitRecord
+    export import FrequencyType = HabitFrequencyType
+    export import ProgressStatus = HabitProgressStatus
+    export import StatusMode = HabitStatusMode
 
-  export interface Frequency {
-    type: HabitFrequencyType
-    weekDays?: number[]
-    dayOfMonth?: number[]
-  }
+    export interface Frequency {
+      type: HabitFrequencyType;
+      weekDays?: number[];
+      dayOfMonth?: number[];
+    }
 
-  export interface Count {
-    total: number,
-    single: number,
-    times: number,
-  }
+    export interface Count {
+      total: number;
+      single: number;
+      times: number;
+    }
 
-  export interface Exec {
-    time: string
-    count: number
-    feeling?: string
-  }
+    export interface Exec {
+      time: string;
+      count: number;
+      feeling?: string;
+    }
 
-  export type ItemRecord = HabitItem & {
-    count: Count
-    frequency: Frequency
-    group: HabitGroup
-    status: ReturnType<typeof calcStatus>
-    record: HabitRecord & {
-      progress?: number
-      execList?: Exec[],
+    export type ExecList = Exec[]
+
+    export namespace RunTime {
+      // 合并后的项目记录类型
+      export type ItemRecord = HabitItem & {
+        group: HabitGroup;
+        status: ReturnType<typeof calcStatus>;
+        record: null | HabitRecord & {
+          progress?: number;
+        };
+      };
+
+      export type GroupChildren = Habit.Group & {
+        children: Habit.Item[];
+      };
     }
   }
 }

@@ -1,77 +1,35 @@
 'use client'
 
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect } from 'react'
 
 import { DateSwitcher, RadioButton, Spin } from '@/components'
 import { GroupList } from './components/GroupList'
 
-import { _ } from '@/utils'
-import { api } from '@/api/react'
-import { useHabitRecordStore } from './store'
-
-import {
-  type HabitFrequencyType,
-  type HabitProgressStatus,
-  HabitFrequencyTypeText,
-  habitProgressStatusText,
-} from '@/api/types'
+import { useFilterData, useFilterValues, useOptions, useSelectedDate, useData } from './hooks'
 
 export default () => {
-  const { selectedDate, filterValues, setFilterValues, setSelectedDate } = useHabitRecordStore()
+  const { selectedDate, setSelectedDate } = useSelectedDate()
 
-  const apiUtils = api.useUtils()
+  const { filterValues, setFilterValues } = useFilterValues()
 
-  const listState = api.custom.habitItem.list.useQuery({
-    date: selectedDate.valueOf(),
-  })
+  const { data, isLoading, invalidate } = useData(selectedDate)
 
-  // 预请求前后两天的数据
-  useEffect(() => {
-    apiUtils.custom.habitItem.list.prefetch({ date: selectedDate.subtract(1, 'day').valueOf() })
-    apiUtils.custom.habitItem.list.prefetch({ date: selectedDate.add(1, 'day').valueOf() })
-  }, [apiUtils, selectedDate])
+  const { options } = useOptions(data, filterValues)
 
-  const options = useMemo(() => {
-    return {
-      frequency: Object.keys(_.groupBy(listState.data, item => item.frequency?.type)).map(key => ({
-        label: HabitFrequencyTypeText[key as HabitFrequencyType],
-        value: key as HabitFrequencyType,
-      })),
-      status: [
-        { label: '全部', value: undefined },
-        ...Object.keys(_.groupBy(listState.data, item => item.status?.record)).map(key => ({
-          label: habitProgressStatusText[key as HabitProgressStatus],
-          value: key as HabitProgressStatus,
-        })),
-      ],
-    }
-  }, [listState.data])
+  const { showData } = useFilterData(data, filterValues)
 
   useEffect(() => {
     if (!options.frequency.some(item => item.value === filterValues.frequency)) {
-      if (options.frequency?.[0]?.value) {
-        setFilterValues({ frequency: options.frequency?.[0]?.value })
+      if (options.frequency?.[0]?.value !== undefined) {
+        setFilterValues({ frequency: options.frequency[0].value })
       }
     }
     if (!options.status.some(item => item.value === filterValues.status)) {
-      if (options.status?.[0]?.value) {
-        setFilterValues({ status: options.status?.[0]?.value })
+      if (options.status?.[0]?.value !== undefined) {
+        setFilterValues({ status: options.status[0].value })
       }
     }
-  }, [options, filterValues, setFilterValues])
-
-  const data = useMemo(() => {
-    const filterList = listState.data?.filter(item => {
-      if (filterValues.frequency && item.frequency?.type !== filterValues.frequency) {
-        return false
-      }
-      if (filterValues.status && item.status.record !== filterValues.status) {
-        return false
-      }
-      return true
-    })
-    return _.groupBy(filterList, item => item.group.name)
-  }, [listState.data, filterValues])
+  }, [filterValues.frequency, filterValues.status, options, setFilterValues])
 
   return (
     <div className='p-5 max-w-4xl mx-auto'>
@@ -81,20 +39,23 @@ export default () => {
       </div>
 
       <div className='flex justify-between items-center mb-4'>
-        <RadioButton<HabitFrequencyType>
+        <RadioButton
           value={filterValues.frequency}
           options={options.frequency}
-          onChange={value => setFilterValues({ frequency: value })}
+          onChange={frequency => setFilterValues({ frequency })}
         />
-        <RadioButton<HabitProgressStatus>
+        <RadioButton
           value={filterValues.status}
           options={options.status}
-          onChange={value => setFilterValues({ status: value })}
+          onChange={status => setFilterValues({ status })}
         />
       </div>
 
-      <Spin spinning={listState.isLoading} delay={100}>
-        <GroupList data={data} onSuccess={listState.refetch} />
+      <Spin spinning={isLoading} delay={100}>
+        <GroupList
+          data={showData}
+          onSuccess={invalidate}
+        />
       </Spin>
     </div>
   )

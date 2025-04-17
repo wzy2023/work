@@ -22,7 +22,7 @@ type SchemaType = z.ZodType<Prisma.HabitItemUpdateManyWithoutGroupNestedInput>;
 export const HabitItemUpdateManyWithoutGroupNestedInputObjectSchema: SchemaType = z.object({
     create: z.union([z.lazy(() => HabitItemCreateWithoutGroupInputObjectSchema), z.lazy(() => HabitItemCreateWithoutGroupInputObjectSchema).array(), z.lazy(() => HabitItemUncheckedCreateWithoutGroupInputObjectSchema), z.lazy(() => HabitItemUncheckedCreateWithoutGroupInputObjectSchema).array()]).optional(), connectOrCreate: z.union([z.lazy(() => HabitItemCreateOrConnectWithoutGroupInputObjectSchema),
     z.lazy(() => HabitItemCreateOrConnectWithoutGroupInputObjectSchema).array()]).optional(), upsert: z.union([z.lazy(() => HabitItemUpsertWithWhereUniqueWithoutGroupInputObjectSchema),
-    z.lazy(() => HabitItemUpsertWithWhereUniqueWithoutGroupInputObjectSchema).array()]).optional(), createMany: z.lazy(() => HabitItemCreateManyGroupInputEnvelopeObjectSchema).optional(), set: z.union([z.lazy(() => HabitItemWhereUniqueInputObjectSchema),
+    z.lazy(() => HabitItemUpsertWithWhereUniqueWithoutGroupInputObjectSchema).array()]).optional(), createMany: z.lazy(() => HabitItemCreateManyGroupInputEnvelopeObjectSchema).optional().optional(), set: z.union([z.lazy(() => HabitItemWhereUniqueInputObjectSchema),
     z.lazy(() => HabitItemWhereUniqueInputObjectSchema).array()]).optional(), disconnect: z.union([z.lazy(() => HabitItemWhereUniqueInputObjectSchema),
     z.lazy(() => HabitItemWhereUniqueInputObjectSchema).array()]).optional(), delete: z.union([z.lazy(() => HabitItemWhereUniqueInputObjectSchema),
     z.lazy(() => HabitItemWhereUniqueInputObjectSchema).array()]).optional(), connect: z.union([z.lazy(() => HabitItemWhereUniqueInputObjectSchema),

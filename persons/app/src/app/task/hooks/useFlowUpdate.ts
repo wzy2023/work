@@ -1,14 +1,19 @@
-import { useRef } from 'react'
-import { type Edge, type Node } from '@xyflow/react'
+import { type RefObject } from 'react'
 
 import { _ } from '@/utils'
+import { useDebouncedEffect } from '@/hooks'
+import type { Elements, NodeRecord } from '../types'
+
 import { api } from '@/api/react'
-import { useDebounceFn, useDeepCompareEffect } from '@/hooks'
 
-export const useFlowUpdate = (nodes: Node[], edges: Edge[]) => {
-  const prevStateRef = useRef({ nodes: [] as Node[], edges: [] as Edge[] })
+type Option = Elements & {
+  prevStateRef: RefObject<Elements | null>
+}
 
-  const isDragging = nodes.some(item => item.dragging)
+export const useFlowUpdate = (option: Option) => {
+  const { nodes, edges, prevStateRef } = option
+
+  const { nodes: prevNodes, edges: prevEdges } = prevStateRef.current || {}
 
   const createNodeMutation = api.taskNode.create.useMutation()
   const updateNodeMutation = api.taskNode.update.useMutation()
@@ -18,8 +23,10 @@ export const useFlowUpdate = (nodes: Node[], edges: Edge[]) => {
   const updateEdgeMutation = api.taskEdge.update.useMutation()
   const deleteEdgeMutation = api.taskEdge.delete.useMutation()
 
-  const update = useDebounceFn(async () => {
-    const { nodes: prevNodes, edges: prevEdges } = prevStateRef.current
+  useDebouncedEffect(async () => {
+    if (!prevNodes || !prevEdges) {
+      return
+    }
 
     // 处理节点的变化
     const nodesToUpdate = nodes.filter(node => {
@@ -67,12 +74,12 @@ export const useFlowUpdate = (nodes: Node[], edges: Edge[]) => {
       ...nodesToUpdate.map(node =>
         updateNodeMutation.mutateAsync({
           where: { id: node.id },
-          data: _.pick(node, ['data']) as any,
+          data: _.pick(node, ['data']),
         }),
       ),
       ...nodesToCreate.map(node =>
         createNodeMutation.mutateAsync({
-          data: _.pick(node, ['id', 'type', 'data']) as any,
+          data: _.pick(node, ['id', 'type', 'data']) as NodeRecord,
         }),
       ),
       ...nodesToDelete.map(node =>
@@ -92,7 +99,7 @@ export const useFlowUpdate = (nodes: Node[], edges: Edge[]) => {
       ...edgesToUpdate.map(edge =>
         updateEdgeMutation.mutateAsync({
           where: { id: edge.id },
-          data: _.pick(edge, ['source', 'target']) as any,
+          data: _.pick(edge, ['source', 'target']),
         }),
       ),
       ...edgesToDelete.map(edge => {
@@ -102,15 +109,11 @@ export const useFlowUpdate = (nodes: Node[], edges: Edge[]) => {
       }),
     ])
 
-    prevStateRef.current = { nodes, edges }
-  }, { wait: 500 })
-
-  useDeepCompareEffect(() => {
-    if (isDragging || !nodes.length) {
-      return
+    prevStateRef.current = {
+      nodes: _.cloneDeep(nodes),
+      edges: _.cloneDeep(edges),
     }
-    update.run()
-  }, [nodes, edges, isDragging])
+  }, [nodes, edges])
 
   return {
     prevStateRef,

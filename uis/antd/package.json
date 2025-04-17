@@ -1,6 +1,6 @@
 {
   "name": "@wzyjs/antd",
-  "version": "0.3.0",
+  "version": "0.2.41",
   "description": "description",
   "author": "wzy",
   "main": "src/index.ts",
@@ -11,11 +11,15 @@
     "@ant-design/icons": "^5.6.1",
     "@ant-design/nextjs-registry": "^1.0.2",
     "@ant-design/pro-components": "^2.8.6",
-    "@ant-design/v5-patch-for-react-19": "^1.0.3",
-    "@wzyjs/hooks": "link:@wzyjs/hooks",
-    "@wzyjs/utils": "link:@wzyjs/utils"
+    "@ant-design/v5-patch-for-react-19": "^1.0.3"
   },
   "peerDependencies": {
+    "@wzyjs/hooks": "^0.2.37",
+    "@wzyjs/utils": "^0.2.37",
     "antd": "^5.24.3"
+  },
+  "gitHead": "272513ecd0b28d577a444785b05f7a9ec962e79d",
+  "publishConfig": {
+    "access": "public"
   }
 }

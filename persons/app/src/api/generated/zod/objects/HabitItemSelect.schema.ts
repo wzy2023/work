@@ -6,16 +6,16 @@
 // @ts-nocheck
 
 import { z } from 'zod';
-import { HabitGroupDefaultArgsObjectSchema } from './HabitGroupDefaultArgs.schema';
+import { HabitGroupArgsObjectSchema } from './HabitGroupArgs.schema';
 import { HabitRecordInputSchema } from '../input/HabitRecordInput.schema';
-import { HabitItemCountOutputTypeDefaultArgsObjectSchema } from './HabitItemCountOutputTypeDefaultArgs.schema';
+import { HabitItemCountOutputTypeArgsObjectSchema } from './HabitItemCountOutputTypeArgs.schema';
 
 import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitItemSelect>;
 export const HabitItemSelectObjectSchema: SchemaType = z.object({
-    id: z.boolean().optional(), createdAt: z.boolean().optional(), updatedAt: z.boolean().optional(), isDeleted: z.boolean().optional(), name: z.boolean().optional(), sort: z.boolean().optional(), enable: z.boolean().optional(), count: z.boolean().optional(), frequency: z.boolean().optional(), groupId: z.boolean().optional(), group: z.union([z.boolean(),
-    z.lazy(() => HabitGroupDefaultArgsObjectSchema)]).optional(), records: z.union([z.boolean(),
+    id: z.boolean().optional().optional(), createdAt: z.boolean().optional().optional(), updatedAt: z.boolean().optional().optional(), isDeleted: z.boolean().optional().optional(), name: z.boolean().optional().optional(), sort: z.boolean().optional().optional(), enabled: z.boolean().optional().optional(), count: z.boolean().optional().optional(), frequency: z.boolean().optional().optional(), groupId: z.boolean().optional().optional(), group: z.union([z.boolean(),
+    z.lazy(() => HabitGroupArgsObjectSchema)]).optional(), records: z.union([z.boolean(),
     z.lazy(() => HabitRecordInputSchema.findMany)]).optional(), _count: z.union([z.boolean(),
-    z.lazy(() => HabitItemCountOutputTypeDefaultArgsObjectSchema)]).optional()
+    z.lazy(() => HabitItemCountOutputTypeArgsObjectSchema)]).optional()
 }).strict() as SchemaType;

@@ -2,7 +2,7 @@
 
 import React, { useEffect, CSSProperties } from 'react'
 import { Spin } from 'antd'
-import { useBoolean } from '@wzyjs/hooks'
+import { useBoolean } from 'ahooks'
 
 export interface IframeProProps {
   url: string;

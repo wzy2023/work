@@ -4,8 +4,10 @@ import "./HabitItem"
 model HabitRecord extends Base {
   date DateTime
 
-  execList Json? @default("[]")
   reason  String? @default("")
+
+  /// ![Habit.ExecList]
+  execList Json? @default("[]")
 
   habit     HabitItem @relation(fields: [habitId], references: [id])
   habitId   String

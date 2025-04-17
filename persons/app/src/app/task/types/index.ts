@@ -1,4 +1,19 @@
-import type { NodeProps as NodeBaseProps } from '@xyflow/react'
+import type { Edge, Node, NodeProps as NodeBaseProps } from '@xyflow/react'
+
+export interface Elements {
+  nodes: Node[],
+  edges: Edge[],
+}
+
+export interface ElementsFns {
+  setNodes: (nodes: Node[]) => void,
+  setEdges: (edges: Edge[]) => void,
+}
+
+export interface ElementsChanges {
+  onNodesChange: any,
+  onEdgesChange: any
+}
 
 export enum NodeType {
   Group = 'group',
@@ -29,7 +44,8 @@ export interface Task {
   executionRecords?: TaskExecutionRecord[];
   tags: string[];
   preTaskStatus: TaskStatus;
-  result?: boolean;
+  result?: boolean; // 任务执行结果
+  fold?: boolean; // 是否折叠子节点
 }
 
 export type NodeRecord = NodeBaseProps & {
