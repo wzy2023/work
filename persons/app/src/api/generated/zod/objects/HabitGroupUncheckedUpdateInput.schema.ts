@@ -29,5 +29,5 @@ export const HabitGroupUncheckedUpdateInputObjectSchema: SchemaType = z.object({
     z.lazy(() => NullableIntFieldUpdateOperationsInputObjectSchema),
     z.null()]).optional().nullable(), color: z.union([z.string(),
     z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
-    z.null()]).optional().nullable(), children: z.lazy(() => HabitItemUncheckedUpdateManyWithoutGroupNestedInputObjectSchema).optional()
+    z.null()]).optional().nullable(), children: z.lazy(() => HabitItemUncheckedUpdateManyWithoutGroupNestedInputObjectSchema).optional().optional()
 }).strict() as SchemaType;

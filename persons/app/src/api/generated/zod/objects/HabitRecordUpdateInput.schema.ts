@@ -34,5 +34,5 @@ export const HabitRecordUpdateInputObjectSchema: SchemaType = z.object({
     z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema)]).optional(), execList: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
         jsonSchema]).optional(), reason: z.union([z.string(),
         z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
-        z.null()]).optional().nullable(), habit: z.lazy(() => HabitItemUpdateOneRequiredWithoutRecordsNestedInputObjectSchema).optional()
+        z.null()]).optional().nullable(), habit: z.lazy(() => HabitItemUpdateOneRequiredWithoutRecordsNestedInputObjectSchema).optional().optional()
 }).strict() as SchemaType;

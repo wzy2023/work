@@ -18,9 +18,9 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitGroupOrderByWithAggregationInput>;
 export const HabitGroupOrderByWithAggregationInputObjectSchema: SchemaType = z.object({
-    id: z.lazy(() => SortOrderSchema).optional(), createdAt: z.lazy(() => SortOrderSchema).optional(), updatedAt: z.union([z.lazy(() => SortOrderSchema),
+    id: z.lazy(() => SortOrderSchema).optional().optional(), createdAt: z.lazy(() => SortOrderSchema).optional().optional(), updatedAt: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), isDeleted: z.union([z.lazy(() => SortOrderSchema),
-    z.lazy(() => SortOrderInputObjectSchema)]).optional(), name: z.lazy(() => SortOrderSchema).optional(), sort: z.union([z.lazy(() => SortOrderSchema),
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), name: z.lazy(() => SortOrderSchema).optional().optional(), sort: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), color: z.union([z.lazy(() => SortOrderSchema),
-    z.lazy(() => SortOrderInputObjectSchema)]).optional(), _count: z.lazy(() => HabitGroupCountOrderByAggregateInputObjectSchema).optional(), _avg: z.lazy(() => HabitGroupAvgOrderByAggregateInputObjectSchema).optional(), _max: z.lazy(() => HabitGroupMaxOrderByAggregateInputObjectSchema).optional(), _min: z.lazy(() => HabitGroupMinOrderByAggregateInputObjectSchema).optional(), _sum: z.lazy(() => HabitGroupSumOrderByAggregateInputObjectSchema).optional()
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), _count: z.lazy(() => HabitGroupCountOrderByAggregateInputObjectSchema).optional().optional(), _avg: z.lazy(() => HabitGroupAvgOrderByAggregateInputObjectSchema).optional().optional(), _max: z.lazy(() => HabitGroupMaxOrderByAggregateInputObjectSchema).optional().optional(), _min: z.lazy(() => HabitGroupMinOrderByAggregateInputObjectSchema).optional().optional(), _sum: z.lazy(() => HabitGroupSumOrderByAggregateInputObjectSchema).optional().optional()
 }).strict() as SchemaType;

@@ -12,5 +12,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.TaskNodeDefaultArgs>;
 export const TaskNodeDefaultArgsObjectSchema: SchemaType = z.object({
-    select: z.lazy(() => TaskNodeSelectObjectSchema).optional()
+    select: z.lazy(() => TaskNodeSelectObjectSchema).optional().optional()
 }).strict() as SchemaType;

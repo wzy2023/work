@@ -13,7 +13,7 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitGroupSelect>;
 export const HabitGroupSelectObjectSchema: SchemaType = z.object({
-    id: z.boolean().optional(), createdAt: z.boolean().optional(), updatedAt: z.boolean().optional(), isDeleted: z.boolean().optional(), name: z.boolean().optional(), sort: z.boolean().optional(), color: z.boolean().optional(), children: z.union([z.boolean(),
+    id: z.boolean().optional().optional(), createdAt: z.boolean().optional().optional(), updatedAt: z.boolean().optional().optional(), isDeleted: z.boolean().optional().optional(), name: z.boolean().optional().optional(), sort: z.boolean().optional().optional(), color: z.boolean().optional().optional(), children: z.union([z.boolean(),
     z.lazy(() => HabitItemInputSchema.findMany)]).optional(), _count: z.union([z.boolean(),
     z.lazy(() => HabitGroupCountOutputTypeDefaultArgsObjectSchema)]).optional()
 }).strict() as SchemaType;

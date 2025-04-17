@@ -13,217 +13,117 @@ const policy: PolicyDef = {
     policy: {
         habitGroup: {
             modelLevel: {
-                read: {
-                    guard: HabitGroup_read,
-                }
-                ,
-                create: {
-                    guard: HabitGroup_create,
-                }
-                ,
-                update: {
-                    guard: HabitGroup_update,
-                }
-                ,
-                postUpdate: {
-                    guard: HabitGroup_postUpdate,
-                }
-                ,
-                delete: {
-                    guard: HabitGroup_delete,
-                }
-            }
-            ,
+                read: { guard: HabitGroup_read, },
+                create: { guard: HabitGroup_create, },
+                update: { guard: HabitGroup_update, },
+                postUpdate: { guard: HabitGroup_postUpdate, },
+                delete: { guard: HabitGroup_delete, }
+            },
             fieldLevel: {
                 read:
                 {
-                }
-                ,
+
+                },
                 update:
                 {
-                }
-                ,
-            }
-            ,
-        }
-        ,
+
+                },
+            },
+
+        },
         habitItem: {
             modelLevel: {
-                read: {
-                    guard: HabitItem_read,
-                }
-                ,
-                create: {
-                    guard: HabitItem_create,
-                }
-                ,
-                update: {
-                    guard: HabitItem_update,
-                }
-                ,
-                postUpdate: {
-                    guard: HabitItem_postUpdate,
-                }
-                ,
-                delete: {
-                    guard: HabitItem_delete,
-                }
-            }
-            ,
+                read: { guard: HabitItem_read, },
+                create: { guard: HabitItem_create, },
+                update: { guard: HabitItem_update, },
+                postUpdate: { guard: HabitItem_postUpdate, },
+                delete: { guard: HabitItem_delete, }
+            },
             fieldLevel: {
                 read:
                 {
-                }
-                ,
+
+                },
                 update:
                 {
-                }
-                ,
-            }
-            ,
-        }
-        ,
+
+                },
+            },
+
+        },
         habitRecord: {
             modelLevel: {
-                read: {
-                    guard: HabitRecord_read,
-                }
-                ,
-                create: {
-                    guard: HabitRecord_create,
-                }
-                ,
-                update: {
-                    guard: HabitRecord_update,
-                }
-                ,
-                postUpdate: {
-                    guard: HabitRecord_postUpdate,
-                }
-                ,
-                delete: {
-                    guard: HabitRecord_delete,
-                }
-            }
-            ,
+                read: { guard: HabitRecord_read, },
+                create: { guard: HabitRecord_create, },
+                update: { guard: HabitRecord_update, },
+                postUpdate: { guard: HabitRecord_postUpdate, },
+                delete: { guard: HabitRecord_delete, }
+            },
             fieldLevel: {
                 read:
                 {
-                }
-                ,
+
+                },
                 update:
                 {
-                }
-                ,
-            }
-            ,
-        }
-        ,
+
+                },
+            },
+
+        },
         taskNode: {
             modelLevel: {
-                read: {
-                    guard: TaskNode_read,
-                }
-                ,
-                create: {
-                    guard: TaskNode_create,
-                }
-                ,
-                update: {
-                    guard: TaskNode_update,
-                }
-                ,
-                postUpdate: {
-                    guard: TaskNode_postUpdate,
-                }
-                ,
-                delete: {
-                    guard: TaskNode_delete,
-                }
-            }
-            ,
+                read: { guard: TaskNode_read, },
+                create: { guard: TaskNode_create, },
+                update: { guard: TaskNode_update, },
+                postUpdate: { guard: TaskNode_postUpdate, },
+                delete: { guard: TaskNode_delete, }
+            },
             fieldLevel: {
                 read:
                 {
-                }
-                ,
+
+                },
                 update:
                 {
-                }
-                ,
-            }
-            ,
-        }
-        ,
+
+                },
+            },
+
+        },
         taskEdge: {
             modelLevel: {
-                read: {
-                    guard: TaskEdge_read,
-                }
-                ,
-                create: {
-                    guard: TaskEdge_create,
-                }
-                ,
-                update: {
-                    guard: TaskEdge_update,
-                }
-                ,
-                postUpdate: {
-                    guard: TaskEdge_postUpdate,
-                }
-                ,
-                delete: {
-                    guard: TaskEdge_delete,
-                }
-            }
-            ,
+                read: { guard: TaskEdge_read, },
+                create: { guard: TaskEdge_create, },
+                update: { guard: TaskEdge_update, },
+                postUpdate: { guard: TaskEdge_postUpdate, },
+                delete: { guard: TaskEdge_delete, }
+            },
             fieldLevel: {
                 read:
                 {
-                }
-                ,
+
+                },
                 update:
                 {
-                }
-                ,
-            }
-            ,
-        }
-        ,
-    }
-    ,
+
+                },
+            },
+
+        },
+    },
     validation: {
-        habitGroup: {
-            hasValidation: false
-        }
-        ,
-        habitItem: {
-            hasValidation: false
-        }
-        ,
-        habitRecord: {
-            hasValidation: false
-        }
-        ,
-        taskNode: {
-            hasValidation: false
-        }
-        ,
-        taskEdge: {
-            hasValidation: false
-        }
-        ,
-    }
-    ,
+        habitGroup: { hasValidation: false },
+        habitItem: { hasValidation: false },
+        habitRecord: { hasValidation: false },
+        taskNode: { hasValidation: false },
+        taskEdge: { hasValidation: false },
+    },
+
 };
 
 function HabitGroup_read(context: QueryContext, db: CrudContract): any {
-    return {
-        NOT: {
-            isDeleted: true
-        }
-    };
+    return { NOT: { isDeleted: true } };
 }
 
 function $check_HabitGroup_read(input: any, context: QueryContext): any {
@@ -233,11 +133,7 @@ function $check_HabitGroup_read(input: any, context: QueryContext): any {
 }
 
 function HabitGroup_create(context: QueryContext, db: CrudContract): any {
-    return {
-        NOT: {
-            isDeleted: true
-        }
-    };
+    return { NOT: { isDeleted: true } };
 }
 
 function $check_HabitGroup_create(input: any, context: QueryContext): any {
@@ -247,11 +143,7 @@ function $check_HabitGroup_create(input: any, context: QueryContext): any {
 }
 
 function HabitGroup_update(context: QueryContext, db: CrudContract): any {
-    return {
-        NOT: {
-            isDeleted: true
-        }
-    };
+    return { NOT: { isDeleted: true } };
 }
 
 function $check_HabitGroup_update(input: any, context: QueryContext): any {
@@ -269,11 +161,7 @@ function $check_HabitGroup_postUpdate(input: any, context: QueryContext): any {
 }
 
 function HabitGroup_delete(context: QueryContext, db: CrudContract): any {
-    return {
-        NOT: {
-            isDeleted: true
-        }
-    };
+    return { NOT: { isDeleted: true } };
 }
 
 function $check_HabitGroup_delete(input: any, context: QueryContext): any {
@@ -283,11 +171,7 @@ function $check_HabitGroup_delete(input: any, context: QueryContext): any {
 }
 
 function HabitItem_read(context: QueryContext, db: CrudContract): any {
-    return {
-        NOT: {
-            isDeleted: true
-        }
-    };
+    return { NOT: { isDeleted: true } };
 }
 
 function $check_HabitItem_read(input: any, context: QueryContext): any {
@@ -297,11 +181,7 @@ function $check_HabitItem_read(input: any, context: QueryContext): any {
 }
 
 function HabitItem_create(context: QueryContext, db: CrudContract): any {
-    return {
-        NOT: {
-            isDeleted: true
-        }
-    };
+    return { NOT: { isDeleted: true } };
 }
 
 function $check_HabitItem_create(input: any, context: QueryContext): any {
@@ -311,11 +191,7 @@ function $check_HabitItem_create(input: any, context: QueryContext): any {
 }
 
 function HabitItem_update(context: QueryContext, db: CrudContract): any {
-    return {
-        NOT: {
-            isDeleted: true
-        }
-    };
+    return { NOT: { isDeleted: true } };
 }
 
 function $check_HabitItem_update(input: any, context: QueryContext): any {
@@ -333,11 +209,7 @@ function $check_HabitItem_postUpdate(input: any, context: QueryContext): any {
 }
 
 function HabitItem_delete(context: QueryContext, db: CrudContract): any {
-    return {
-        NOT: {
-            isDeleted: true
-        }
-    };
+    return { NOT: { isDeleted: true } };
 }
 
 function $check_HabitItem_delete(input: any, context: QueryContext): any {
@@ -347,11 +219,7 @@ function $check_HabitItem_delete(input: any, context: QueryContext): any {
 }
 
 function HabitRecord_read(context: QueryContext, db: CrudContract): any {
-    return {
-        NOT: {
-            isDeleted: true
-        }
-    };
+    return { NOT: { isDeleted: true } };
 }
 
 function $check_HabitRecord_read(input: any, context: QueryContext): any {
@@ -361,11 +229,7 @@ function $check_HabitRecord_read(input: any, context: QueryContext): any {
 }
 
 function HabitRecord_create(context: QueryContext, db: CrudContract): any {
-    return {
-        NOT: {
-            isDeleted: true
-        }
-    };
+    return { NOT: { isDeleted: true } };
 }
 
 function $check_HabitRecord_create(input: any, context: QueryContext): any {
@@ -375,11 +239,7 @@ function $check_HabitRecord_create(input: any, context: QueryContext): any {
 }
 
 function HabitRecord_update(context: QueryContext, db: CrudContract): any {
-    return {
-        NOT: {
-            isDeleted: true
-        }
-    };
+    return { NOT: { isDeleted: true } };
 }
 
 function $check_HabitRecord_update(input: any, context: QueryContext): any {
@@ -397,11 +257,7 @@ function $check_HabitRecord_postUpdate(input: any, context: QueryContext): any {
 }
 
 function HabitRecord_delete(context: QueryContext, db: CrudContract): any {
-    return {
-        NOT: {
-            isDeleted: true
-        }
-    };
+    return { NOT: { isDeleted: true } };
 }
 
 function $check_HabitRecord_delete(input: any, context: QueryContext): any {
@@ -411,11 +267,7 @@ function $check_HabitRecord_delete(input: any, context: QueryContext): any {
 }
 
 function TaskNode_read(context: QueryContext, db: CrudContract): any {
-    return {
-        NOT: {
-            isDeleted: true
-        }
-    };
+    return { NOT: { isDeleted: true } };
 }
 
 function $check_TaskNode_read(input: any, context: QueryContext): any {
@@ -425,11 +277,7 @@ function $check_TaskNode_read(input: any, context: QueryContext): any {
 }
 
 function TaskNode_create(context: QueryContext, db: CrudContract): any {
-    return {
-        NOT: {
-            isDeleted: true
-        }
-    };
+    return { NOT: { isDeleted: true } };
 }
 
 function $check_TaskNode_create(input: any, context: QueryContext): any {
@@ -439,11 +287,7 @@ function $check_TaskNode_create(input: any, context: QueryContext): any {
 }
 
 function TaskNode_update(context: QueryContext, db: CrudContract): any {
-    return {
-        NOT: {
-            isDeleted: true
-        }
-    };
+    return { NOT: { isDeleted: true } };
 }
 
 function $check_TaskNode_update(input: any, context: QueryContext): any {
@@ -461,11 +305,7 @@ function $check_TaskNode_postUpdate(input: any, context: QueryContext): any {
 }
 
 function TaskNode_delete(context: QueryContext, db: CrudContract): any {
-    return {
-        NOT: {
-            isDeleted: true
-        }
-    };
+    return { NOT: { isDeleted: true } };
 }
 
 function $check_TaskNode_delete(input: any, context: QueryContext): any {
@@ -475,11 +315,7 @@ function $check_TaskNode_delete(input: any, context: QueryContext): any {
 }
 
 function TaskEdge_read(context: QueryContext, db: CrudContract): any {
-    return {
-        NOT: {
-            isDeleted: true
-        }
-    };
+    return { NOT: { isDeleted: true } };
 }
 
 function $check_TaskEdge_read(input: any, context: QueryContext): any {
@@ -489,11 +325,7 @@ function $check_TaskEdge_read(input: any, context: QueryContext): any {
 }
 
 function TaskEdge_create(context: QueryContext, db: CrudContract): any {
-    return {
-        NOT: {
-            isDeleted: true
-        }
-    };
+    return { NOT: { isDeleted: true } };
 }
 
 function $check_TaskEdge_create(input: any, context: QueryContext): any {
@@ -503,11 +335,7 @@ function $check_TaskEdge_create(input: any, context: QueryContext): any {
 }
 
 function TaskEdge_update(context: QueryContext, db: CrudContract): any {
-    return {
-        NOT: {
-            isDeleted: true
-        }
-    };
+    return { NOT: { isDeleted: true } };
 }
 
 function $check_TaskEdge_update(input: any, context: QueryContext): any {
@@ -525,11 +353,7 @@ function $check_TaskEdge_postUpdate(input: any, context: QueryContext): any {
 }
 
 function TaskEdge_delete(context: QueryContext, db: CrudContract): any {
-    return {
-        NOT: {
-            isDeleted: true
-        }
-    };
+    return { NOT: { isDeleted: true } };
 }
 
 function $check_TaskEdge_delete(input: any, context: QueryContext): any {

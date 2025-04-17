@@ -22,8 +22,7 @@ export const useTaskEdgeCRUD = (option: Option = {}) => {
 
   const apiUtils = api.useUtils()
 
-  const listState = api.taskEdge.findMany.useQuery(list && list.query, {
-    enabled: list !== false,
+  const listState = api.taskEdge.findMany.useQuery(list ? list.query : {}, {
     ...list.option,
   })
 
@@ -69,13 +68,13 @@ export const useTaskEdgeCRUD = (option: Option = {}) => {
 
   const updateState = {
     ...baseUpdateState as unknown as typeof baseUpdateState,
-    mutate: (id: number, data: Parameters<typeof baseUpdateState.mutate>[0]['data']) => {
+    mutate: (id: string, data: Parameters<typeof baseUpdateState.mutate>[0]['data']) => {
       return baseUpdateState.mutate({
         where: { id },
         data,
       })
     },
-    mutateAsync: (id: number, data: Parameters<typeof baseUpdateState.mutateAsync>[0]['data']) => {
+    mutateAsync: (id: string, data: Parameters<typeof baseUpdateState.mutateAsync>[0]['data']) => {
       return baseUpdateState.mutateAsync({
         where: { id },
         data,
@@ -95,13 +94,13 @@ export const useTaskEdgeCRUD = (option: Option = {}) => {
 
   const removeState = {
     ...baseRemoveState as unknown as typeof baseRemoveState,
-    mutate: (id: number) => {
+    mutate: (id: string) => {
       return baseRemoveState.mutate({
         where: { id },
         data: { isDeleted: true },
       })
     },
-    mutateAsync: (id: number) => {
+    mutateAsync: (id: string) => {
       return baseRemoveState.mutateAsync({
         where: { id },
         data: { isDeleted: true },

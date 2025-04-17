@@ -16,5 +16,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitItemUpsertWithoutRecordsInput>;
 export const HabitItemUpsertWithoutRecordsInputObjectSchema: SchemaType = z.object({
-    update: z.union([z.lazy(() => HabitItemUpdateWithoutRecordsInputObjectSchema), z.lazy(() => HabitItemUncheckedUpdateWithoutRecordsInputObjectSchema)]), create: z.union([z.lazy(() => HabitItemCreateWithoutRecordsInputObjectSchema), z.lazy(() => HabitItemUncheckedCreateWithoutRecordsInputObjectSchema)]), where: z.lazy(() => HabitItemWhereInputObjectSchema).optional()
+    update: z.union([z.lazy(() => HabitItemUpdateWithoutRecordsInputObjectSchema), z.lazy(() => HabitItemUncheckedUpdateWithoutRecordsInputObjectSchema)]), create: z.union([z.lazy(() => HabitItemCreateWithoutRecordsInputObjectSchema), z.lazy(() => HabitItemUncheckedCreateWithoutRecordsInputObjectSchema)]), where: z.lazy(() => HabitItemWhereInputObjectSchema).optional().optional()
 }).strict() as SchemaType;

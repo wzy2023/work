@@ -14,5 +14,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitGroupUpdateToOneWithWhereWithoutChildrenInput>;
 export const HabitGroupUpdateToOneWithWhereWithoutChildrenInputObjectSchema: SchemaType = z.object({
-    where: z.lazy(() => HabitGroupWhereInputObjectSchema).optional(), data: z.union([z.lazy(() => HabitGroupUpdateWithoutChildrenInputObjectSchema), z.lazy(() => HabitGroupUncheckedUpdateWithoutChildrenInputObjectSchema)])
+    where: z.lazy(() => HabitGroupWhereInputObjectSchema).optional().optional(), data: z.union([z.lazy(() => HabitGroupUpdateWithoutChildrenInputObjectSchema), z.lazy(() => HabitGroupUncheckedUpdateWithoutChildrenInputObjectSchema)])
 }).strict() as SchemaType;

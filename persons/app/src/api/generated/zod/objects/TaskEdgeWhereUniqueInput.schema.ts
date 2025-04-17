@@ -16,8 +16,8 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.TaskEdgeWhereUniqueInput>;
 export const TaskEdgeWhereUniqueInputObjectSchema: SchemaType = z.object({
-    id: z.string().optional(), AND: z.union([z.lazy(() => TaskEdgeWhereInputObjectSchema),
-    z.lazy(() => TaskEdgeWhereInputObjectSchema).array()]).optional(), OR: z.lazy(() => TaskEdgeWhereInputObjectSchema).array().optional(), NOT: z.union([z.lazy(() => TaskEdgeWhereInputObjectSchema),
+    id: z.string().optional().optional(), AND: z.union([z.lazy(() => TaskEdgeWhereInputObjectSchema),
+    z.lazy(() => TaskEdgeWhereInputObjectSchema).array()]).optional(), OR: z.lazy(() => TaskEdgeWhereInputObjectSchema).array().optional().optional(), NOT: z.union([z.lazy(() => TaskEdgeWhereInputObjectSchema),
     z.lazy(() => TaskEdgeWhereInputObjectSchema).array()]).optional(), createdAt: z.union([z.lazy(() => DateTimeFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()])]).optional(), updatedAt: z.union([z.lazy(() => DateTimeNullableFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()]),

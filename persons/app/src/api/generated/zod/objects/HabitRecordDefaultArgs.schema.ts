@@ -13,5 +13,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitRecordDefaultArgs>;
 export const HabitRecordDefaultArgsObjectSchema: SchemaType = z.object({
-    select: z.lazy(() => HabitRecordSelectObjectSchema).optional(), include: z.lazy(() => HabitRecordIncludeObjectSchema).optional()
+    select: z.lazy(() => HabitRecordSelectObjectSchema).optional().optional(), include: z.lazy(() => HabitRecordIncludeObjectSchema).optional().optional()
 }).strict() as SchemaType;

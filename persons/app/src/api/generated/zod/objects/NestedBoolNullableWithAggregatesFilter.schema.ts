@@ -16,5 +16,5 @@ export const NestedBoolNullableWithAggregatesFilterObjectSchema: SchemaType = z.
     equals: z.union([z.boolean(),
     z.null()]).optional().nullable(), not: z.union([z.boolean(),
     z.lazy(() => NestedBoolNullableWithAggregatesFilterObjectSchema),
-    z.null()]).optional().nullable(), _count: z.lazy(() => NestedIntNullableFilterObjectSchema).optional(), _min: z.lazy(() => NestedBoolNullableFilterObjectSchema).optional(), _max: z.lazy(() => NestedBoolNullableFilterObjectSchema).optional()
+    z.null()]).optional().nullable(), _count: z.lazy(() => NestedIntNullableFilterObjectSchema).optional().optional(), _min: z.lazy(() => NestedBoolNullableFilterObjectSchema).optional().optional(), _max: z.lazy(() => NestedBoolNullableFilterObjectSchema).optional().optional()
 }).strict() as SchemaType;

@@ -11,8 +11,8 @@ import { useHabitRecordStore } from './store'
 
 import {
   type HabitFrequencyType,
-  type HabitProgressStatus,
   HabitFrequencyTypeText,
+  type HabitProgressStatus,
   habitProgressStatusText,
 } from '@/api/types'
 
@@ -30,6 +30,23 @@ export default () => {
     apiUtils.custom.habitItem.list.prefetch({ date: selectedDate.subtract(1, 'day').valueOf() })
     apiUtils.custom.habitItem.list.prefetch({ date: selectedDate.add(1, 'day').valueOf() })
   }, [apiUtils, selectedDate])
+
+  const data = useMemo(() => {
+    const filterList = listState.data?.filter(item => {
+      if (filterValues.frequency && item.frequency?.type !== filterValues.frequency) {
+        return false
+      }
+      if (filterValues.status && item.status.record !== filterValues.status) {
+        return false
+      }
+      return true
+    })
+
+    return Object.entries(_.groupBy(filterList, item => item.groupId)).map(([, value]) => ({
+      group: value[0]!.group,
+      list: value,
+    })).sort((a, b) => (a.group?.sort || 0) - (b.group?.sort || 0))
+  }, [listState.data, filterValues])
 
   const options = useMemo(() => {
     return {
@@ -59,19 +76,6 @@ export default () => {
       }
     }
   }, [options, filterValues, setFilterValues])
-
-  const data = useMemo(() => {
-    const filterList = listState.data?.filter(item => {
-      if (filterValues.frequency && item.frequency?.type !== filterValues.frequency) {
-        return false
-      }
-      if (filterValues.status && item.status.record !== filterValues.status) {
-        return false
-      }
-      return true
-    })
-    return _.groupBy(filterList, item => item.group.name)
-  }, [listState.data, filterValues])
 
   return (
     <div className='p-5 max-w-4xl mx-auto'>

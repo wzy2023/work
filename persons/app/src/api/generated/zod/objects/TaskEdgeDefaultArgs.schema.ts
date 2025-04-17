@@ -12,5 +12,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.TaskEdgeDefaultArgs>;
 export const TaskEdgeDefaultArgsObjectSchema: SchemaType = z.object({
-    select: z.lazy(() => TaskEdgeSelectObjectSchema).optional()
+    select: z.lazy(() => TaskEdgeSelectObjectSchema).optional().optional()
 }).strict() as SchemaType;

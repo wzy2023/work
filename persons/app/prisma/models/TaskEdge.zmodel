@@ -1,14 +1,7 @@
 import "@wzyjs/next/dist/Base"
 
-model TaskEdge {
-  id        String    @id
-  createdAt DateTime  @default(now())
-  updatedAt DateTime? @updatedAt
-  isDeleted Boolean?  @default(false) @omit
-
+model TaskEdge extends Base {
   type String
   source String
   target String
-
-  @@allow('all', !isDeleted)
 }

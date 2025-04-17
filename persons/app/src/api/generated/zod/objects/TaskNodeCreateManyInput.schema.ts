@@ -18,7 +18,7 @@ const jsonSchema: z.ZodType<Prisma.InputJsonValue> = z.lazy(() =>
 
 type SchemaType = z.ZodType<Prisma.TaskNodeCreateManyInput>;
 export const TaskNodeCreateManyInputObjectSchema: SchemaType = z.object({
-    id: z.string(), createdAt: z.union([z.date().optional(), z.string().datetime().optional()]), updatedAt: z.union([z.union([z.date(), z.string().datetime().optional()]),
+    id: z.string().optional().optional(), createdAt: z.union([z.date().optional(), z.string().datetime().optional()]).optional(), updatedAt: z.union([z.union([z.date(), z.string().datetime().optional()]),
     z.null()]).optional().nullable(), isDeleted: z.union([z.boolean(),
     z.null()]).optional().nullable(), type: z.string(), data: z.union([z.lazy(() => JsonNullValueInputSchema),
         jsonSchema])

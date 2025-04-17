@@ -12,5 +12,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitRecordListRelationFilter>;
 export const HabitRecordListRelationFilterObjectSchema: SchemaType = z.object({
-    every: z.lazy(() => HabitRecordWhereInputObjectSchema).optional(), some: z.lazy(() => HabitRecordWhereInputObjectSchema).optional(), none: z.lazy(() => HabitRecordWhereInputObjectSchema).optional()
+    every: z.lazy(() => HabitRecordWhereInputObjectSchema).optional().optional(), some: z.lazy(() => HabitRecordWhereInputObjectSchema).optional().optional(), none: z.lazy(() => HabitRecordWhereInputObjectSchema).optional().optional()
 }).strict() as SchemaType;

@@ -6,7 +6,7 @@ import { ItemList } from '../ItemList'
 import { type Habit } from '@/api/types'
 
 interface ListProps {
-  data?: Record<string, Habit.ItemRecord[]>
+  data?: { group: Habit.Group, list: Habit.ItemRecord[] }[]
   onSuccess?: () => void
 }
 
@@ -15,9 +15,9 @@ export const GroupList = (props: ListProps) => {
 
   return (
     <SpacePro direction='vertical'>
-      {Object.entries(data || {})?.map(([key, list]) => (
-        <Card key={key} size='small' title={key}>
-          <ItemList list={list} onSuccess={onSuccess} />
+      {data?.map(item => (
+        <Card key={item.group.id} size='small' title={item.group.name}>
+          <ItemList list={item.list} onSuccess={onSuccess} />
         </Card>
       ))}
     </SpacePro>

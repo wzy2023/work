@@ -1,13 +1,6 @@
 import "@wzyjs/next/dist/Base"
 
-model TaskNode {
-  id        String    @id
-  createdAt DateTime  @default(now())
-  updatedAt DateTime? @updatedAt
-  isDeleted Boolean?  @default(false) @omit
-
+model TaskNode extends Base {
   type String
   data Json
-
-  @@allow('all', !isDeleted)
 }

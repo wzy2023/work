@@ -12,5 +12,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitItemOrderByRelationAggregateInput>;
 export const HabitItemOrderByRelationAggregateInputObjectSchema: SchemaType = z.object({
-    _count: z.lazy(() => SortOrderSchema).optional()
+    _count: z.lazy(() => SortOrderSchema).optional().optional()
 }).strict() as SchemaType;

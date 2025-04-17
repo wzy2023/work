@@ -5,7 +5,7 @@ import { procedure } from '@/api/trpc/procedures'
 export const habitGroup = {
   updateSort: procedure
   .input(z.array(z.object({
-    id: z.number(),
+    id: z.string(),
     sort: z.number(),
   })))
   .mutation(async ({ ctx, input }) => {

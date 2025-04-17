@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 
 interface FilterValues {
-  enable?: boolean
+  enabled?: boolean
 }
 
 interface HabitManageStoreValue {
@@ -11,7 +11,7 @@ interface HabitManageStoreValue {
 
 export const useHabitManageStore = create<HabitManageStoreValue>(set => ({
   filterValues: {
-    enable: undefined,
+    enabled: undefined,
   },
   setFilterValues: (filterValues: FilterValues) => {
     set(state => ({

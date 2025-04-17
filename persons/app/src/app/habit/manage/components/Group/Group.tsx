@@ -6,7 +6,6 @@ import {
   Space,
   DeleteOutlined,
   DragOutlined,
-  type DropResult,
   type DraggableProvided,
 } from '@/components'
 
@@ -18,11 +17,10 @@ import { useHovered } from '@/hooks'
 import { type Habit } from '@/api/types'
 import { useHabitManageStore } from '../../store'
 
-import { api } from '@/api/react'
-import { useHabitGroupCRUD, useHabitItemCRUD } from '@/api/generated/store'
+import { useHabitGroupCRUD } from '@/api/generated/store'
 
 interface GroupProps {
-  item: Habit.Group
+  item: Habit.Group & { children?: Habit.Item[] }
   provided: DraggableProvided
   onSuccess?: () => void
 }
@@ -39,44 +37,9 @@ export const Group = (props: GroupProps) => {
     remove: { onSuccess },
   })
 
-  const { listState, apiUtils } = useHabitItemCRUD({
-    list: {
-      query: {
-        where: { groupId: item.id, enable: filterValues.enable },
-        orderBy: { sort: 'asc' },
-      },
-    },
-  })
-
-  const updateSortState = api.custom.habitItem.updateSort.useMutation({
-    onSuccess: () => listState.refetch(),
-  })
-
-  const onDragEnd = (result: DropResult) => {
-    if (!result.destination) return
-
-    const newItems = Array.from(listState.data || [])
-    const [removed] = newItems.splice(result.source.index, 1)
-    newItems.splice(result.destination.index, 0, removed!)
-
-    apiUtils.habitItem.findMany.setData({
-      where: { groupId: item.id },
-      orderBy: { sort: 'asc' },
-    }, newItems)
-
-    updateSortState.mutate(newItems.map((item, index) => ({
-      id: item.id,
-      sort: index + 1,
-    })))
-  }
-
-  const data = filterValues.enable === undefined ?
-    listState.data :
-    (listState.data || []).filter(item => item.enable === filterValues.enable)
-
-  if (!data?.length) {
-    // return null
-  }
+  const data = filterValues.enabled === undefined ?
+    item.children :
+    (item.children || []).filter(item => item.enabled === filterValues.enabled)
 
   return (
     <Card
@@ -101,8 +64,7 @@ export const Group = (props: GroupProps) => {
       <ItemList
         groupId={item.id}
         data={data}
-        onDragEnd={onDragEnd}
-        onSuccess={listState.refetch}
+        onSuccess={onSuccess}
       />
     </Card>
   )

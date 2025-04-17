@@ -13,5 +13,5 @@ import type { Prisma } from '@prisma/client';
 type SchemaType = z.ZodType<Prisma.HabitRecordCreateManyHabitInputEnvelope>;
 export const HabitRecordCreateManyHabitInputEnvelopeObjectSchema: SchemaType = z.object({
     data: z.union([z.lazy(() => HabitRecordCreateManyHabitInputObjectSchema),
-    z.lazy(() => HabitRecordCreateManyHabitInputObjectSchema).array()]), skipDuplicates: z.boolean().optional()
+    z.lazy(() => HabitRecordCreateManyHabitInputObjectSchema).array()]), skipDuplicates: z.boolean().optional().optional()
 }).strict() as SchemaType;

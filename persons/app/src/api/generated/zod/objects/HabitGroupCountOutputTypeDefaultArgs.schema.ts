@@ -12,5 +12,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitGroupCountOutputTypeDefaultArgs>;
 export const HabitGroupCountOutputTypeDefaultArgsObjectSchema: SchemaType = z.object({
-    select: z.lazy(() => HabitGroupCountOutputTypeSelectObjectSchema).optional()
+    select: z.lazy(() => HabitGroupCountOutputTypeSelectObjectSchema).optional().optional()
 }).strict() as SchemaType;

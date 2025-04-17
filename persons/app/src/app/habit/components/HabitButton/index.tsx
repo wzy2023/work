@@ -2,6 +2,8 @@ import { useEffect, useRef } from 'react'
 import { Badge, ProgressButton } from '@/components'
 
 import { formatTextWrap } from '../../utils'
+import { habitFrequencyTypeMap } from '../../const'
+
 import { type Habit, HabitFrequencyType, HabitProgressStatus, type HabitStatusMode } from '@/api/types'
 
 const statusColors = {
@@ -18,12 +20,6 @@ interface HabitButtonProps {
   data: Habit.Item | Habit.ItemRecord
 }
 
-const map = {
-  [HabitFrequencyType.DAILY]: undefined,
-  [HabitFrequencyType.WEEKLY]: '周',
-  [HabitFrequencyType.MONTHLY]: '月',
-}
-
 export const HabitButton = (props: HabitButtonProps) => {
   const { data, mode } = props
 
@@ -33,7 +29,7 @@ export const HabitButton = (props: HabitButtonProps) => {
   const progress = item?.record?.progress ?? 0
 
   const status = item?.status?.[mode] ??
-    (item.enable ? HabitProgressStatus.Enabled : HabitProgressStatus.Disabled) ??
+    (item.enabled ? HabitProgressStatus.Enabled : HabitProgressStatus.Disabled) ??
     HabitProgressStatus.Pending
 
   useEffect(() => {
@@ -43,10 +39,11 @@ export const HabitButton = (props: HabitButtonProps) => {
   const showAnimation = status === HabitProgressStatus.Done && prevStatusRef.current !== HabitProgressStatus.Done
 
   // @ts-ignore
-  const tag = map[(data?.frequency)?.type]
+  const type = data?.frequency?.type as HabitFrequencyType
+  const text = habitFrequencyTypeMap[type]
 
   return (
-    <Badge color='#f50' count={tag} offset={[-8, 8]} style={{ zoom: 0.9 }}>
+    <Badge color='#f50' count={type !== HabitFrequencyType.DAILY ? text : ''} offset={[-8, 8]} style={{ zoom: 0.9 }}>
       <ProgressButton
         colors={statusColors[status]}
         progress={item.record?.progress}

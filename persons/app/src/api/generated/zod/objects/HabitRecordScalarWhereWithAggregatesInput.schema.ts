@@ -18,7 +18,7 @@ import type { Prisma } from '@prisma/client';
 type SchemaType = z.ZodType<Prisma.HabitRecordScalarWhereWithAggregatesInput>;
 export const HabitRecordScalarWhereWithAggregatesInputObjectSchema: SchemaType = z.object({
     AND: z.union([z.lazy(() => HabitRecordScalarWhereWithAggregatesInputObjectSchema),
-    z.lazy(() => HabitRecordScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), OR: z.lazy(() => HabitRecordScalarWhereWithAggregatesInputObjectSchema).array().optional(), NOT: z.union([z.lazy(() => HabitRecordScalarWhereWithAggregatesInputObjectSchema),
+    z.lazy(() => HabitRecordScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), OR: z.lazy(() => HabitRecordScalarWhereWithAggregatesInputObjectSchema).array().optional().optional(), NOT: z.union([z.lazy(() => HabitRecordScalarWhereWithAggregatesInputObjectSchema),
     z.lazy(() => HabitRecordScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), id: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
     z.string()]).optional(), createdAt: z.union([z.lazy(() => DateTimeWithAggregatesFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()])]).optional(), updatedAt: z.union([z.lazy(() => DateTimeNullableWithAggregatesFilterObjectSchema),
@@ -26,7 +26,7 @@ export const HabitRecordScalarWhereWithAggregatesInputObjectSchema: SchemaType =
     z.null()]).optional().nullable(), isDeleted: z.union([z.lazy(() => BoolNullableWithAggregatesFilterObjectSchema),
     z.boolean(),
     z.null()]).optional().nullable(), date: z.union([z.lazy(() => DateTimeWithAggregatesFilterObjectSchema),
-    z.union([z.date(), z.string().datetime().optional()])]).optional(), execList: z.lazy(() => JsonNullableWithAggregatesFilterObjectSchema).optional(), reason: z.union([z.lazy(() => StringNullableWithAggregatesFilterObjectSchema),
+    z.union([z.date(), z.string().datetime().optional()])]).optional(), execList: z.lazy(() => JsonNullableWithAggregatesFilterObjectSchema).optional().optional(), reason: z.union([z.lazy(() => StringNullableWithAggregatesFilterObjectSchema),
     z.string(),
     z.null()]).optional().nullable(), habitId: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
     z.string()]).optional()

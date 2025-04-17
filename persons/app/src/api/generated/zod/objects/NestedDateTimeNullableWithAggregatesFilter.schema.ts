@@ -16,7 +16,7 @@ export const NestedDateTimeNullableWithAggregatesFilterObjectSchema: SchemaType 
     equals: z.union([z.union([z.date(), z.string().datetime().optional()]),
     z.null()]).optional().nullable(), in: z.union([z.union([z.date().array(), z.string().datetime().array().optional()]),
     z.null()]).optional().nullable(), notIn: z.union([z.union([z.date().array(), z.string().datetime().array().optional()]),
-    z.null()]).optional().nullable(), lt: z.union([z.date().optional(), z.string().datetime().optional()]), lte: z.union([z.date().optional(), z.string().datetime().optional()]), gt: z.union([z.date().optional(), z.string().datetime().optional()]), gte: z.union([z.date().optional(), z.string().datetime().optional()]), not: z.union([z.union([z.date(), z.string().datetime().optional()]),
+    z.null()]).optional().nullable(), lt: z.union([z.date().optional(), z.string().datetime().optional()]).optional(), lte: z.union([z.date().optional(), z.string().datetime().optional()]).optional(), gt: z.union([z.date().optional(), z.string().datetime().optional()]).optional(), gte: z.union([z.date().optional(), z.string().datetime().optional()]).optional(), not: z.union([z.union([z.date(), z.string().datetime().optional()]),
     z.lazy(() => NestedDateTimeNullableWithAggregatesFilterObjectSchema),
-    z.null()]).optional().nullable(), _count: z.lazy(() => NestedIntNullableFilterObjectSchema).optional(), _min: z.lazy(() => NestedDateTimeNullableFilterObjectSchema).optional(), _max: z.lazy(() => NestedDateTimeNullableFilterObjectSchema).optional()
+    z.null()]).optional().nullable(), _count: z.lazy(() => NestedIntNullableFilterObjectSchema).optional().optional(), _min: z.lazy(() => NestedDateTimeNullableFilterObjectSchema).optional().optional(), _max: z.lazy(() => NestedDateTimeNullableFilterObjectSchema).optional().optional()
 }).strict() as SchemaType;

@@ -31,7 +31,7 @@ export const Input = (props: InputProps) => {
   }
 
   return (
-    <div style={{ color: !value ? '#ddd' : '', marginBottom: 2 }}>
+    <div style={{ color: !value ? '#ddd' : '', marginBottom: 2, whiteSpace: 'pre' }}>
       {value || '请输入内容'}
     </div>
   )

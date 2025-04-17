@@ -11,7 +11,7 @@ interface GroupTitleProps<I> {
   onSuccess?: () => void
 }
 
-export const GroupTitle = <I extends { id: number, name: string }>(props: GroupTitleProps<I>) => {
+export const GroupTitle = <I extends { id: string, name: string }>(props: GroupTitleProps<I>) => {
   const { item, onSuccess } = props
 
   const [name, setName] = useState(item.name)

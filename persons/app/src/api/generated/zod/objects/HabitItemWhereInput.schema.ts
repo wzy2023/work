@@ -21,7 +21,7 @@ import type { Prisma } from '@prisma/client';
 type SchemaType = z.ZodType<Prisma.HabitItemWhereInput>;
 export const HabitItemWhereInputObjectSchema: SchemaType = z.object({
     AND: z.union([z.lazy(() => HabitItemWhereInputObjectSchema),
-    z.lazy(() => HabitItemWhereInputObjectSchema).array()]).optional(), OR: z.lazy(() => HabitItemWhereInputObjectSchema).array().optional(), NOT: z.union([z.lazy(() => HabitItemWhereInputObjectSchema),
+    z.lazy(() => HabitItemWhereInputObjectSchema).array()]).optional(), OR: z.lazy(() => HabitItemWhereInputObjectSchema).array().optional().optional(), NOT: z.union([z.lazy(() => HabitItemWhereInputObjectSchema),
     z.lazy(() => HabitItemWhereInputObjectSchema).array()]).optional(), id: z.union([z.lazy(() => StringFilterObjectSchema),
     z.string()]).optional(), createdAt: z.union([z.lazy(() => DateTimeFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()])]).optional(), updatedAt: z.union([z.lazy(() => DateTimeNullableFilterObjectSchema),
@@ -31,9 +31,9 @@ export const HabitItemWhereInputObjectSchema: SchemaType = z.object({
     z.null()]).optional().nullable(), name: z.union([z.lazy(() => StringFilterObjectSchema),
     z.string()]).optional(), sort: z.union([z.lazy(() => IntNullableFilterObjectSchema),
     z.number(),
-    z.null()]).optional().nullable(), enable: z.union([z.lazy(() => BoolNullableFilterObjectSchema),
+    z.null()]).optional().nullable(), enabled: z.union([z.lazy(() => BoolNullableFilterObjectSchema),
     z.boolean(),
-    z.null()]).optional().nullable(), count: z.lazy(() => JsonNullableFilterObjectSchema).optional(), frequency: z.lazy(() => JsonNullableFilterObjectSchema).optional(), groupId: z.union([z.lazy(() => StringFilterObjectSchema),
+    z.null()]).optional().nullable(), count: z.lazy(() => JsonNullableFilterObjectSchema).optional().optional(), frequency: z.lazy(() => JsonNullableFilterObjectSchema).optional().optional(), groupId: z.union([z.lazy(() => StringFilterObjectSchema),
     z.string()]).optional(), group: z.union([z.lazy(() => HabitGroupScalarRelationFilterObjectSchema),
-    z.lazy(() => HabitGroupWhereInputObjectSchema)]).optional(), records: z.lazy(() => HabitRecordListRelationFilterObjectSchema).optional()
+    z.lazy(() => HabitGroupWhereInputObjectSchema)]).optional(), records: z.lazy(() => HabitRecordListRelationFilterObjectSchema).optional().optional()
 }).strict() as SchemaType;

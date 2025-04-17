@@ -12,6 +12,6 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.NestedIntFilter>;
 export const NestedIntFilterObjectSchema: SchemaType = z.object({
-    equals: z.number().optional(), in: z.number().array().optional(), notIn: z.number().array().optional(), lt: z.number().optional(), lte: z.number().optional(), gt: z.number().optional(), gte: z.number().optional(), not: z.union([z.number(),
+    equals: z.number().optional().optional(), in: z.number().array().optional().optional(), notIn: z.number().array().optional().optional(), lt: z.number().optional().optional(), lte: z.number().optional().optional(), gt: z.number().optional().optional(), gte: z.number().optional().optional(), not: z.union([z.number(),
     z.lazy(() => NestedIntFilterObjectSchema)]).optional()
 }).strict() as SchemaType;
