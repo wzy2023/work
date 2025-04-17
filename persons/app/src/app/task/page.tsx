@@ -57,7 +57,7 @@ export default () => {
       nodes={preview.nodes || nodes}
       edges={preview.edges || edges}
       nodeTypes={nodeTypes}
-      minZoom={1}
+      minZoom={0.5}
       maxZoom={1}
       fitView
       selectNodesOnDrag={false}

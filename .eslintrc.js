@@ -1,7 +1,7 @@
 module.exports = {
   // plugins: ['perfectionist'],
   parserOptions: {
-    sourceType: 'module',
+    // sourceType: 'module',
   },
   rules: {
     // 'perfectionist/sort-imports': [

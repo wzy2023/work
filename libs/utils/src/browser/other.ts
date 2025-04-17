@@ -14,10 +14,10 @@ export const printConsoleLog = (type: string, path: string, params: any, respons
   }
   console.groupCollapsed(`666 %c${type}%c${path}`, styles.header, styles.value)
   if (params) {
-    console.table(params)
+    // console.table(params)
   }
   if (response) {
-    console.table(response)
+    // console.table(response)
   }
   console.groupEnd()
 }

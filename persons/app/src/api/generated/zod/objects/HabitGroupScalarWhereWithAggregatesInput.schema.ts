@@ -18,7 +18,7 @@ import type { Prisma } from '@prisma/client';
 type SchemaType = z.ZodType<Prisma.HabitGroupScalarWhereWithAggregatesInput>;
 export const HabitGroupScalarWhereWithAggregatesInputObjectSchema: SchemaType = z.object({
     AND: z.union([z.lazy(() => HabitGroupScalarWhereWithAggregatesInputObjectSchema),
-    z.lazy(() => HabitGroupScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), OR: z.lazy(() => HabitGroupScalarWhereWithAggregatesInputObjectSchema).array().optional(), NOT: z.union([z.lazy(() => HabitGroupScalarWhereWithAggregatesInputObjectSchema),
+    z.lazy(() => HabitGroupScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), OR: z.lazy(() => HabitGroupScalarWhereWithAggregatesInputObjectSchema).array().optional().optional(), NOT: z.union([z.lazy(() => HabitGroupScalarWhereWithAggregatesInputObjectSchema),
     z.lazy(() => HabitGroupScalarWhereWithAggregatesInputObjectSchema).array()]).optional(), id: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
     z.string()]).optional(), createdAt: z.union([z.lazy(() => DateTimeWithAggregatesFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()])]).optional(), updatedAt: z.union([z.lazy(() => DateTimeNullableWithAggregatesFilterObjectSchema),

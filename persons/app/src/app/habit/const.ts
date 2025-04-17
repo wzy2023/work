@@ -1,5 +1,4 @@
-import { dayjs } from '@wzyjs/utils'
-import { type Habit } from '@/api/types'
+import { HabitFrequencyType } from '@/api/types'
 
 export const enableOptions = {
   enable: [
@@ -9,9 +8,8 @@ export const enableOptions = {
   ],
 }
 
-export const getNewExecItem = (habit: Habit.ItemRecord) => {
-  return {
-    count: habit.count?.single || 1,
-    time: dayjs().format('YYYY-MM-DD HH:mm:ss'),
-  }
+export const habitFrequencyTypeMap: Record<HabitFrequencyType, string> = {
+  [HabitFrequencyType.DAILY]: '日',
+  [HabitFrequencyType.WEEKLY]: '周',
+  [HabitFrequencyType.MONTHLY]: '月',
 }

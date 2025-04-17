@@ -7,7 +7,7 @@
 
 import { z } from 'zod';
 import { HabitItemInputSchema } from '../input/HabitItemInput.schema';
-import { HabitGroupCountOutputTypeDefaultArgsObjectSchema } from './HabitGroupCountOutputTypeDefaultArgs.schema';
+import { HabitGroupCountOutputTypeArgsObjectSchema } from './HabitGroupCountOutputTypeArgs.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -15,5 +15,5 @@ type SchemaType = z.ZodType<Prisma.HabitGroupInclude>;
 export const HabitGroupIncludeObjectSchema: SchemaType = z.object({
     children: z.union([z.boolean(),
     z.lazy(() => HabitItemInputSchema.findMany)]).optional(), _count: z.union([z.boolean(),
-    z.lazy(() => HabitGroupCountOutputTypeDefaultArgsObjectSchema)]).optional()
+    z.lazy(() => HabitGroupCountOutputTypeArgsObjectSchema)]).optional()
 }).strict() as SchemaType;

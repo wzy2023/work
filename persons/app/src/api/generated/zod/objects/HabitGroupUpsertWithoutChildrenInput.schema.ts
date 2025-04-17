@@ -16,5 +16,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitGroupUpsertWithoutChildrenInput>;
 export const HabitGroupUpsertWithoutChildrenInputObjectSchema: SchemaType = z.object({
-    update: z.union([z.lazy(() => HabitGroupUpdateWithoutChildrenInputObjectSchema), z.lazy(() => HabitGroupUncheckedUpdateWithoutChildrenInputObjectSchema)]), create: z.union([z.lazy(() => HabitGroupCreateWithoutChildrenInputObjectSchema), z.lazy(() => HabitGroupUncheckedCreateWithoutChildrenInputObjectSchema)]), where: z.lazy(() => HabitGroupWhereInputObjectSchema).optional()
+    update: z.union([z.lazy(() => HabitGroupUpdateWithoutChildrenInputObjectSchema), z.lazy(() => HabitGroupUncheckedUpdateWithoutChildrenInputObjectSchema)]), create: z.union([z.lazy(() => HabitGroupCreateWithoutChildrenInputObjectSchema), z.lazy(() => HabitGroupUncheckedCreateWithoutChildrenInputObjectSchema)]), where: z.lazy(() => HabitGroupWhereInputObjectSchema).optional().optional()
 }).strict() as SchemaType;

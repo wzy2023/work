@@ -30,7 +30,7 @@ model HabitItem {
   isDeleted Boolean?      @default(false)
   name      String
   sort      Int?          @default(999)
-  enable    Boolean?
+  enabled   Boolean?
   count     Json?
   frequency Json?
   groupId   String
@@ -51,7 +51,7 @@ model HabitRecord {
 }
 
 model TaskNode {
-  id        String    @id()
+  id        String    @id() @default(cuid())
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt()
   isDeleted Boolean?  @default(false)
@@ -60,7 +60,7 @@ model TaskNode {
 }
 
 model TaskEdge {
-  id        String    @id()
+  id        String    @id() @default(cuid())
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt()
   isDeleted Boolean?  @default(false)

@@ -9,7 +9,8 @@ import { type Habit, type HabitFrequencyType } from '../../types'
 export const habitItem = {
   updateSort: procedure
   .input(z.array(z.object({
-    id: z.number(),
+    id: z.string(),
+    groupId: z.string(),
     sort: z.number(),
   })))
   .mutation(async ({ ctx, input }) => {
@@ -17,7 +18,7 @@ export const habitItem = {
       input.map(item =>
         ctx.db.habitItem.update({
           where: { id: item.id },
-          data: { sort: item.sort },
+          data: { sort: item.sort, groupId: item.groupId },
         }),
       ),
     )
@@ -31,7 +32,7 @@ export const habitItem = {
     const today = dayjs(input.date)
 
     const items = await ctx.prisma.habitItem.findMany({
-      where: { enable: true },
+      where: { enabled: true },
       include: { group: true },
     })
 

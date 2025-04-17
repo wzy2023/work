@@ -5,7 +5,7 @@ import "./HabitRecord"
 model HabitItem extends Base {
   name String
   sort Int? @default(999)
-  enable Boolean?
+  enabled Boolean?
 
   count Json?
   frequency Json?

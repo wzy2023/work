@@ -6,11 +6,11 @@
 // @ts-nocheck
 
 import { z } from 'zod';
-import { HabitItemCountOutputTypeSelectObjectSchema } from './HabitItemCountOutputTypeSelect.schema';
+import { TaskEdgeSelectObjectSchema } from './TaskEdgeSelect.schema';
 
 import type { Prisma } from '@prisma/client';
 
-type SchemaType = z.ZodType<Prisma.HabitItemCountOutputTypeDefaultArgs>;
-export const HabitItemCountOutputTypeDefaultArgsObjectSchema: SchemaType = z.object({
-    select: z.lazy(() => HabitItemCountOutputTypeSelectObjectSchema).optional()
+type SchemaType = z.ZodType<Prisma.TaskEdgeArgs>;
+export const TaskEdgeArgsObjectSchema: SchemaType = z.object({
+    select: z.lazy(() => TaskEdgeSelectObjectSchema).optional().optional()
 }).strict() as SchemaType;

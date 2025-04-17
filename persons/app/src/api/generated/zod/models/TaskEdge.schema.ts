@@ -57,7 +57,7 @@ export const TaskEdgePrismaUpdateSchema = z.object({
  * `TaskEdge` schema for create operations excluding foreign keys and relations.
  */
 export const TaskEdgeCreateScalarSchema = baseSchema.partial({
-    createdAt: true, updatedAt: true, isDeleted: true
+    id: true, createdAt: true, updatedAt: true, isDeleted: true
 });
 
 
@@ -65,7 +65,7 @@ export const TaskEdgeCreateScalarSchema = baseSchema.partial({
  * `TaskEdge` schema for create operations including scalar fields, foreign key fields, and validations.
  */
 export const TaskEdgeCreateSchema = baseSchema.partial({
-    createdAt: true, updatedAt: true, isDeleted: true
+    id: true, createdAt: true, updatedAt: true, isDeleted: true
 });
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@wzyjs/next",
-  "version": "0.2.36",
+  "version": "0.2.37",
   "description": "description",
   "author": "wzy",
   "main": "dist/index.js",
@@ -15,5 +15,6 @@
   ],
   "dependencies": {
     "@zenstackhq/sdk": "^2.12.3"
-  }
+  },
+  "gitHead": "2a0b2c984726753e8f4f3c17c63316b04051a942"
 }

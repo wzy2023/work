@@ -20,11 +20,11 @@ const jsonSchema: z.ZodType<Prisma.InputJsonValue> = z.lazy(() =>
 
 type SchemaType = z.ZodType<Prisma.HabitItemCreateInput>;
 export const HabitItemCreateInputObjectSchema: SchemaType = z.object({
-    id: z.string().optional(), createdAt: z.union([z.date().optional(), z.string().datetime().optional()]), updatedAt: z.union([z.union([z.date(), z.string().datetime().optional()]),
+    id: z.string().optional().optional(), createdAt: z.union([z.date().optional(), z.string().datetime().optional()]).optional(), updatedAt: z.union([z.union([z.date(), z.string().datetime().optional()]),
     z.null()]).optional().nullable(), isDeleted: z.union([z.boolean(),
     z.null()]).optional().nullable(), name: z.string(), sort: z.union([z.number(),
-    z.null()]).optional().nullable(), enable: z.union([z.boolean(),
+    z.null()]).optional().nullable(), enabled: z.union([z.boolean(),
     z.null()]).optional().nullable(), count: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
         jsonSchema]).optional(), frequency: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
-            jsonSchema]).optional(), group: z.lazy(() => HabitGroupCreateNestedOneWithoutChildrenInputObjectSchema), records: z.lazy(() => HabitRecordCreateNestedManyWithoutHabitInputObjectSchema).optional()
+            jsonSchema]).optional(), group: z.lazy(() => HabitGroupCreateNestedOneWithoutChildrenInputObjectSchema), records: z.lazy(() => HabitRecordCreateNestedManyWithoutHabitInputObjectSchema).optional().optional()
 }).strict() as SchemaType;

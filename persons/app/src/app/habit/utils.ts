@@ -1,8 +1,13 @@
-// 给文本添加换行符
-export const formatTextWrap = (str: string): string => {
-  if (str.length <= 3) {
-    return str
+import type { Habit, HabitFrequencyType } from '@/api/types'
+import { dayjs } from '@/utils'
+
+export const getNewExecItem = (habit: Habit.ItemRecord) => {
+  return {
+    count: habit.count?.single || 1,
+    time: dayjs().format('YYYY-MM-DD HH:mm:ss'),
   }
-  const splitPos = Math.min(3, Math.ceil(str.length / 2))
-  return str.substring(0, splitPos) + '\n' + formatTextWrap(str.substring(splitPos))
+}
+
+export const getNum = (data?: Habit.ItemRecord[], type?: HabitFrequencyType) => {
+  return data?.filter(item => item.frequency?.type === type).length
 }

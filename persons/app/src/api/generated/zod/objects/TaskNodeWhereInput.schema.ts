@@ -17,7 +17,7 @@ import type { Prisma } from '@prisma/client';
 type SchemaType = z.ZodType<Prisma.TaskNodeWhereInput>;
 export const TaskNodeWhereInputObjectSchema: SchemaType = z.object({
     AND: z.union([z.lazy(() => TaskNodeWhereInputObjectSchema),
-    z.lazy(() => TaskNodeWhereInputObjectSchema).array()]).optional(), OR: z.lazy(() => TaskNodeWhereInputObjectSchema).array().optional(), NOT: z.union([z.lazy(() => TaskNodeWhereInputObjectSchema),
+    z.lazy(() => TaskNodeWhereInputObjectSchema).array()]).optional(), OR: z.lazy(() => TaskNodeWhereInputObjectSchema).array().optional().optional(), NOT: z.union([z.lazy(() => TaskNodeWhereInputObjectSchema),
     z.lazy(() => TaskNodeWhereInputObjectSchema).array()]).optional(), id: z.union([z.lazy(() => StringFilterObjectSchema),
     z.string()]).optional(), createdAt: z.union([z.lazy(() => DateTimeFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()])]).optional(), updatedAt: z.union([z.lazy(() => DateTimeNullableFilterObjectSchema),
@@ -25,5 +25,5 @@ export const TaskNodeWhereInputObjectSchema: SchemaType = z.object({
     z.null()]).optional().nullable(), isDeleted: z.union([z.lazy(() => BoolNullableFilterObjectSchema),
     z.boolean(),
     z.null()]).optional().nullable(), type: z.union([z.lazy(() => StringFilterObjectSchema),
-    z.string()]).optional(), data: z.lazy(() => JsonFilterObjectSchema).optional()
+    z.string()]).optional(), data: z.lazy(() => JsonFilterObjectSchema).optional().optional()
 }).strict() as SchemaType;

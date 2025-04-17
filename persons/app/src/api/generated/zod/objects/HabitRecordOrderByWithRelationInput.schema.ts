@@ -15,9 +15,9 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitRecordOrderByWithRelationInput>;
 export const HabitRecordOrderByWithRelationInputObjectSchema: SchemaType = z.object({
-    id: z.lazy(() => SortOrderSchema).optional(), createdAt: z.lazy(() => SortOrderSchema).optional(), updatedAt: z.union([z.lazy(() => SortOrderSchema),
+    id: z.lazy(() => SortOrderSchema).optional().optional(), createdAt: z.lazy(() => SortOrderSchema).optional().optional(), updatedAt: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), isDeleted: z.union([z.lazy(() => SortOrderSchema),
-    z.lazy(() => SortOrderInputObjectSchema)]).optional(), date: z.lazy(() => SortOrderSchema).optional(), execList: z.union([z.lazy(() => SortOrderSchema),
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), date: z.lazy(() => SortOrderSchema).optional().optional(), execList: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), reason: z.union([z.lazy(() => SortOrderSchema),
-    z.lazy(() => SortOrderInputObjectSchema)]).optional(), habitId: z.lazy(() => SortOrderSchema).optional(), habit: z.lazy(() => HabitItemOrderByWithRelationInputObjectSchema).optional(), _relevance: z.lazy(() => HabitRecordOrderByRelevanceInputObjectSchema).optional()
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), habitId: z.lazy(() => SortOrderSchema).optional().optional(), habit: z.lazy(() => HabitItemOrderByWithRelationInputObjectSchema).optional().optional(), _relevance: z.lazy(() => HabitRecordOrderByRelevanceInputObjectSchema).optional().optional()
 }).strict() as SchemaType;

@@ -12,5 +12,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.TaskEdgeMinOrderByAggregateInput>;
 export const TaskEdgeMinOrderByAggregateInputObjectSchema: SchemaType = z.object({
-    id: z.lazy(() => SortOrderSchema).optional(), createdAt: z.lazy(() => SortOrderSchema).optional(), updatedAt: z.lazy(() => SortOrderSchema).optional(), isDeleted: z.lazy(() => SortOrderSchema).optional(), type: z.lazy(() => SortOrderSchema).optional(), source: z.lazy(() => SortOrderSchema).optional(), target: z.lazy(() => SortOrderSchema).optional()
+    id: z.lazy(() => SortOrderSchema).optional().optional(), createdAt: z.lazy(() => SortOrderSchema).optional().optional(), updatedAt: z.lazy(() => SortOrderSchema).optional().optional(), isDeleted: z.lazy(() => SortOrderSchema).optional().optional(), type: z.lazy(() => SortOrderSchema).optional().optional(), source: z.lazy(() => SortOrderSchema).optional().optional(), target: z.lazy(() => SortOrderSchema).optional().optional()
 }).strict() as SchemaType;

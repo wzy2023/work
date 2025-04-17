@@ -11,7 +11,7 @@ import { HabitGroupIncludeObjectSchema } from './HabitGroupInclude.schema';
 
 import type { Prisma } from '@prisma/client';
 
-type SchemaType = z.ZodType<Prisma.HabitGroupDefaultArgs>;
-export const HabitGroupDefaultArgsObjectSchema: SchemaType = z.object({
-    select: z.lazy(() => HabitGroupSelectObjectSchema).optional(), include: z.lazy(() => HabitGroupIncludeObjectSchema).optional()
+type SchemaType = z.ZodType<Prisma.HabitGroupArgs>;
+export const HabitGroupArgsObjectSchema: SchemaType = z.object({
+    select: z.lazy(() => HabitGroupSelectObjectSchema).optional().optional(), include: z.lazy(() => HabitGroupIncludeObjectSchema).optional().optional()
 }).strict() as SchemaType;

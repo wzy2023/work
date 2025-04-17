@@ -2,9 +2,10 @@
 
 import React, { useState } from 'react'
 
-import { DatePicker, Button, LeftOutlined, RightOutlined } from '../index'
+import { DatePicker, Button } from 'antd'
+import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 
-import { dayjs, type Dayjs } from '@/utils'
+import { dayjs, type Dayjs } from '@wzyjs/utils'
 
 import styles from './index.module.scss'
 
@@ -51,15 +52,17 @@ export const DateSwitcher = (props: DateSwitcherProps) => {
         allowClear={false}
         suffixIcon={null}
         className='w-40 text-center cursor-pointer'
-        bordered={false}
-        inputRender={props => (
-          <div {...props} className={isToday ? 'text-green-600' : ''}>
-            <span>{selectedDate.format('YYYY-MM-DD')}</span>
-            <span className='ml-2'>
-              (周{['日', '一', '二', '三', '四', '五', '六'][dayjs(selectedDate).day()]})
-            </span>
-          </div>
-        )}
+        style={{ border: 'none' }}
+        components={{
+          input: props => (
+            <div {...props} className={isToday ? 'text-green-600' : ''}>
+              <span>{selectedDate.format('YYYY-MM-DD')}</span>
+              <span style={{ marginLeft: 5 }}>
+                (周{['日', '一', '二', '三', '四', '五', '六'][dayjs(selectedDate).day()]})
+              </span>
+            </div>
+          ),
+        }}
       />
       <Button
         type='text'

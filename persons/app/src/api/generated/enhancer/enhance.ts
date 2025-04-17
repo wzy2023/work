@@ -15,6 +15,13 @@ import { Prisma, type PrismaClient } from '@prisma/client';
 import type * as _P from '@prisma/client';
 export type { PrismaClient };
 
+/**
+ * Infers the type of PrismaClient with ZenStack's enhancements.
+ * @example
+ * type EnhancedPrismaClient = Enhanced<typeof prisma>;
+ */
+export type Enhanced<Client> = Client;
+
 
 
 

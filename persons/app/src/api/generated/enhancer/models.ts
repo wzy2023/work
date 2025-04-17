@@ -5,4 +5,4 @@
 /* eslint-disable */
 // @ts-nocheck
 
-export type * from '@prisma/client';
+export * from '@prisma/client';

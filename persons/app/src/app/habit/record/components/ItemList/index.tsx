@@ -4,7 +4,7 @@ import { type FormInstance, Modal, SpacePro } from '@/components'
 import { HabitButton } from '../../../components/HabitButton'
 import { Detail } from './Detail'
 
-import { getNewExecItem } from '../../../const'
+import { getNewExecItem } from '../../../utils'
 import { useHabitRecordStore } from '../../store'
 
 import { useClick } from '@/hooks'

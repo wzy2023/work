@@ -33,7 +33,7 @@ export const calcStatus = (data: Habit.ItemRecord, date: Dayjs) => {
   }
 
   return {
-    [HabitStatusMode.Habit]: data.enable ? HabitProgressStatus.Enabled : HabitProgressStatus.Disabled,
+    [HabitStatusMode.Habit]: data.enabled ? HabitProgressStatus.Enabled : HabitProgressStatus.Disabled,
     [HabitStatusMode.Record]: check(),
   }
 }

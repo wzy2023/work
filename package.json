@@ -1,5 +1,5 @@
 {
-  "name": "newwork",
+  "name": "work",
   "private": true,
   "version": "1.0.0",
   "workspaces": [
@@ -9,13 +9,11 @@
     "uis/*"
   ],
   "scripts": {
-    "clean": "lerna clean --yes",
+    "clean": "rm -rf node_modules && lerna clean --yes",
     "bootstrap": "bun install",
     "re-install": "npm run clean && npm run bootstrap",
     "libs-dev": "lerna run dev --parallel --scope @wzyjs/*",
-    "libs-build": "lerna run build --parallel --scope @wzyjs/*"
-  },
-  "devDependencies": {
-    "eslint-plugin-perfectionist": "^4.9.0"
+    "libs-build": "lerna run build --parallel --scope @wzyjs/*",
+    "publish-uis": "lerna publish --scope @wzyjs/antd --scope @wzyjs/components --scope @wzyjs/pages"
   }
 }

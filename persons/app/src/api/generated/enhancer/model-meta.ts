@@ -47,17 +47,14 @@ const metadata = {
                     isArray: true,
                     backLink: 'group',
                 },
-            }
-            , uniqueConstraints: {
+            }, uniqueConstraints: {
                 id: {
                     name: "id",
                     fields: ["id"]
                 },
-            }
-            ,
+            },
             attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
-        }
-        ,
+        },
         habitItem: {
             name: 'HabitItem', fields: {
                 id: {
@@ -87,8 +84,8 @@ const metadata = {
                     type: "Int",
                     isOptional: true,
                     attributes: [{ "name": "@default", "args": [{ "value": 999 }] }],
-                }, enable: {
-                    name: "enable",
+                }, enabled: {
+                    name: "enabled",
                     type: "Boolean",
                     isOptional: true,
                 }, count: {
@@ -119,17 +116,14 @@ const metadata = {
                     isArray: true,
                     backLink: 'habit',
                 },
-            }
-            , uniqueConstraints: {
+            }, uniqueConstraints: {
                 id: {
                     name: "id",
                     fields: ["id"]
                 },
-            }
-            ,
+            },
             attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
-        }
-        ,
+        },
         habitRecord: {
             name: 'HabitRecord', fields: {
                 id: {
@@ -178,24 +172,21 @@ const metadata = {
                     isForeignKey: true,
                     relationField: 'habit',
                 },
-            }
-            , uniqueConstraints: {
+            }, uniqueConstraints: {
                 id: {
                     name: "id",
                     fields: ["id"]
                 },
-            }
-            ,
+            },
             attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
-        }
-        ,
+        },
         taskNode: {
             name: 'TaskNode', fields: {
                 id: {
                     name: "id",
                     type: "String",
                     isId: true,
-                    attributes: [{ "name": "@id", "args": [] }],
+                    attributes: [{ "name": "@id", "args": [] }, { "name": "@default", "args": [] }],
                 }, createdAt: {
                     name: "createdAt",
                     type: "DateTime",
@@ -217,24 +208,21 @@ const metadata = {
                     name: "data",
                     type: "Json",
                 },
-            }
-            , uniqueConstraints: {
+            }, uniqueConstraints: {
                 id: {
                     name: "id",
                     fields: ["id"]
                 },
-            }
-            ,
+            },
             attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
-        }
-        ,
+        },
         taskEdge: {
             name: 'TaskEdge', fields: {
                 id: {
                     name: "id",
                     type: "String",
                     isId: true,
-                    attributes: [{ "name": "@id", "args": [] }],
+                    attributes: [{ "name": "@id", "args": [] }, { "name": "@default", "args": [] }],
                 }, createdAt: {
                     name: "createdAt",
                     type: "DateTime",
@@ -259,21 +247,19 @@ const metadata = {
                     name: "target",
                     type: "String",
                 },
-            }
-            , uniqueConstraints: {
+            }, uniqueConstraints: {
                 id: {
                     name: "id",
                     fields: ["id"]
                 },
-            }
-            ,
+            },
             attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
-        }
-        ,
-    }
-    ,
+        },
+
+    },
     deleteCascade: {
-    }
-    ,
+
+    },
+
 };
 export default metadata;

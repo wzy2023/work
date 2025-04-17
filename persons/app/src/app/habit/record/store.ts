@@ -2,9 +2,9 @@ import { create } from 'zustand'
 import { dayjs, type Dayjs } from '@/utils'
 import { type HabitFrequencyType, type HabitProgressStatus } from '@/api/types'
 
-interface FilterValue {
-  frequency?: HabitFrequencyType
-  status?: HabitProgressStatus
+export interface FilterValue {
+  frequency?: HabitFrequencyType | null
+  status?: HabitProgressStatus | null
 }
 
 interface HabitRecordStoreValue {
@@ -21,7 +21,10 @@ export const useHabitRecordStore = create<HabitRecordStoreValue>(set => ({
     set({ selectedDate: selectedDate.startOf('day') })
   },
 
-  filterValues: {},
+  filterValues: {
+    frequency: null,
+    status: null,
+  },
   setFilterValues: (filterValues: FilterValue) => {
     set(state => ({
       filterValues: {

@@ -87,8 +87,10 @@ export const getLayoutedElements = (nodes: Node[], edges: Edge[]): Node[] => {
 
   return nodes.map(node => {
     const nodeWithPosition = dagreGraph.node(node.id)
-    const x = nodeWithPosition.x - (node.type === 'taskCard' ? (node.measured?.width ?? 0) / 2.4 : 0)
+    const x = nodeWithPosition.x - (node.type === 'taskCard' ? (node.measured?.width ?? 0) / 3 : 0)
     const y = nodeWithPosition.y - (node.measured?.height ?? 0) / 2
+    // const x = nodeWithPosition.x - (node.measured?.width ?? 0) / 2
+    // const y = nodeWithPosition.y - (node.measured?.height ?? 0) / 2
     return { ...node, position: { x, y } }
   })
 }

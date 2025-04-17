@@ -6,12 +6,12 @@
 // @ts-nocheck
 
 import { z } from 'zod';
-import { HabitItemDefaultArgsObjectSchema } from './HabitItemDefaultArgs.schema';
+import { HabitItemArgsObjectSchema } from './HabitItemArgs.schema';
 
 import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitRecordInclude>;
 export const HabitRecordIncludeObjectSchema: SchemaType = z.object({
     habit: z.union([z.boolean(),
-    z.lazy(() => HabitItemDefaultArgsObjectSchema)]).optional()
+    z.lazy(() => HabitItemArgsObjectSchema)]).optional()
 }).strict() as SchemaType;

@@ -83,11 +83,11 @@ export const Group = (props: NodeRecord) => {
                 <div
                   onDoubleClick={onDoubleClick}
                   style={{
-                    padding: 10,
+                    padding: '5px 10px',
                     color: !props?.data.title ? '#ddd' : '',
                   }}
                 >
-                  {props?.data.title}
+                  {props?.data.title || '双击编辑'}
                 </div>
               )}
             </Add>

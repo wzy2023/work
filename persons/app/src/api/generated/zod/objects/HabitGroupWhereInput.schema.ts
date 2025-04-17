@@ -19,7 +19,7 @@ import type { Prisma } from '@prisma/client';
 type SchemaType = z.ZodType<Prisma.HabitGroupWhereInput>;
 export const HabitGroupWhereInputObjectSchema: SchemaType = z.object({
     AND: z.union([z.lazy(() => HabitGroupWhereInputObjectSchema),
-    z.lazy(() => HabitGroupWhereInputObjectSchema).array()]).optional(), OR: z.lazy(() => HabitGroupWhereInputObjectSchema).array().optional(), NOT: z.union([z.lazy(() => HabitGroupWhereInputObjectSchema),
+    z.lazy(() => HabitGroupWhereInputObjectSchema).array()]).optional(), OR: z.lazy(() => HabitGroupWhereInputObjectSchema).array().optional().optional(), NOT: z.union([z.lazy(() => HabitGroupWhereInputObjectSchema),
     z.lazy(() => HabitGroupWhereInputObjectSchema).array()]).optional(), id: z.union([z.lazy(() => StringFilterObjectSchema),
     z.string()]).optional(), createdAt: z.union([z.lazy(() => DateTimeFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()])]).optional(), updatedAt: z.union([z.lazy(() => DateTimeNullableFilterObjectSchema),
@@ -31,5 +31,5 @@ export const HabitGroupWhereInputObjectSchema: SchemaType = z.object({
     z.number(),
     z.null()]).optional().nullable(), color: z.union([z.lazy(() => StringNullableFilterObjectSchema),
     z.string(),
-    z.null()]).optional().nullable(), children: z.lazy(() => HabitItemListRelationFilterObjectSchema).optional()
+    z.null()]).optional().nullable(), children: z.lazy(() => HabitItemListRelationFilterObjectSchema).optional().optional()
 }).strict() as SchemaType;

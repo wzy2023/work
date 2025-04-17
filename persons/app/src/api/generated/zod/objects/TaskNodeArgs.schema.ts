@@ -6,11 +6,11 @@
 // @ts-nocheck
 
 import { z } from 'zod';
-import { TaskEdgeSelectObjectSchema } from './TaskEdgeSelect.schema';
+import { TaskNodeSelectObjectSchema } from './TaskNodeSelect.schema';
 
 import type { Prisma } from '@prisma/client';
 
-type SchemaType = z.ZodType<Prisma.TaskEdgeDefaultArgs>;
-export const TaskEdgeDefaultArgsObjectSchema: SchemaType = z.object({
-    select: z.lazy(() => TaskEdgeSelectObjectSchema).optional()
+type SchemaType = z.ZodType<Prisma.TaskNodeArgs>;
+export const TaskNodeArgsObjectSchema: SchemaType = z.object({
+    select: z.lazy(() => TaskNodeSelectObjectSchema).optional().optional()
 }).strict() as SchemaType;

@@ -4,7 +4,7 @@ import { Button, Form, type FormInstance, InputNumber, SpacePro, Input, Select }
 
 import type { Habit } from '@/api/types'
 
-import { getNewExecItem } from '../../../const'
+import { getNewExecItem } from '../../../utils'
 
 interface DetailProps {
   data: Habit.ItemRecord

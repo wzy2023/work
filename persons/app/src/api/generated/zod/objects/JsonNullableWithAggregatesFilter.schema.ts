@@ -22,9 +22,9 @@ const jsonSchema: z.ZodType<Prisma.InputJsonValue> = z.lazy(() =>
 type SchemaType = z.ZodType<Prisma.JsonNullableWithAggregatesFilter>;
 export const JsonNullableWithAggregatesFilterObjectSchema: SchemaType = z.object({
     equals: z.union([jsonSchema,
-        z.lazy(() => JsonNullValueFilterSchema)]).optional(), path: z.string().optional(), mode: z.lazy(() => QueryModeSchema).optional(), string_contains: z.string().optional(), string_starts_with: z.string().optional(), string_ends_with: z.string().optional(), array_starts_with: z.union([jsonSchema,
+        z.lazy(() => JsonNullValueFilterSchema)]).optional(), path: z.string().optional().optional(), mode: z.lazy(() => QueryModeSchema).optional().optional(), string_contains: z.string().optional().optional(), string_starts_with: z.string().optional().optional(), string_ends_with: z.string().optional().optional(), array_starts_with: z.union([jsonSchema,
             z.null()]).optional().nullable(), array_ends_with: z.union([jsonSchema,
                 z.null()]).optional().nullable(), array_contains: z.union([jsonSchema,
-                    z.null()]).optional().nullable(), lt: jsonSchema.optional(), lte: jsonSchema.optional(), gt: jsonSchema.optional(), gte: jsonSchema.optional(), not: z.union([jsonSchema,
-                        z.lazy(() => JsonNullValueFilterSchema)]).optional(), _count: z.lazy(() => NestedIntNullableFilterObjectSchema).optional(), _min: z.lazy(() => NestedJsonNullableFilterObjectSchema).optional(), _max: z.lazy(() => NestedJsonNullableFilterObjectSchema).optional()
+                    z.null()]).optional().nullable(), lt: jsonSchema.optional().optional(), lte: jsonSchema.optional().optional(), gt: jsonSchema.optional().optional(), gte: jsonSchema.optional().optional(), not: z.union([jsonSchema,
+                        z.lazy(() => JsonNullValueFilterSchema)]).optional(), _count: z.lazy(() => NestedIntNullableFilterObjectSchema).optional().optional(), _min: z.lazy(() => NestedJsonNullableFilterObjectSchema).optional().optional(), _max: z.lazy(() => NestedJsonNullableFilterObjectSchema).optional().optional()
 }).strict() as SchemaType;

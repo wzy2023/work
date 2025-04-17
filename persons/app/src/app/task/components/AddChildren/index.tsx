@@ -1,9 +1,8 @@
 import { type Node, useReactFlow } from '@xyflow/react'
 import { PlusCircleOutlined } from '@/components'
 
-import { type NodeType } from '../../nodes'
 import { createNodeEdge } from '../../utils'
-import { type NodeRecord } from '../../types'
+import { type NodeRecord, type NodeType } from '../../types'
 
 interface AddChildrenProps {
   parentNode: NodeRecord

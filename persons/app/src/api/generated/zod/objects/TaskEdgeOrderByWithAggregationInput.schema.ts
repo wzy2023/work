@@ -16,7 +16,7 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.TaskEdgeOrderByWithAggregationInput>;
 export const TaskEdgeOrderByWithAggregationInputObjectSchema: SchemaType = z.object({
-    id: z.lazy(() => SortOrderSchema).optional(), createdAt: z.lazy(() => SortOrderSchema).optional(), updatedAt: z.union([z.lazy(() => SortOrderSchema),
+    id: z.lazy(() => SortOrderSchema).optional().optional(), createdAt: z.lazy(() => SortOrderSchema).optional().optional(), updatedAt: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), isDeleted: z.union([z.lazy(() => SortOrderSchema),
-    z.lazy(() => SortOrderInputObjectSchema)]).optional(), type: z.lazy(() => SortOrderSchema).optional(), source: z.lazy(() => SortOrderSchema).optional(), target: z.lazy(() => SortOrderSchema).optional(), _count: z.lazy(() => TaskEdgeCountOrderByAggregateInputObjectSchema).optional(), _max: z.lazy(() => TaskEdgeMaxOrderByAggregateInputObjectSchema).optional(), _min: z.lazy(() => TaskEdgeMinOrderByAggregateInputObjectSchema).optional()
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), type: z.lazy(() => SortOrderSchema).optional().optional(), source: z.lazy(() => SortOrderSchema).optional().optional(), target: z.lazy(() => SortOrderSchema).optional().optional(), _count: z.lazy(() => TaskEdgeCountOrderByAggregateInputObjectSchema).optional().optional(), _max: z.lazy(() => TaskEdgeMaxOrderByAggregateInputObjectSchema).optional().optional(), _min: z.lazy(() => TaskEdgeMinOrderByAggregateInputObjectSchema).optional().optional()
 }).strict() as SchemaType;

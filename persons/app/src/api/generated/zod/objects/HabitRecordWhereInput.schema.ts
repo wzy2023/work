@@ -20,7 +20,7 @@ import type { Prisma } from '@prisma/client';
 type SchemaType = z.ZodType<Prisma.HabitRecordWhereInput>;
 export const HabitRecordWhereInputObjectSchema: SchemaType = z.object({
     AND: z.union([z.lazy(() => HabitRecordWhereInputObjectSchema),
-    z.lazy(() => HabitRecordWhereInputObjectSchema).array()]).optional(), OR: z.lazy(() => HabitRecordWhereInputObjectSchema).array().optional(), NOT: z.union([z.lazy(() => HabitRecordWhereInputObjectSchema),
+    z.lazy(() => HabitRecordWhereInputObjectSchema).array()]).optional(), OR: z.lazy(() => HabitRecordWhereInputObjectSchema).array().optional().optional(), NOT: z.union([z.lazy(() => HabitRecordWhereInputObjectSchema),
     z.lazy(() => HabitRecordWhereInputObjectSchema).array()]).optional(), id: z.union([z.lazy(() => StringFilterObjectSchema),
     z.string()]).optional(), createdAt: z.union([z.lazy(() => DateTimeFilterObjectSchema),
     z.union([z.date(), z.string().datetime().optional()])]).optional(), updatedAt: z.union([z.lazy(() => DateTimeNullableFilterObjectSchema),
@@ -28,7 +28,7 @@ export const HabitRecordWhereInputObjectSchema: SchemaType = z.object({
     z.null()]).optional().nullable(), isDeleted: z.union([z.lazy(() => BoolNullableFilterObjectSchema),
     z.boolean(),
     z.null()]).optional().nullable(), date: z.union([z.lazy(() => DateTimeFilterObjectSchema),
-    z.union([z.date(), z.string().datetime().optional()])]).optional(), execList: z.lazy(() => JsonNullableFilterObjectSchema).optional(), reason: z.union([z.lazy(() => StringNullableFilterObjectSchema),
+    z.union([z.date(), z.string().datetime().optional()])]).optional(), execList: z.lazy(() => JsonNullableFilterObjectSchema).optional().optional(), reason: z.union([z.lazy(() => StringNullableFilterObjectSchema),
     z.string(),
     z.null()]).optional().nullable(), habitId: z.union([z.lazy(() => StringFilterObjectSchema),
     z.string()]).optional(), habit: z.union([z.lazy(() => HabitItemScalarRelationFilterObjectSchema),

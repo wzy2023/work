@@ -12,6 +12,6 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.NestedStringFilter>;
 export const NestedStringFilterObjectSchema: SchemaType = z.object({
-    equals: z.string().optional(), in: z.string().array().optional(), notIn: z.string().array().optional(), lt: z.string().optional(), lte: z.string().optional(), gt: z.string().optional(), gte: z.string().optional(), contains: z.string().optional(), startsWith: z.string().optional(), endsWith: z.string().optional(), search: z.string().optional(), not: z.union([z.string(),
+    equals: z.string().optional().optional(), in: z.string().array().optional().optional(), notIn: z.string().array().optional().optional(), lt: z.string().optional().optional(), lte: z.string().optional().optional(), gt: z.string().optional().optional(), gte: z.string().optional().optional(), contains: z.string().optional().optional(), startsWith: z.string().optional().optional(), endsWith: z.string().optional().optional(), search: z.string().optional().optional(), not: z.union([z.string(),
     z.lazy(() => NestedStringFilterObjectSchema)]).optional()
 }).strict() as SchemaType;

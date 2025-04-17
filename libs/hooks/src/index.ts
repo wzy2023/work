@@ -9,6 +9,7 @@ export * from './base/useVisibleInfo'
 export * from './base/useClick'
 
 export * from './antd/useForm'
+export * from './antd/usePaginationState'
 export * from './antd/useHideFooter'
 export * from './antd/useHovered'
 export * from './antd/useModalFooter'

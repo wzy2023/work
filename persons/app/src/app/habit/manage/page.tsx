@@ -15,7 +15,10 @@ export default () => {
 
   const { listState } = useHabitGroupCRUD({
     list: {
-      query: { orderBy: { sort: 'asc' } },
+      query: {
+        orderBy: { sort: 'asc' },
+        include: { children: true },
+      },
     },
   })
 
@@ -28,15 +31,15 @@ export default () => {
 
       <div className='flex justify-between items-center mb-4'>
         <RadioButton
-          value={filterValues.enable}
+          value={filterValues.enabled}
           options={enableOptions.enable}
-          onChange={enable => setFilterValues({ enable })}
+          onChange={enabled => setFilterValues({ enabled })}
         />
       </div>
 
       <Spin spinning={listState.isLoading} delay={100}>
         <List
-          list={listState.data}
+          list={listState.data as any[]}
           onSuccess={listState.refetch}
         />
       </Spin>

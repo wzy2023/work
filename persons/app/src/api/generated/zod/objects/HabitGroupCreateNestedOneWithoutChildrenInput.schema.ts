@@ -15,5 +15,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.HabitGroupCreateNestedOneWithoutChildrenInput>;
 export const HabitGroupCreateNestedOneWithoutChildrenInputObjectSchema: SchemaType = z.object({
-    create: z.union([z.lazy(() => HabitGroupCreateWithoutChildrenInputObjectSchema), z.lazy(() => HabitGroupUncheckedCreateWithoutChildrenInputObjectSchema)]).optional(), connectOrCreate: z.lazy(() => HabitGroupCreateOrConnectWithoutChildrenInputObjectSchema).optional(), connect: z.lazy(() => HabitGroupWhereUniqueInputObjectSchema).optional()
+    create: z.union([z.lazy(() => HabitGroupCreateWithoutChildrenInputObjectSchema), z.lazy(() => HabitGroupUncheckedCreateWithoutChildrenInputObjectSchema)]).optional(), connectOrCreate: z.lazy(() => HabitGroupCreateOrConnectWithoutChildrenInputObjectSchema).optional().optional(), connect: z.lazy(() => HabitGroupWhereUniqueInputObjectSchema).optional().optional()
 }).strict() as SchemaType;

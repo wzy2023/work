@@ -1,6 +1,6 @@
 {
   "name": "@wzyjs/cli",
-  "version": "0.3.0",
+  "version": "0.2.37",
   "description": "description",
   "author": "wzy",
   "scripts": {
@@ -20,5 +20,6 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^9.0.13"
-  }
+  },
+  "gitHead": "2a0b2c984726753e8f4f3c17c63316b04051a942"
 }

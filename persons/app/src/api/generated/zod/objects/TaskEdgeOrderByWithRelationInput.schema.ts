@@ -14,7 +14,7 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.TaskEdgeOrderByWithRelationInput>;
 export const TaskEdgeOrderByWithRelationInputObjectSchema: SchemaType = z.object({
-    id: z.lazy(() => SortOrderSchema).optional(), createdAt: z.lazy(() => SortOrderSchema).optional(), updatedAt: z.union([z.lazy(() => SortOrderSchema),
+    id: z.lazy(() => SortOrderSchema).optional().optional(), createdAt: z.lazy(() => SortOrderSchema).optional().optional(), updatedAt: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), isDeleted: z.union([z.lazy(() => SortOrderSchema),
-    z.lazy(() => SortOrderInputObjectSchema)]).optional(), type: z.lazy(() => SortOrderSchema).optional(), source: z.lazy(() => SortOrderSchema).optional(), target: z.lazy(() => SortOrderSchema).optional(), _relevance: z.lazy(() => TaskEdgeOrderByRelevanceInputObjectSchema).optional()
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), type: z.lazy(() => SortOrderSchema).optional().optional(), source: z.lazy(() => SortOrderSchema).optional().optional(), target: z.lazy(() => SortOrderSchema).optional().optional(), _relevance: z.lazy(() => TaskEdgeOrderByRelevanceInputObjectSchema).optional().optional()
 }).strict() as SchemaType;
