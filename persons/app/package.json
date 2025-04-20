@@ -1,6 +1,6 @@
 {
   "name": "app",
-  "version": "0.1.0",
+  "version": "0.2.37",
   "private": true,
   "type": "module",
   "scripts": {
@@ -48,19 +48,19 @@
   },
   "devDependencies": {
     "@types/dagre": "^0.7.52",
+    "@types/eslint": "^8.56.10",
     "@types/node": "^20.14.10",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "@types/eslint": "^8.56.10",
     "@typescript-eslint/eslint-plugin": "^8.1.0",
     "@typescript-eslint/parser": "^8.1.0",
     "eslint": "^8.57.0",
-    "sass": "^1.86.0",
     "eslint-config-next": "^15.0.1",
     "postcss": "^8.4.39",
     "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "prisma": "^5.14.0",
+    "sass": "^1.86.0",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.5.3"
   },
