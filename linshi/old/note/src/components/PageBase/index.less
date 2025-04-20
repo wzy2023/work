@@ -1,0 +1,32 @@
+.page {
+  overflow: hidden;
+  background-color: #fff;
+  height: calc(100vh - 66px);
+
+  .col {
+    padding: 10px;
+    height: 100%;
+    overflow: auto;
+  }
+}
+
+// 中间内容区域
+.content {
+  width: 100%;
+  padding: 30px 40px;
+
+  :global {
+    .ant-page-header {
+      padding: 0;
+    }
+  }
+}
+
+// 右侧跳转列表
+.anchorList {
+  margin-top: 30px;
+
+  a {
+    font-size: 13px;
+  }
+}

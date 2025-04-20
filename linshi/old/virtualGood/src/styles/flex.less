@@ -1,0 +1,126 @@
+// flex样式
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.flexCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexJcC {
+  justify-content: center;
+}
+
+.flexJcFe {
+  justify-content: flex-end;
+}
+
+.flexJcSa {
+  justify-content: space-around;
+}
+
+.flexJcSb {
+  justify-content: space-between;
+}
+
+.flexAiFs {
+  align-items: flex-start;
+}
+
+.flexAiC {
+  align-items: center;
+}
+
+.flexAiFe {
+  align-items: flex-end;
+}
+
+.flexAcC {
+  align-content: center;
+}
+
+.flexAcSa {
+  align-content: space-around;
+}
+
+.flexAcSb {
+  align-content: space-between;
+}
+
+.flexRowJcC {
+  .flexRow();
+  .flexJcC();
+}
+
+.flexRowJcSb {
+  .flexRow();
+  .flexJcSb();
+}
+
+.flexRowAiC {
+  .flexRow();
+  .flexAiC();
+}
+
+.flexRowJcCAiC {
+  .flexRow();
+  .flexJcC();
+  .flexAiC();
+}
+
+.flexRowJcSbAiC {
+  .flexRow();
+  .flexJcSb();
+  .flexAiC();
+}
+
+.flexColJcC {
+  .flexCol();
+  .flexJcC();
+}
+
+.flexColJcSb {
+  .flexCol();
+  .flexJcSb();
+}
+
+.flexColAiC {
+  .flexCol();
+  .flexAiC();
+}
+
+.flexColJcCAiC {
+  .flexCol();
+  .flexJcC();
+  .flexAiC();
+}
+
+.flexColJcSbAiC {
+  .flexCol();
+  .flexJcSb();
+  .flexAiC();
+}
+
+.flexWrap {
+  flex-wrap: wrap;
+}
+
+.flexNoWrap {
+  flex-wrap: nowrap;
+}
+
+@lengths: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100; //, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000;
+
+// flex1
+.flex (@index) when (@index <= length(@lengths)) {
+  @test: extract(@lengths, @index);
+  .flex@{test} {
+    flex: @test;
+  }
+  .flex(@index+1);
+}
+
+.flex(1);

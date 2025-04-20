@@ -1,0 +1,7 @@
+export * as user from './routes/user'
+export * as project from './routes/project'
+export * as prompt from './routes/prompt'
+export * as material from './routes/material'
+export * as work from './routes/work'
+export * as account from './routes/account'
+export * as release from './routes/release'

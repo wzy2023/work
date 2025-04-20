@@ -1,0 +1,10 @@
+export * from './User'
+export * from './TaskLog'
+export * from './NeedJob'
+export * from './Copywriter'
+
+export * from './quiz/Profession'
+export * from './quiz/Tech'
+export * from './quiz/Question'
+export * from './quiz/QuestionAttr'
+export * from './quiz/UserInfo'

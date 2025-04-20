@@ -1,0 +1,140 @@
+// 下面是比较通用的样式
+// 滚动条凹槽的颜色，还可以设置边框属性
+::-webkit-scrollbar-track-piece {
+  background-color: #f8f8f8;
+}
+
+// 滚动条的宽度
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  display: none;
+}
+
+// 滚动条的设置
+::-webkit-scrollbar-thumb {
+  background-color: #f6f6f6;
+  background-clip: padding-box;
+}
+
+// 滚动条的设置
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ddd;
+}
+
+// 勾选文本的颜色
+div, span {
+  &::selection {
+    background-color: #1890ff;
+  }
+}
+
+// 下面是本项目的自定义样式
+
+// 顶部导航栏
+.ant-pro-layout-header {
+  border-bottom: rgba() !important;
+  background-color: transparent !important;
+  box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.05);
+
+  // 导航栏居右
+  .ant-pro-top-nav-header-menu .ant-pro-top-nav-header-base-menu {
+    justify-content: flex-end;
+
+    // 导航栏高度
+    .ant-menu-item {
+      line-height: 54px !important;
+    }
+
+    // 菜单项目选中或hover上去后
+    .ant-menu-item:hover, .ant-menu-item-selected {
+      span {
+        color: #1890ff;
+      }
+    }
+
+    // 当前菜单底部横线
+    .ant-menu-item-selected .ant-pro-base-menu-item-title {
+      border-bottom: solid 2px #1890ff;
+    }
+  }
+}
+
+// 左侧导航栏
+.ant-layout-sider {
+  // 背景色
+  background-color: #fff !important;
+  box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.05);
+
+  .ant-layout-sider-children {
+    margin-top: 50px !important;
+    border-right: none !important;
+    padding: 0 !important;
+
+    // 展开收缩按钮
+    .ant-pro-sider-collapsed-button {
+      display: none;
+    }
+
+    // 菜单区
+    .ant-menu {
+      span {
+        padding-left: 24px !important;
+      }
+
+      .ant-menu-item {
+        border-radius: 0 !important;
+
+        span {
+          padding-left: 24px !important;
+        }
+
+        &:hover {
+          color: rgba(0, 0, 0, 0.65) !important;
+          background-color: rgba(90, 75, 75, 0.03);
+        }
+      }
+
+      // 菜单展开状态按钮
+      .ant-menu-submenu-arrow {
+        color: #ddd;
+      }
+
+      // 菜单的选中状态
+      .ant-menu-item-selected {
+        background-color: #e6f7ff !important;
+        border-right: solid 3px #1890ff;
+        border-radius: 0;
+        transition: none;
+
+        span {
+          color: #1890ff;
+        }
+      }
+    }
+  }
+}
+
+// 主体
+.ant-pro-layout-content {
+  margin-block: 0 !important;
+  margin-inline: 0 !important;
+}
+
+// Alert里的代码样式
+.ant-alert {
+  xmp, td, span {
+    background: transparent !important;
+  }
+}
+
+// 代码框
+code[class*="language-"], pre[class*="language-"] {
+  text-shadow: none !important;
+  background-color: #23241f !important;
+  color: #fff !important;
+
+  .token.keyword {
+    color: #f92672;
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "extends": "./src/.umi/tsconfig.json",
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "noEmit": false,
+    "types": [
+      "./src/.umi/typings"
+    ],
+    "lib": [
+      "esnext",
+      "dom"
+    ]
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  }
+}

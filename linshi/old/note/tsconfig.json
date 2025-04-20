@@ -1,0 +1,9 @@
+{
+  "extends": "./src/.umi/tsconfig.json",
+  "compilerOptions": {
+    "moduleResolution": "nodenext",
+    "types": [
+      "./src/.umi/typings"
+    ]
+  }
+}
