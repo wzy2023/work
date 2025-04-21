@@ -8,6 +8,11 @@
     "products/*",
     "uis/*"
   ],
+  "command": {
+    "publish": {
+      "npmAccess": "public"
+    }
+  },
   "scripts": {
     "clean": "rm -rf node_modules && lerna clean --yes",
     "bootstrap": "bun install",
