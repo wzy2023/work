@@ -1,6 +1,6 @@
 {
   "name": "@wzyjs/antd",
-  "version": "0.2.37",
+  "version": "0.2.38",
   "description": "description",
   "author": "wzy",
   "main": "src/index.ts",
@@ -14,9 +14,9 @@
     "@ant-design/v5-patch-for-react-19": "^1.0.3"
   },
   "peerDependencies": {
-    "antd": "^5.24.3",
     "@wzyjs/hooks": "^0.2.37",
-    "@wzyjs/utils": "^0.2.37"
+    "@wzyjs/utils": "^0.2.37",
+    "antd": "^5.24.3"
   },
   "gitHead": "2a0b2c984726753e8f4f3c17c63316b04051a942"
 }
