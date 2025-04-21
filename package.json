@@ -8,17 +8,9 @@
     "products/*",
     "uis/*"
   ],
-  "command": {
-    "publish": {
-      "npmAccess": "public"
-    }
-  },
   "scripts": {
     "clean": "rm -rf node_modules && lerna clean --yes",
     "bootstrap": "bun install",
-    "re-install": "npm run clean && npm run bootstrap",
-    "libs-dev": "lerna run dev --parallel --scope @wzyjs/*",
-    "libs-build": "lerna run build --parallel --scope @wzyjs/*",
-    "publish-uis": "lerna publish --scope @wzyjs/antd --scope @wzyjs/components --scope @wzyjs/pages"
+    "re-install": "npm run clean && npm run bootstrap"
   }
 }
