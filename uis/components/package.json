@@ -35,5 +35,8 @@
     "@types/react-beautiful-dnd": "^13.1.8",
     "@types/react-syntax-highlighter": "^15.5.5"
   },
-  "gitHead": "84651ec35e3948a63a0830a1dfc662ce2764b54c"
+  "gitHead": "272513ecd0b28d577a444785b05f7a9ec962e79d",
+  "publishConfig": {
+    "access": "public"
+  }
 }
