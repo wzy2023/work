@@ -7,6 +7,39 @@
 
 const metadata = {
     models: {
+        commonGroupLayout: {
+            name: 'CommonGroupLayout', fields: {
+                id: {
+                    name: "id",
+                    type: "String",
+                    isId: true,
+                    attributes: [{ "name": "@id", "args": [] }, { "name": "@default", "args": [] }],
+                }, createdAt: {
+                    name: "createdAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@default", "args": [] }],
+                }, updatedAt: {
+                    name: "updatedAt",
+                    type: "DateTime",
+                    isOptional: true,
+                    attributes: [{ "name": "@updatedAt", "args": [] }],
+                }, isDeleted: {
+                    name: "isDeleted",
+                    type: "Boolean",
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": false }] }, { "name": "@omit", "args": [] }],
+                }, data: {
+                    name: "data",
+                    type: "Json",
+                },
+            }, uniqueConstraints: {
+                id: {
+                    name: "id",
+                    fields: ["id"]
+                },
+            },
+            attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
+        },
         habitGroup: {
             name: 'HabitGroup', fields: {
                 id: {
@@ -245,6 +278,54 @@ const metadata = {
                     type: "String",
                 }, target: {
                     name: "target",
+                    type: "String",
+                },
+            }, uniqueConstraints: {
+                id: {
+                    name: "id",
+                    fields: ["id"]
+                },
+            },
+            attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
+        },
+        buttonItem: {
+            name: 'ButtonItem', fields: {
+                id: {
+                    name: "id",
+                    type: "String",
+                    isId: true,
+                    attributes: [{ "name": "@id", "args": [] }, { "name": "@default", "args": [] }],
+                }, createdAt: {
+                    name: "createdAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@default", "args": [] }],
+                }, updatedAt: {
+                    name: "updatedAt",
+                    type: "DateTime",
+                    isOptional: true,
+                    attributes: [{ "name": "@updatedAt", "args": [] }],
+                }, isDeleted: {
+                    name: "isDeleted",
+                    type: "Boolean",
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": false }] }, { "name": "@omit", "args": [] }],
+                }, groupId: {
+                    name: "groupId",
+                    type: "String",
+                }, sort: {
+                    name: "sort",
+                    type: "Int",
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": 999 }] }],
+                }, type: {
+                    name: "type",
+                    type: "String",
+                }, title: {
+                    name: "title",
+                    type: "String",
+                    isOptional: true,
+                }, content: {
+                    name: "content",
                     type: "String",
                 },
             }, uniqueConstraints: {

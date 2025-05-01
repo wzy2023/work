@@ -12,7 +12,7 @@ export const useEventKey = (option: Option) => {
   const eds = _.cloneDeep(edges)
 
   const onKeyDown = (ev: KeyboardEvent<HTMLElement>) => {
-    const nodeId = ev.currentTarget.dataset.id
+    const nodeId = (ev.target as HTMLElement).dataset.id
     const node = nodes.find(item => item.id === nodeId)
 
     const fatherId = edges.find(item => item.target === nodeId)?.source

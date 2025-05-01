@@ -23,7 +23,8 @@ export const useHabitGroupCRUD = (option: Option = {}) => {
   const apiUtils = api.useUtils()
 
   const listState = api.habitGroup.findMany.useQuery(list ? list.query : {}, {
-    ...list.option,
+    enabled: typeof list === 'boolean' ? list : true,
+    ...list?.option,
   })
 
   const onSuccess = (tip: string) => {

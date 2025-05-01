@@ -1,6 +1,7 @@
-import { type ChangeEvent } from 'react'
+import { type ChangeEvent, useState } from 'react'
 
 import { Input as AntdInput } from '@/components'
+import { useDebounceEffect } from '@/hooks'
 
 interface InputProps {
   isEdit: boolean
@@ -13,9 +14,11 @@ interface InputProps {
 export const Input = (props: InputProps) => {
   const { isEdit, autoFocus, value, mode = 'input', onChange } = props
 
-  const onInput = (ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    onChange(ev.target.value || '')
-  }
+  const [text, setText] = useState<string>(value)
+
+  useDebounceEffect(() => {
+    onChange(text)
+  }, [text])
 
   const Com = mode === 'input' ? AntdInput : AntdInput.TextArea
 
@@ -23,9 +26,11 @@ export const Input = (props: InputProps) => {
     return (
       <Com
         autoFocus={autoFocus}
-        value={value}
-        onChange={onInput}
+        value={text}
         placeholder='请输入内容'
+        onChange={ev => {
+          setText(ev.target.value || '')
+        }}
       />
     )
   }

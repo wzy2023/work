@@ -9,11 +9,13 @@ import type { AnyTRPCRouter as AnyRouter } from '@trpc/server';
 import type { NextPageContext } from 'next';
 import { type CreateTRPCNext, createTRPCNext as _createTRPCNext } from '@trpc/next';
 import type { DeepOverrideAtPath } from './utils';
+import { ClientType as CommonGroupLayoutClientType } from "./CommonGroupLayout.next.type";
 import { ClientType as HabitGroupClientType } from "./HabitGroup.next.type";
 import { ClientType as HabitItemClientType } from "./HabitItem.next.type";
 import { ClientType as HabitRecordClientType } from "./HabitRecord.next.type";
 import { ClientType as TaskNodeClientType } from "./TaskNode.next.type";
 import { ClientType as TaskEdgeClientType } from "./TaskEdge.next.type";
+import { ClientType as ButtonItemClientType } from "./ButtonItem.next.type";
 
 export function createTRPCNext<
     TRouter extends AnyRouter,
@@ -25,9 +27,11 @@ export function createTRPCNext<
 }
 
 export interface ClientType<AppRouter extends AnyRouter> {
+    commonGroupLayout: CommonGroupLayoutClientType<AppRouter>;
     habitGroup: HabitGroupClientType<AppRouter>;
     habitItem: HabitItemClientType<AppRouter>;
     habitRecord: HabitRecordClientType<AppRouter>;
     taskNode: TaskNodeClientType<AppRouter>;
     taskEdge: TaskEdgeClientType<AppRouter>;
+    buttonItem: ButtonItemClientType<AppRouter>;
 }

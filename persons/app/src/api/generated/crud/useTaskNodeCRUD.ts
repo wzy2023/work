@@ -23,7 +23,8 @@ export const useTaskNodeCRUD = (option: Option = {}) => {
   const apiUtils = api.useUtils()
 
   const listState = api.taskNode.findMany.useQuery(list ? list.query : {}, {
-    ...list.option,
+    enabled: typeof list === 'boolean' ? list : true,
+    ...list?.option,
   })
 
   const onSuccess = (tip: string) => {

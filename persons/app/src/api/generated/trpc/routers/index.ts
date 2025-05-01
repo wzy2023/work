@@ -8,11 +8,13 @@
 import type { AnyTRPCRouter as AnyRouter } from "@trpc/server";
 import type { PrismaClient } from "@prisma/client";
 import { createTRPCRouter } from "@/api/trpc/trpc";
+import createCommonGroupLayoutRouter from "./CommonGroupLayout.router";
 import createHabitGroupRouter from "./HabitGroup.router";
 import createHabitItemRouter from "./HabitItem.router";
 import createHabitRecordRouter from "./HabitRecord.router";
 import createTaskNodeRouter from "./TaskNode.router";
 import createTaskEdgeRouter from "./TaskEdge.router";
+import createButtonItemRouter from "./ButtonItem.router";
 
 export function db(ctx: any) {
     if (!ctx.prisma) {
@@ -23,11 +25,13 @@ export function db(ctx: any) {
 
 export function createRouter() {
     return createTRPCRouter({
+        commonGroupLayout: createCommonGroupLayoutRouter(),
         habitGroup: createHabitGroupRouter(),
         habitItem: createHabitItemRouter(),
         habitRecord: createHabitRecordRouter(),
         taskNode: createTaskNodeRouter(),
         taskEdge: createTaskEdgeRouter(),
+        buttonItem: createButtonItemRouter(),
     }
     );
 }

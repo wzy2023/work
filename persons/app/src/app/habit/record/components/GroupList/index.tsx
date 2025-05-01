@@ -5,7 +5,7 @@ import { ItemList } from '../ItemList'
 
 interface ListProps {
   data?: { group: Habit.Group, list: Habit.RunTime.ItemRecord[] }[]
-  onSuccess?: () => void
+  onSuccess?: (habit: Habit.Item) => void
 }
 
 export const GroupList = (props: ListProps) => {

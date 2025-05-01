@@ -32,6 +32,14 @@ export const TaskCard = (props: NodeRecord) => {
     setEditing(isEditing)
   }, [isEditing, setEditing])
 
+  useEffect(() => {
+    if (data.editing) {
+      delete data.editing
+      setTrue()
+      setTimeout(() => document.querySelector('input')?.focus(), 300)
+    }
+  }, [data, setTrue])
+
   const isDragging = nodes.some(item => item.dragging)
   useEffect(() => {
     if (isDragging) {
@@ -103,6 +111,7 @@ export const TaskCard = (props: NodeRecord) => {
                 <ExecutionRecords
                   executionRecords={executionRecords}
                   isEdit={isEditing}
+                  onChange={onChange}
                 />
 
                 <Tags

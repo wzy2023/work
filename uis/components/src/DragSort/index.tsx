@@ -49,7 +49,7 @@ export const DragSort = <T extends { id: string }>(props: DragSortProps<T>) => {
         <div ref={provided.innerRef} {...provided.droppableProps}>
           <Space direction={direction} wrap style={{ width: '100%' }}>
             {list?.map((item, index) => (
-              <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
+              <Draggable key={item.id} disableInteractiveElementBlocking draggableId={item.id.toString()} index={index}>
                 {provided => (
                   <div ref={provided.innerRef} {...provided.draggableProps} >
                     {children(item, provided)}

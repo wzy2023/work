@@ -11,6 +11,26 @@ import { type PolicyDef, type PermissionCheckerConstraint } from "@zenstackhq/ru
 
 const policy: PolicyDef = {
     policy: {
+        commonGroupLayout: {
+            modelLevel: {
+                read: { guard: CommonGroupLayout_read, },
+                create: { guard: CommonGroupLayout_create, },
+                update: { guard: CommonGroupLayout_update, },
+                postUpdate: { guard: CommonGroupLayout_postUpdate, },
+                delete: { guard: CommonGroupLayout_delete, }
+            },
+            fieldLevel: {
+                read:
+                {
+
+                },
+                update:
+                {
+
+                },
+            },
+
+        },
         habitGroup: {
             modelLevel: {
                 read: { guard: HabitGroup_read, },
@@ -111,16 +131,86 @@ const policy: PolicyDef = {
             },
 
         },
+        buttonItem: {
+            modelLevel: {
+                read: { guard: ButtonItem_read, },
+                create: { guard: ButtonItem_create, },
+                update: { guard: ButtonItem_update, },
+                postUpdate: { guard: ButtonItem_postUpdate, },
+                delete: { guard: ButtonItem_delete, }
+            },
+            fieldLevel: {
+                read:
+                {
+
+                },
+                update:
+                {
+
+                },
+            },
+
+        },
     },
     validation: {
+        commonGroupLayout: { hasValidation: false },
         habitGroup: { hasValidation: false },
         habitItem: { hasValidation: false },
         habitRecord: { hasValidation: false },
         taskNode: { hasValidation: false },
         taskEdge: { hasValidation: false },
+        buttonItem: { hasValidation: false },
     },
 
 };
+
+function CommonGroupLayout_read(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_CommonGroupLayout_read(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function CommonGroupLayout_create(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_CommonGroupLayout_create(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function CommonGroupLayout_update(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_CommonGroupLayout_update(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function CommonGroupLayout_postUpdate(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_CommonGroupLayout_postUpdate(input: any, context: QueryContext): any {
+    return true;
+}
+
+function CommonGroupLayout_delete(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_CommonGroupLayout_delete(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
 
 function HabitGroup_read(context: QueryContext, db: CrudContract): any {
     return { NOT: { isDeleted: true } };
@@ -357,6 +447,54 @@ function TaskEdge_delete(context: QueryContext, db: CrudContract): any {
 }
 
 function $check_TaskEdge_delete(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function ButtonItem_read(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_ButtonItem_read(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function ButtonItem_create(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_ButtonItem_create(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function ButtonItem_update(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_ButtonItem_update(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function ButtonItem_postUpdate(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_ButtonItem_postUpdate(input: any, context: QueryContext): any {
+    return true;
+}
+
+function ButtonItem_delete(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_ButtonItem_delete(input: any, context: QueryContext): any {
     if ((!input?.isDeleted)) { return true; }
 
     return false;

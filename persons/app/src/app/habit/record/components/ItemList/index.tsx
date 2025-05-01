@@ -13,7 +13,7 @@ import { HabitStatusMode } from '@/api/types'
 
 interface ItemListProps {
   list: Habit.RunTime.ItemRecord[]
-  onSuccess?: () => void
+  onSuccess?: (habit: Habit.Item) => void
 }
 
 export const ItemList = (props: ItemListProps) => {
@@ -26,32 +26,28 @@ export const ItemList = (props: ItemListProps) => {
   const { createState, updateState } = useHabitRecordCRUD({
     showTip: false,
     list: false,
-    create: {
-      onSuccess,
-    },
-    update: {
-      onSuccess,
-    },
   })
 
-  const save = (habit: Habit.RunTime.ItemRecord, values: Partial<Pick<Habit.Record, 'execList' | 'reason'>>) => {
+  const save = async (habit: Habit.RunTime.ItemRecord, values: Partial<Pick<Habit.Record, 'execList' | 'reason'>>) => {
     if (!values.execList) {
       return
     }
 
     if (!habit.record) {
-      createState.mutate({
+      await createState.mutateAsync({
         habitId: habit.id,
         execList: values.execList,
         date: selectedDate.toDate(),
       })
+      onSuccess?.(habit)
       return
     }
 
-    updateState.mutate(habit.record.id, {
+    await updateState.mutateAsync(habit.record.id, {
       execList: values.execList,
       reason: values.reason,
     })
+    onSuccess?.(habit)
   }
 
   const onDoubleClick = (habit: Habit.RunTime.ItemRecord) => {

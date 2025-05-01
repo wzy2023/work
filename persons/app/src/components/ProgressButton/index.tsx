@@ -14,18 +14,21 @@ interface ProgressButtonProps {
 
 export const ProgressButton = (props: ProgressButtonProps) => {
   const {
-    colors,
-    showRing = false,
-    progress = 0,
-    padding = 0,
-    strokeWidth = 5,
-    size = 50,
-    children,
-    className = '',
+    colors,                 // 按钮颜色配置
+    showRing = false,      // 是否显示进度环
+    progress = 0,          // 进度值(0-1)
+    padding = 0,           // 内边距
+    strokeWidth = 5,       // 进度环宽度
+    size = 50,             // 按钮大小
+    children,              // 子元素
+    className = '',        // 自定义className
   } = props
 
+  // 计算进度环的半径
   const radius = (size / 2) - strokeWidth - padding + 2.5
+  // 计算进度环的周长
   const circumference = 2 * Math.PI * radius
+  // 计算进度环的偏移量，用于显示进度
   const offset = circumference * (1 - progress)
 
   return (

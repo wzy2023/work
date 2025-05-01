@@ -1,0 +1,13 @@
+import "@wzyjs/next/dist/Base"
+
+model ButtonItem extends Base {
+  groupId String
+
+  sort Int?   @default(999)
+
+  /// ![Buttons.Type]
+  type String
+
+  title String?
+  content String
+}

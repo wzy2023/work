@@ -22,7 +22,7 @@ export const Tags = (props: TagsProps) => {
         placeholder='请选择标签'
         value={tags}
         onChange={tags => onChange({ tags })}
-        options={['需求', '思考', '临时', '手机', '电脑', '外出', '家里'].map(value => ({
+        options={['需求', 'BUG', '思考', '临时', '手机', '电脑', '外出', '家里'].map(value => ({
           label: value,
           value,
         }))}
