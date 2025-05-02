@@ -8,3 +8,5 @@ import "./models/TaskNode"
 import "./models/TaskEdge"
 
 import "./models/ButtonItem"
+
+import "./models/Collecting"

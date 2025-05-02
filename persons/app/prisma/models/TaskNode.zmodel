@@ -3,6 +3,6 @@ import "@wzyjs/next/dist/Base"
 model TaskNode extends Base {
   type String
 
-  /// ![TaskNode.Data]
+  /// ![any]
   data Json
 }

@@ -16,6 +16,7 @@ import { ClientType as HabitRecordClientType } from "./HabitRecord.next.type";
 import { ClientType as TaskNodeClientType } from "./TaskNode.next.type";
 import { ClientType as TaskEdgeClientType } from "./TaskEdge.next.type";
 import { ClientType as ButtonItemClientType } from "./ButtonItem.next.type";
+import { ClientType as CollectingClientType } from "./Collecting.next.type";
 
 export function createTRPCNext<
     TRouter extends AnyRouter,
@@ -34,4 +35,5 @@ export interface ClientType<AppRouter extends AnyRouter> {
     taskNode: TaskNodeClientType<AppRouter>;
     taskEdge: TaskEdgeClientType<AppRouter>;
     buttonItem: ButtonItemClientType<AppRouter>;
+    collecting: CollectingClientType<AppRouter>;
 }

@@ -4,11 +4,11 @@ import { Input } from '../../../components/Input'
 interface DescriptionProps {
   description?: string
   isEdit: boolean
-  onChange: (value?: any) => void
+  onChange: ({ description }: { description: string }) => void
 }
 
 export const Description = (props: DescriptionProps) => {
-  const { isEdit, description, onChange } = props
+  const { isEdit, description = '', onChange } = props
 
   if (!isEdit && !description) {
     return null

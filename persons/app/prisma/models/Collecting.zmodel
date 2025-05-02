@@ -1,0 +1,18 @@
+import "@wzyjs/next/dist/Base"
+
+model Collecting extends Base {
+  /// ![Collecting.Type]
+  type String
+
+  title String
+
+  description String?
+
+  content String
+
+  /// ![string[]]
+  tags Json
+
+  /// ![string[]]
+  images Json?
+}

@@ -336,6 +336,56 @@ const metadata = {
             },
             attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
         },
+        collecting: {
+            name: 'Collecting', fields: {
+                id: {
+                    name: "id",
+                    type: "String",
+                    isId: true,
+                    attributes: [{ "name": "@id", "args": [] }, { "name": "@default", "args": [] }],
+                }, createdAt: {
+                    name: "createdAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@default", "args": [] }],
+                }, updatedAt: {
+                    name: "updatedAt",
+                    type: "DateTime",
+                    isOptional: true,
+                    attributes: [{ "name": "@updatedAt", "args": [] }],
+                }, isDeleted: {
+                    name: "isDeleted",
+                    type: "Boolean",
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": false }] }, { "name": "@omit", "args": [] }],
+                }, type: {
+                    name: "type",
+                    type: "String",
+                }, title: {
+                    name: "title",
+                    type: "String",
+                }, description: {
+                    name: "description",
+                    type: "String",
+                    isOptional: true,
+                }, content: {
+                    name: "content",
+                    type: "String",
+                }, tags: {
+                    name: "tags",
+                    type: "Json",
+                }, images: {
+                    name: "images",
+                    type: "Json",
+                    isOptional: true,
+                },
+            }, uniqueConstraints: {
+                id: {
+                    name: "id",
+                    fields: ["id"]
+                },
+            },
+            attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
+        },
 
     },
     deleteCascade: {

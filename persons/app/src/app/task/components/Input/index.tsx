@@ -1,4 +1,4 @@
-import { type ChangeEvent, useState } from 'react'
+import { useState } from 'react'
 
 import { Input as AntdInput } from '@/components'
 import { useDebounceEffect } from '@/hooks'
@@ -6,9 +6,9 @@ import { useDebounceEffect } from '@/hooks'
 interface InputProps {
   isEdit: boolean
   autoFocus?: boolean
-  value: any
+  value: string
   mode?: 'input' | 'textarea'
-  onChange: (value: any) => void
+  onChange: (value: string) => void
 }
 
 export const Input = (props: InputProps) => {

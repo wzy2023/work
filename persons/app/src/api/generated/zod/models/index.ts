@@ -12,3 +12,4 @@ export * from './HabitRecord.schema';
 export * from './TaskNode.schema';
 export * from './TaskEdge.schema';
 export * from './ButtonItem.schema';
+export * from './Collecting.schema';

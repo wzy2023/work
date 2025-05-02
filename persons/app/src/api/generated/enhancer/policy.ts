@@ -151,6 +151,26 @@ const policy: PolicyDef = {
             },
 
         },
+        collecting: {
+            modelLevel: {
+                read: { guard: Collecting_read, },
+                create: { guard: Collecting_create, },
+                update: { guard: Collecting_update, },
+                postUpdate: { guard: Collecting_postUpdate, },
+                delete: { guard: Collecting_delete, }
+            },
+            fieldLevel: {
+                read:
+                {
+
+                },
+                update:
+                {
+
+                },
+            },
+
+        },
     },
     validation: {
         commonGroupLayout: { hasValidation: false },
@@ -160,6 +180,7 @@ const policy: PolicyDef = {
         taskNode: { hasValidation: false },
         taskEdge: { hasValidation: false },
         buttonItem: { hasValidation: false },
+        collecting: { hasValidation: false },
     },
 
 };
@@ -495,6 +516,54 @@ function ButtonItem_delete(context: QueryContext, db: CrudContract): any {
 }
 
 function $check_ButtonItem_delete(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function Collecting_read(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_Collecting_read(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function Collecting_create(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_Collecting_create(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function Collecting_update(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_Collecting_update(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function Collecting_postUpdate(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_Collecting_postUpdate(input: any, context: QueryContext): any {
+    return true;
+}
+
+function Collecting_delete(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_Collecting_delete(input: any, context: QueryContext): any {
     if ((!input?.isDeleted)) { return true; }
 
     return false;

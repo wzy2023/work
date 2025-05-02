@@ -11,4 +11,5 @@ export * from './HabitItemInput.schema';
 export * from './HabitRecordInput.schema';
 export * from './TaskNodeInput.schema';
 export * from './TaskEdgeInput.schema';
-export * from './ButtonItemInput.schema'
+export * from './ButtonItemInput.schema';
+export * from './CollectingInput.schema'

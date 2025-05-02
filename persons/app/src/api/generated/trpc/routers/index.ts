@@ -15,6 +15,7 @@ import createHabitRecordRouter from "./HabitRecord.router";
 import createTaskNodeRouter from "./TaskNode.router";
 import createTaskEdgeRouter from "./TaskEdge.router";
 import createButtonItemRouter from "./ButtonItem.router";
+import createCollectingRouter from "./Collecting.router";
 
 export function db(ctx: any) {
     if (!ctx.prisma) {
@@ -32,6 +33,7 @@ export function createRouter() {
         taskNode: createTaskNodeRouter(),
         taskEdge: createTaskEdgeRouter(),
         buttonItem: createButtonItemRouter(),
+        collecting: createCollectingRouter(),
     }
     );
 }

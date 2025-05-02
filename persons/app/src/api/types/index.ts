@@ -1,3 +1,4 @@
 export * from './habit'
 export * from './task'
 export * from './buttons'
+export * from './collecting'
