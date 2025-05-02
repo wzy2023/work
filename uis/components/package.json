@@ -11,6 +11,7 @@
     "ali-oss": "^6.21.0",
     "echarts": "^5.4.3",
     "echarts-for-react": "^3.0.2",
+    "github-markdown-css": "^5.8.1",
     "handlebars": "^4.7.8",
     "html2canvas": "^1.4.1",
     "js-beautify": "^1.14.7",
@@ -19,7 +20,10 @@
     "react": "^19.0.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-json-view": "^1.21.3",
-    "react-syntax-highlighter": "^15.5.0"
+    "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^15.5.0",
+    "rehype-starry-night": "^2.2.0",
+    "remark-gfm": "^4.0.1"
   },
   "peerDependencies": {
     "@wzyjs/antd": "^0.2.37",

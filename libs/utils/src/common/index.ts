@@ -5,6 +5,8 @@ export { default as consola } from 'consola'
 
 export * from 'zod'
 
+export * from '../ai'
+
 export * from './string'
 export * from './object'
 export * from './other'

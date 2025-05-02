@@ -1,7 +1,7 @@
 import { axios } from '../axios'
 import json5 from 'json5'
 
-export const chat = async (message: string, model: string = 'o1-mini', isParse = true) => {
+export const chat = async (message: string, model: string = 'gpt-4.1', isParse = true) => {
   try {
     let { data } = await axios({
       url: '/v1/chat/completions',

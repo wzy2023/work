@@ -13,6 +13,7 @@ export * from './DateSwitcher'
 export * from './GroupLayout'
 export * from './TextInput'
 export * from './SectorButton'
+export * from './Markdown'
 
 // export * from './JsonView'
 // export * from './Crud'
