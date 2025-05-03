@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "npm run rm:next && next dev --turbo",
+    "dev": "next dev --turbo",
     "build": "npm run generate && next build",
     "start": "next start",
     "preview": "npm run build && npm run start",
@@ -43,6 +43,7 @@
     "react-dom": "^19.0.0",
     "react-flow-renderer": "^10.3.17",
     "react-grid-layout": "^1.5.1",
+    "rsshub": "^1.0.0-master.a5e2e29",
     "server-only": "^0.0.1",
     "superjson": "^2.2.1",
     "zenstack": "^2.14.0",

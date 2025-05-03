@@ -3,12 +3,14 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-import { Button, GroupLayout } from '@/components'
+import { Button, GroupLayout, Tabs } from '@/components'
 import { CardGroup } from '../components'
 
 import { _ } from '@/utils'
 import { api } from '@/api/react'
 import { useAsyncEffect } from '@/hooks'
+import { TAB_ITEMS } from '@/app/collecting/consts'
+import { Tab } from '@/app/collecting/components'
 
 interface Props {
   params: {
@@ -100,7 +102,9 @@ export default ({ params }: Props) => {
   }
 
   return (
-    <div className='p-2 w-full h-[100vh] flex flex-col'>
+    <div className='p-6 w-full h-[100vh] flex flex-col'>
+      <h1 className='text-2xl font-bold mb-3'>按钮大盘</h1>
+
       <div className='flex justify-end'>
         <Button type='primary' onClick={onAddGroup}>
           添加分组

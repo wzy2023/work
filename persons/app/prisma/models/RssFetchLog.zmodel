@@ -1,0 +1,19 @@
+import "@wzyjs/next/dist/Base"
+
+import "./RssFeed"
+
+model RssFetchLog extends Base {
+  executedAt DateTime @default(now())
+
+  status String
+
+  errorMessage String?
+
+  itemCount Int @default(0)
+
+  /// ![Rss.FetchTriggerType]
+  triggerType String
+
+  feedId String
+  feed   RssFeed @relation(fields: [feedId], references: [id])
+}

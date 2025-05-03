@@ -386,6 +386,209 @@ const metadata = {
             },
             attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
         },
+        rssFeed: {
+            name: 'RssFeed', fields: {
+                id: {
+                    name: "id",
+                    type: "String",
+                    isId: true,
+                    attributes: [{ "name": "@id", "args": [] }, { "name": "@default", "args": [] }],
+                }, createdAt: {
+                    name: "createdAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@default", "args": [] }],
+                }, updatedAt: {
+                    name: "updatedAt",
+                    type: "DateTime",
+                    isOptional: true,
+                    attributes: [{ "name": "@updatedAt", "args": [] }],
+                }, isDeleted: {
+                    name: "isDeleted",
+                    type: "Boolean",
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": false }] }, { "name": "@omit", "args": [] }],
+                }, name: {
+                    name: "name",
+                    type: "String",
+                }, url: {
+                    name: "url",
+                    type: "String",
+                    attributes: [{ "name": "@unique", "args": [] }],
+                }, tags: {
+                    name: "tags",
+                    type: "Json",
+                }, description: {
+                    name: "description",
+                    type: "String",
+                    isOptional: true,
+                }, frequency: {
+                    name: "frequency",
+                    type: "String",
+                }, enabled: {
+                    name: "enabled",
+                    type: "Boolean",
+                    attributes: [{ "name": "@default", "args": [{ "value": true }] }],
+                }, items: {
+                    name: "items",
+                    type: "RssItem",
+                    isDataModel: true,
+                    isArray: true,
+                    backLink: 'feed',
+                }, logs: {
+                    name: "logs",
+                    type: "RssFetchLog",
+                    isDataModel: true,
+                    isArray: true,
+                    backLink: 'feed',
+                },
+            }, uniqueConstraints: {
+                id: {
+                    name: "id",
+                    fields: ["id"]
+                }, url: {
+                    name: "url",
+                    fields: ["url"]
+                },
+            },
+            attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
+        },
+        rssItem: {
+            name: 'RssItem', fields: {
+                id: {
+                    name: "id",
+                    type: "String",
+                    isId: true,
+                    attributes: [{ "name": "@id", "args": [] }, { "name": "@default", "args": [] }],
+                }, createdAt: {
+                    name: "createdAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@default", "args": [] }],
+                }, updatedAt: {
+                    name: "updatedAt",
+                    type: "DateTime",
+                    isOptional: true,
+                    attributes: [{ "name": "@updatedAt", "args": [] }],
+                }, isDeleted: {
+                    name: "isDeleted",
+                    type: "Boolean",
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": false }] }, { "name": "@omit", "args": [] }],
+                }, title: {
+                    name: "title",
+                    type: "String",
+                    attributes: [{ "name": "@db.Text", "args": [] }],
+                }, description: {
+                    name: "description",
+                    type: "String",
+                    isOptional: true,
+                    attributes: [{ "name": "@db.Text", "args": [] }],
+                }, content: {
+                    name: "content",
+                    type: "String",
+                    isOptional: true,
+                    attributes: [{ "name": "@db.Text", "args": [] }],
+                }, link: {
+                    name: "link",
+                    type: "String",
+                    attributes: [{ "name": "@db.Text", "args": [] }],
+                }, pubDate: {
+                    name: "pubDate",
+                    type: "DateTime",
+                }, isRead: {
+                    name: "isRead",
+                    type: "Boolean",
+                    attributes: [{ "name": "@default", "args": [{ "value": false }] }],
+                }, isStarred: {
+                    name: "isStarred",
+                    type: "Boolean",
+                    attributes: [{ "name": "@default", "args": [{ "value": false }] }],
+                }, isSent: {
+                    name: "isSent",
+                    type: "Boolean",
+                    attributes: [{ "name": "@default", "args": [{ "value": false }] }],
+                }, feedId: {
+                    name: "feedId",
+                    type: "String",
+                    isForeignKey: true,
+                    relationField: 'feed',
+                }, feed: {
+                    name: "feed",
+                    type: "RssFeed",
+                    isDataModel: true,
+                    attributes: [{ "name": "@relation", "args": [] }],
+                    backLink: 'items',
+                    isRelationOwner: true,
+                    foreignKeyMapping: { "id": "feedId" },
+                },
+            }, uniqueConstraints: {
+                id: {
+                    name: "id",
+                    fields: ["id"]
+                },
+            },
+            attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
+        },
+        rssFetchLog: {
+            name: 'RssFetchLog', fields: {
+                id: {
+                    name: "id",
+                    type: "String",
+                    isId: true,
+                    attributes: [{ "name": "@id", "args": [] }, { "name": "@default", "args": [] }],
+                }, createdAt: {
+                    name: "createdAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@default", "args": [] }],
+                }, updatedAt: {
+                    name: "updatedAt",
+                    type: "DateTime",
+                    isOptional: true,
+                    attributes: [{ "name": "@updatedAt", "args": [] }],
+                }, isDeleted: {
+                    name: "isDeleted",
+                    type: "Boolean",
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": false }] }, { "name": "@omit", "args": [] }],
+                }, executedAt: {
+                    name: "executedAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@default", "args": [] }],
+                }, status: {
+                    name: "status",
+                    type: "String",
+                }, errorMessage: {
+                    name: "errorMessage",
+                    type: "String",
+                    isOptional: true,
+                }, itemCount: {
+                    name: "itemCount",
+                    type: "Int",
+                    attributes: [{ "name": "@default", "args": [{ "value": 0 }] }],
+                }, triggerType: {
+                    name: "triggerType",
+                    type: "String",
+                }, feedId: {
+                    name: "feedId",
+                    type: "String",
+                    isForeignKey: true,
+                    relationField: 'feed',
+                }, feed: {
+                    name: "feed",
+                    type: "RssFeed",
+                    isDataModel: true,
+                    attributes: [{ "name": "@relation", "args": [] }],
+                    backLink: 'logs',
+                    isRelationOwner: true,
+                    foreignKeyMapping: { "id": "feedId" },
+                },
+            }, uniqueConstraints: {
+                id: {
+                    name: "id",
+                    fields: ["id"]
+                },
+            },
+            attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
+        },
 
     },
     deleteCascade: {

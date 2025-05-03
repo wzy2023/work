@@ -16,6 +16,7 @@ export {
 
   ProCard,
   ProList,
+  ProTable,
 
   ProFormText,
   ProFormCaptcha,

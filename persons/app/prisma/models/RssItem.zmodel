@@ -1,0 +1,23 @@
+import "@wzyjs/next/dist/Base"
+import "./RssFeed"
+
+model RssItem extends Base {
+  title String @db.Text
+
+  description String? @db.Text
+
+  content String? @db.Text
+
+  link String @db.Text
+
+  pubDate DateTime
+
+  isRead Boolean @default(false)
+
+  isStarred Boolean @default(false)
+
+  isSent Boolean @default(false)
+
+  feedId String
+  feed RssFeed @relation(fields: [feedId], references: [id])
+}

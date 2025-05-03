@@ -171,6 +171,66 @@ const policy: PolicyDef = {
             },
 
         },
+        rssFeed: {
+            modelLevel: {
+                read: { guard: RssFeed_read, },
+                create: { guard: RssFeed_create, },
+                update: { guard: RssFeed_update, },
+                postUpdate: { guard: RssFeed_postUpdate, },
+                delete: { guard: RssFeed_delete, }
+            },
+            fieldLevel: {
+                read:
+                {
+
+                },
+                update:
+                {
+
+                },
+            },
+
+        },
+        rssItem: {
+            modelLevel: {
+                read: { guard: RssItem_read, },
+                create: { guard: RssItem_create, },
+                update: { guard: RssItem_update, },
+                postUpdate: { guard: RssItem_postUpdate, },
+                delete: { guard: RssItem_delete, }
+            },
+            fieldLevel: {
+                read:
+                {
+
+                },
+                update:
+                {
+
+                },
+            },
+
+        },
+        rssFetchLog: {
+            modelLevel: {
+                read: { guard: RssFetchLog_read, },
+                create: { guard: RssFetchLog_create, },
+                update: { guard: RssFetchLog_update, },
+                postUpdate: { guard: RssFetchLog_postUpdate, },
+                delete: { guard: RssFetchLog_delete, }
+            },
+            fieldLevel: {
+                read:
+                {
+
+                },
+                update:
+                {
+
+                },
+            },
+
+        },
     },
     validation: {
         commonGroupLayout: { hasValidation: false },
@@ -181,6 +241,9 @@ const policy: PolicyDef = {
         taskEdge: { hasValidation: false },
         buttonItem: { hasValidation: false },
         collecting: { hasValidation: false },
+        rssFeed: { hasValidation: false },
+        rssItem: { hasValidation: false },
+        rssFetchLog: { hasValidation: false },
     },
 
 };
@@ -564,6 +627,150 @@ function Collecting_delete(context: QueryContext, db: CrudContract): any {
 }
 
 function $check_Collecting_delete(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function RssFeed_read(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_RssFeed_read(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function RssFeed_create(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_RssFeed_create(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function RssFeed_update(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_RssFeed_update(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function RssFeed_postUpdate(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_RssFeed_postUpdate(input: any, context: QueryContext): any {
+    return true;
+}
+
+function RssFeed_delete(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_RssFeed_delete(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function RssItem_read(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_RssItem_read(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function RssItem_create(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_RssItem_create(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function RssItem_update(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_RssItem_update(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function RssItem_postUpdate(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_RssItem_postUpdate(input: any, context: QueryContext): any {
+    return true;
+}
+
+function RssItem_delete(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_RssItem_delete(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function RssFetchLog_read(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_RssFetchLog_read(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function RssFetchLog_create(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_RssFetchLog_create(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function RssFetchLog_update(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_RssFetchLog_update(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function RssFetchLog_postUpdate(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_RssFetchLog_postUpdate(input: any, context: QueryContext): any {
+    return true;
+}
+
+function RssFetchLog_delete(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_RssFetchLog_delete(input: any, context: QueryContext): any {
     if ((!input?.isDeleted)) { return true; }
 
     return false;

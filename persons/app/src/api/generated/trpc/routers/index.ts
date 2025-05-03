@@ -16,6 +16,9 @@ import createTaskNodeRouter from "./TaskNode.router";
 import createTaskEdgeRouter from "./TaskEdge.router";
 import createButtonItemRouter from "./ButtonItem.router";
 import createCollectingRouter from "./Collecting.router";
+import createRssFeedRouter from "./RssFeed.router";
+import createRssItemRouter from "./RssItem.router";
+import createRssFetchLogRouter from "./RssFetchLog.router";
 
 export function db(ctx: any) {
     if (!ctx.prisma) {
@@ -34,6 +37,9 @@ export function createRouter() {
         taskEdge: createTaskEdgeRouter(),
         buttonItem: createButtonItemRouter(),
         collecting: createCollectingRouter(),
+        rssFeed: createRssFeedRouter(),
+        rssItem: createRssItemRouter(),
+        rssFetchLog: createRssFetchLogRouter(),
     }
     );
 }

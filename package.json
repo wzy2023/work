@@ -12,5 +12,8 @@
     "clean": "rm -rf node_modules && lerna clean --yes",
     "bootstrap": "bun install",
     "re-install": "npm run clean && npm run bootstrap"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^5.2.1"
   }
 }

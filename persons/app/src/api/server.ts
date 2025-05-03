@@ -9,6 +9,9 @@ import { createTRPCContext } from './trpc/context'
 import { type ApiRouter, apiRouter } from './trpc/apiRouter'
 import { createHydrationHelpers } from '@trpc/react-query/rsc'
 
+// 导入定时任务模块
+import './scheduler'
+
 export { apiRouter } from './trpc/apiRouter'
 
 export { createTRPCContext } from './trpc/context'

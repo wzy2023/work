@@ -17,6 +17,9 @@ import { ClientType as TaskNodeClientType } from "./TaskNode.next.type";
 import { ClientType as TaskEdgeClientType } from "./TaskEdge.next.type";
 import { ClientType as ButtonItemClientType } from "./ButtonItem.next.type";
 import { ClientType as CollectingClientType } from "./Collecting.next.type";
+import { ClientType as RssFeedClientType } from "./RssFeed.next.type";
+import { ClientType as RssItemClientType } from "./RssItem.next.type";
+import { ClientType as RssFetchLogClientType } from "./RssFetchLog.next.type";
 
 export function createTRPCNext<
     TRouter extends AnyRouter,
@@ -36,4 +39,7 @@ export interface ClientType<AppRouter extends AnyRouter> {
     taskEdge: TaskEdgeClientType<AppRouter>;
     buttonItem: ButtonItemClientType<AppRouter>;
     collecting: CollectingClientType<AppRouter>;
+    rssFeed: RssFeedClientType<AppRouter>;
+    rssItem: RssItemClientType<AppRouter>;
+    rssFetchLog: RssFetchLogClientType<AppRouter>;
 }

@@ -1,0 +1,22 @@
+import "@wzyjs/next/dist/Base"
+
+import "./RssItem"
+import "./RssFetchLog"
+
+model RssFeed extends Base {
+  name String
+
+  url String @unique
+
+  /// ![string[]]
+  tags Json
+
+  description String?
+
+  frequency String
+
+  enabled Boolean @default(true)
+
+  items RssItem[]
+  logs  RssFetchLog[]
+}
