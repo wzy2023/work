@@ -6,6 +6,7 @@ import { frequencyOptions } from '../../consts'
 import { extractTagsFromFeeds } from '../../utils'
 import { useRssFeed } from '../../hooks'
 import { UrlFormItem } from './UrlFormItem'
+import { RssFrequency } from '@/api/types'
 
 interface FeedFormProps {
   visible: boolean
@@ -61,8 +62,7 @@ export const FeedForm = (props: FeedFormProps) => {
         form={form}
         layout="vertical"
         initialValues={{
-          frequency: 'daily',
-          tags: [],
+          frequency: RssFrequency.Minutes10,
         }}
       >
         <Form.Item

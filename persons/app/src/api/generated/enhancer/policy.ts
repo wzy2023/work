@@ -231,6 +231,26 @@ const policy: PolicyDef = {
             },
 
         },
+        prompt: {
+            modelLevel: {
+                read: { guard: Prompt_read, },
+                create: { guard: Prompt_create, },
+                update: { guard: Prompt_update, },
+                postUpdate: { guard: Prompt_postUpdate, },
+                delete: { guard: Prompt_delete, }
+            },
+            fieldLevel: {
+                read:
+                {
+
+                },
+                update:
+                {
+
+                },
+            },
+
+        },
     },
     validation: {
         commonGroupLayout: { hasValidation: false },
@@ -244,6 +264,7 @@ const policy: PolicyDef = {
         rssFeed: { hasValidation: false },
         rssItem: { hasValidation: false },
         rssFetchLog: { hasValidation: false },
+        prompt: { hasValidation: false },
     },
 
 };
@@ -771,6 +792,54 @@ function RssFetchLog_delete(context: QueryContext, db: CrudContract): any {
 }
 
 function $check_RssFetchLog_delete(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function Prompt_read(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_Prompt_read(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function Prompt_create(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_Prompt_create(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function Prompt_update(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_Prompt_update(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function Prompt_postUpdate(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_Prompt_postUpdate(input: any, context: QueryContext): any {
+    return true;
+}
+
+function Prompt_delete(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_Prompt_delete(input: any, context: QueryContext): any {
     if ((!input?.isDeleted)) { return true; }
 
     return false;

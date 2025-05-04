@@ -32,7 +32,7 @@ export const Tab = ({ type }: TabProps) => {
           onChange={onChangeTag}
         />
 
-        <div className='flex-1 overflow-auto'>
+        <div className='flex-1 overflow-hidden'>
           <FilterList
             items={filteredItems}
             onRefresh={refetch}

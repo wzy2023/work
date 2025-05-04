@@ -59,6 +59,12 @@ const menuItems: MenuItem[] = [
     path: '/rss',
     icon: <BulbOutlined />,
   },
+  {
+    key: 'prompt',
+    title: '提示词',
+    path: '/prompt',
+    icon: <BulbOutlined />,
+  },
 ]
 
 export const MenuContent = () => {

@@ -8,7 +8,7 @@ model Collecting extends Base {
 
   description String?
 
-  content String
+  content String @db.Text
 
   /// ![string[]]
   tags Json

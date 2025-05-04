@@ -1,7 +1,7 @@
 import { procedure } from '@/api/trpc/procedures'
 // import { sendMail } from '@wzyjs/utils/node'
 
-const sendMail = (a, b, c) => {
+const sendMail = (a: string, b: string, c: string) => {
   console.log(666, 5, a, b, c)
 }
 

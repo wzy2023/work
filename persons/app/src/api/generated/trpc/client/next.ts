@@ -20,6 +20,7 @@ import { ClientType as CollectingClientType } from "./Collecting.next.type";
 import { ClientType as RssFeedClientType } from "./RssFeed.next.type";
 import { ClientType as RssItemClientType } from "./RssItem.next.type";
 import { ClientType as RssFetchLogClientType } from "./RssFetchLog.next.type";
+import { ClientType as PromptClientType } from "./Prompt.next.type";
 
 export function createTRPCNext<
     TRouter extends AnyRouter,
@@ -42,4 +43,5 @@ export interface ClientType<AppRouter extends AnyRouter> {
     rssFeed: RssFeedClientType<AppRouter>;
     rssItem: RssItemClientType<AppRouter>;
     rssFetchLog: RssFetchLogClientType<AppRouter>;
+    prompt: PromptClientType<AppRouter>;
 }

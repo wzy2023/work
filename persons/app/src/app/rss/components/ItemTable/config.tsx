@@ -66,6 +66,14 @@ export const getColumns = (onAction: (actionType: Rss.ItemActionType, id: string
     ),
   },
   {
+    title: '发送',
+    dataIndex: 'isSent',
+    width: 120,
+    render: (isSent) => (
+      <Tag>{isSent ? '是' : '否'}</Tag>
+    ),
+  },
+  {
     title: '发布时间',
     dataIndex: 'pubDate',
     key: 'pubDate',

@@ -1,0 +1,14 @@
+import "@wzyjs/next/dist/Base"
+
+model Prompt extends Base {
+  title String
+
+  content String @db.Text
+
+  /// ![string[]]
+  tags Json
+
+  key String?
+
+  project String?
+}

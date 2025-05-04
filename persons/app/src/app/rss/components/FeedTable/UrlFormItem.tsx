@@ -33,7 +33,6 @@ interface UrlFormItemProps {
 }
 
 export const UrlFormItem: React.FC<UrlFormItemProps> = ({ value, onChange }) => {
-  // 当前选择的模式：custom(自定义) 或 select(选择)
   const [mode, setMode] = useState<'custom' | 'select'>('custom')
 
   // 自定义输入的URL
@@ -120,6 +119,7 @@ export const UrlFormItem: React.FC<UrlFormItemProps> = ({ value, onChange }) => 
 
   return (
     <Tabs
+      size='small'
       activeKey={mode}
       onChange={(key) => setMode(key as 'custom' | 'select')}
       items={[
@@ -138,27 +138,29 @@ export const UrlFormItem: React.FC<UrlFormItemProps> = ({ value, onChange }) => 
           key: 'select',
           label: '选择',
           children: (
-            <Space direction="vertical" style={{ width: '100%' }}>
-              <Cascader
-                options={platformOptions}
-                placeholder="选择平台和渠道"
-                onChange={handlePlatformChange}
-                style={{ width: '100%' }}
-              />
-              <Input
-                placeholder="请输入值"
-                value={inputValue}
-                onChange={handleInputChange}
-                onBlur={handleInputBlur}
-                onKeyDown={handleInputKeyDown}
-                disabled={selectedPlatform.length !== 2}
-              />
+            <div>
+              <Space style={{ width: '100%' }}>
+                <Cascader
+                  options={platformOptions}
+                  placeholder='选择平台和渠道'
+                  onChange={handlePlatformChange}
+                />
+                <Input
+                  placeholder='请输入值'
+                  value={inputValue}
+                  onChange={handleInputChange}
+                  onBlur={handleInputBlur}
+                  onKeyDown={handleInputKeyDown}
+                  disabled={selectedPlatform.length !== 2}
+                />
+              </Space>
+
               {generatedUrl && (
                 <div style={{ marginTop: 8, color: '#666' }}>
-                  生成的URL: {generatedUrl}
+                  {generatedUrl}
                 </div>
               )}
-            </Space>
+            </div>
           ),
         },
       ]}

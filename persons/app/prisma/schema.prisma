@@ -108,7 +108,7 @@ model Collecting {
   type        String
   title       String
   description String?
-  content     String
+  content     String    @db.Text()
   /// ![string[]]
   tags        Json
   /// ![string[]]
@@ -161,4 +161,17 @@ model RssFetchLog {
   triggerType  String
   feedId       String
   feed         RssFeed   @relation(fields: [feedId], references: [id])
+}
+
+model Prompt {
+  id        String    @id() @default(cuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt()
+  isDeleted Boolean?  @default(false)
+  title     String
+  content   String    @db.Text()
+  /// ![string[]]
+  tags      Json
+  key       String?
+  project   String?
 }
