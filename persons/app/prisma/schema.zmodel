@@ -14,3 +14,5 @@ import "./models/Collecting"
 import "./models/RssFeed"
 import "./models/RssItem"
 import "./models/RssFetchLog"
+
+import "./models/Prompt"

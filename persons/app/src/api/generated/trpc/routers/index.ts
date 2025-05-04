@@ -19,6 +19,7 @@ import createCollectingRouter from "./Collecting.router";
 import createRssFeedRouter from "./RssFeed.router";
 import createRssItemRouter from "./RssItem.router";
 import createRssFetchLogRouter from "./RssFetchLog.router";
+import createPromptRouter from "./Prompt.router";
 
 export function db(ctx: any) {
     if (!ctx.prisma) {
@@ -40,6 +41,7 @@ export function createRouter() {
         rssFeed: createRssFeedRouter(),
         rssItem: createRssItemRouter(),
         rssFetchLog: createRssFetchLogRouter(),
+        prompt: createPromptRouter(),
     }
     );
 }

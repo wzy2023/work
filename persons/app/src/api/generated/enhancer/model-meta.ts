@@ -370,6 +370,7 @@ const metadata = {
                 }, content: {
                     name: "content",
                     type: "String",
+                    attributes: [{ "name": "@db.Text", "args": [] }],
                 }, tags: {
                     name: "tags",
                     type: "Json",
@@ -580,6 +581,54 @@ const metadata = {
                     backLink: 'logs',
                     isRelationOwner: true,
                     foreignKeyMapping: { "id": "feedId" },
+                },
+            }, uniqueConstraints: {
+                id: {
+                    name: "id",
+                    fields: ["id"]
+                },
+            },
+            attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
+        },
+        prompt: {
+            name: 'Prompt', fields: {
+                id: {
+                    name: "id",
+                    type: "String",
+                    isId: true,
+                    attributes: [{ "name": "@id", "args": [] }, { "name": "@default", "args": [] }],
+                }, createdAt: {
+                    name: "createdAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@default", "args": [] }],
+                }, updatedAt: {
+                    name: "updatedAt",
+                    type: "DateTime",
+                    isOptional: true,
+                    attributes: [{ "name": "@updatedAt", "args": [] }],
+                }, isDeleted: {
+                    name: "isDeleted",
+                    type: "Boolean",
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": false }] }, { "name": "@omit", "args": [] }],
+                }, title: {
+                    name: "title",
+                    type: "String",
+                }, content: {
+                    name: "content",
+                    type: "String",
+                    attributes: [{ "name": "@db.Text", "args": [] }],
+                }, tags: {
+                    name: "tags",
+                    type: "Json",
+                }, key: {
+                    name: "key",
+                    type: "String",
+                    isOptional: true,
+                }, project: {
+                    name: "project",
+                    type: "String",
+                    isOptional: true,
                 },
             }, uniqueConstraints: {
                 id: {

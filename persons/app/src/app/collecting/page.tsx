@@ -8,7 +8,7 @@ import { Tab } from './components'
 import { TAB_ITEMS } from './consts'
 import { CollectingType } from '@/api/types'
 
-export default function CollectingPage() {
+export default () => {
   const [activeKey, setActiveKey] = useState<CollectingType>(CollectingType.Url)
 
   const onChange = (key: string) => {

@@ -15,4 +15,5 @@ export * from './ButtonItemInput.schema';
 export * from './CollectingInput.schema';
 export * from './RssFeedInput.schema';
 export * from './RssItemInput.schema';
-export * from './RssFetchLogInput.schema'
+export * from './RssFetchLogInput.schema';
+export * from './PromptInput.schema'
