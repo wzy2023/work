@@ -3,14 +3,12 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-import { Button, GroupLayout, Tabs } from '@/components'
+import { Button, GroupLayout } from '@/components'
 import { CardGroup } from '../components'
 
 import { _ } from '@/utils'
 import { api } from '@/api/react'
 import { useAsyncEffect } from '@/hooks'
-import { TAB_ITEMS } from '@/app/collecting/consts'
-import { Tab } from '@/app/collecting/components'
 
 interface Props {
   params: {

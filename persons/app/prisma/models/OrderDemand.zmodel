@@ -1,0 +1,16 @@
+import "@wzyjs/next/dist/Base"
+
+model OrderDemand extends Base {
+  type        String   // 需求类型
+  source      String   // 来源平台
+  confirmed   Boolean?  // 是否已确认
+
+  title       String?   // 标题
+  desc        String?  @db.Text   // 描述
+  url         String?   // 详情链接
+  person      String?   // 个人链接
+  price       String?    // 价格
+
+  applyNum    String?      // 申请人数
+  createTime  String? // 创建时间
+}

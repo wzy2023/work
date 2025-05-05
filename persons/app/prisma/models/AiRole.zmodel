@@ -1,0 +1,12 @@
+import "@wzyjs/next/dist/Base"
+
+model AiRole extends Base {
+  title String
+
+  content String @db.Text
+
+  /// ![string[]]
+  tags Json
+
+  project String?
+}

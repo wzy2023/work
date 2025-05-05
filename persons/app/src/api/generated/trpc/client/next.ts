@@ -20,7 +20,9 @@ import { ClientType as CollectingClientType } from "./Collecting.next.type";
 import { ClientType as RssFeedClientType } from "./RssFeed.next.type";
 import { ClientType as RssItemClientType } from "./RssItem.next.type";
 import { ClientType as RssFetchLogClientType } from "./RssFetchLog.next.type";
-import { ClientType as PromptClientType } from "./Prompt.next.type";
+import { ClientType as AiRoleClientType } from "./AiRole.next.type";
+import { ClientType as OrderDemandClientType } from "./OrderDemand.next.type";
+import { ClientType as InfoItemClientType } from "./InfoItem.next.type";
 
 export function createTRPCNext<
     TRouter extends AnyRouter,
@@ -43,5 +45,7 @@ export interface ClientType<AppRouter extends AnyRouter> {
     rssFeed: RssFeedClientType<AppRouter>;
     rssItem: RssItemClientType<AppRouter>;
     rssFetchLog: RssFetchLogClientType<AppRouter>;
-    prompt: PromptClientType<AppRouter>;
+    aiRole: AiRoleClientType<AppRouter>;
+    orderDemand: OrderDemandClientType<AppRouter>;
+    infoItem: InfoItemClientType<AppRouter>;
 }

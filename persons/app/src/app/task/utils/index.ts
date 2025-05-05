@@ -103,6 +103,10 @@ export const filterElements = (elements: Elements) => {
   const { nodes, edges } = elements
 
   nodes.forEach(node => {
+    if (node.style?.display === 'none') {
+      return
+    }
+
     const { descendantNodes, descendantEdges } = getDescendantAndEdges(node as unknown as Node, nodes, edges)
 
     descendantNodes.forEach(item => {

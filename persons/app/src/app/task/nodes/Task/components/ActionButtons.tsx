@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import {
   CheckCircleOutlined,
@@ -10,6 +10,7 @@ import {
 
 import { useBoolean } from '@/hooks'
 
+import { useTaskStore } from '../../../store'
 import { type TaskExecutionRecord, TaskStatus } from '../../../types'
 
 interface ActionButtonsProps {
@@ -23,19 +24,24 @@ export const ActionButtons = (props: ActionButtonsProps) => {
 
   const lastRecord = executionRecords[executionRecords.length - 1]
 
-  const [isExecuting, { setTrue, setFalse }] = useBoolean(
+  const [isExec, { setTrue, setFalse }] = useBoolean(
     Boolean(
       executionRecords[executionRecords.length - 1]?.start &&
       !executionRecords[executionRecords.length - 1]?.end,
     ),
   )
 
+  const { setExecuting, isExecuting } = useTaskStore()
+  useEffect(() => {
+    setExecuting(isExec)
+  }, [isExec, setExecuting])
+
   if ([TaskStatus.NOT_DUE, TaskStatus.NOT_FATHER, TaskStatus.COMPLETED, TaskStatus.FAILED].includes(status)) {
     return null
   }
 
   const onExecute = () => {
-    if (isExecuting) {
+    if (isExec) {
       setFalse()
       lastRecord!.end = Date.now()
       onChange({ executionRecords })
@@ -43,6 +49,10 @@ export const ActionButtons = (props: ActionButtonsProps) => {
     } else {
       if (lastRecord && !lastRecord.end) {
         message.error('请先结束上次执行')
+        return
+      }
+      if (isExecuting) {
+        message.error('请先结束别的任务')
         return
       }
       setTrue()
@@ -61,7 +71,7 @@ export const ActionButtons = (props: ActionButtonsProps) => {
 
   return (
     <div className='flex items-center gap-1.5'>
-      {isExecuting && (
+      {isExec && (
         <div className='flex items-center'>
           <div className='animate-spin h-2.5 w-2.5 border border-blue-500 border-t-transparent rounded-full' />
           <span className='ml-1 text-[11px] text-blue-500 whitespace-nowrap'>执行中</span>
@@ -72,14 +82,14 @@ export const ActionButtons = (props: ActionButtonsProps) => {
         onClick={onExecute}
         className={`
           p-0.5 rounded transition-colors
-          ${isExecuting
+          ${isExec
           ? 'text-blue-500 hover:text-blue-600'
           : 'text-gray-400 hover:text-gray-500'
         }
         `}
-        title={isExecuting ? '停止执行' : '开始执行'}
+        title={isExec ? '停止执行' : '开始执行'}
       >
-        {isExecuting ? <PauseCircleOutlined /> : <PlayCircleOutlined />}
+        {isExec ? <PauseCircleOutlined /> : <PlayCircleOutlined />}
       </button>
 
       {!!lastRecord?.end && (

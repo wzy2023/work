@@ -16,4 +16,6 @@ export * from './Collecting.schema';
 export * from './RssFeed.schema';
 export * from './RssItem.schema';
 export * from './RssFetchLog.schema';
-export * from './Prompt.schema';
+export * from './AiRole.schema';
+export * from './OrderDemand.schema';
+export * from './InfoItem.schema';

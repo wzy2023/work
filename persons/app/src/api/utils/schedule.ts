@@ -12,8 +12,12 @@ export const interval = (intervalMinutes: number, immediately: boolean, fn: () =
   }, intervalMinutes * 60 * 1000)
 }
 
-export const schedule = (cronExpression: string, fn: () => (void | Promise<void>)) => {
+export const schedule = (cronExpression: string, immediately: boolean, fn: () => (void | Promise<void>)) => {
   console.log(`定时任务已启动，cron表达式: ${cronExpression}`)
+
+  if (immediately) {
+    fn()
+  }
 
   cron.schedule(cronExpression, () => {
     fn()

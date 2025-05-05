@@ -17,7 +17,7 @@
       "types": "./dist/browser.d.ts"
     },
     "./node": {
-      "import": "./dist/node.esm.js",
+      "import": "./dist/node.cjs.js",
       "require": "./dist/node.cjs.js",
       "types": "./dist/node.d.ts"
     }
@@ -39,6 +39,7 @@
     "ali-oss": "^6.21.0",
     "animejs": "^3.2.1",
     "axios": "^1.6.2",
+    "cheerio": "^1.0.0",
     "classnames": "^2.3.2",
     "consola": "^2.15.3",
     "copy-to-clipboard": "^3.3.3",

@@ -163,7 +163,7 @@ model RssFetchLog {
   feed         RssFeed   @relation(fields: [feedId], references: [id])
 }
 
-model Prompt {
+model AiRole {
   id        String    @id() @default(cuid())
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt()
@@ -172,6 +172,33 @@ model Prompt {
   content   String    @db.Text()
   /// ![string[]]
   tags      Json
-  key       String?
   project   String?
+}
+
+model OrderDemand {
+  id         String    @id() @default(cuid())
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime? @updatedAt()
+  isDeleted  Boolean?  @default(false)
+  type       String
+  source     String
+  confirmed  Boolean?
+  title      String?
+  desc       String?   @db.Text()
+  url        String?
+  person     String?
+  price      String?
+  applyNum   String?
+  createTime String?
+}
+
+model InfoItem {
+  id        String    @id() @default(cuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt()
+  isDeleted Boolean?  @default(false)
+  title     String
+  content   String?
+  key       String    @unique()
+  enabled   Boolean   @default(true)
 }

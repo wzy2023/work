@@ -6,6 +6,7 @@ import { habitGroup } from './habit/group'
 import { buttonsItem } from './buttons/item'
 import { rssFeed } from './rss/feed'
 import { rssItem } from './rss/item'
+import { orderDemand } from './order/demand'
 
 export default mergeTRPCRouters(
   createRouter(),
@@ -19,6 +20,8 @@ export default mergeTRPCRouters(
 
       rssFeed,
       rssItem,
+
+      orderDemand,
     },
   }),
 )

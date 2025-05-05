@@ -1,0 +1,8 @@
+import "@wzyjs/next/dist/Base"
+
+model InfoItem extends Base {
+  title String
+  content String?
+  key String @unique
+  enabled Boolean @default(true)
+}

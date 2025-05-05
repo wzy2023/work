@@ -16,4 +16,6 @@ export * from './CollectingInput.schema';
 export * from './RssFeedInput.schema';
 export * from './RssItemInput.schema';
 export * from './RssFetchLogInput.schema';
-export * from './PromptInput.schema'
+export * from './AiRoleInput.schema';
+export * from './OrderDemandInput.schema';
+export * from './InfoItemInput.schema'

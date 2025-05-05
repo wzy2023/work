@@ -590,8 +590,8 @@ const metadata = {
             },
             attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
         },
-        prompt: {
-            name: 'Prompt', fields: {
+        aiRole: {
+            name: 'AiRole', fields: {
                 id: {
                     name: "id",
                     type: "String",
@@ -621,10 +621,6 @@ const metadata = {
                 }, tags: {
                     name: "tags",
                     type: "Json",
-                }, key: {
-                    name: "key",
-                    type: "String",
-                    isOptional: true,
                 }, project: {
                     name: "project",
                     type: "String",
@@ -634,6 +630,123 @@ const metadata = {
                 id: {
                     name: "id",
                     fields: ["id"]
+                },
+            },
+            attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
+        },
+        orderDemand: {
+            name: 'OrderDemand', fields: {
+                id: {
+                    name: "id",
+                    type: "String",
+                    isId: true,
+                    attributes: [{ "name": "@id", "args": [] }, { "name": "@default", "args": [] }],
+                }, createdAt: {
+                    name: "createdAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@default", "args": [] }],
+                }, updatedAt: {
+                    name: "updatedAt",
+                    type: "DateTime",
+                    isOptional: true,
+                    attributes: [{ "name": "@updatedAt", "args": [] }],
+                }, isDeleted: {
+                    name: "isDeleted",
+                    type: "Boolean",
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": false }] }, { "name": "@omit", "args": [] }],
+                }, type: {
+                    name: "type",
+                    type: "String",
+                }, source: {
+                    name: "source",
+                    type: "String",
+                }, confirmed: {
+                    name: "confirmed",
+                    type: "Boolean",
+                    isOptional: true,
+                }, title: {
+                    name: "title",
+                    type: "String",
+                    isOptional: true,
+                }, desc: {
+                    name: "desc",
+                    type: "String",
+                    isOptional: true,
+                    attributes: [{ "name": "@db.Text", "args": [] }],
+                }, url: {
+                    name: "url",
+                    type: "String",
+                    isOptional: true,
+                }, person: {
+                    name: "person",
+                    type: "String",
+                    isOptional: true,
+                }, price: {
+                    name: "price",
+                    type: "String",
+                    isOptional: true,
+                }, applyNum: {
+                    name: "applyNum",
+                    type: "String",
+                    isOptional: true,
+                }, createTime: {
+                    name: "createTime",
+                    type: "String",
+                    isOptional: true,
+                },
+            }, uniqueConstraints: {
+                id: {
+                    name: "id",
+                    fields: ["id"]
+                },
+            },
+            attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
+        },
+        infoItem: {
+            name: 'InfoItem', fields: {
+                id: {
+                    name: "id",
+                    type: "String",
+                    isId: true,
+                    attributes: [{ "name": "@id", "args": [] }, { "name": "@default", "args": [] }],
+                }, createdAt: {
+                    name: "createdAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@default", "args": [] }],
+                }, updatedAt: {
+                    name: "updatedAt",
+                    type: "DateTime",
+                    isOptional: true,
+                    attributes: [{ "name": "@updatedAt", "args": [] }],
+                }, isDeleted: {
+                    name: "isDeleted",
+                    type: "Boolean",
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": false }] }, { "name": "@omit", "args": [] }],
+                }, title: {
+                    name: "title",
+                    type: "String",
+                }, content: {
+                    name: "content",
+                    type: "String",
+                    isOptional: true,
+                }, key: {
+                    name: "key",
+                    type: "String",
+                    attributes: [{ "name": "@unique", "args": [] }],
+                }, enabled: {
+                    name: "enabled",
+                    type: "Boolean",
+                    attributes: [{ "name": "@default", "args": [{ "value": true }] }],
+                },
+            }, uniqueConstraints: {
+                id: {
+                    name: "id",
+                    fields: ["id"]
+                }, key: {
+                    name: "key",
+                    fields: ["key"]
                 },
             },
             attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
