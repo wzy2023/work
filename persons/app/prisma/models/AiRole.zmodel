@@ -9,4 +9,6 @@ model AiRole extends Base {
   tags Json
 
   project String?
+  
+  enabled Boolean @default(true)
 }

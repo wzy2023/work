@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import { Space, Tooltip, EditOutlined, DeleteOutlined, SyncOutlined } from '@/components'
+import { RssFeedActionType } from '@/api/types'
 
 interface FeedActionsProps {
   record: any
@@ -14,21 +15,20 @@ export const FeedActions = (props: FeedActionsProps) => {
 
   const handleFetch = () => {
     setIsFetching(true)
-    onAction(Rss.FeedActionType.Fetch, record.id)
-    // 假设抓取操作最多持续10秒，超时后自动恢复按钮状态
+    onAction(RssFeedActionType.Fetch, record.id)
     setTimeout(() => setIsFetching(false), 10000)
   }
 
   return (
     <Space size='middle'>
       <Tooltip title='编辑'>
-        <a onClick={() => onAction(Rss.FeedActionType.Edit, record.id)}>
+        <a onClick={() => onAction(RssFeedActionType.Edit, record.id)}>
           <EditOutlined />
         </a>
       </Tooltip>
 
       <Tooltip title='删除'>
-        <a onClick={() => onAction(Rss.FeedActionType.Delete, record.id)}>
+        <a onClick={() => onAction(RssFeedActionType.Delete, record.id)}>
           <DeleteOutlined />
         </a>
       </Tooltip>

@@ -12,5 +12,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.AiRoleCountAggregateInputType>;
 export const AiRoleCountAggregateInputObjectSchema: SchemaType = z.object({
-    id: z.literal(true).optional().optional(), createdAt: z.literal(true).optional().optional(), updatedAt: z.literal(true).optional().optional(), isDeleted: z.literal(true).optional().optional(), title: z.literal(true).optional().optional(), content: z.literal(true).optional().optional(), tags: z.literal(true).optional().optional(), project: z.literal(true).optional().optional(), _all: z.literal(true).optional().optional()
+    id: z.literal(true).optional().optional(), createdAt: z.literal(true).optional().optional(), updatedAt: z.literal(true).optional().optional(), isDeleted: z.literal(true).optional().optional(), title: z.literal(true).optional().optional(), content: z.literal(true).optional().optional(), tags: z.literal(true).optional().optional(), project: z.literal(true).optional().optional(), enabled: z.literal(true).optional().optional(), _all: z.literal(true).optional().optional()
 }).strict() as SchemaType;

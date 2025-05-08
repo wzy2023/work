@@ -12,5 +12,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.AiRoleMaxOrderByAggregateInput>;
 export const AiRoleMaxOrderByAggregateInputObjectSchema: SchemaType = z.object({
-    id: z.lazy(() => SortOrderSchema).optional().optional(), createdAt: z.lazy(() => SortOrderSchema).optional().optional(), updatedAt: z.lazy(() => SortOrderSchema).optional().optional(), isDeleted: z.lazy(() => SortOrderSchema).optional().optional(), title: z.lazy(() => SortOrderSchema).optional().optional(), content: z.lazy(() => SortOrderSchema).optional().optional(), project: z.lazy(() => SortOrderSchema).optional().optional()
+    id: z.lazy(() => SortOrderSchema).optional().optional(), createdAt: z.lazy(() => SortOrderSchema).optional().optional(), updatedAt: z.lazy(() => SortOrderSchema).optional().optional(), isDeleted: z.lazy(() => SortOrderSchema).optional().optional(), title: z.lazy(() => SortOrderSchema).optional().optional(), content: z.lazy(() => SortOrderSchema).optional().optional(), project: z.lazy(() => SortOrderSchema).optional().optional(), enabled: z.lazy(() => SortOrderSchema).optional().optional()
 }).strict() as SchemaType;

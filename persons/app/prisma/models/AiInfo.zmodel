@@ -1,0 +1,7 @@
+import "@wzyjs/next/dist/Base"
+
+model AiInfo extends Base {
+  title String
+  content String?
+  enabled Boolean @default(true)
+}

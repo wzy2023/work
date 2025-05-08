@@ -251,13 +251,13 @@ const policy: PolicyDef = {
             },
 
         },
-        orderDemand: {
+        aiInfo: {
             modelLevel: {
-                read: { guard: OrderDemand_read, },
-                create: { guard: OrderDemand_create, },
-                update: { guard: OrderDemand_update, },
-                postUpdate: { guard: OrderDemand_postUpdate, },
-                delete: { guard: OrderDemand_delete, }
+                read: { guard: AiInfo_read, },
+                create: { guard: AiInfo_create, },
+                update: { guard: AiInfo_update, },
+                postUpdate: { guard: AiInfo_postUpdate, },
+                delete: { guard: AiInfo_delete, }
             },
             fieldLevel: {
                 read:
@@ -271,13 +271,13 @@ const policy: PolicyDef = {
             },
 
         },
-        infoItem: {
+        orderDemand: {
             modelLevel: {
-                read: { guard: InfoItem_read, },
-                create: { guard: InfoItem_create, },
-                update: { guard: InfoItem_update, },
-                postUpdate: { guard: InfoItem_postUpdate, },
-                delete: { guard: InfoItem_delete, }
+                read: { guard: OrderDemand_read, },
+                create: { guard: OrderDemand_create, },
+                update: { guard: OrderDemand_update, },
+                postUpdate: { guard: OrderDemand_postUpdate, },
+                delete: { guard: OrderDemand_delete, }
             },
             fieldLevel: {
                 read:
@@ -305,8 +305,8 @@ const policy: PolicyDef = {
         rssItem: { hasValidation: false },
         rssFetchLog: { hasValidation: false },
         aiRole: { hasValidation: false },
+        aiInfo: { hasValidation: false },
         orderDemand: { hasValidation: false },
-        infoItem: { hasValidation: false },
     },
 
 };
@@ -887,6 +887,54 @@ function $check_AiRole_delete(input: any, context: QueryContext): any {
     return false;
 }
 
+function AiInfo_read(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_AiInfo_read(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function AiInfo_create(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_AiInfo_create(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function AiInfo_update(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_AiInfo_update(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function AiInfo_postUpdate(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_AiInfo_postUpdate(input: any, context: QueryContext): any {
+    return true;
+}
+
+function AiInfo_delete(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_AiInfo_delete(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
 function OrderDemand_read(context: QueryContext, db: CrudContract): any {
     return { NOT: { isDeleted: true } };
 }
@@ -930,54 +978,6 @@ function OrderDemand_delete(context: QueryContext, db: CrudContract): any {
 }
 
 function $check_OrderDemand_delete(input: any, context: QueryContext): any {
-    if ((!input?.isDeleted)) { return true; }
-
-    return false;
-}
-
-function InfoItem_read(context: QueryContext, db: CrudContract): any {
-    return { NOT: { isDeleted: true } };
-}
-
-function $check_InfoItem_read(input: any, context: QueryContext): any {
-    if ((!input?.isDeleted)) { return true; }
-
-    return false;
-}
-
-function InfoItem_create(context: QueryContext, db: CrudContract): any {
-    return { NOT: { isDeleted: true } };
-}
-
-function $check_InfoItem_create(input: any, context: QueryContext): any {
-    if ((!input?.isDeleted)) { return true; }
-
-    return false;
-}
-
-function InfoItem_update(context: QueryContext, db: CrudContract): any {
-    return { NOT: { isDeleted: true } };
-}
-
-function $check_InfoItem_update(input: any, context: QueryContext): any {
-    if ((!input?.isDeleted)) { return true; }
-
-    return false;
-}
-
-function InfoItem_postUpdate(context: QueryContext, db: CrudContract): any {
-    return { AND: [] };
-}
-
-function $check_InfoItem_postUpdate(input: any, context: QueryContext): any {
-    return true;
-}
-
-function InfoItem_delete(context: QueryContext, db: CrudContract): any {
-    return { NOT: { isDeleted: true } };
-}
-
-function $check_InfoItem_delete(input: any, context: QueryContext): any {
     if ((!input?.isDeleted)) { return true; }
 
     return false;

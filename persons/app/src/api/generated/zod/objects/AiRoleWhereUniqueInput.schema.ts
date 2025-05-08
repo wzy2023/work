@@ -13,6 +13,7 @@ import { BoolNullableFilterObjectSchema } from './BoolNullableFilter.schema';
 import { StringFilterObjectSchema } from './StringFilter.schema';
 import { JsonFilterObjectSchema } from './JsonFilter.schema';
 import { StringNullableFilterObjectSchema } from './StringNullableFilter.schema';
+import { BoolFilterObjectSchema } from './BoolFilter.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -29,5 +30,6 @@ export const AiRoleWhereUniqueInputObjectSchema: SchemaType = z.object({
     z.string()]).optional(), content: z.union([z.lazy(() => StringFilterObjectSchema),
     z.string()]).optional(), tags: z.lazy(() => JsonFilterObjectSchema).optional().optional(), project: z.union([z.lazy(() => StringNullableFilterObjectSchema),
     z.string(),
-    z.null()]).optional().nullable()
+    z.null()]).optional().nullable(), enabled: z.union([z.lazy(() => BoolFilterObjectSchema),
+    z.boolean()]).optional()
 }).strict() as SchemaType;

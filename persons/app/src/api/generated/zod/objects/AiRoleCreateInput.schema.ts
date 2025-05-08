@@ -22,5 +22,5 @@ export const AiRoleCreateInputObjectSchema: SchemaType = z.object({
     z.null()]).optional().nullable(), isDeleted: z.union([z.boolean(),
     z.null()]).optional().nullable(), title: z.string(), content: z.string(), tags: z.union([z.lazy(() => JsonNullValueInputSchema),
         jsonSchema]), project: z.union([z.string(),
-        z.null()]).optional().nullable()
+        z.null()]).optional().nullable(), enabled: z.boolean().optional().optional()
 }).strict() as SchemaType;

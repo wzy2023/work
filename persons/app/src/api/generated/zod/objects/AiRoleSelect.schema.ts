@@ -12,5 +12,5 @@ import type { Prisma } from '@prisma/client';
 
 type SchemaType = z.ZodType<Prisma.AiRoleSelect>;
 export const AiRoleSelectObjectSchema: SchemaType = z.object({
-    id: z.boolean().optional().optional(), createdAt: z.boolean().optional().optional(), updatedAt: z.boolean().optional().optional(), isDeleted: z.boolean().optional().optional(), title: z.boolean().optional().optional(), content: z.boolean().optional().optional(), tags: z.boolean().optional().optional(), project: z.boolean().optional().optional()
+    id: z.boolean().optional().optional(), createdAt: z.boolean().optional().optional(), updatedAt: z.boolean().optional().optional(), isDeleted: z.boolean().optional().optional(), title: z.boolean().optional().optional(), content: z.boolean().optional().optional(), tags: z.boolean().optional().optional(), project: z.boolean().optional().optional(), enabled: z.boolean().optional().optional()
 }).strict() as SchemaType;

@@ -20,8 +20,8 @@ import createRssFeedRouter from "./RssFeed.router";
 import createRssItemRouter from "./RssItem.router";
 import createRssFetchLogRouter from "./RssFetchLog.router";
 import createAiRoleRouter from "./AiRole.router";
+import createAiInfoRouter from "./AiInfo.router";
 import createOrderDemandRouter from "./OrderDemand.router";
-import createInfoItemRouter from "./InfoItem.router";
 
 export function db(ctx: any) {
     if (!ctx.prisma) {
@@ -44,8 +44,8 @@ export function createRouter() {
         rssItem: createRssItemRouter(),
         rssFetchLog: createRssFetchLogRouter(),
         aiRole: createAiRoleRouter(),
+        aiInfo: createAiInfoRouter(),
         orderDemand: createOrderDemandRouter(),
-        infoItem: createInfoItemRouter(),
     }
     );
 }

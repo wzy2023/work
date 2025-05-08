@@ -1,8 +1,10 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import React, { type ReactNode, useState, useEffect, useRef } from 'react'
+
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+
 import { Button } from 'antd'
 import {
   MenuFoldOutlined,
@@ -12,14 +14,24 @@ import {
   AppstoreOutlined,
   FileTextOutlined,
   BulbOutlined,
+  InfoCircleOutlined,
+  UserOutlined,
 } from '@ant-design/icons'
 
 interface MenuItem {
   key: string
   title: string
   path: string
-  icon: React.ReactNode
+  icon: ReactNode
   children?: MenuItem[]
+  group?: string
+}
+
+// 菜单分组
+const menuGroups = {
+  BASE: '基础',
+  AI: 'AI',
+  OTHER: '其它',
 }
 
 const menuItems: MenuItem[] = [
@@ -28,36 +40,49 @@ const menuItems: MenuItem[] = [
     title: '习惯管理',
     path: '/habit/manage',
     icon: <CalendarOutlined />,
+    group: menuGroups.BASE,
   },
   {
     key: 'task',
     title: '任务规划',
     path: '/task',
     icon: <AppstoreOutlined />,
+    group: menuGroups.BASE,
   },
   {
     key: 'buttons',
     title: '按钮大盘',
     path: '/buttons/cma9f76o7001d138o5rq707ls',
     icon: <HomeOutlined />,
+    group: menuGroups.OTHER,
   },
   {
     key: 'collecting',
     title: '资料收集',
     path: '/collecting',
     icon: <FileTextOutlined />,
+    group: menuGroups.OTHER,
   },
   {
     key: 'rss',
     title: 'RSS信息',
     path: '/rss',
     icon: <BulbOutlined />,
+    group: menuGroups.OTHER,
   },
   {
-    key: 'prompt',
+    key: 'info',
+    title: '信息管理',
+    path: '/info',
+    icon: <InfoCircleOutlined />,
+    group: menuGroups.AI,
+  },
+  {
+    key: 'role',
     title: '角色管理',
     path: '/role',
-    icon: <BulbOutlined />,
+    icon: <UserOutlined />,
+    group: menuGroups.AI,
   },
   // {
   //   key: 'product',
@@ -66,6 +91,16 @@ const menuItems: MenuItem[] = [
   //   icon: <BulbOutlined />,
   // },
 ]
+
+// 按分组整理菜单
+const groupedMenuItems = menuItems.reduce<Record<string, MenuItem[]>>((acc, item) => {
+  const group = item.group || '其他'
+  if (!acc[group]) {
+    acc[group] = []
+  }
+  acc[group].push(item)
+  return acc
+}, {})
 
 export const SideMenu = () => {
   const [collapsed, setCollapsed] = useState(false)
@@ -112,22 +147,31 @@ export const SideMenu = () => {
         />
       </div>
       <ul className='flex-1 overflow-y-auto'>
-        {menuItems.map((item) => (
-          <li key={item.key}>
-            <Link
-              href={item.path}
-              className={`flex items-center py-2 transition-colors justify-center ${collapsed ? '' : 'pr-4'} ${isActive(item.path) ? 'bg-blue-500 text-white' : 'hover:bg-gray-200'}`}
-            >
-              <span className='text-lg'>
-                {item.icon}
-              </span>
-              {shouldShowTitle && (
-                <span className='ml-2'>
-                  {item.title}
-                </span>
-              )}
-            </Link>
-          </li>
+        {Object.entries(groupedMenuItems).map(([group, items]) => (
+          <div key={group}>
+            {shouldShowTitle && !collapsed && (
+              <div className='text-xs text-gray-500 py-2 px-4 font-medium'>
+                {group}
+              </div>
+            )}
+            {items.map((item) => (
+              <li key={item.key}>
+                <Link
+                  href={item.path}
+                  className={`flex items-center py-2 transition-colors justify-center ${collapsed ? '' : 'pr-4'} ${isActive(item.path) ? 'bg-blue-500 text-white' : 'hover:bg-gray-200'}`}
+                >
+                  <span className='text-lg'>
+                    {item.icon}
+                  </span>
+                  {shouldShowTitle && (
+                    <span className='ml-2'>
+                      {item.title}
+                    </span>
+                  )}
+                </Link>
+              </li>
+            ))}
+          </div>
         ))}
       </ul>
     </div>

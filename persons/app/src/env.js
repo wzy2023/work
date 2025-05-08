@@ -10,6 +10,10 @@ export const env = createEnv({
   server: {
     DATABASE_URL: z.string().url(),
     NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
+    VITE_OSS_REGION: z.string(),
+    VITE_OSS_ACCESS_KEY_ID: z.string(),
+    VITE_OSS_ACCESS_KEY_SECRET: z.string(),
+    VITE_OSS_BUCKET: z.string(),
   },
 
   /**
@@ -29,7 +33,10 @@ export const env = createEnv({
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
-    // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+    VITE_OSS_REGION: process.env.VITE_OSS_REGION,
+    VITE_OSS_ACCESS_KEY_ID: process.env.VITE_OSS_ACCESS_KEY_ID,
+    VITE_OSS_ACCESS_KEY_SECRET: process.env.VITE_OSS_ACCESS_KEY_SECRET,
+    VITE_OSS_BUCKET: process.env.VITE_OSS_BUCKET,
   },
 
   /**

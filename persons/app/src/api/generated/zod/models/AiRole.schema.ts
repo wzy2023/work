@@ -15,6 +15,7 @@ const baseSchema = z.object({
     content: z.string(),
     tags: z.any(),
     project: z.string().nullish(),
+    enabled: z.boolean().default(true),
 }
 ).strict();
 
@@ -51,7 +52,8 @@ export const AiRolePrismaUpdateSchema = z.object({
     title: z.string(),
     content: z.string(),
     tags: z.any(),
-    project: z.string().nullish()
+    project: z.string().nullish(),
+    enabled: z.boolean().default(true)
 }).partial().passthrough();
 
 
@@ -59,7 +61,7 @@ export const AiRolePrismaUpdateSchema = z.object({
  * `AiRole` schema for create operations excluding foreign keys and relations.
  */
 export const AiRoleCreateScalarSchema = baseSchema.partial({
-    id: true, createdAt: true, updatedAt: true, isDeleted: true
+    id: true, createdAt: true, updatedAt: true, isDeleted: true, enabled: true
 });
 
 
@@ -67,7 +69,7 @@ export const AiRoleCreateScalarSchema = baseSchema.partial({
  * `AiRole` schema for create operations including scalar fields, foreign key fields, and validations.
  */
 export const AiRoleCreateSchema = baseSchema.partial({
-    id: true, createdAt: true, updatedAt: true, isDeleted: true
+    id: true, createdAt: true, updatedAt: true, isDeleted: true, enabled: true
 });
 
 

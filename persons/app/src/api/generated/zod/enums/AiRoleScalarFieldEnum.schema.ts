@@ -7,4 +7,4 @@
 
 import { z } from 'zod';
 
-export const AiRoleScalarFieldEnumSchema = z.enum(["id", "createdAt", "updatedAt", "isDeleted", "title", "content", "tags", "project"])
+export const AiRoleScalarFieldEnumSchema = z.enum(["id", "createdAt", "updatedAt", "isDeleted", "title", "content", "tags", "project", "enabled"])

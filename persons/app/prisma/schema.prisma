@@ -173,6 +173,17 @@ model AiRole {
   /// ![string[]]
   tags      Json
   project   String?
+  enabled   Boolean   @default(true)
+}
+
+model AiInfo {
+  id        String    @id() @default(cuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt()
+  isDeleted Boolean?  @default(false)
+  title     String
+  content   String?
+  enabled   Boolean   @default(true)
 }
 
 model OrderDemand {
@@ -190,15 +201,4 @@ model OrderDemand {
   price      String?
   applyNum   String?
   createTime String?
-}
-
-model InfoItem {
-  id        String    @id() @default(cuid())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime? @updatedAt()
-  isDeleted Boolean?  @default(false)
-  title     String
-  content   String?
-  key       String    @unique()
-  enabled   Boolean   @default(true)
 }

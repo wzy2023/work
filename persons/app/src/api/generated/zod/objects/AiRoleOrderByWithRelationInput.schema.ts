@@ -17,5 +17,5 @@ export const AiRoleOrderByWithRelationInputObjectSchema: SchemaType = z.object({
     id: z.lazy(() => SortOrderSchema).optional().optional(), createdAt: z.lazy(() => SortOrderSchema).optional().optional(), updatedAt: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), isDeleted: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), title: z.lazy(() => SortOrderSchema).optional().optional(), content: z.lazy(() => SortOrderSchema).optional().optional(), tags: z.lazy(() => SortOrderSchema).optional().optional(), project: z.union([z.lazy(() => SortOrderSchema),
-    z.lazy(() => SortOrderInputObjectSchema)]).optional(), _relevance: z.lazy(() => AiRoleOrderByRelevanceInputObjectSchema).optional().optional()
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), enabled: z.lazy(() => SortOrderSchema).optional().optional(), _relevance: z.lazy(() => AiRoleOrderByRelevanceInputObjectSchema).optional().optional()
 }).strict() as SchemaType;

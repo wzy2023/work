@@ -15,4 +15,6 @@ export * from './array'
 export * from './image'
 export * from './location'
 
+export * as cheerio from 'cheerio'
+
 export { default as dayjs, Dayjs, Timezone } from './dayjs'

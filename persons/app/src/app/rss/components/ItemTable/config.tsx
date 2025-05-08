@@ -78,7 +78,7 @@ export const getColumns = (onAction: (actionType: Rss.ItemActionType, id: string
     dataIndex: 'pubDate',
     key: 'pubDate',
     width: 180,
-    render: (pubDate) => dayjs(pubDate as string).format('YYYY-MM-DD HH:mm'),
+    render: pubDate => dayjs(pubDate as string).format('YYYY-MM-DD HH:mm'),
   },
   {
     title: '操作',

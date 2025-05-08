@@ -3,7 +3,7 @@
 import React from 'react'
 import { Form, Select, Input, DatePicker, Button } from '@/components'
 
-import { extractTagsFromFeeds, feedsToOptions } from '../../utils'
+import { extractTagsFromFeeds } from '../../utils'
 import { readStatusOptions, starredStatusOptions } from '../../consts'
 
 import { api } from '@/api/react'
@@ -21,8 +21,6 @@ export const ItemSearchForm = (props: ItemSearchFormProps) => {
 
   const allTags = extractTagsFromFeeds(feeds)
 
-  const feedOptions = feedsToOptions(feeds)
-
   return (
     <Form
       form={form}
@@ -33,16 +31,6 @@ export const ItemSearchForm = (props: ItemSearchFormProps) => {
     >
       <Form.Item name='search'>
         <Input placeholder='搜索标题或内容' allowClear />
-      </Form.Item>
-
-      <Form.Item name='feedIds'>
-        <Select
-          placeholder='选择来源'
-          options={feedOptions}
-          mode='multiple'
-          allowClear
-          style={{ width: 120 }}
-        />
       </Form.Item>
 
       <Form.Item name='tags'>

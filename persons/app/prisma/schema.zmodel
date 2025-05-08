@@ -16,5 +16,6 @@ import "./models/RssItem"
 import "./models/RssFetchLog"
 
 import "./models/AiRole"
+import "./models/AiInfo"
+
 import "./models/OrderDemand"
-import "./models/InfoItem"

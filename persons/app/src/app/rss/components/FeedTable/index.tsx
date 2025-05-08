@@ -20,7 +20,7 @@ import { FeedBatchActions } from './FeedBatchActions'
 import { api } from '@/api/react'
 import { getColumns } from './config'
 import { useRssFeed } from '../../hooks'
-import { RssFetchTriggerType } from '@/api/types'
+import { RssFetchTriggerType, RssFeedActionType } from '@/api/types'
 
 const getDetailMessage = (feedsCount: number, successFeeds: any[], failedFeeds: any[]) => {
   let detailedMessage = ''
@@ -77,15 +77,15 @@ export const FeedTable = () => {
     }
   }, [currentId, feeds])
 
-  const onAction = (actionType: Rss.FeedActionType, id: string) => {
+  const onAction = (actionType: RssFeedActionType, id: string) => {
     switch (actionType) {
-      case Rss.FeedActionType.Edit:
+      case RssFeedActionType.Edit:
         setCurrentId(id)
         break
-      case Rss.FeedActionType.Delete:
+      case RssFeedActionType.Delete:
         showDeleteConfirm(id)
         break
-      case Rss.FeedActionType.Fetch:
+      case RssFeedActionType.Fetch:
         handleFetchNow(id)
         break
     }
@@ -302,7 +302,7 @@ export const FeedTable = () => {
         pagination={{
           showSizeChanger: true,
           pageSizeOptions: ['10', '20', '50'],
-          defaultPageSize: 10,
+          defaultPageSize: 15,
         }}
       />
 

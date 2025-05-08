@@ -1,4 +1,5 @@
 import { useRssItemCRUD } from '@/api/generated/crud'
+import dayjs from 'dayjs'
 
 export interface RssItemFilter {
   search?: string
@@ -40,8 +41,8 @@ export const useRssItem = (filter: RssItemFilter = {}) => {
           ...(filter.isStarred !== undefined ? { isStarred: filter.isStarred } : {}),
           ...(filter.pubDateStart || filter.pubDateEnd ? {
             pubDate: {
-              ...(filter.pubDateStart ? { gte: new Date(filter.pubDateStart) } : {}),
-              ...(filter.pubDateEnd ? { lte: new Date(filter.pubDateEnd) } : {}),
+              ...(filter.pubDateStart ? { gte: dayjs(filter.pubDateStart).startOf('day').toISOString() } : {}),
+              ...(filter.pubDateEnd ? { lte: dayjs(filter.pubDateEnd).endOf('day').toISOString() } : {}),
             },
           } : {}),
         },

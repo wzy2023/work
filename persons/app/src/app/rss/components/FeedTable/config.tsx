@@ -3,7 +3,6 @@ import { FeedActions } from './FeedActions'
 import { FeedStatusSwitch } from './FeedStatusSwitch'
 
 import { frequencyOptions } from '../../consts'
-import { RssFeedActionType } from '@/api/types'
 
 export interface FeedColumnProps {
   onAction: (actionType: Rss.FeedActionType, id: string) => void
@@ -15,21 +14,12 @@ export const getColumns = ({ onAction, onEnabledChange, getItemCount }: FeedColu
   {
     title: '名称',
     dataIndex: 'name',
-    key: 'name',
-    render: (text, record) => (
-      <a
-        onClick={() => onAction(RssFeedActionType.Edit, record.id)}
-      >
-        {text}
-      </a>
-    ),
   },
   {
     title: 'RSS链接',
     dataIndex: 'url',
-    key: 'url',
     render: (text) => (
-      <a href={text as string} target='_blank' rel='noopener noreferrer'>
+      <a href={'http://localhost:1200' + text as unknown as string} target='_blank' rel='noopener noreferrer'>
         {text}
       </a>
     ),

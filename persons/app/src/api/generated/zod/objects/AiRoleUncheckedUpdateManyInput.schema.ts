@@ -12,6 +12,7 @@ import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './Nullab
 import { NullableBoolFieldUpdateOperationsInputObjectSchema } from './NullableBoolFieldUpdateOperationsInput.schema';
 import { JsonNullValueInputSchema } from '../enums/JsonNullValueInput.schema';
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema';
+import { BoolFieldUpdateOperationsInputObjectSchema } from './BoolFieldUpdateOperationsInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -34,5 +35,6 @@ export const AiRoleUncheckedUpdateManyInputObjectSchema: SchemaType = z.object({
     z.lazy(() => StringFieldUpdateOperationsInputObjectSchema)]).optional(), tags: z.union([z.lazy(() => JsonNullValueInputSchema),
         jsonSchema]).optional(), project: z.union([z.string(),
         z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
-        z.null()]).optional().nullable()
+        z.null()]).optional().nullable(), enabled: z.union([z.boolean(),
+        z.lazy(() => BoolFieldUpdateOperationsInputObjectSchema)]).optional()
 }).strict() as SchemaType;

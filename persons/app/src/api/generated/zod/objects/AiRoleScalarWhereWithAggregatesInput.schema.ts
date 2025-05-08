@@ -12,6 +12,7 @@ import { DateTimeNullableWithAggregatesFilterObjectSchema } from './DateTimeNull
 import { BoolNullableWithAggregatesFilterObjectSchema } from './BoolNullableWithAggregatesFilter.schema';
 import { JsonWithAggregatesFilterObjectSchema } from './JsonWithAggregatesFilter.schema';
 import { StringNullableWithAggregatesFilterObjectSchema } from './StringNullableWithAggregatesFilter.schema';
+import { BoolWithAggregatesFilterObjectSchema } from './BoolWithAggregatesFilter.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -29,5 +30,6 @@ export const AiRoleScalarWhereWithAggregatesInputObjectSchema: SchemaType = z.ob
     z.string()]).optional(), content: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
     z.string()]).optional(), tags: z.lazy(() => JsonWithAggregatesFilterObjectSchema).optional().optional(), project: z.union([z.lazy(() => StringNullableWithAggregatesFilterObjectSchema),
     z.string(),
-    z.null()]).optional().nullable()
+    z.null()]).optional().nullable(), enabled: z.union([z.lazy(() => BoolWithAggregatesFilterObjectSchema),
+    z.boolean()]).optional()
 }).strict() as SchemaType;
