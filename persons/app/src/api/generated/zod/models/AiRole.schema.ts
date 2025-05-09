@@ -13,7 +13,7 @@ const baseSchema = z.object({
     isDeleted: z.boolean().default(false).nullish(),
     title: z.string(),
     content: z.string(),
-    tags: z.any(),
+    tags: z.any().nullish(),
     project: z.string().nullish(),
     enabled: z.boolean().default(true),
 }
@@ -51,7 +51,7 @@ export const AiRolePrismaUpdateSchema = z.object({
     isDeleted: z.boolean().default(false).nullish(),
     title: z.string(),
     content: z.string(),
-    tags: z.any(),
+    tags: z.any().nullish(),
     project: z.string().nullish(),
     enabled: z.boolean().default(true)
 }).partial().passthrough();

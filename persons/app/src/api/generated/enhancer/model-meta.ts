@@ -621,6 +621,7 @@ const metadata = {
                 }, tags: {
                     name: "tags",
                     type: "Json",
+                    isOptional: true,
                 }, project: {
                     name: "project",
                     type: "String",
@@ -665,6 +666,10 @@ const metadata = {
                 }, content: {
                     name: "content",
                     type: "String",
+                    attributes: [{ "name": "@db.Text", "args": [] }],
+                }, tags: {
+                    name: "tags",
+                    type: "Json",
                     isOptional: true,
                 }, enabled: {
                     name: "enabled",

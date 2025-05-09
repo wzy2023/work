@@ -10,7 +10,7 @@ import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFi
 import { DateTimeWithAggregatesFilterObjectSchema } from './DateTimeWithAggregatesFilter.schema';
 import { DateTimeNullableWithAggregatesFilterObjectSchema } from './DateTimeNullableWithAggregatesFilter.schema';
 import { BoolNullableWithAggregatesFilterObjectSchema } from './BoolNullableWithAggregatesFilter.schema';
-import { StringNullableWithAggregatesFilterObjectSchema } from './StringNullableWithAggregatesFilter.schema';
+import { JsonNullableWithAggregatesFilterObjectSchema } from './JsonNullableWithAggregatesFilter.schema';
 import { BoolWithAggregatesFilterObjectSchema } from './BoolWithAggregatesFilter.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -26,8 +26,7 @@ export const AiInfoScalarWhereWithAggregatesInputObjectSchema: SchemaType = z.ob
     z.null()]).optional().nullable(), isDeleted: z.union([z.lazy(() => BoolNullableWithAggregatesFilterObjectSchema),
     z.boolean(),
     z.null()]).optional().nullable(), title: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
-    z.string()]).optional(), content: z.union([z.lazy(() => StringNullableWithAggregatesFilterObjectSchema),
-    z.string(),
-    z.null()]).optional().nullable(), enabled: z.union([z.lazy(() => BoolWithAggregatesFilterObjectSchema),
+    z.string()]).optional(), content: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
+    z.string()]).optional(), tags: z.lazy(() => JsonNullableWithAggregatesFilterObjectSchema).optional().optional(), enabled: z.union([z.lazy(() => BoolWithAggregatesFilterObjectSchema),
     z.boolean()]).optional()
 }).strict() as SchemaType;

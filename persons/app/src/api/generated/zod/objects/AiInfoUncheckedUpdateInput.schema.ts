@@ -10,10 +10,16 @@ import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdat
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema';
 import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema';
 import { NullableBoolFieldUpdateOperationsInputObjectSchema } from './NullableBoolFieldUpdateOperationsInput.schema';
-import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema';
+import { NullableJsonNullValueInputSchema } from '../enums/NullableJsonNullValueInput.schema';
 import { BoolFieldUpdateOperationsInputObjectSchema } from './BoolFieldUpdateOperationsInput.schema';
 
 import type { Prisma } from '@prisma/client';
+
+
+const literalSchema = z.union([z.string(), z.number(), z.boolean()]);
+const jsonSchema: z.ZodType<Prisma.InputJsonValue> = z.lazy(() =>
+    z.union([literalSchema, z.array(jsonSchema.nullable()), z.record(jsonSchema.nullable())])
+);
 
 type SchemaType = z.ZodType<Prisma.AiInfoUncheckedUpdateInput>;
 export const AiInfoUncheckedUpdateInputObjectSchema: SchemaType = z.object({
@@ -25,7 +31,7 @@ export const AiInfoUncheckedUpdateInputObjectSchema: SchemaType = z.object({
     z.lazy(() => NullableBoolFieldUpdateOperationsInputObjectSchema),
     z.null()]).optional().nullable(), title: z.union([z.string(),
     z.lazy(() => StringFieldUpdateOperationsInputObjectSchema)]).optional(), content: z.union([z.string(),
-    z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
-    z.null()]).optional().nullable(), enabled: z.union([z.boolean(),
-    z.lazy(() => BoolFieldUpdateOperationsInputObjectSchema)]).optional()
+    z.lazy(() => StringFieldUpdateOperationsInputObjectSchema)]).optional(), tags: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
+        jsonSchema]).optional(), enabled: z.union([z.boolean(),
+        z.lazy(() => BoolFieldUpdateOperationsInputObjectSchema)]).optional()
 }).strict() as SchemaType;

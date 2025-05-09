@@ -11,7 +11,7 @@ import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema';
 import { DateTimeNullableFilterObjectSchema } from './DateTimeNullableFilter.schema';
 import { BoolNullableFilterObjectSchema } from './BoolNullableFilter.schema';
 import { StringFilterObjectSchema } from './StringFilter.schema';
-import { StringNullableFilterObjectSchema } from './StringNullableFilter.schema';
+import { JsonNullableFilterObjectSchema } from './JsonNullableFilter.schema';
 import { BoolFilterObjectSchema } from './BoolFilter.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -26,8 +26,7 @@ export const AiInfoWhereUniqueInputObjectSchema: SchemaType = z.object({
     z.null()]).optional().nullable(), isDeleted: z.union([z.lazy(() => BoolNullableFilterObjectSchema),
     z.boolean(),
     z.null()]).optional().nullable(), title: z.union([z.lazy(() => StringFilterObjectSchema),
-    z.string()]).optional(), content: z.union([z.lazy(() => StringNullableFilterObjectSchema),
-    z.string(),
-    z.null()]).optional().nullable(), enabled: z.union([z.lazy(() => BoolFilterObjectSchema),
+    z.string()]).optional(), content: z.union([z.lazy(() => StringFilterObjectSchema),
+    z.string()]).optional(), tags: z.lazy(() => JsonNullableFilterObjectSchema).optional().optional(), enabled: z.union([z.lazy(() => BoolFilterObjectSchema),
     z.boolean()]).optional()
 }).strict() as SchemaType;

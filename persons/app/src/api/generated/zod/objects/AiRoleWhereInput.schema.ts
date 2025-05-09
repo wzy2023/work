@@ -10,7 +10,7 @@ import { StringFilterObjectSchema } from './StringFilter.schema';
 import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema';
 import { DateTimeNullableFilterObjectSchema } from './DateTimeNullableFilter.schema';
 import { BoolNullableFilterObjectSchema } from './BoolNullableFilter.schema';
-import { JsonFilterObjectSchema } from './JsonFilter.schema';
+import { JsonNullableFilterObjectSchema } from './JsonNullableFilter.schema';
 import { StringNullableFilterObjectSchema } from './StringNullableFilter.schema';
 import { BoolFilterObjectSchema } from './BoolFilter.schema';
 
@@ -28,7 +28,7 @@ export const AiRoleWhereInputObjectSchema: SchemaType = z.object({
     z.boolean(),
     z.null()]).optional().nullable(), title: z.union([z.lazy(() => StringFilterObjectSchema),
     z.string()]).optional(), content: z.union([z.lazy(() => StringFilterObjectSchema),
-    z.string()]).optional(), tags: z.lazy(() => JsonFilterObjectSchema).optional().optional(), project: z.union([z.lazy(() => StringNullableFilterObjectSchema),
+    z.string()]).optional(), tags: z.lazy(() => JsonNullableFilterObjectSchema).optional().optional(), project: z.union([z.lazy(() => StringNullableFilterObjectSchema),
     z.string(),
     z.null()]).optional().nullable(), enabled: z.union([z.lazy(() => BoolFilterObjectSchema),
     z.boolean()]).optional()

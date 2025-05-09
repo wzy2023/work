@@ -1,13 +1,13 @@
 import React from 'react'
 
-import { Space, Switch, Table, type TableProps, Tag } from '@/components'
+import { Button, Card, Col, CopyOutlined, message, Row, Space, Switch, Tag, Typography } from '@/components'
 import { CreateUpdate } from './CreateUpdate'
 import { Delete } from './Delete'
 
 import { useAiInfoCRUD } from '@/api/generated/crud'
 
 interface InfoListProps {
-  list?: Info.Item[]
+  list?: Ai.Info[]
   onSuccess: () => void
 }
 
@@ -21,71 +21,74 @@ export const InfoList = (props: InfoListProps) => {
     },
   })
 
-  const onSwitch = (checked: boolean, record: Info.Item) => {
+  const onSwitch = (checked: boolean, record: Ai.Info) => {
     updateState.mutate(record.id, { enabled: checked })
   }
 
-  const columns: TableProps<Info.Item>['columns'] = [
-    {
-      title: 'ID',
-      dataIndex: 'id',
-      width: 150,
-    },
-    {
-      title: '标题',
-      dataIndex: 'title',
-      ellipsis: true,
-    },
-    {
-      title: '内容',
-      dataIndex: 'content',
-      ellipsis: true,
-    },
-    {
-      title: '状态',
-      dataIndex: 'enabled',
-      width: 100,
-      render: (enabled) => (
-        <Tag color={enabled ? 'success' : 'error'}>
-          {enabled ? '启用' : '禁用'}
-        </Tag>
-      ),
-    },
-    {
-      title: '创建时间',
-      dataIndex: 'createdAt',
-      width: 180,
-      render: (date) => new Date(date).toLocaleString(),
-    },
-    {
-      title: '操作',
-      key: 'action',
-      width: 160,
-      render: (_, record) => (
-        <Space size='middle'>
-          <Switch
-            size='small'
-            checked={record.enabled}
-            onChange={(checked) => onSwitch(checked, record)}
-          />
-          <CreateUpdate
-            item={record}
-            onSuccess={onSuccess}
-          />
-          <Delete id={record.id} onSuccess={onSuccess} />
-        </Space>
-      ),
-    },
-  ]
+  const onCopyContent = (content: string) => {
+    navigator.clipboard.writeText(content)
+    message.success('内容已复制')
+  }
 
   return (
-    <Table
-      rowKey='id'
-      columns={columns}
-      dataSource={list || []}
-      pagination={{
-        hideOnSinglePage: true,
-      }}
-    />
+    <Row gutter={[16, 16]}>
+      {(list || []).map(item => (
+        <Col key={item.id} xs={24} md={12} lg={6}>
+          <Card
+            size='small'
+            title={(
+              <Space style={{ width: '100%' }}>
+                <Tag color={item.enabled ? 'success' : 'error'}>
+                  {item.enabled ? '启用' : '禁用'}
+                </Tag>
+                <div>
+                  {item.title}
+                </div>
+              </Space>
+            )}
+            extra={
+              <Switch
+                size='small'
+                checked={item.enabled}
+                onChange={(checked) => onSwitch(checked, item)}
+              />
+            }
+            actions={[
+              <Button
+                key='copy'
+                type='text'
+                title='复制内容'
+                icon={<CopyOutlined />}
+                onClick={() => onCopyContent(item.content || '')}
+              />,
+              <CreateUpdate
+                key='edit'
+                item={item}
+                onSuccess={onSuccess}
+              />,
+              <Delete
+                key='delete'
+                id={item.id}
+                onSuccess={onSuccess}
+              />,
+            ]}
+          >
+            <div className='mb-3'>
+              {item.tags?.map((tag: string) => (
+                <Tag key={tag} className='mr-1 mb-1'>
+                  {tag}
+                </Tag>
+              ))}
+            </div>
+
+            <div className='mb-3'>
+              <Typography.Paragraph ellipsis={{ rows: 5 }}>
+                {item.content}
+              </Typography.Paragraph>
+            </div>
+          </Card>
+        </Col>
+      ))}
+    </Row>
   )
 }

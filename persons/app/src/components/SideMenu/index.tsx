@@ -16,6 +16,7 @@ import {
   BulbOutlined,
   InfoCircleOutlined,
   UserOutlined,
+  ShoppingOutlined,
 } from '@ant-design/icons'
 
 interface MenuItem {
@@ -54,6 +55,13 @@ const menuItems: MenuItem[] = [
     title: '按钮大盘',
     path: '/buttons/cma9f76o7001d138o5rq707ls',
     icon: <HomeOutlined />,
+    group: menuGroups.OTHER,
+  },
+  {
+    key: 'order-demand',
+    title: '订单兼职',
+    path: '/order-demand',
+    icon: <ShoppingOutlined />,
     group: menuGroups.OTHER,
   },
   {

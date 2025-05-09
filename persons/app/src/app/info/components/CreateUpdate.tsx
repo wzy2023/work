@@ -4,8 +4,9 @@ import {
   BetaSchemaForm,
   Button,
   Form,
-  Modal,
+  Drawer,
   PlusOutlined,
+  EditOutlined,
 } from '@/components'
 
 import { useBoolean } from '@/hooks'
@@ -13,13 +14,14 @@ import { useAiInfoCRUD } from '@/api/generated/crud'
 
 interface FormValues {
   title: string
-  content?: string
+  content: string
   key: string
   enabled: boolean
+  tags?: string[]
 }
 
 interface CreateUpdateProps {
-  item?: Info.Item
+  item?: Ai.Info
   onSuccess: () => void
 }
 
@@ -34,8 +36,12 @@ export const CreateUpdate = (props: CreateUpdateProps) => {
     list: false,
     create: {
       onSuccess: () => {
-        handleClose()
+        // handleClose()
         onSuccess?.()
+        form.setFieldsValue({
+          title: '',
+          content: '',
+        })
       },
     },
     update: {
@@ -51,9 +57,9 @@ export const CreateUpdate = (props: CreateUpdateProps) => {
     if (item && visible) {
       form.setFieldsValue({
         title: item.title,
-        content: item.content || undefined,
-        key: item.key || '',
+        content: item.content,
         enabled: item.enabled,
+        tags: item.tags!,
       })
     } else {
       form.resetFields()
@@ -71,10 +77,9 @@ export const CreateUpdate = (props: CreateUpdateProps) => {
     const values = form.getFieldsValue()
 
     if (item) {
-      // 编辑
       updateState.mutate(item.id, values)
+
     } else {
-      // 新建
       createState.mutate(values)
     }
   }
@@ -82,27 +87,44 @@ export const CreateUpdate = (props: CreateUpdateProps) => {
   return (
     <>
       {item ? (
-        <Button type='link' onClick={setTrue}>
-          编辑
-        </Button>
+        <Button
+          type='text'
+          icon={<EditOutlined />}
+          onClick={setTrue}
+        />
       ) : (
         <Button type='primary' icon={<PlusOutlined />} onClick={setTrue}>
           添加信息
         </Button>
       )}
 
-      <Modal
+      <Drawer
         title={item ? '编辑信息' : '新建信息'}
         open={visible}
-        onCancel={handleClose}
-        onOk={onOk}
-        confirmLoading={createState.isPending || updateState.isPending}
+        onClose={handleClose}
+        width='80%'
+        extra={
+          <Button
+            type='primary'
+            onClick={onOk}
+            loading={createState.isPending || updateState.isPending}
+          >
+            保存
+          </Button>
+        }
       >
         <BetaSchemaForm<FormValues>
           form={form}
           submitter={false}
           layout='horizontal'
+          labelCol={{ span: 1 }}
           columns={[
+            {
+              title: '状态',
+              dataIndex: 'enabled',
+              valueType: 'switch',
+              initialValue: true,
+            },
             {
               title: '标题',
               dataIndex: 'title',
@@ -111,25 +133,28 @@ export const CreateUpdate = (props: CreateUpdateProps) => {
               },
             },
             {
+              title: '标签',
+              dataIndex: 'tags',
+              valueType: 'select',
+              fieldProps: {
+                mode: 'tags',
+                placeholder: '输入标签后按回车',
+              },
+            },
+            {
               title: '内容',
               dataIndex: 'content',
               valueType: 'textarea',
               fieldProps: {
-                rows: 10,
+                rows: 30,
               },
               formItemProps: {
-                rules: [{ required: true, message: '请输入标题' }],
+                rules: [{ required: true, message: '请输入内容' }],
               },
-            },
-            {
-              title: '状态',
-              dataIndex: 'enabled',
-              valueType: 'switch',
-              initialValue: true,
             },
           ]}
         />
-      </Modal>
+      </Drawer>
     </>
   )
 }

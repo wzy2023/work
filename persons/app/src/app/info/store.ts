@@ -3,6 +3,7 @@ import { create } from 'zustand'
 interface FilterValues {
   enabled?: boolean
   title?: string
+  tag?: string
 }
 
 interface InfoState {
@@ -14,6 +15,7 @@ export const useInfoStore = create<InfoState>((set) => ({
   filterValues: {
     enabled: undefined,
     title: '',
+    tag: '',
   },
   setFilterValues: (values) => {
     set((state) => ({

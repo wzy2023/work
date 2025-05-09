@@ -6,14 +6,20 @@
 // @ts-nocheck
 
 import { z } from 'zod';
-
+import { NullableJsonNullValueInputSchema } from '../enums/NullableJsonNullValueInput.schema';
 
 import type { Prisma } from '@prisma/client';
+
+
+const literalSchema = z.union([z.string(), z.number(), z.boolean()]);
+const jsonSchema: z.ZodType<Prisma.InputJsonValue> = z.lazy(() =>
+    z.union([literalSchema, z.array(jsonSchema.nullable()), z.record(jsonSchema.nullable())])
+);
 
 type SchemaType = z.ZodType<Prisma.AiInfoUncheckedCreateInput>;
 export const AiInfoUncheckedCreateInputObjectSchema: SchemaType = z.object({
     id: z.string().optional().optional(), createdAt: z.union([z.date().optional(), z.string().datetime().optional()]).optional(), updatedAt: z.union([z.union([z.date(), z.string().datetime().optional()]),
     z.null()]).optional().nullable(), isDeleted: z.union([z.boolean(),
-    z.null()]).optional().nullable(), title: z.string(), content: z.union([z.string(),
-    z.null()]).optional().nullable(), enabled: z.boolean().optional().optional()
+    z.null()]).optional().nullable(), title: z.string(), content: z.string(), tags: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
+        jsonSchema]).optional(), enabled: z.boolean().optional().optional()
 }).strict() as SchemaType;

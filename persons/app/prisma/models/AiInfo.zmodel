@@ -2,6 +2,11 @@ import "@wzyjs/next/dist/Base"
 
 model AiInfo extends Base {
   title String
-  content String?
+
+  content String @db.Text
+
+  /// ![string[]]
+  tags Json?
+
   enabled Boolean @default(true)
 }

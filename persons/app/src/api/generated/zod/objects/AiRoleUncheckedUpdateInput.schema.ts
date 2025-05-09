@@ -10,7 +10,7 @@ import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdat
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema';
 import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema';
 import { NullableBoolFieldUpdateOperationsInputObjectSchema } from './NullableBoolFieldUpdateOperationsInput.schema';
-import { JsonNullValueInputSchema } from '../enums/JsonNullValueInput.schema';
+import { NullableJsonNullValueInputSchema } from '../enums/NullableJsonNullValueInput.schema';
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema';
 import { BoolFieldUpdateOperationsInputObjectSchema } from './BoolFieldUpdateOperationsInput.schema';
 
@@ -32,7 +32,7 @@ export const AiRoleUncheckedUpdateInputObjectSchema: SchemaType = z.object({
     z.lazy(() => NullableBoolFieldUpdateOperationsInputObjectSchema),
     z.null()]).optional().nullable(), title: z.union([z.string(),
     z.lazy(() => StringFieldUpdateOperationsInputObjectSchema)]).optional(), content: z.union([z.string(),
-    z.lazy(() => StringFieldUpdateOperationsInputObjectSchema)]).optional(), tags: z.union([z.lazy(() => JsonNullValueInputSchema),
+    z.lazy(() => StringFieldUpdateOperationsInputObjectSchema)]).optional(), tags: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
         jsonSchema]).optional(), project: z.union([z.string(),
         z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
         z.null()]).optional().nullable(), enabled: z.union([z.boolean(),

@@ -6,9 +6,9 @@ model AiRole extends Base {
   content String @db.Text
 
   /// ![string[]]
-  tags Json
+  tags Json?
 
   project String?
-  
+
   enabled Boolean @default(true)
 }

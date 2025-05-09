@@ -18,6 +18,6 @@ type SchemaType = z.ZodType<Prisma.AiInfoOrderByWithAggregationInput>;
 export const AiInfoOrderByWithAggregationInputObjectSchema: SchemaType = z.object({
     id: z.lazy(() => SortOrderSchema).optional().optional(), createdAt: z.lazy(() => SortOrderSchema).optional().optional(), updatedAt: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), isDeleted: z.union([z.lazy(() => SortOrderSchema),
-    z.lazy(() => SortOrderInputObjectSchema)]).optional(), title: z.lazy(() => SortOrderSchema).optional().optional(), content: z.union([z.lazy(() => SortOrderSchema),
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), title: z.lazy(() => SortOrderSchema).optional().optional(), content: z.lazy(() => SortOrderSchema).optional().optional(), tags: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), enabled: z.lazy(() => SortOrderSchema).optional().optional(), _count: z.lazy(() => AiInfoCountOrderByAggregateInputObjectSchema).optional().optional(), _max: z.lazy(() => AiInfoMaxOrderByAggregateInputObjectSchema).optional().optional(), _min: z.lazy(() => AiInfoMinOrderByAggregateInputObjectSchema).optional().optional()
 }).strict() as SchemaType;

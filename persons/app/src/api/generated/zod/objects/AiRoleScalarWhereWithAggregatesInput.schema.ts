@@ -10,7 +10,7 @@ import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFi
 import { DateTimeWithAggregatesFilterObjectSchema } from './DateTimeWithAggregatesFilter.schema';
 import { DateTimeNullableWithAggregatesFilterObjectSchema } from './DateTimeNullableWithAggregatesFilter.schema';
 import { BoolNullableWithAggregatesFilterObjectSchema } from './BoolNullableWithAggregatesFilter.schema';
-import { JsonWithAggregatesFilterObjectSchema } from './JsonWithAggregatesFilter.schema';
+import { JsonNullableWithAggregatesFilterObjectSchema } from './JsonNullableWithAggregatesFilter.schema';
 import { StringNullableWithAggregatesFilterObjectSchema } from './StringNullableWithAggregatesFilter.schema';
 import { BoolWithAggregatesFilterObjectSchema } from './BoolWithAggregatesFilter.schema';
 
@@ -28,7 +28,7 @@ export const AiRoleScalarWhereWithAggregatesInputObjectSchema: SchemaType = z.ob
     z.boolean(),
     z.null()]).optional().nullable(), title: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
     z.string()]).optional(), content: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
-    z.string()]).optional(), tags: z.lazy(() => JsonWithAggregatesFilterObjectSchema).optional().optional(), project: z.union([z.lazy(() => StringNullableWithAggregatesFilterObjectSchema),
+    z.string()]).optional(), tags: z.lazy(() => JsonNullableWithAggregatesFilterObjectSchema).optional().optional(), project: z.union([z.lazy(() => StringNullableWithAggregatesFilterObjectSchema),
     z.string(),
     z.null()]).optional().nullable(), enabled: z.union([z.lazy(() => BoolWithAggregatesFilterObjectSchema),
     z.boolean()]).optional()

@@ -12,7 +12,8 @@ const baseSchema = z.object({
     updatedAt: z.coerce.date().nullish(),
     isDeleted: z.boolean().default(false).nullish(),
     title: z.string(),
-    content: z.string().nullish(),
+    content: z.string(),
+    tags: z.any().nullish(),
     enabled: z.boolean().default(true),
 }
 ).strict();
@@ -48,7 +49,8 @@ export const AiInfoPrismaUpdateSchema = z.object({
     updatedAt: z.coerce.date().nullish(),
     isDeleted: z.boolean().default(false).nullish(),
     title: z.string(),
-    content: z.string().nullish(),
+    content: z.string(),
+    tags: z.any().nullish(),
     enabled: z.boolean().default(true)
 }).partial().passthrough();
 
