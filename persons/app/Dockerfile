@@ -8,6 +8,7 @@ WORKDIR /${ROOT}
 
 RUN bun install --production
 
+RUN bun run generate
 RUN bun run build
 
 EXPOSE 3000

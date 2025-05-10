@@ -4,6 +4,7 @@ import React, { type ReactNode, useState, useEffect, useRef } from 'react'
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 
 import { Button } from 'antd'
 import {
@@ -19,29 +20,32 @@ import {
   ShoppingOutlined,
 } from '@ant-design/icons'
 
-interface MenuItem {
+import { UserAuthStatus } from '@/components/UserAuthStatus'
+
+export interface MenuItem {
   key: string
   title: string
   path: string
   icon: ReactNode
   children?: MenuItem[]
   group?: string
+  allowedRoles?: string[] // 允许的角色列表，空数组表示不限制角色
 }
 
-// 菜单分组
 const menuGroups = {
   BASE: '基础',
   AI: 'AI',
   OTHER: '其它',
 }
 
-const menuItems: MenuItem[] = [
+export const menuItems: MenuItem[] = [
   {
     key: 'habit',
     title: '习惯管理',
     path: '/habit/manage',
     icon: <CalendarOutlined />,
     group: menuGroups.BASE,
+    allowedRoles: ['admin'],
   },
   {
     key: 'task',
@@ -49,6 +53,7 @@ const menuItems: MenuItem[] = [
     path: '/task',
     icon: <AppstoreOutlined />,
     group: menuGroups.BASE,
+    allowedRoles: ['admin'],
   },
   {
     key: 'buttons',
@@ -56,6 +61,7 @@ const menuItems: MenuItem[] = [
     path: '/buttons/cma9f76o7001d138o5rq707ls',
     icon: <HomeOutlined />,
     group: menuGroups.OTHER,
+    allowedRoles: ['admin'],
   },
   {
     key: 'order-demand',
@@ -63,6 +69,7 @@ const menuItems: MenuItem[] = [
     path: '/order-demand',
     icon: <ShoppingOutlined />,
     group: menuGroups.OTHER,
+    allowedRoles: ['admin'],
   },
   {
     key: 'collecting',
@@ -70,6 +77,7 @@ const menuItems: MenuItem[] = [
     path: '/collecting',
     icon: <FileTextOutlined />,
     group: menuGroups.OTHER,
+    allowedRoles: ['admin'],
   },
   {
     key: 'rss',
@@ -77,6 +85,7 @@ const menuItems: MenuItem[] = [
     path: '/rss',
     icon: <BulbOutlined />,
     group: menuGroups.OTHER,
+    allowedRoles: ['admin'],
   },
   {
     key: 'info',
@@ -84,6 +93,7 @@ const menuItems: MenuItem[] = [
     path: '/info',
     icon: <InfoCircleOutlined />,
     group: menuGroups.AI,
+    allowedRoles: ['admin'],
   },
   {
     key: 'role',
@@ -91,6 +101,7 @@ const menuItems: MenuItem[] = [
     path: '/role',
     icon: <UserOutlined />,
     group: menuGroups.AI,
+    allowedRoles: ['admin'],
   },
   // {
   //   key: 'product',
@@ -100,21 +111,15 @@ const menuItems: MenuItem[] = [
   // },
 ]
 
-// 按分组整理菜单
-const groupedMenuItems = menuItems.reduce<Record<string, MenuItem[]>>((acc, item) => {
-  const group = item.group || '其他'
-  if (!acc[group]) {
-    acc[group] = []
-  }
-  acc[group].push(item)
-  return acc
-}, {})
-
 export const SideMenu = () => {
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  const pathname = usePathname()
+
+  const { data: session } = useSession()
+
   const [collapsed, setCollapsed] = useState(false)
   const [menuWidth, setMenuWidth] = useState(0)
-  const menuRef = useRef<HTMLDivElement>(null)
-  const pathname = usePathname()
 
   // 监控菜单宽度变化
   useEffect(() => {
@@ -139,6 +144,33 @@ export const SideMenu = () => {
 
   // 是否应该显示标题
   const shouldShowTitle = menuWidth > 180
+
+  // 根据用户权限过滤菜单项
+  const filterMenuItems = () => {
+    return menuItems.filter(item => {
+      if (!item.allowedRoles?.length) {
+        return true
+      }
+
+      return item.allowedRoles.includes(session?.user.role || '')
+    })
+  }
+
+  // 按分组整理菜单
+  const getGroupedMenuItems = () => {
+    const filteredItems = filterMenuItems()
+
+    return filteredItems.reduce<Record<string, MenuItem[]>>((acc, item) => {
+      const group = item.group || '其他'
+      if (!acc[group]) {
+        acc[group] = []
+      }
+      acc[group].push(item)
+      return acc
+    }, {})
+  }
+
+  const groupedMenuItems = getGroupedMenuItems()
 
   return (
     <div
@@ -182,6 +214,11 @@ export const SideMenu = () => {
           </div>
         ))}
       </ul>
+
+      {/* 添加用户状态组件 */}
+      <div className='border-t border-gray-200 mt-auto'>
+        {!collapsed && <UserAuthStatus />}
+      </div>
     </div>
   )
 }

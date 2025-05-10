@@ -1,0 +1,47 @@
+import "@wzyjs/next/dist/Base"
+
+// 用户模型
+model UserItem extends Base {
+  email         String    @unique
+  name          String?
+  image         String?
+
+  // 权限控制字段
+  role          String    @default("user") // 'admin', 'user'
+
+  // NextAuth 关系 - 由NextAuth.zmodel中定义关系
+  accounts      UserAccount[] @relation("UserToAccount")
+  sessions      UserSession[] @relation("UserToSession")
+
+  @@allow('all', true)
+}
+
+// NextAuth 相关模型
+model UserAccount extends Base {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user UserItem @relation("UserToAccount", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@allow('all', true)
+}
+
+model UserSession extends Base {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user         UserItem @relation("UserToSession", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@allow('all', true)
+}
