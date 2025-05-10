@@ -15,15 +15,21 @@ export const ensureHttpPrefix = (url: string): string => {
  * @param values 表单值
  * @returns 处理后的搜索参数
  */
-export const getRssItemSearchParams = (values: any) => {
+export const getRssItemSearchParams = (values: Record<string, any>) => {
+  // 处理日期
+  let pubDateStart, pubDateEnd
+  if (values.pubDate?.length === 2) {
+    [pubDateStart, pubDateEnd] = values.pubDate
+  }
+
   return {
     search: values.search || '',
     feedIds: values.feedIds || [],
     tags: values.tags || [],
-    isRead: values.isRead === 'true' ? true : values.isRead === 'false' ? false : undefined,
-    isStarred: values.isStarred === 'true' ? true : values.isStarred === 'false' ? false : undefined,
-    pubDateStart: values.pubDate?.[0] ? new Date(values.pubDate[0]).toISOString() : undefined,
-    pubDateEnd: values.pubDate?.[1] ? new Date(values.pubDate[1]).toISOString() : undefined,
+    isRead: values.isRead,
+    isStarred: values.isStarred,
+    pubDateStart,
+    pubDateEnd,
   }
 }
 
@@ -32,12 +38,15 @@ export const getRssItemSearchParams = (values: any) => {
  * @param feeds RSS订阅源列表
  * @returns 标签选项列表
  */
-export const extractTagsFromFeeds = (feeds: any[] = []) => {
-  return Array.from(
-    new Set(
-      feeds.flatMap(feed => feed.tags || []),
-    ),
-  ).map(tag => ({ label: tag, value: tag }))
+export const extractTagsFromFeeds = (feeds: any[]) => {
+  const tags = new Set<string>()
+  feeds?.forEach(feed => {
+    if (feed.tags && Array.isArray(feed.tags)) {
+      feed.tags.forEach((tag: string) => tags.add(tag))
+    }
+  })
+
+  return Array.from(tags).map(tag => ({ label: tag, value: tag }))
 }
 
 /**

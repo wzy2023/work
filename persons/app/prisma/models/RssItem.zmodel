@@ -18,6 +18,11 @@ model RssItem extends Base {
 
   isSent Boolean @default(false)
 
+  /// ![string[]]
+  tags Json?
+
+  summary String? @db.Text
+
   feedId String
   feed RssFeed @relation(fields: [feedId], references: [id])
 }

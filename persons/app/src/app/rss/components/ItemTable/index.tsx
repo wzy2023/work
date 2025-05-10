@@ -10,6 +10,8 @@ import { getColumns } from './config'
 import { useRssItem, useRssFeed } from '../../hooks'
 import { getRssItemSearchParams } from '../../utils'
 
+import { RssItemActionType } from '@/api/types'
+
 export const ItemTable = () => {
   const [searchParams, setSearchParams] = useState({
     search: '',
@@ -30,25 +32,24 @@ export const ItemTable = () => {
   const onSearch = (values: any) => {
     const params = getRssItemSearchParams(values)
     setSearchParams(params)
-    // 触发重新获取数据
     refetch()
   }
 
-  const onAction = async (actionType: Rss.ItemActionType, id: string) => {
+  const onAction = async (actionType: RssItemActionType, id: string) => {
     switch (actionType) {
-      case Rss.ItemActionType.MarkAsRead:
+      case RssItemActionType.MarkAsRead:
         await toggleRead(id, true)
         message.success('标记已读成功')
         break
-      case Rss.ItemActionType.MarkAsUnread:
+      case RssItemActionType.MarkAsUnread:
         await toggleRead(id, false)
         message.success('标记未读成功')
         break
-      case Rss.ItemActionType.Star:
+      case RssItemActionType.Star:
         await toggleStar(id, true)
         message.success('收藏成功')
         break
-      case Rss.ItemActionType.Unstar:
+      case RssItemActionType.Unstar:
         await toggleStar(id, false)
         message.success('取消收藏成功')
         break
@@ -59,7 +60,17 @@ export const ItemTable = () => {
     }
   }
 
-  const columns = getColumns(onAction)
+  // 处理双击切换已读/未读的回调函数
+  const handleToggleRead = async (id: string, isRead: boolean) => {
+    await toggleRead(id, isRead)
+    message.success(isRead ? '标记已读成功' : '标记未读成功')
+    await refetch()
+    if (actionRef.current) {
+      actionRef.current.reload()
+    }
+  }
+
+  const columns = getColumns(onAction, handleToggleRead)
 
   return (
     <div className='rss-item-table'>
@@ -80,6 +91,13 @@ export const ItemTable = () => {
           pageSizeOptions: ['10', '20', '50', '100'],
           defaultPageSize: 10,
         }}
+        onRow={(record) => ({
+          onDoubleClick: () => {
+            if (record.id) {
+              handleToggleRead(record.id, !record.isRead)
+            }
+          },
+        })}
       />
     </div>
   )

@@ -1,9 +1,18 @@
 'use client'
 
 import React from 'react'
-import { Space, Tooltip, BookOutlined, BookFilled, StarOutlined, StarFilled, LinkOutlined } from '@/components'
+import {
+  Space,
+  Tooltip,
+  BookOutlined,
+  BookFilled,
+  StarOutlined,
+  StarFilled,
+  MailTwoTone,
+  MailFilled,
+} from '@/components'
 
-import { ensureHttpPrefix } from '../../utils'
+import { RssItemActionType } from '@/api/types'
 
 interface ItemActionsProps {
   record: any
@@ -19,8 +28,8 @@ export const ItemActions = (props: ItemActionsProps) => {
         <a
           onClick={() => {
             const actionType = record.isRead
-              ? Rss.ItemActionType.MarkAsUnread
-              : Rss.ItemActionType.MarkAsRead
+              ? RssItemActionType.MarkAsUnread
+              : RssItemActionType.MarkAsRead
             onAction(actionType, record.id)
           }}
         >
@@ -35,8 +44,8 @@ export const ItemActions = (props: ItemActionsProps) => {
         <a
           onClick={() => {
             const actionType = record.isStarred
-              ? Rss.ItemActionType.Unstar
-              : Rss.ItemActionType.Star
+              ? RssItemActionType.Unstar
+              : RssItemActionType.Star
             onAction(actionType, record.id)
           }}
         >
@@ -47,15 +56,11 @@ export const ItemActions = (props: ItemActionsProps) => {
         </a>
       </Tooltip>
 
-      <Tooltip title='打开原文'>
-        <a
-          href={ensureHttpPrefix(record.link)}
-          target='_blank'
-          rel='noopener noreferrer'
-          onClick={() => onAction(Rss.ItemActionType.OpenLink, record.id)}
-        >
-          <LinkOutlined />
-        </a>
+      <Tooltip title={record.isSent ? '已发送' : '未发送'}>
+        {record.isSent ?
+          <MailFilled style={{ color: '#faad14' }} /> :
+          <MailTwoTone />
+        }
       </Tooltip>
     </Space>
   )

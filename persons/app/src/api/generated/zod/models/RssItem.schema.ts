@@ -19,6 +19,8 @@ const baseSchema = z.object({
     isRead: z.boolean().default(false),
     isStarred: z.boolean().default(false),
     isSent: z.boolean().default(false),
+    tags: z.any().nullish(),
+    summary: z.string().nullish(),
 }
 ).strict();
 const relationSchema = z.object({
@@ -67,7 +69,9 @@ export const RssItemPrismaUpdateSchema = z.object({
     pubDate: z.coerce.date(),
     isRead: z.boolean().default(false),
     isStarred: z.boolean().default(false),
-    isSent: z.boolean().default(false)
+    isSent: z.boolean().default(false),
+    tags: z.any().nullish(),
+    summary: z.string().nullish()
 }).partial().passthrough();
 
 

@@ -7,4 +7,4 @@
 
 import { z } from 'zod';
 
-export const RssItemScalarFieldEnumSchema = z.enum(["id", "createdAt", "updatedAt", "isDeleted", "title", "description", "content", "link", "pubDate", "isRead", "isStarred", "isSent", "feedId"])
+export const RssItemScalarFieldEnumSchema = z.enum(["id", "createdAt", "updatedAt", "isDeleted", "title", "description", "content", "link", "pubDate", "isRead", "isStarred", "isSent", "tags", "summary", "feedId"])

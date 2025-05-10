@@ -13,16 +13,16 @@ export const frequencyOptions = [
 
 // 已读/未读筛选选项
 export const readStatusOptions = [
-  { label: '全部', value: '' },
-  { label: '已读', value: 'true' },
-  { label: '未读', value: 'false' },
+  { label: '全部', value: undefined },
+  { label: '已读', value: true },
+  { label: '未读', value: false },
 ]
 
 // 收藏/未收藏筛选选项
 export const starredStatusOptions = [
-  { label: '全部', value: '' },
-  { label: '已收藏', value: 'true' },
-  { label: '未收藏', value: 'false' },
+  { label: '全部', value: undefined },
+  { label: '已收藏', value: true },
+  { label: '未收藏', value: false },
 ]
 
 // 抓取状态筛选选项

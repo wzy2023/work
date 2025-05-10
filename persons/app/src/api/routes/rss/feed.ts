@@ -2,6 +2,22 @@ import { z } from 'zod'
 import { procedure } from '@/api/trpc/procedures'
 import { fetchRssFeed, parseRssXml, truncateString } from '@/api/utils/fetch'
 import { RssFetchTriggerType } from '@/api/types'
+import { ai302 } from '@wzyjs/utils/node'
+
+// 处理每条新抓取的数据，使用 AI 生成标签和摘要
+const aiSummary = async (item: any) => {
+  const prompt = `
+请分析以下 RSS 文章，并提供以下两部分内容：
+1. 内容的关键词标签，一定要恰当（0 到 5 个，可为空数组）
+2. 30 字以内的中文摘要，从读者的角度出发，让人一眼明白是什么内容，可为空字符串
+
+请以 JSON 格式返回，格式为 {"tags": ["标签1","标签2","标签3"], "summary": "摘要内容"}
+
+文章标题: ${item.title}
+文章内容: ${item.content || item.description || ''}
+`
+  return await ai302.chat(prompt)
+}
 
 export const rssFeed = {
   getCountByFeed: procedure
@@ -79,6 +95,7 @@ export const rssFeed = {
                   link: truncateString(item.link, 191),
                   pubDate: item.pubDate || new Date(),
                   feedId: feed.id,
+                  ...(await aiSummary(item) || {}),
                 },
               })
               feedSuccessCount++

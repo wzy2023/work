@@ -13,6 +13,7 @@ import { BoolNullableFilterObjectSchema } from './BoolNullableFilter.schema';
 import { StringFilterObjectSchema } from './StringFilter.schema';
 import { StringNullableFilterObjectSchema } from './StringNullableFilter.schema';
 import { BoolFilterObjectSchema } from './BoolFilter.schema';
+import { JsonNullableFilterObjectSchema } from './JsonNullableFilter.schema';
 import { RssFeedScalarRelationFilterObjectSchema } from './RssFeedScalarRelationFilter.schema';
 import { RssFeedWhereInputObjectSchema } from './RssFeedWhereInput.schema';
 
@@ -37,7 +38,9 @@ export const RssItemWhereUniqueInputObjectSchema: SchemaType = z.object({
     z.union([z.date(), z.string().datetime().optional()])]).optional(), isRead: z.union([z.lazy(() => BoolFilterObjectSchema),
     z.boolean()]).optional(), isStarred: z.union([z.lazy(() => BoolFilterObjectSchema),
     z.boolean()]).optional(), isSent: z.union([z.lazy(() => BoolFilterObjectSchema),
-    z.boolean()]).optional(), feedId: z.union([z.lazy(() => StringFilterObjectSchema),
+    z.boolean()]).optional(), tags: z.lazy(() => JsonNullableFilterObjectSchema).optional().optional(), summary: z.union([z.lazy(() => StringNullableFilterObjectSchema),
+    z.string(),
+    z.null()]).optional().nullable(), feedId: z.union([z.lazy(() => StringFilterObjectSchema),
     z.string()]).optional(), feed: z.union([z.lazy(() => RssFeedScalarRelationFilterObjectSchema),
     z.lazy(() => RssFeedWhereInputObjectSchema)]).optional()
 }).strict() as SchemaType;

@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Form, Select, Input, DatePicker, Button } from '@/components'
+import { Form, Select, Input, Button, Radio, message } from '@/components'
 
 import { extractTagsFromFeeds } from '../../utils'
 import { readStatusOptions, starredStatusOptions } from '../../consts'
@@ -17,7 +17,17 @@ interface ItemSearchFormProps {
 export const ItemSearchForm = (props: ItemSearchFormProps) => {
   const { form, feeds, onSearch } = props
 
-  const aiSummaryState = api.custom.rssItem.aiSummary.useMutation()
+  const aiSummaryState = api.custom.rssItem.aiSummary.useMutation({
+    onSuccess: res => {
+      message.success(res.message)
+    },
+  })
+
+  const markAllAsReadState = api.custom.rssItem.markAllAsRead.useMutation({
+    onSuccess: () => {
+      onSearch(form.getFieldsValue())
+    }
+  })
 
   const allTags = extractTagsFromFeeds(feeds)
 
@@ -35,7 +45,7 @@ export const ItemSearchForm = (props: ItemSearchFormProps) => {
 
       <Form.Item name='tags'>
         <Select
-          placeholder='选择标签'
+          placeholder='选择来源标签'
           options={allTags}
           mode='multiple'
           allowClear
@@ -44,34 +54,32 @@ export const ItemSearchForm = (props: ItemSearchFormProps) => {
       </Form.Item>
 
       <Form.Item name='isRead'>
-        <Select
-          placeholder='阅读状态'
+        <Radio.Group
           options={readStatusOptions}
-          allowClear
-          style={{ width: 120 }}
+          optionType='button'
+          buttonStyle='solid'
         />
       </Form.Item>
 
       <Form.Item name='isStarred'>
-        <Select
-          placeholder='收藏状态'
+        <Radio.Group
           options={starredStatusOptions}
-          allowClear
-          style={{ width: 120 }}
+          optionType='button'
+          buttonStyle='solid'
         />
       </Form.Item>
 
+      {/* 注释掉日期筛选相关的代码
       <Form.Item name='pubDate'>
         <DatePicker.RangePicker
           placeholder={['开始日期', '结束日期']}
           allowClear
         />
       </Form.Item>
+      */}
 
       <Form.Item>
         <Button type='primary' htmlType='submit'>搜索</Button>
-
-        <Button style={{ marginLeft: 8 }} onClick={() => aiSummaryState.mutate()}>AI 摘要</Button>
 
         <Button
           style={{ marginLeft: 8 }}
@@ -83,6 +91,22 @@ export const ItemSearchForm = (props: ItemSearchFormProps) => {
           }}
         >
           重置
+        </Button>
+
+        <Button
+          style={{ marginLeft: 8 }}
+          onClick={() => aiSummaryState.mutate()}
+          loading={aiSummaryState.isPending}
+        >
+          AI 摘要
+        </Button>
+
+        <Button
+          style={{ marginLeft: 8 }}
+          onClick={() => markAllAsReadState.mutate()}
+          loading={markAllAsReadState.isPending}
+        >
+          全部标为已发送
         </Button>
       </Form.Item>
     </Form>

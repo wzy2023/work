@@ -6,9 +6,16 @@
 // @ts-nocheck
 
 import { z } from 'zod';
+import { NullableJsonNullValueInputSchema } from '../enums/NullableJsonNullValueInput.schema';
 import { RssFeedCreateNestedOneWithoutItemsInputObjectSchema } from './RssFeedCreateNestedOneWithoutItemsInput.schema';
 
 import type { Prisma } from '@prisma/client';
+
+
+const literalSchema = z.union([z.string(), z.number(), z.boolean()]);
+const jsonSchema: z.ZodType<Prisma.InputJsonValue> = z.lazy(() =>
+    z.union([literalSchema, z.array(jsonSchema.nullable()), z.record(jsonSchema.nullable())])
+);
 
 type SchemaType = z.ZodType<Prisma.RssItemCreateInput>;
 export const RssItemCreateInputObjectSchema: SchemaType = z.object({
@@ -16,5 +23,7 @@ export const RssItemCreateInputObjectSchema: SchemaType = z.object({
     z.null()]).optional().nullable(), isDeleted: z.union([z.boolean(),
     z.null()]).optional().nullable(), title: z.string(), description: z.union([z.string(),
     z.null()]).optional().nullable(), content: z.union([z.string(),
-    z.null()]).optional().nullable(), link: z.string(), pubDate: z.union([z.date(), z.string().datetime()]), isRead: z.boolean().optional().optional(), isStarred: z.boolean().optional().optional(), isSent: z.boolean().optional().optional(), feed: z.lazy(() => RssFeedCreateNestedOneWithoutItemsInputObjectSchema)
+    z.null()]).optional().nullable(), link: z.string(), pubDate: z.union([z.date(), z.string().datetime()]), isRead: z.boolean().optional().optional(), isStarred: z.boolean().optional().optional(), isSent: z.boolean().optional().optional(), tags: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
+        jsonSchema]).optional(), summary: z.union([z.string(),
+        z.null()]).optional().nullable(), feed: z.lazy(() => RssFeedCreateNestedOneWithoutItemsInputObjectSchema)
 }).strict() as SchemaType;

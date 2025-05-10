@@ -12,6 +12,7 @@ import { DateTimeNullableWithAggregatesFilterObjectSchema } from './DateTimeNull
 import { BoolNullableWithAggregatesFilterObjectSchema } from './BoolNullableWithAggregatesFilter.schema';
 import { StringNullableWithAggregatesFilterObjectSchema } from './StringNullableWithAggregatesFilter.schema';
 import { BoolWithAggregatesFilterObjectSchema } from './BoolWithAggregatesFilter.schema';
+import { JsonNullableWithAggregatesFilterObjectSchema } from './JsonNullableWithAggregatesFilter.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -35,6 +36,8 @@ export const RssItemScalarWhereWithAggregatesInputObjectSchema: SchemaType = z.o
     z.union([z.date(), z.string().datetime().optional()])]).optional(), isRead: z.union([z.lazy(() => BoolWithAggregatesFilterObjectSchema),
     z.boolean()]).optional(), isStarred: z.union([z.lazy(() => BoolWithAggregatesFilterObjectSchema),
     z.boolean()]).optional(), isSent: z.union([z.lazy(() => BoolWithAggregatesFilterObjectSchema),
-    z.boolean()]).optional(), feedId: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
+    z.boolean()]).optional(), tags: z.lazy(() => JsonNullableWithAggregatesFilterObjectSchema).optional().optional(), summary: z.union([z.lazy(() => StringNullableWithAggregatesFilterObjectSchema),
+    z.string(),
+    z.null()]).optional().nullable(), feedId: z.union([z.lazy(() => StringWithAggregatesFilterObjectSchema),
     z.string()]).optional()
 }).strict() as SchemaType;

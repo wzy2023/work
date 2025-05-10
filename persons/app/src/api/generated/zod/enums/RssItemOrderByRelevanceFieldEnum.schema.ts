@@ -7,4 +7,4 @@
 
 import { z } from 'zod';
 
-export const RssItemOrderByRelevanceFieldEnumSchema = z.enum(["id", "title", "description", "content", "link", "feedId"])
+export const RssItemOrderByRelevanceFieldEnumSchema = z.enum(["id", "title", "description", "content", "link", "summary", "feedId"])

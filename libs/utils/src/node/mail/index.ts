@@ -1,28 +1,26 @@
 import nodemailer from 'nodemailer'
 
-const fromEmail = '15835196981@163.com'
-const fromPass = 'KPTVCFBMRXJVTCGW'
+const authMap = {
+  163: {
+    user: '15835196981@163.com',
+    pass: 'KPTVCFBMRXJVTCGW', // 'FTi8B3ChdUuGaWit
+  },
+  gmail: {
+    user: 'wangzhenzhen2023@gmail.com',
+    pass: 'lkxtorbpdyrjjxjq',
+  },
+}
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.163.com',
+  host: 'smtp.gmail.com',
   port: 465,
   secure: true,
-  auth: {
-    user: fromEmail,
-    pass: fromPass,
-  },
+  auth: authMap.gmail,
 })
 
-export const sendMail = async (toEmail: string, title: string, content?: string) => {
-  try {
-    await transporter.sendMail({
-      from: fromEmail, // 发件人邮箱
-      to: toEmail, // 收件人邮箱
-      subject: title, // 邮件主题
-      text: content, // 邮件正文
-    })
-    return title + ' 邮件通知成功'
-  } catch (error) {
-    return title + '邮件通知失败' + JSON.stringify(error)
-  }
+export const sendMail = (config: { to: string, subject: string, text?: string, html?: string }) => {
+  return transporter.sendMail({
+    from: authMap.gmail.user, // 发件人邮箱
+    ...config,
+  })
 }

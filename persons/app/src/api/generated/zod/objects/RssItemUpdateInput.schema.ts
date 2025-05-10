@@ -12,9 +12,16 @@ import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './Nullab
 import { NullableBoolFieldUpdateOperationsInputObjectSchema } from './NullableBoolFieldUpdateOperationsInput.schema';
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema';
 import { BoolFieldUpdateOperationsInputObjectSchema } from './BoolFieldUpdateOperationsInput.schema';
+import { NullableJsonNullValueInputSchema } from '../enums/NullableJsonNullValueInput.schema';
 import { RssFeedUpdateOneRequiredWithoutItemsNestedInputObjectSchema } from './RssFeedUpdateOneRequiredWithoutItemsNestedInput.schema';
 
 import type { Prisma } from '@prisma/client';
+
+
+const literalSchema = z.union([z.string(), z.number(), z.boolean()]);
+const jsonSchema: z.ZodType<Prisma.InputJsonValue> = z.lazy(() =>
+    z.union([literalSchema, z.array(jsonSchema.nullable()), z.record(jsonSchema.nullable())])
+);
 
 type SchemaType = z.ZodType<Prisma.RssItemUpdateInput>;
 export const RssItemUpdateInputObjectSchema: SchemaType = z.object({
@@ -34,5 +41,8 @@ export const RssItemUpdateInputObjectSchema: SchemaType = z.object({
     z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema)]).optional(), isRead: z.union([z.boolean(),
     z.lazy(() => BoolFieldUpdateOperationsInputObjectSchema)]).optional(), isStarred: z.union([z.boolean(),
     z.lazy(() => BoolFieldUpdateOperationsInputObjectSchema)]).optional(), isSent: z.union([z.boolean(),
-    z.lazy(() => BoolFieldUpdateOperationsInputObjectSchema)]).optional(), feed: z.lazy(() => RssFeedUpdateOneRequiredWithoutItemsNestedInputObjectSchema).optional().optional()
+    z.lazy(() => BoolFieldUpdateOperationsInputObjectSchema)]).optional(), tags: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
+        jsonSchema]).optional(), summary: z.union([z.string(),
+        z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
+        z.null()]).optional().nullable(), feed: z.lazy(() => RssFeedUpdateOneRequiredWithoutItemsNestedInputObjectSchema).optional().optional()
 }).strict() as SchemaType;

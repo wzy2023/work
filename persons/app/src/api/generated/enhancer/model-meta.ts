@@ -507,6 +507,15 @@ const metadata = {
                     name: "isSent",
                     type: "Boolean",
                     attributes: [{ "name": "@default", "args": [{ "value": false }] }],
+                }, tags: {
+                    name: "tags",
+                    type: "Json",
+                    isOptional: true,
+                }, summary: {
+                    name: "summary",
+                    type: "String",
+                    isOptional: true,
+                    attributes: [{ "name": "@db.Text", "args": [] }],
                 }, feedId: {
                     name: "feedId",
                     type: "String",
