@@ -23,6 +23,9 @@ import { ClientType as RssFetchLogClientType } from "./RssFetchLog.next.type";
 import { ClientType as AiRoleClientType } from "./AiRole.next.type";
 import { ClientType as AiInfoClientType } from "./AiInfo.next.type";
 import { ClientType as OrderDemandClientType } from "./OrderDemand.next.type";
+import { ClientType as UserItemClientType } from "./UserItem.next.type";
+import { ClientType as UserAccountClientType } from "./UserAccount.next.type";
+import { ClientType as UserSessionClientType } from "./UserSession.next.type";
 
 export function createTRPCNext<
     TRouter extends AnyRouter,
@@ -48,4 +51,7 @@ export interface ClientType<AppRouter extends AnyRouter> {
     aiRole: AiRoleClientType<AppRouter>;
     aiInfo: AiInfoClientType<AppRouter>;
     orderDemand: OrderDemandClientType<AppRouter>;
+    userItem: UserItemClientType<AppRouter>;
+    userAccount: UserAccountClientType<AppRouter>;
+    userSession: UserSessionClientType<AppRouter>;
 }

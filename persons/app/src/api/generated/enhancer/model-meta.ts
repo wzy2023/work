@@ -762,9 +762,212 @@ const metadata = {
             },
             attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
         },
+        userItem: {
+            name: 'UserItem', fields: {
+                id: {
+                    name: "id",
+                    type: "String",
+                    isId: true,
+                    attributes: [{ "name": "@id", "args": [] }, { "name": "@default", "args": [] }],
+                }, createdAt: {
+                    name: "createdAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@default", "args": [] }],
+                }, updatedAt: {
+                    name: "updatedAt",
+                    type: "DateTime",
+                    isOptional: true,
+                    attributes: [{ "name": "@updatedAt", "args": [] }],
+                }, isDeleted: {
+                    name: "isDeleted",
+                    type: "Boolean",
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": false }] }, { "name": "@omit", "args": [] }],
+                }, email: {
+                    name: "email",
+                    type: "String",
+                    attributes: [{ "name": "@unique", "args": [] }],
+                }, name: {
+                    name: "name",
+                    type: "String",
+                    isOptional: true,
+                }, image: {
+                    name: "image",
+                    type: "String",
+                    isOptional: true,
+                }, role: {
+                    name: "role",
+                    type: "String",
+                    attributes: [{ "name": "@default", "args": [{ "value": "user" }] }],
+                }, accounts: {
+                    name: "accounts",
+                    type: "UserAccount",
+                    isDataModel: true,
+                    isArray: true,
+                    attributes: [{ "name": "@relation", "args": [{ "value": "UserToAccount" }] }],
+                    backLink: 'user',
+                }, sessions: {
+                    name: "sessions",
+                    type: "UserSession",
+                    isDataModel: true,
+                    isArray: true,
+                    attributes: [{ "name": "@relation", "args": [{ "value": "UserToSession" }] }],
+                    backLink: 'user',
+                },
+            }, uniqueConstraints: {
+                id: {
+                    name: "id",
+                    fields: ["id"]
+                }, email: {
+                    name: "email",
+                    fields: ["email"]
+                },
+            },
+            attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }, { "name": "@@allow", "args": [{ "value": "all" }, { "value": true }] }],
+        },
+        userAccount: {
+            name: 'UserAccount', fields: {
+                id: {
+                    name: "id",
+                    type: "String",
+                    isId: true,
+                    attributes: [{ "name": "@id", "args": [] }, { "name": "@default", "args": [] }],
+                }, createdAt: {
+                    name: "createdAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@default", "args": [] }],
+                }, updatedAt: {
+                    name: "updatedAt",
+                    type: "DateTime",
+                    isOptional: true,
+                    attributes: [{ "name": "@updatedAt", "args": [] }],
+                }, isDeleted: {
+                    name: "isDeleted",
+                    type: "Boolean",
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": false }] }, { "name": "@omit", "args": [] }],
+                }, userId: {
+                    name: "userId",
+                    type: "String",
+                    isForeignKey: true,
+                    relationField: 'user',
+                }, type: {
+                    name: "type",
+                    type: "String",
+                }, provider: {
+                    name: "provider",
+                    type: "String",
+                }, providerAccountId: {
+                    name: "providerAccountId",
+                    type: "String",
+                }, refresh_token: {
+                    name: "refresh_token",
+                    type: "String",
+                    isOptional: true,
+                    attributes: [{ "name": "@db.Text", "args": [] }],
+                }, access_token: {
+                    name: "access_token",
+                    type: "String",
+                    isOptional: true,
+                    attributes: [{ "name": "@db.Text", "args": [] }],
+                }, expires_at: {
+                    name: "expires_at",
+                    type: "Int",
+                    isOptional: true,
+                }, token_type: {
+                    name: "token_type",
+                    type: "String",
+                    isOptional: true,
+                }, scope: {
+                    name: "scope",
+                    type: "String",
+                    isOptional: true,
+                }, id_token: {
+                    name: "id_token",
+                    type: "String",
+                    isOptional: true,
+                    attributes: [{ "name": "@db.Text", "args": [] }],
+                }, session_state: {
+                    name: "session_state",
+                    type: "String",
+                    isOptional: true,
+                }, user: {
+                    name: "user",
+                    type: "UserItem",
+                    isDataModel: true,
+                    attributes: [{ "name": "@relation", "args": [{ "value": "UserToAccount" }] }],
+                    backLink: 'accounts',
+                    isRelationOwner: true,
+                    foreignKeyMapping: { "id": "userId" },
+                },
+            }, uniqueConstraints: {
+                id: {
+                    name: "id",
+                    fields: ["id"]
+                }, provider_providerAccountId: {
+                    name: "provider_providerAccountId",
+                    fields: ["provider", "providerAccountId"]
+                },
+            },
+            attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }, { "name": "@@unique", "args": [] }, { "name": "@@allow", "args": [{ "value": "all" }, { "value": true }] }],
+        },
+        userSession: {
+            name: 'UserSession', fields: {
+                id: {
+                    name: "id",
+                    type: "String",
+                    isId: true,
+                    attributes: [{ "name": "@id", "args": [] }, { "name": "@default", "args": [] }],
+                }, createdAt: {
+                    name: "createdAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@default", "args": [] }],
+                }, updatedAt: {
+                    name: "updatedAt",
+                    type: "DateTime",
+                    isOptional: true,
+                    attributes: [{ "name": "@updatedAt", "args": [] }],
+                }, isDeleted: {
+                    name: "isDeleted",
+                    type: "Boolean",
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": false }] }, { "name": "@omit", "args": [] }],
+                }, sessionToken: {
+                    name: "sessionToken",
+                    type: "String",
+                    attributes: [{ "name": "@unique", "args": [] }],
+                }, userId: {
+                    name: "userId",
+                    type: "String",
+                    isForeignKey: true,
+                    relationField: 'user',
+                }, expires: {
+                    name: "expires",
+                    type: "DateTime",
+                }, user: {
+                    name: "user",
+                    type: "UserItem",
+                    isDataModel: true,
+                    attributes: [{ "name": "@relation", "args": [{ "value": "UserToSession" }] }],
+                    backLink: 'sessions',
+                    isRelationOwner: true,
+                    foreignKeyMapping: { "id": "userId" },
+                },
+            }, uniqueConstraints: {
+                id: {
+                    name: "id",
+                    fields: ["id"]
+                }, sessionToken: {
+                    name: "sessionToken",
+                    fields: ["sessionToken"]
+                },
+            },
+            attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }, { "name": "@@allow", "args": [{ "value": "all" }, { "value": true }] }],
+        },
 
     },
     deleteCascade: {
+        userItem: ['UserAccount', 'UserSession'],
 
     },
 

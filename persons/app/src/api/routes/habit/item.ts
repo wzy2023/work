@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { procedure } from '@/api/trpc/procedures'
 
-import { dayjs, _ } from '@wzyjs/utils'
+import { dayjs, _ } from '@wzyjs/utils/node'
 import { calcStatus, calcProgress, checkMap, dayRangeMap } from '../../utils'
 
 export const habitItem = {

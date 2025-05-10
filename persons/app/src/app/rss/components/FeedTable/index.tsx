@@ -28,7 +28,7 @@ const getDetailMessage = (feedsCount: number, successFeeds: any[], failedFeeds: 
 
   detailedMessage += successFeeds.length ? `抓取成功的订阅源 (${successFeeds.length})\n` : ''
   successFeeds.forEach(feed => {
-    detailedMessage += `\t${feed.name} (${feed.newItemCount})\n`
+    detailedMessage += feed.newItemCount ? `\t${feed.name} (${feed.newItemCount})\n` : ''
   })
 
   detailedMessage += failedFeeds.length ? `\n抓取失败的订阅源 (${failedFeeds.length})\n` : ''

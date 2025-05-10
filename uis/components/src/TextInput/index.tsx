@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react'
 
-import { Input } from 'app/src/components'
-import { useBoolean } from 'app/src/hooks'
+import { Input } from 'antd'
+import { useBoolean } from 'ahooks'
 
 interface TextInputProps {
   value: string

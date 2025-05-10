@@ -9,7 +9,8 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["debian-openssl-3.0.x"]
 }
 
 generator json {
@@ -206,4 +207,49 @@ model OrderDemand {
   price      String?
   applyNum   String?
   createTime String?
+}
+
+model UserItem {
+  id        String        @id() @default(cuid())
+  createdAt DateTime      @default(now())
+  updatedAt DateTime?     @updatedAt()
+  isDeleted Boolean?      @default(false)
+  email     String        @unique()
+  name      String?
+  image     String?
+  role      String        @default("user")
+  accounts  UserAccount[] @relation("UserToAccount")
+  sessions  UserSession[] @relation("UserToSession")
+}
+
+model UserAccount {
+  id                String    @id() @default(cuid())
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime? @updatedAt()
+  isDeleted         Boolean?  @default(false)
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?   @db.Text()
+  access_token      String?   @db.Text()
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?   @db.Text()
+  session_state     String?
+  user              UserItem  @relation("UserToAccount", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model UserSession {
+  id           String    @id() @default(cuid())
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime? @updatedAt()
+  isDeleted    Boolean?  @default(false)
+  sessionToken String    @unique()
+  userId       String
+  expires      DateTime
+  user         UserItem  @relation("UserToSession", fields: [userId], references: [id], onDelete: Cascade)
 }
