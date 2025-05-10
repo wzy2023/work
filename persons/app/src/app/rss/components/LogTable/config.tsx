@@ -1,27 +1,17 @@
 import { type ProColumns, Tag } from '@/components'
 import { RssFetchTriggerType } from '@/api/types'
 
-export const getColumns = (feeds?: any[]): ProColumns[] => [
+export const getColumns = (): ProColumns[] => [
   {
     title: 'RSS源',
     dataIndex: ['feed', 'name'],
     key: 'feedName',
     width: 300,
     render: (_, record: any) => {
-      // 如果record中有feed信息且有name，直接使用
       if (record.feed?.name) {
         return <Tag>{record.feed.name}</Tag>
       }
 
-      // 否则尝试从feeds列表中查找匹配的feed
-      if (feeds && record.feedId) {
-        const feed = feeds.find(f => f.id === record.feedId)
-        if (feed) {
-          return <Tag>{feed.name}</Tag>
-        }
-      }
-
-      // 如果都没有找到，显示未知
       return <Tag>未知</Tag>
     },
   },

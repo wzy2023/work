@@ -12,12 +12,16 @@ export const LogTable = () => {
   const { listState } = useRssFetchLogCRUD({
     list: {
       query: {
+        where: { itemCount: { gt: 0 } },
         orderBy: { executedAt: 'desc' },
+        include: {
+          feed: {
+            select: { name: true },
+          },
+        },
       },
     },
   })
-
-  const { feeds } = useRssFeed()
 
   return (
     <ProTable
@@ -27,7 +31,7 @@ export const LogTable = () => {
       options={false}
       dataSource={listState.data}
       loading={listState.isLoading}
-      columns={getColumns(feeds)}
+      columns={getColumns()}
       pagination={{
         showSizeChanger: true,
         pageSizeOptions: ['10', '20', '50'],

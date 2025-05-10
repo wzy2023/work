@@ -42,7 +42,7 @@ export const rssItem = {
     try {
       await sendMail({
         to: email,
-        subject: `RSS Summary (${contents.length})`,
+        subject: `RSS Summary (${items.length})`,
         html: `
     <div style="font-family: Arial, sans-serif; color: #333; background-color: #f9f9f9; padding: 20px; max-width: 600px; margin: 0 auto;">
       <h1 style="text-align: center; color: #1a73e8;">RSS AI总结</h1>
