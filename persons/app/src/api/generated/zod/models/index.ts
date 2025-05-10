@@ -19,3 +19,6 @@ export * from './RssFetchLog.schema';
 export * from './AiRole.schema';
 export * from './AiInfo.schema';
 export * from './OrderDemand.schema';
+export * from './UserItem.schema';
+export * from './UserAccount.schema';
+export * from './UserSession.schema';

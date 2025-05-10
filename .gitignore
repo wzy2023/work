@@ -31,3 +31,5 @@ deploy_versions/
 
 .env
 .next
+
+linshi/*

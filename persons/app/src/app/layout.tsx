@@ -5,7 +5,9 @@ import { ConfigProvider } from 'antd'
 import { AntdRegistry, zh_CN } from '@wzyjs/antd'
 
 import { TRPCReactProvider } from '@/api/react'
-import { SideMenu } from '@/components/SideMenu'
+
+import { AuthProvider } from '@/components/AuthProvider'
+import { LayoutWithAuth } from '@/components/LayoutWithAuth'
 
 import '@/styles/globals.css'
 
@@ -19,16 +21,15 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     <html lang='zh-CN'>
       <body>
         <TRPCReactProvider>
-          <AntdRegistry>
-            <ConfigProvider locale={zh_CN}>
-              <div className='flex h-screen overflow-hidden'>
-                <SideMenu />
-                <main className='flex-1 overflow-auto'>
+          <AuthProvider>
+            <AntdRegistry>
+              <ConfigProvider locale={zh_CN}>
+                <LayoutWithAuth>
                   {children}
-                </main>
-              </div>
-            </ConfigProvider>
-          </AntdRegistry>
+                </LayoutWithAuth>
+              </ConfigProvider>
+            </AntdRegistry>
+          </AuthProvider>
         </TRPCReactProvider>
       </body>
     </html>

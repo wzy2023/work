@@ -6,10 +6,9 @@ export const useFilterTags = (items: Collecting.Item[]) => {
 
   const tags = useMemo(() => extractAllTags(items), [items])
 
-  const filteredItems = useMemo(
-    () => filterItemsByTags(items, selectedTags),
-    [items, selectedTags],
-  )
+  const filteredItems = useMemo(() => {
+    return filterItemsByTags(items, selectedTags)
+  }, [items, selectedTags])
 
   const onChangeTag = (tags: string[]) => {
     setSelectedTags(tags)

@@ -106,7 +106,7 @@ export const ItemSearchForm = (props: ItemSearchFormProps) => {
           onClick={() => markAllAsReadState.mutate()}
           loading={markAllAsReadState.isPending}
         >
-          全部标为已发送
+          全部标为已读
         </Button>
       </Form.Item>
     </Form>
