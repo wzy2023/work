@@ -29,7 +29,7 @@ export {
   EditableProTable,
 } from '@ant-design/pro-components'
 
-export type { ProLayoutProps, ProFormInstance } from '@ant-design/pro-components'
+export { ProLayoutProps, ProFormInstance } from '@ant-design/pro-components'
 
 export * from './pro'
 export * from './form'

@@ -19,3 +19,5 @@ import "./models/AiRole"
 import "./models/AiInfo"
 
 import "./models/OrderDemand"
+
+import "./models/User"

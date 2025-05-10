@@ -5,7 +5,7 @@ export { default as consola } from 'consola'
 
 export * from 'zod'
 
-export * from '../ai'
+// export * from '../ai'
 
 export * from './string'
 export * from './object'
@@ -13,8 +13,5 @@ export * from './other'
 export * from './number'
 export * from './array'
 export * from './image'
-export * from './location'
-
-export * as cheerio from 'cheerio'
 
 export { default as dayjs, Dayjs, Timezone } from './dayjs'

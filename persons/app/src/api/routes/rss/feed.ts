@@ -16,7 +16,7 @@ const aiSummary = async (item: any) => {
 文章标题: ${item.title}
 文章内容: ${item.content || item.description || ''}
 `
-  return await ai302.chat(prompt)
+  return await ai302.chat(prompt, 'gpt-4.1-mini')
 }
 
 export const rssFeed = {
