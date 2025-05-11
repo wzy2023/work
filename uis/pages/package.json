@@ -1,6 +1,6 @@
 {
   "name": "@wzyjs/pages",
-  "version": "0.2.42",
+  "version": "0.2.43",
   "description": "description",
   "author": "wzy",
   "main": "src/index.ts",
