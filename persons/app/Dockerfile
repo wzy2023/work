@@ -15,6 +15,10 @@ RUN sed -i 's/"workspace:\*"/"*"/g' package.json
 
 RUN npm i bun -g
 
+RUN apt-get update && \
+    apt-get install -y openssl libssl1.1 && \
+    rm -rf /var/lib/apt/lists/*
+
 # 安装仅生产依赖
 RUN bun install
 
