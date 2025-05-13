@@ -16,7 +16,7 @@ RUN sed -i 's/"workspace:\*"/"*"/g' package.json
 RUN npm i bun -g
 
 # 安装仅生产依赖
-RUN bun install --production
+RUN bun install
 
 # 运行代码生成器
 RUN bun run generate

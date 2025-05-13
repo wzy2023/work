@@ -7,6 +7,7 @@ const config = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  transpilePackages: ['@wzyjs/components', '@wzyjs/antd'],
   typescript: {
     ignoreBuildErrors: true,
   },
