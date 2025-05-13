@@ -37,7 +37,8 @@
     "@types/prismjs": "^1.26.0",
     "@types/react": "^19.0.0",
     "@types/react-beautiful-dnd": "^13.1.8",
-    "@types/react-syntax-highlighter": "^15.5.5"
+    "@types/react-syntax-highlighter": "^15.5.5",
+    "@types/react-grid-layout": "^1.3.5"
   },
   "gitHead": "272513ecd0b28d577a444785b05f7a9ec962e79d",
   "publishConfig": {

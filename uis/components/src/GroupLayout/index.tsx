@@ -1,9 +1,9 @@
-import type { CSSProperties, ReactNode } from 'react'
+import { CSSProperties, ReactNode } from 'react'
 
-import GridLayout, { type Layout } from 'react-grid-layout'
+import GridLayout, { Layout } from 'react-grid-layout'
 import 'react-grid-layout/css/styles.css'
 
-export { type Layout as GridLayoutItem } from 'react-grid-layout'
+export { Layout as GridLayoutItem } from 'react-grid-layout'
 
 interface GridLayoutProps<I> {
   layout: I[]

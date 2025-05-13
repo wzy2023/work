@@ -1,6 +1,6 @@
 import { procedure } from '@/api/trpc/procedures'
 
-import { _ } from '@wzyjs/utils'
+import { _ } from '@wzyjs/utils/node'
 import { type NeedJobType } from './utils/types'
 import { list, needJobTypeMap } from './utils/config'
 

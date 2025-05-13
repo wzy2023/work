@@ -8,12 +8,20 @@ export const env = createEnv({
    * 这样可以确保应用程序不会使用无效的环境变量构建。
    */
   server: {
-    DATABASE_URL: z.string().url(),
     NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
+    // 数据库
+    DATABASE_URL: z.string().url(),
+    // 阿里云 OSS
     VITE_OSS_REGION: z.string(),
     VITE_OSS_ACCESS_KEY_ID: z.string(),
     VITE_OSS_ACCESS_KEY_SECRET: z.string(),
     VITE_OSS_BUCKET: z.string(),
+    // Google OAuth 配置
+    GOOGLE_CLIENT_ID: z.string().optional(),
+    GOOGLE_CLIENT_SECRET: z.string().optional(),
+    // NextAuth 密钥
+    NEXTAUTH_SECRET: z.string().optional(),
+    NEXTAUTH_URL: z.string().url().optional(),
   },
 
   /**
@@ -31,12 +39,20 @@ export const env = createEnv({
    * 因此我们需要手动解构。
    */
   runtimeEnv: {
-    DATABASE_URL: process.env.DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
+    // 数据库
+    DATABASE_URL: process.env.DATABASE_URL,
+    // 阿里云 OSS
     VITE_OSS_REGION: process.env.VITE_OSS_REGION,
     VITE_OSS_ACCESS_KEY_ID: process.env.VITE_OSS_ACCESS_KEY_ID,
     VITE_OSS_ACCESS_KEY_SECRET: process.env.VITE_OSS_ACCESS_KEY_SECRET,
     VITE_OSS_BUCKET: process.env.VITE_OSS_BUCKET,
+    // Google OAuth 配置
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+    // NextAuth 配置
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
   },
 
   /**
