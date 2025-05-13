@@ -1,6 +1,6 @@
 {
   "name": "@wzyjs/next",
-  "version": "0.2.44",
+  "version": "0.2.46",
   "description": "description",
   "author": "wzy",
   "main": "dist/index.js",
