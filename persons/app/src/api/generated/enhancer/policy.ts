@@ -291,6 +291,66 @@ const policy: PolicyDef = {
             },
 
         },
+        userItem: {
+            modelLevel: {
+                read: { guard: UserItem_read, },
+                create: { guard: UserItem_create, },
+                update: { guard: UserItem_update, },
+                postUpdate: { guard: UserItem_postUpdate, },
+                delete: { guard: UserItem_delete, }
+            },
+            fieldLevel: {
+                read:
+                {
+
+                },
+                update:
+                {
+
+                },
+            },
+
+        },
+        userAccount: {
+            modelLevel: {
+                read: { guard: UserAccount_read, },
+                create: { guard: UserAccount_create, },
+                update: { guard: UserAccount_update, },
+                postUpdate: { guard: UserAccount_postUpdate, },
+                delete: { guard: UserAccount_delete, }
+            },
+            fieldLevel: {
+                read:
+                {
+
+                },
+                update:
+                {
+
+                },
+            },
+
+        },
+        userSession: {
+            modelLevel: {
+                read: { guard: UserSession_read, },
+                create: { guard: UserSession_create, },
+                update: { guard: UserSession_update, },
+                postUpdate: { guard: UserSession_postUpdate, },
+                delete: { guard: UserSession_delete, }
+            },
+            fieldLevel: {
+                read:
+                {
+
+                },
+                update:
+                {
+
+                },
+            },
+
+        },
     },
     validation: {
         commonGroupLayout: { hasValidation: false },
@@ -307,6 +367,9 @@ const policy: PolicyDef = {
         aiRole: { hasValidation: false },
         aiInfo: { hasValidation: false },
         orderDemand: { hasValidation: false },
+        userItem: { hasValidation: false },
+        userAccount: { hasValidation: false },
+        userSession: { hasValidation: false },
     },
 
 };
@@ -979,6 +1042,174 @@ function OrderDemand_delete(context: QueryContext, db: CrudContract): any {
 
 function $check_OrderDemand_delete(input: any, context: QueryContext): any {
     if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function UserItem_read(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_UserItem_read(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    if (true) { return true; }
+
+    return false;
+}
+
+function UserItem_create(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_UserItem_create(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    if (true) { return true; }
+
+    return false;
+}
+
+function UserItem_update(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_UserItem_update(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    if (true) { return true; }
+
+    return false;
+}
+
+function UserItem_postUpdate(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_UserItem_postUpdate(input: any, context: QueryContext): any {
+    return true;
+}
+
+function UserItem_delete(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_UserItem_delete(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    if (true) { return true; }
+
+    return false;
+}
+
+function UserAccount_read(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_UserAccount_read(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    if (true) { return true; }
+
+    return false;
+}
+
+function UserAccount_create(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_UserAccount_create(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    if (true) { return true; }
+
+    return false;
+}
+
+function UserAccount_update(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_UserAccount_update(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    if (true) { return true; }
+
+    return false;
+}
+
+function UserAccount_postUpdate(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_UserAccount_postUpdate(input: any, context: QueryContext): any {
+    return true;
+}
+
+function UserAccount_delete(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_UserAccount_delete(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    if (true) { return true; }
+
+    return false;
+}
+
+function UserSession_read(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_UserSession_read(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    if (true) { return true; }
+
+    return false;
+}
+
+function UserSession_create(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_UserSession_create(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    if (true) { return true; }
+
+    return false;
+}
+
+function UserSession_update(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_UserSession_update(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    if (true) { return true; }
+
+    return false;
+}
+
+function UserSession_postUpdate(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_UserSession_postUpdate(input: any, context: QueryContext): any {
+    return true;
+}
+
+function UserSession_delete(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_UserSession_delete(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    if (true) { return true; }
 
     return false;
 }
