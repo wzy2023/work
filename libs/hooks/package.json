@@ -1,6 +1,6 @@
 {
   "name": "@wzyjs/hooks",
-  "version": "0.2.47",
+  "version": "0.2.48",
   "description": "description",
   "author": "wzy",
   "main": "dist/index.js",
@@ -11,7 +11,6 @@
     "dist"
   ],
   "dependencies": {
-    "@ahooksjs/use-url-state": "^3.5.1",
     "ahooks": "^3.8.4",
     "react-use": "^17.4.0"
   },
