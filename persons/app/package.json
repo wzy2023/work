@@ -1,11 +1,11 @@
 {
   "name": "app",
-  "version": "0.2.47",
+  "version": "0.2.52",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "DEBUG=next:build next build",
+    "build": "next build",
     "start": "next start",
     "preview": "npm run build && npm run start",
     "rm:next": "rm -rf .next",
@@ -48,7 +48,6 @@
     "react-dom": "^19.0.0",
     "react-flow-renderer": "^10.3.17",
     "react-grid-layout": "^1.5.1",
-    "rsshub": "^1.0.0-master.a5e2e29",
     "server-only": "^0.0.1",
     "superjson": "^2.2.1",
     "zenstack": "^2.14.0",
