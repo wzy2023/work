@@ -1,6 +1,6 @@
 {
   "name": "@wzyjs/antd",
-  "version": "0.2.48",
+  "version": "0.2.49",
   "description": "description",
   "author": "wzy",
   "main": "src/index.ts",
