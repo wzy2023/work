@@ -5,8 +5,8 @@ import React from 'react'
 import { Button, DeleteOutlined, Layout, message, Steps } from '@/components'
 import { StepContent } from './components/StepContent'
 
-import { ai302 } from '@/utils'
-import { aiModel } from './config'
+// import { ai302 } from '@/utils'
+// import { aiModel } from './config'
 import { STEP_TYPES } from './consts'
 
 import { type StepConfig } from './types'
@@ -71,11 +71,11 @@ export default () => {
           return
         }
 
-        const newColumns = await ai302.chat(prompt, aiModel)
+        // const newColumns = await ai302.chat(prompt, aiModel)
 
-        if (Array.isArray(newColumns) && currentStep.key) {
-          appendColumns(currentStep.key, newColumns)
-        }
+        // if (Array.isArray(newColumns) && currentStep.key) {
+        //   appendColumns(currentStep.key, newColumns)
+        // }
 
         setLoading(false)
         break
@@ -105,11 +105,11 @@ export default () => {
           return
         }
 
-        const res_ = await ai302.chat(promptNext, aiModel, false)
+        // const res_ = await ai302.chat(promptNext, aiModel, false)
 
-        if (currentStep.key) {
-          setContent(currentStep.key, res_ || '')
-        }
+        // if (currentStep.key) {
+        //   setContent(currentStep.key, res_ || '')
+        // }
 
         setLoading(false)
         break
