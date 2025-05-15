@@ -10,7 +10,7 @@ import { type ApiRouter } from './trpc/apiRouter'
 import { createQueryClient } from './trpc/client'
 import { createTRPCReact } from '@trpc/react-query'
 import { observable } from '@trpc/server/observable'
-import { type TRPCLink, unstable_httpBatchStreamLink } from '@trpc/client'
+import { type TRPCLink, httpBatchLink } from '@trpc/client'
 import { type inferRouterInputs, type inferRouterOutputs } from '@trpc/server'
 
 import { printConsoleLog } from '@/utils'
@@ -80,7 +80,7 @@ export const TRPCReactProvider = (props: { children: ReactNode }) => {
         // 添加错误处理链接，用于处理TRPC客户端错误
         errorLink,
         // 添加批量处理HTTP请求的链接，并设置Transformer、URL和自定义Headers
-        unstable_httpBatchStreamLink({
+        httpBatchLink({
           transformer: SuperJSON,
           url: getBaseUrl() + '/api/trpc',
           headers: () => {

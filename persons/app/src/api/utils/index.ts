@@ -1,4 +1,4 @@
-import { _, dayjs, type Dayjs } from '@wzyjs/utils'
+import { _, dayjs, type Dayjs } from '@wzyjs/utils/node'
 import { HabitFrequencyType, HabitProgressStatus, HabitStatusMode } from '@/api/types'
 
 // 计算[习惯]和[习惯记录]的状态

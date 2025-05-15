@@ -11,13 +11,9 @@ const config = {
     ignoreBuildErrors: true,
   },
   transpilePackages: ['@wzyjs/components', '@wzyjs/antd'],
-  webpack: (config) => {
-    config.cache = false // 不缓存
-    return config
-  },
-  experimental: {
-    webpackMemoryOptimizations: true, // 启用内存优化，减少内存的使用
-  },
+  // experimental: {
+  //   webpackMemoryOptimizations: true,
+  // },
 };
 
 export default config;

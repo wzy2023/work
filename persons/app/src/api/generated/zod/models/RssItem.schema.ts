@@ -19,6 +19,7 @@ const baseSchema = z.object({
     isRead: z.boolean().default(false),
     isStarred: z.boolean().default(false),
     isSent: z.boolean().default(false),
+    isInterested: z.number().default(0).nullish(),
     tags: z.any().nullish(),
     summary: z.string().nullish(),
 }
@@ -70,6 +71,7 @@ export const RssItemPrismaUpdateSchema = z.object({
     isRead: z.boolean().default(false),
     isStarred: z.boolean().default(false),
     isSent: z.boolean().default(false),
+    isInterested: z.union([z.number().default(0).nullish(), z.record(z.unknown())]),
     tags: z.any().nullish(),
     summary: z.string().nullish()
 }).partial().passthrough();
@@ -79,7 +81,7 @@ export const RssItemPrismaUpdateSchema = z.object({
  * `RssItem` schema for create operations excluding foreign keys and relations.
  */
 export const RssItemCreateScalarSchema = baseSchema.partial({
-    id: true, createdAt: true, updatedAt: true, isDeleted: true, isRead: true, isStarred: true, isSent: true
+    id: true, createdAt: true, updatedAt: true, isDeleted: true, isRead: true, isStarred: true, isSent: true, isInterested: true
 });
 
 

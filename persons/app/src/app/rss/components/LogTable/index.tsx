@@ -29,6 +29,7 @@ export const LogTable = () => {
       headerTitle='抓取日志'
       search={false}
       options={false}
+      scroll={{ x: 'max-content' }}
       dataSource={listState.data}
       loading={listState.isLoading}
       columns={getColumns()}

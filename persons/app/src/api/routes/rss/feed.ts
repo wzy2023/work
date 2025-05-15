@@ -3,15 +3,38 @@ import { procedure } from '@/api/trpc/procedures'
 import { fetchRssFeed, parseRssXml, truncateString } from '@/api/utils/fetch'
 import { RssFetchTriggerType } from '@/api/types'
 import { ai302 } from '@wzyjs/utils/node'
+import { env } from '@/env'
 
 // 处理每条新抓取的数据，使用 AI 生成标签和摘要
 const aiSummary = async (item: any) => {
   const prompt = `
-请分析以下 RSS 文章，并提供以下两部分内容：
+请分析以下 RSS 文章，并提供以下三部分内容：
 1. 内容的关键词标签，一定要恰当（0 到 5 个，可为空数组）
 2. 30 字以内的中文摘要，从读者的角度出发，让人一眼明白是什么内容，可为空字符串
+3. 请基于以下列表，判断我是否对此内容感兴趣，-1代表不感兴趣，1代表感兴趣，0代表无法判断。
 
-请以 JSON 格式返回，格式为 {"tags": ["标签1","标签2","标签3"], "summary": "摘要内容"}
+  以下是我感兴趣的内容：
+   - 代码开发相关的
+   - 新技术、新产品 (App、网站、工具等等)
+   - AI方面的所有 (应用、工具、画图、提示词等等，只要涉及ai就感兴趣)
+   - 个人效率与时间管理
+   - 独立开发产品、运营流量获客、用户增长相关的
+
+   以下是我不我感兴趣的内容：
+   - 无意义的内容或纯图片
+   - 娱乐八卦与明星新闻
+   - 体育赛事与直播
+   - 宠物养成与萌宠分享
+   - 个人生活琐事分享
+   - 无脑或低质量短内容
+   - 宗教或玄学类话题（如星座运势）
+   - 政治与国际关系话题
+   - 股票相关话题
+   - 传统制造业或重工业相关资讯
+   - 原始农业或户外生存内容
+   - 网络吵架或饭圈文化
+
+请以 JSON 格式返回，格式为 {"tags": ["标签1","标签2","标签3"], "summary": "摘要内容", "isInterested": -1/1}
 
 文章标题: ${item.title}
 文章内容: ${item.content || item.description || ''}
@@ -69,7 +92,7 @@ export const rssFeed = {
     for (const feed of feeds) {
       try {
         // 抓取RSS内容
-        const xmlContent = await fetchRssFeed('http://localhost:1200' + feed.url)
+        const xmlContent = await fetchRssFeed(env.RSSHUB_BASE_URL + feed.url)
         const parsedFeed = parseRssXml(xmlContent)
 
         // 保存抓取的内容

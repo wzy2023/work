@@ -53,7 +53,8 @@ export const getColumns = ({ onAction, onEnabledChange, getItemCount }: FeedColu
   {
     title: '启用',
     dataIndex: 'enabled',
-    key: 'enabled',
+    fixed: 'right',
+    width: 70,
     render: (_, record) => (
       <FeedStatusSwitch record={record} onChange={onEnabledChange} />
     ),
@@ -61,6 +62,8 @@ export const getColumns = ({ onAction, onEnabledChange, getItemCount }: FeedColu
   {
     title: '操作',
     key: 'action',
+    fixed: 'right',
+    width: 100,
     render: (_, record) => (
       <FeedActions record={record} onAction={onAction} />
     ),

@@ -2,15 +2,18 @@
 
 import React from 'react'
 import { useRouter, usePathname } from 'next/navigation'
-import { Tabs } from 'antd'
 
-export default function HabitLayout({ children }: { children: React.ReactNode }) {
+import { Tabs } from '@/components'
+
+export default ({ children }: { children: React.ReactNode }) => {
   const router = useRouter()
   const pathname = usePathname()
-  
+
   // 根据当前路径确定激活的标签页
   const getActiveKey = () => {
-    if (pathname.includes('/habit/record')) return 'record'
+    if (pathname.includes('/habit/record')) {
+      return 'record'
+    }
     return 'manage'
   }
 

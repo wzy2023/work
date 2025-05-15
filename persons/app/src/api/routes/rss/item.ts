@@ -2,13 +2,14 @@ import { procedure } from '@/api/trpc/procedures'
 import { sendMail } from '@wzyjs/utils/node'
 
 export const rssItem = {
-  aiSummary: procedure
+  sendEmail: procedure
   .mutation(async ({ ctx }) => {
     // 获取所有未发送的内容
     const items = await ctx.db.rssItem.findMany({
       where: {
         isDeleted: false,
         isSent: false,
+        isInterested: 1,
       },
       include: {
         feed: {
@@ -28,7 +29,16 @@ export const rssItem = {
     const contents = items.map(item => {
       return `
     <div style="border-bottom: 1px solid #ddd; padding: 15px 0;">
-      <h2 style="color: #333; font-size: 24px; margin-bottom: 10px;">${item.summary}</h2>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2 style="color: #333; font-size: 24px; margin-bottom: 10px;">${item.summary}</h2>
+        <a
+          href="https://app.zhenyu.pro/api/rss/star?id=${item.id}"
+          target="_blank"
+          style="background-color: #1a73e8; color: white; text-decoration: none; border-radius: 4px; padding: 6px 12px; cursor: pointer; font-size: 14px; display: inline-block;"
+        >
+          收藏
+        </a>
+      </div>
       <p style="font-size: 14px; color: #777;">来源: <strong>${item.feed.name}</strong></p>
       <p style="font-size: 16px; color: #444;">${item.content || item.description || ''}</p>
     </div>

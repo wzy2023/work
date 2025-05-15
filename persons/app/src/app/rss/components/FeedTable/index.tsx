@@ -118,6 +118,7 @@ export const FeedTable = () => {
 
       notification.success({
         message: title,
+        duration: null,
         description: (
           <div className='whitespace-pre'>
             {description}
@@ -288,6 +289,7 @@ export const FeedTable = () => {
       <ProTable
         actionRef={actionRef}
         rowKey='id'
+        scroll={{ x: 'max-content' }}
         columns={columns}
         dataSource={feeds}
         loading={isLoading}

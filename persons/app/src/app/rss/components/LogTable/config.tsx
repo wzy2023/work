@@ -19,6 +19,7 @@ export const getColumns = (): ProColumns[] => [
     title: '执行时间',
     dataIndex: 'executedAt',
     key: 'executedAt',
+    width: 160,
     valueType: 'dateTime',
   },
   {
@@ -39,7 +40,6 @@ export const getColumns = (): ProColumns[] => [
   {
     title: '触发方式',
     dataIndex: 'triggerType',
-    width: 100,
     render: (_, record) => (
       <Tag color={record.triggerType === RssFetchTriggerType.Manual ? 'blue' : 'green'}>
         {record.triggerType === RssFetchTriggerType.Manual ? '手动' : '定时'}
@@ -47,7 +47,7 @@ export const getColumns = (): ProColumns[] => [
     ),
   },
   {
-    title: '新增内容',
+    title: '新增',
     dataIndex: 'itemCount',
     key: 'itemCount',
   },

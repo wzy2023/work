@@ -12,6 +12,7 @@ import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './Nullab
 import { NullableBoolFieldUpdateOperationsInputObjectSchema } from './NullableBoolFieldUpdateOperationsInput.schema';
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema';
 import { BoolFieldUpdateOperationsInputObjectSchema } from './BoolFieldUpdateOperationsInput.schema';
+import { NullableIntFieldUpdateOperationsInputObjectSchema } from './NullableIntFieldUpdateOperationsInput.schema';
 import { NullableJsonNullValueInputSchema } from '../enums/NullableJsonNullValueInput.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -40,7 +41,9 @@ export const RssItemUncheckedUpdateManyInputObjectSchema: SchemaType = z.object(
     z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema)]).optional(), isRead: z.union([z.boolean(),
     z.lazy(() => BoolFieldUpdateOperationsInputObjectSchema)]).optional(), isStarred: z.union([z.boolean(),
     z.lazy(() => BoolFieldUpdateOperationsInputObjectSchema)]).optional(), isSent: z.union([z.boolean(),
-    z.lazy(() => BoolFieldUpdateOperationsInputObjectSchema)]).optional(), tags: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
+    z.lazy(() => BoolFieldUpdateOperationsInputObjectSchema)]).optional(), isInterested: z.union([z.number(),
+    z.lazy(() => NullableIntFieldUpdateOperationsInputObjectSchema),
+    z.null()]).optional().nullable(), tags: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
         jsonSchema]).optional(), summary: z.union([z.string(),
         z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
         z.null()]).optional().nullable(), feedId: z.union([z.string(),

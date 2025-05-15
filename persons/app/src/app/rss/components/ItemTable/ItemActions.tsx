@@ -10,6 +10,9 @@ import {
   StarFilled,
   MailTwoTone,
   MailFilled,
+  LikeTwoTone,
+  DislikeTwoTone,
+  QuestionOutlined,
 } from '@/components'
 
 import { RssItemActionType } from '@/api/types'
@@ -21,6 +24,28 @@ interface ItemActionsProps {
 
 export const ItemActions = (props: ItemActionsProps) => {
   const { record, onAction } = props
+
+  const renderInterestIcon = () => {
+    if (record.isInterested === 1) {
+      return (
+        <Tooltip title='AI认为你会感兴趣'>
+          <LikeTwoTone twoToneColor='#52c41a' />
+        </Tooltip>
+      )
+    } else if (record.isInterested === -1) {
+      return (
+        <Tooltip title='AI认为你不会感兴趣'>
+          <DislikeTwoTone twoToneColor='#ff4d4f' />
+        </Tooltip>
+      )
+    } else {
+      return (
+        <Tooltip title='AI未判断兴趣'>
+          <QuestionOutlined style={{ color: '#d9d9d9' }} />
+        </Tooltip>
+      )
+    }
+  }
 
   return (
     <Space size='middle'>
@@ -62,6 +87,8 @@ export const ItemActions = (props: ItemActionsProps) => {
           <MailTwoTone />
         }
       </Tooltip>
+
+      {renderInterestIcon()}
     </Space>
   )
 }

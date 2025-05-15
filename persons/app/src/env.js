@@ -22,6 +22,8 @@ export const env = createEnv({
     // NextAuth 密钥
     NEXTAUTH_SECRET: z.string().optional(),
     NEXTAUTH_URL: z.string().url().optional(),
+    // RSSHub 配置
+    RSSHUB_BASE_URL: z.string().url().optional(),
   },
 
   /**
@@ -53,6 +55,8 @@ export const env = createEnv({
     // NextAuth 配置
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+    // RSSHub 配置
+    RSSHUB_BASE_URL: process.env.RSSHUB_BASE_URL,
   },
 
   /**

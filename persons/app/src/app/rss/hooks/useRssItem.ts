@@ -9,56 +9,58 @@ export interface RssItemFilter {
   isStarred?: boolean
   pubDateStart?: string
   pubDateEnd?: string
+  page?: number
+  pageSize?: number
 }
 
 export const useRssItem = (filter: RssItemFilter = {}) => {
-  // 使用自动生成的CRUD钩子
-  const {
-    listState,
-    updateState,
-    apiUtils,
-  } = useRssItemCRUD({
+  const page = filter.page || 1
+  const pageSize = filter.pageSize || 10
+
+  // 构建查询条件
+  const whereCondition = {
+    ...(filter.search ? {
+      OR: [
+        { title: { contains: filter.search } },
+        { description: { contains: filter.search } },
+      ],
+    } : {}),
+    ...(filter.feedIds?.length ? { feedId: { in: filter.feedIds } } : {}),
+    ...(filter.tags?.length ? {
+      feed: {
+        tags: {
+          array_contains: filter.tags,
+        },
+      },
+    } : {}),
+    ...(filter.isRead !== undefined ? { isRead: filter.isRead } : {}),
+    ...(filter.isStarred !== undefined ? { isStarred: filter.isStarred } : {}),
+    ...(filter.pubDateStart || filter.pubDateEnd ? {
+      pubDate: {
+        ...(filter.pubDateStart ? { gte: dayjs(filter.pubDateStart).startOf('day').toISOString() } : {}),
+        ...(filter.pubDateEnd ? { lte: dayjs(filter.pubDateEnd).endOf('day').toISOString() } : {}),
+      },
+    } : {}),
+  }
+
+  const { listState, updateState, apiUtils } = useRssItemCRUD({
     showTip: false,
     list: {
       query: {
-        where: {
-          isDeleted: false,
-          ...(filter.search ? {
-            OR: [
-              { title: { contains: filter.search } },
-              { description: { contains: filter.search } },
-            ],
-          } : {}),
-          ...(filter.feedIds?.length ? { feedId: { in: filter.feedIds } } : {}),
-          ...(filter.tags?.length ? {
-            feed: {
-              tags: {
-                array_contains: filter.tags,
-              },
-            },
-          } : {}),
-          ...(filter.isRead !== undefined ? { isRead: filter.isRead } : {}),
-          ...(filter.isStarred !== undefined ? { isStarred: filter.isStarred } : {}),
-          ...(filter.pubDateStart || filter.pubDateEnd ? {
-            pubDate: {
-              ...(filter.pubDateStart ? { gte: dayjs(filter.pubDateStart).startOf('day').toISOString() } : {}),
-              ...(filter.pubDateEnd ? { lte: dayjs(filter.pubDateEnd).endOf('day').toISOString() } : {}),
-            },
-          } : {}),
-        },
+        where: whereCondition,
         orderBy: { pubDate: 'desc' },
+        skip: (page - 1) * pageSize,
+        take: pageSize,
         include: {
           feed: {
-            select: {
-              id: true,
-              name: true,
-              tags: true,
-            },
+            select: { id: true, name: true, tags: true },
           },
         },
       },
     },
   })
+
+  const totalCount = 1000
 
   // 标记为已读/未读
   const toggleRead = (id: string, isRead: boolean) => {
@@ -86,5 +88,10 @@ export const useRssItem = (filter: RssItemFilter = {}) => {
     toggleStar,
     batchToggleRead,
     apiUtils,
+    pagination: {
+      current: page,
+      pageSize,
+      total: totalCount,
+    },
   }
 }
