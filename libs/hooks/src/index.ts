@@ -1,6 +1,6 @@
 export * from 'ahooks'
 
-export { default as useUrlState } from '@ahooksjs/use-url-state'
+// export { default as useUrlState } from '@ahooksjs/use-url-state'
 
 export { useCopyToClipboard, useCookie, useUpdate } from 'react-use'
 
