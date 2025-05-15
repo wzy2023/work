@@ -7,15 +7,17 @@ import { extractTagsFromFeeds } from '../../utils'
 import { readStatusOptions, starredStatusOptions } from '../../consts'
 
 import { api } from '@/api/react'
+import { useRssFeed } from '@/app/rss/hooks'
 
 interface ItemSearchFormProps {
   form: any
-  feeds: any[]
   onSearch: (values: Record<string, any>) => void
 }
 
 export const ItemSearchForm = (props: ItemSearchFormProps) => {
-  const { form, feeds, onSearch } = props
+  const { form, onSearch } = props
+
+  const { feeds } = useRssFeed()
 
   const aiSummaryState = api.custom.rssItem.aiSummary.useMutation({
     onSuccess: res => {

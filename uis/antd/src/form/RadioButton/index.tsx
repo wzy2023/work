@@ -7,7 +7,7 @@ interface FilterButtonProps<V> {
   options: { label: string; value: V }[]
   value: V
   onChange: (value: V) => void
-  style: CSSProperties
+  style?: CSSProperties
 }
 
 export const RadioButton = <V = string | number | boolean | null>(props: FilterButtonProps<V>) => {

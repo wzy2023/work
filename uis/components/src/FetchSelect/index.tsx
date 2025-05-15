@@ -2,7 +2,7 @@
 
 import { useImperativeHandle } from 'react'
 import { Select, SelectProps, Spin } from 'antd'
-import { useRequest } from 'ahooks'
+import { useRequest } from '@wzyjs/hooks'
 
 export interface FetchSelectProps<I> extends SelectProps {
   selectRef?: any,

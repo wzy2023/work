@@ -507,6 +507,11 @@ const metadata = {
                     name: "isSent",
                     type: "Boolean",
                     attributes: [{ "name": "@default", "args": [{ "value": false }] }],
+                }, isInterested: {
+                    name: "isInterested",
+                    type: "Int",
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": 0 }] }],
                 }, tags: {
                     name: "tags",
                     type: "Json",

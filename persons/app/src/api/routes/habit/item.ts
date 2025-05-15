@@ -45,7 +45,7 @@ export const habitItem = {
           return null
         }
 
-        const { start, end } = dayRangeMap[type](dayjs(input.date))
+        const { start, end } = dayRangeMap[type](today)
 
         item.record = await ctx.prisma.habitRecord.findFirst({
           where: {

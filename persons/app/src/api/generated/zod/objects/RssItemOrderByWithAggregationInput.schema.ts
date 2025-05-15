@@ -9,8 +9,10 @@ import { z } from 'zod';
 import { SortOrderSchema } from '../enums/SortOrder.schema';
 import { SortOrderInputObjectSchema } from './SortOrderInput.schema';
 import { RssItemCountOrderByAggregateInputObjectSchema } from './RssItemCountOrderByAggregateInput.schema';
+import { RssItemAvgOrderByAggregateInputObjectSchema } from './RssItemAvgOrderByAggregateInput.schema';
 import { RssItemMaxOrderByAggregateInputObjectSchema } from './RssItemMaxOrderByAggregateInput.schema';
 import { RssItemMinOrderByAggregateInputObjectSchema } from './RssItemMinOrderByAggregateInput.schema';
+import { RssItemSumOrderByAggregateInputObjectSchema } from './RssItemSumOrderByAggregateInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -20,7 +22,8 @@ export const RssItemOrderByWithAggregationInputObjectSchema: SchemaType = z.obje
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), isDeleted: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), title: z.lazy(() => SortOrderSchema).optional().optional(), description: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), content: z.union([z.lazy(() => SortOrderSchema),
-    z.lazy(() => SortOrderInputObjectSchema)]).optional(), link: z.lazy(() => SortOrderSchema).optional().optional(), pubDate: z.lazy(() => SortOrderSchema).optional().optional(), isRead: z.lazy(() => SortOrderSchema).optional().optional(), isStarred: z.lazy(() => SortOrderSchema).optional().optional(), isSent: z.lazy(() => SortOrderSchema).optional().optional(), tags: z.union([z.lazy(() => SortOrderSchema),
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), link: z.lazy(() => SortOrderSchema).optional().optional(), pubDate: z.lazy(() => SortOrderSchema).optional().optional(), isRead: z.lazy(() => SortOrderSchema).optional().optional(), isStarred: z.lazy(() => SortOrderSchema).optional().optional(), isSent: z.lazy(() => SortOrderSchema).optional().optional(), isInterested: z.union([z.lazy(() => SortOrderSchema),
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), tags: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), summary: z.union([z.lazy(() => SortOrderSchema),
-    z.lazy(() => SortOrderInputObjectSchema)]).optional(), feedId: z.lazy(() => SortOrderSchema).optional().optional(), _count: z.lazy(() => RssItemCountOrderByAggregateInputObjectSchema).optional().optional(), _max: z.lazy(() => RssItemMaxOrderByAggregateInputObjectSchema).optional().optional(), _min: z.lazy(() => RssItemMinOrderByAggregateInputObjectSchema).optional().optional()
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), feedId: z.lazy(() => SortOrderSchema).optional().optional(), _count: z.lazy(() => RssItemCountOrderByAggregateInputObjectSchema).optional().optional(), _avg: z.lazy(() => RssItemAvgOrderByAggregateInputObjectSchema).optional().optional(), _max: z.lazy(() => RssItemMaxOrderByAggregateInputObjectSchema).optional().optional(), _min: z.lazy(() => RssItemMinOrderByAggregateInputObjectSchema).optional().optional(), _sum: z.lazy(() => RssItemSumOrderByAggregateInputObjectSchema).optional().optional()
 }).strict() as SchemaType;

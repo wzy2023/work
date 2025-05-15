@@ -5,19 +5,20 @@ import { ItemTitle } from './ItemTitle'
 
 import { dayjs } from '@/utils'
 
-export const getColumns = (onAction: (actionType: Rss.ItemActionType, id: string) => Promise<void>,
+export const getColumns = (
+  onAction: (actionType: Rss.ItemActionType, id: string) => Promise<void>,
   onToggleRead?: (id: string, isRead: boolean) => Promise<void>,
 ): ProColumns[] => [
   {
     title: '标题',
     dataIndex: 'title',
-    width: '15%',
-    ellipsis: true,
+    width: 150,
     render: (_, record) => <ItemTitle record={record} />,
   },
   {
     title: '内容',
     dataIndex: 'summary',
+    width: 250,
     render: (_: unknown, record?: any) => {
       const hasImg = record.content?.includes('<img')
 
@@ -56,7 +57,7 @@ export const getColumns = (onAction: (actionType: Rss.ItemActionType, id: string
     width: 180,
     render: (_, record: any) => (
       <div>
-        <div><Tag>{record.feed?.name}</Tag></div>
+        <Tag>{record.feed?.name}</Tag>
         <div className='mt-1'>
           {(record.feed?.tags || []).map((tag: string) => (
             <Tag key={tag}>{tag}</Tag>
@@ -83,13 +84,15 @@ export const getColumns = (onAction: (actionType: Rss.ItemActionType, id: string
   {
     title: '发布时间',
     dataIndex: 'pubDate',
-    width: 180,
+    width: 140,
     render: pubDate => dayjs(pubDate as string).format('YYYY-MM-DD HH:mm'),
   },
   {
     title: '操作',
     key: 'action',
-    width: 120,
+    width: 80,
+    fixed: 'right',
+    align: 'center',
     render: (_, record) => <ItemActions record={record} onAction={onAction} />,
   },
 ]

@@ -1,7 +1,7 @@
 'use client'
 
 import { ReactNode } from 'react'
-import { useBoolean } from 'ahooks'
+import { useBoolean } from '@wzyjs/hooks'
 import { RightOutlined, LeftOutlined } from '@ant-design/icons'
 
 interface CollapseProps {

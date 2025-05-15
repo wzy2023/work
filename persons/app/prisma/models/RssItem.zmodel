@@ -18,6 +18,8 @@ model RssItem extends Base {
 
   isSent Boolean @default(false)
 
+  isInterested Int?      @default(0)
+
   /// ![string[]]
   tags Json?
 

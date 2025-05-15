@@ -22,7 +22,8 @@ export const RssItemUncheckedCreateWithoutFeedInputObjectSchema: SchemaType = z.
     z.null()]).optional().nullable(), isDeleted: z.union([z.boolean(),
     z.null()]).optional().nullable(), title: z.string(), description: z.union([z.string(),
     z.null()]).optional().nullable(), content: z.union([z.string(),
-    z.null()]).optional().nullable(), link: z.string(), pubDate: z.union([z.date(), z.string().datetime()]), isRead: z.boolean().optional().optional(), isStarred: z.boolean().optional().optional(), isSent: z.boolean().optional().optional(), tags: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
+    z.null()]).optional().nullable(), link: z.string(), pubDate: z.union([z.date(), z.string().datetime()]), isRead: z.boolean().optional().optional(), isStarred: z.boolean().optional().optional(), isSent: z.boolean().optional().optional(), isInterested: z.union([z.number(),
+    z.null()]).optional().nullable(), tags: z.union([z.lazy(() => NullableJsonNullValueInputSchema),
         jsonSchema]).optional(), summary: z.union([z.string(),
         z.null()]).optional().nullable()
 }).strict() as SchemaType;

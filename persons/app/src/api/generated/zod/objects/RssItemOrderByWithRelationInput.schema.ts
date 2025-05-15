@@ -19,7 +19,8 @@ export const RssItemOrderByWithRelationInputObjectSchema: SchemaType = z.object(
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), isDeleted: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), title: z.lazy(() => SortOrderSchema).optional().optional(), description: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), content: z.union([z.lazy(() => SortOrderSchema),
-    z.lazy(() => SortOrderInputObjectSchema)]).optional(), link: z.lazy(() => SortOrderSchema).optional().optional(), pubDate: z.lazy(() => SortOrderSchema).optional().optional(), isRead: z.lazy(() => SortOrderSchema).optional().optional(), isStarred: z.lazy(() => SortOrderSchema).optional().optional(), isSent: z.lazy(() => SortOrderSchema).optional().optional(), tags: z.union([z.lazy(() => SortOrderSchema),
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), link: z.lazy(() => SortOrderSchema).optional().optional(), pubDate: z.lazy(() => SortOrderSchema).optional().optional(), isRead: z.lazy(() => SortOrderSchema).optional().optional(), isStarred: z.lazy(() => SortOrderSchema).optional().optional(), isSent: z.lazy(() => SortOrderSchema).optional().optional(), isInterested: z.union([z.lazy(() => SortOrderSchema),
+    z.lazy(() => SortOrderInputObjectSchema)]).optional(), tags: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), summary: z.union([z.lazy(() => SortOrderSchema),
     z.lazy(() => SortOrderInputObjectSchema)]).optional(), feedId: z.lazy(() => SortOrderSchema).optional().optional(), feed: z.lazy(() => RssFeedOrderByWithRelationInputObjectSchema).optional().optional(), _relevance: z.lazy(() => RssItemOrderByRelevanceInputObjectSchema).optional().optional()
 }).strict() as SchemaType;

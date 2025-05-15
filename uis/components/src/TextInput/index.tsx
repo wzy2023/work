@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 
 import { Input } from 'antd'
-import { useBoolean } from 'ahooks'
+import { useBoolean } from '@wzyjs/hooks'
 
 interface TextInputProps {
   value: string
