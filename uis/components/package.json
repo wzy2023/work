@@ -1,6 +1,6 @@
 {
   "name": "@wzyjs/components",
-  "version": "0.2.54",
+  "version": "0.2.55",
   "description": "description",
   "author": "wzy",
   "main": "src/index.ts",
