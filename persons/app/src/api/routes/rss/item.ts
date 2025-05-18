@@ -1,15 +1,25 @@
 import { procedure } from '@/api/trpc/procedures'
 import { sendMail } from '@wzyjs/utils/node'
+import { z } from 'zod'
 
 export const rssItem = {
   sendEmail: procedure
-  .mutation(async ({ ctx }) => {
+  .input(z.object({
+    where: z.object({
+      isSent: z.boolean().optional(),
+      isInterested: z.number(),
+      createdAt: z.object({
+        gte: z.string().optional(),
+        lt: z.string().optional(),
+      }).optional(),
+    }),
+  }))
+  .mutation(async ({ ctx, input }) => {
     // 获取所有未发送的内容
     const items = await ctx.db.rssItem.findMany({
       where: {
         isDeleted: false,
-        isSent: false,
-        isInterested: 1,
+        ...input.where,
       },
       include: {
         feed: {
@@ -28,7 +38,7 @@ export const rssItem = {
     // 拼接内容
     const contents = items.map(item => {
       return `
-    <div style="border-bottom: 1px solid #ddd; padding: 15px 0;">
+    <div style="border-bottom: 1px solid #ddd; padding: 10px 0;">
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <h2 style="color: #333; font-size: 24px; margin-bottom: 10px;">${item.summary}</h2>
         <a
@@ -52,9 +62,14 @@ export const rssItem = {
     try {
       await sendMail({
         to: email,
-        subject: `RSS Summary (${items.length})`,
+        subject: `RSS Summary [${input.where.isInterested}] (${items.length})`,
         html: `
     <div style="font-family: Arial, sans-serif; color: #333; background-color: #f9f9f9; padding: 20px; max-width: 600px; margin: 0 auto;">
+      <style>
+         image, video {
+            max-width: 100%;
+         }
+      </style>
       <h1 style="text-align: center; color: #1a73e8;">RSS AI总结</h1>
       <p style="font-size: 16px; color: #444;">以下是您的RSS订阅内容总结：</p>
       <div style="margin-top: 20px;">
@@ -93,12 +108,16 @@ export const rssItem = {
   }),
 
   markAllAsRead: procedure
-  .mutation(async ({ ctx }) => {
+  .input(z.object({
+    where: z.object({}).optional(),
+  }))
+  .mutation(async ({ ctx, input }) => {
     try {
       const result = await ctx.db.rssItem.updateMany({
         where: {
           isRead: false,
           isDeleted: false,
+          ...input.where,
         },
         data: {
           isRead: true,

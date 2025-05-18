@@ -21,5 +21,7 @@ export const schedule = (cronExpression: string, immediately: boolean, fn: () =>
 
   cron.schedule(cronExpression, () => {
     fn()
+  }, {
+    timezone: 'Asia/Shanghai',
   })
 }

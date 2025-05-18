@@ -17,6 +17,9 @@ dist-ssr
 .umi-production
 .umi-test
 
+.wxt
+.output
+
 *.log
 logs
 *.local

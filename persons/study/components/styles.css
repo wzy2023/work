@@ -1,0 +1,23 @@
+#web-content-drawer-root {
+  position: relative;
+  z-index: 9999;
+}
+
+.content {
+  /*max-width: 100%;*/
+  /*word-break: break-word;*/
+}
+
+.content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.pure-content {
+  /*max-width: 100%;*/
+  /*word-break: break-word;*/
+}
+
+.ai-content {
+
+}

@@ -10,7 +10,12 @@ export const rssMail = async () => {
     const caller = apiRouter.createCaller(context)
 
     // 调用抓取 API
-    const result = await caller.custom.rssItem.sendEmail()
+    const result = await caller.custom.rssItem.sendEmail({
+      where: {
+        isSent: false,
+        isInterested: 1,
+      },
+    })
 
     console.log('定时任务API调用结果:', result)
     console.log('发送 RSS 内容：完成')
