@@ -767,6 +767,98 @@ const metadata = {
             },
             attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
         },
+        studyItem: {
+            name: 'StudyItem', fields: {
+                id: {
+                    name: "id",
+                    type: "String",
+                    isId: true,
+                    attributes: [{ "name": "@id", "args": [] }, { "name": "@default", "args": [] }],
+                }, createdAt: {
+                    name: "createdAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@default", "args": [] }],
+                }, updatedAt: {
+                    name: "updatedAt",
+                    type: "DateTime",
+                    isOptional: true,
+                    attributes: [{ "name": "@updatedAt", "args": [] }],
+                }, isDeleted: {
+                    name: "isDeleted",
+                    type: "Boolean",
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": false }] }, { "name": "@omit", "args": [] }],
+                }, name: {
+                    name: "name",
+                    type: "String",
+                    isOptional: true,
+                }, tags: {
+                    name: "tags",
+                    type: "Json",
+                    isOptional: true,
+                },
+            }, uniqueConstraints: {
+                id: {
+                    name: "id",
+                    fields: ["id"]
+                },
+            },
+            attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
+        },
+        studyOperate: {
+            name: 'StudyOperate', fields: {
+                id: {
+                    name: "id",
+                    type: "String",
+                    isId: true,
+                    attributes: [{ "name": "@id", "args": [] }, { "name": "@default", "args": [] }],
+                }, createdAt: {
+                    name: "createdAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@default", "args": [] }],
+                }, updatedAt: {
+                    name: "updatedAt",
+                    type: "DateTime",
+                    isOptional: true,
+                    attributes: [{ "name": "@updatedAt", "args": [] }],
+                }, isDeleted: {
+                    name: "isDeleted",
+                    type: "Boolean",
+                    isOptional: true,
+                    attributes: [{ "name": "@default", "args": [{ "value": false }] }, { "name": "@omit", "args": [] }],
+                }, name: {
+                    name: "name",
+                    type: "String",
+                }, contentType: {
+                    name: "contentType",
+                    type: "String",
+                }, viewType: {
+                    name: "viewType",
+                    type: "String",
+                }, input: {
+                    name: "input",
+                    type: "String",
+                    isOptional: true,
+                }, output: {
+                    name: "output",
+                    type: "String",
+                }, model: {
+                    name: "model",
+                    type: "String",
+                    isOptional: true,
+                }, prompt: {
+                    name: "prompt",
+                    type: "String",
+                    isOptional: true,
+                },
+            }, uniqueConstraints: {
+                id: {
+                    name: "id",
+                    fields: ["id"]
+                },
+            },
+            attributes: [{ "name": "@@allow", "args": [{ "value": "all" }] }],
+        },
         userItem: {
             name: 'UserItem', fields: {
                 id: {

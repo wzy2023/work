@@ -254,8 +254,3 @@ export const parseRssXml = (xml: string) => {
     throw new Error(`解析RSS失败: ${error.message}`)
   }
 }
-
-export const truncateString = (str: string, maxLength: number = 191): string => {
-  if (!str) return ''
-  return str.length > maxLength ? str.substring(0, maxLength) + '...' : str
-}

@@ -34,6 +34,9 @@ export default () => {
         where: {
           type: activeTab === 'order' ? '需求' : '岗位',
         },
+        orderBy: {
+          createdAt: 'desc',
+        },
       },
     },
   })
@@ -50,7 +53,6 @@ export default () => {
           loading={listState.isLoading}
           scroll={{ x: 1500 }}
           search={false}
-          toolbar={false}
           pagination={{
             showSizeChanger: true,
             showQuickJumper: true,
@@ -70,7 +72,6 @@ export default () => {
           loading={listState.isLoading}
           scroll={{ x: 1500 }}
           search={false}
-          toolbar={false}
           pagination={{
             showSizeChanger: true,
             showQuickJumper: true,

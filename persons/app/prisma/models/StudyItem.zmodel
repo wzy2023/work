@@ -1,0 +1,8 @@
+import "@wzyjs/next/dist/Base"
+
+model StudyItem extends Base {
+  name      String?
+
+  /// ![Study.TagList]
+  tags      Json?
+}

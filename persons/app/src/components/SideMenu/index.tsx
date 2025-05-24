@@ -15,9 +15,9 @@ import {
   AppstoreOutlined,
   FileTextOutlined,
   BulbOutlined,
-  InfoCircleOutlined,
   UserOutlined,
   ShoppingOutlined,
+  BookOutlined,
 } from '@ant-design/icons'
 
 import { UserAuthStatus } from '@/components/UserAuthStatus'
@@ -33,9 +33,11 @@ export interface MenuItem {
 }
 
 const menuGroups = {
-  BASE: '基础',
-  AI: 'AI',
-  OTHER: '其它',
+  Base: '基础',
+  Helper: '辅助',
+  Collecting: '收集',
+  Ai: 'AI',
+  Other: '其它',
 }
 
 export const menuItems: MenuItem[] = [
@@ -44,7 +46,7 @@ export const menuItems: MenuItem[] = [
     title: '习惯管理',
     path: '/habit/manage',
     icon: <CalendarOutlined />,
-    group: menuGroups.BASE,
+    group: menuGroups.Base,
     allowedRoles: ['admin'],
   },
   {
@@ -52,31 +54,15 @@ export const menuItems: MenuItem[] = [
     title: '任务规划',
     path: '/task',
     icon: <AppstoreOutlined />,
-    group: menuGroups.BASE,
+    group: menuGroups.Base,
     allowedRoles: ['admin'],
   },
   {
-    key: 'buttons',
-    title: '按钮大盘',
-    path: '/buttons/cma9f76o7001d138o5rq707ls',
-    icon: <HomeOutlined />,
-    group: menuGroups.OTHER,
-    allowedRoles: ['admin'],
-  },
-  {
-    key: 'order-demand',
-    title: '订单兼职',
-    path: '/order-demand',
-    icon: <ShoppingOutlined />,
-    group: menuGroups.OTHER,
-    allowedRoles: ['admin'],
-  },
-  {
-    key: 'collecting',
-    title: '资料收集',
-    path: '/collecting',
-    icon: <FileTextOutlined />,
-    group: menuGroups.OTHER,
+    key: 'study',
+    title: '学习辅助',
+    path: '/study',
+    icon: <BookOutlined />,
+    group: menuGroups.Helper,
     allowedRoles: ['admin'],
   },
   {
@@ -84,23 +70,39 @@ export const menuItems: MenuItem[] = [
     title: 'RSS信息',
     path: '/rss',
     icon: <BulbOutlined />,
-    group: menuGroups.OTHER,
+    group: menuGroups.Helper,
     allowedRoles: ['admin'],
   },
   {
-    key: 'info',
-    title: '信息管理',
-    path: '/info',
-    icon: <InfoCircleOutlined />,
-    group: menuGroups.AI,
+    key: 'collecting',
+    title: '资料收集',
+    path: '/collecting',
+    icon: <FileTextOutlined />,
+    group: menuGroups.Collecting,
     allowedRoles: ['admin'],
   },
   {
-    key: 'role',
-    title: '角色管理',
-    path: '/role',
+    key: 'buttons',
+    title: '按钮大盘',
+    path: '/buttons/cma9f76o7001d138o5rq707ls',
+    icon: <HomeOutlined />,
+    group: menuGroups.Collecting,
+    allowedRoles: ['admin'],
+  },
+  {
+    key: 'ai',
+    title: 'AI 角色',
+    path: '/ai',
     icon: <UserOutlined />,
-    group: menuGroups.AI,
+    group: menuGroups.Ai,
+    allowedRoles: ['admin'],
+  },
+  {
+    key: 'order-demand',
+    title: '订单兼职',
+    path: '/order-demand',
+    icon: <ShoppingOutlined />,
+    group: menuGroups.Other,
     allowedRoles: ['admin'],
   },
   // {

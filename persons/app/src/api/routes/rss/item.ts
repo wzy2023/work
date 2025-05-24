@@ -35,6 +35,13 @@ export const rssItem = {
       }
     }
 
+    if (items.length < 5) {
+      return {
+        success: false,
+        message: '未发送的内容数量 < 5',
+      }
+    }
+
     // 拼接内容
     const contents = items.map(item => {
       return `
@@ -62,7 +69,7 @@ export const rssItem = {
     try {
       await sendMail({
         to: email,
-        subject: `RSS Summary [${input.where.isInterested}] (${items.length})`,
+        subject: `RSS Summary ${input.where.isInterested === 0 ? '[not]' : ''} (${items.length})`,
         html: `
     <div style="font-family: Arial, sans-serif; color: #333; background-color: #f9f9f9; padding: 20px; max-width: 600px; margin: 0 auto;">
       <style>

@@ -1,46 +1,11 @@
 import { z } from 'zod'
-import { procedure } from '@/api/trpc/procedures'
-import { fetchRssFeed, parseRssXml, truncateString } from '@/api/utils/fetch'
-import { RssFetchTriggerType } from '@/api/types'
 import { ai302 } from '@wzyjs/utils/node'
+
+import { procedure } from '@/api/trpc/procedures'
+import { RssFetchTriggerType } from '@/api/types'
+import { fetchRssFeed, parseRssXml } from '@/api/utils/fetch'
+
 import { env } from '@/env'
-
-// 处理每条新抓取的数据，使用 AI 生成标签和摘要
-const aiSummary = async (item: any) => {
-  const prompt = `
-请分析以下 RSS 文章，并提供以下三部分内容：
-1. 内容的关键词标签，一定要恰当（0 到 5 个，可为空数组）
-2. 30 字以内的中文摘要，从读者的角度出发，让人一眼明白是什么内容，可为空字符串
-3. 请基于以下列表，判断我是否对此内容感兴趣，-1代表不感兴趣，1代表感兴趣，0代表无法判断。
-
-  以下是我感兴趣的内容：
-   - 代码开发相关的
-   - 新技术、新产品 (App、网站、工具等等)
-   - AI方面的所有 (应用、工具、画图、提示词等等，只要涉及ai就感兴趣)
-   - 个人效率与时间管理
-   - 独立开发产品、运营流量获客、用户增长相关的
-
-   以下是我不我感兴趣的内容：
-   - 无意义的内容或纯图片
-   - 娱乐八卦与明星新闻
-   - 体育赛事与直播
-   - 宠物养成与萌宠分享
-   - 个人生活琐事分享
-   - 无脑或低质量短内容
-   - 宗教或玄学类话题（如星座运势）
-   - 政治与国际关系话题
-   - 股票相关话题
-   - 传统制造业或重工业相关资讯
-   - 原始农业或户外生存内容
-   - 网络吵架或饭圈文化
-
-请以 JSON 格式返回，格式为 {"tags": ["标签1","标签2","标签3"], "summary": "摘要内容", "isInterested": -1/1}
-
-文章标题: ${item.title}
-文章内容: ${item.content || item.description || ''}
-`
-  return await ai302.chat(prompt, 'gpt-4.1-mini')
-}
 
 export const rssFeed = {
   getCountByFeed: procedure
@@ -109,16 +74,32 @@ export const rssFeed = {
             })
 
             if (!existingItem) {
+              const summaryRole = await ctx.db.aiRole.findUnique({
+                where: {
+                  id: 'cmb2dw3t7003h131cfvhagaz1',
+                },
+              })
+
+              const prompt = summaryRole?.content
+              .replaceAll('{文章标题}', item.title)
+              .replaceAll('{文章内容}', item.content || item.description || '')
+
+              if (!prompt) {
+                return
+              }
+
+              const aiSummary = await ai302.chat(prompt, 'gpt-4.1-mini')
+
               // 创建新内容，确保所有文本字段不超长
               await ctx.db.rssItem.create({
                 data: {
-                  title: truncateString(item.title, 191),
-                  description: truncateString(item.description, 500),
-                  content: truncateString(item.content, 1000),
-                  link: truncateString(item.link, 191),
+                  title: item.title,
+                  description: item.description,
+                  content: item.content,
+                  link: item.link,
                   pubDate: item.pubDate || new Date(),
                   feedId: feed.id,
-                  ...(await aiSummary(item) || {}),
+                  ...(aiSummary || {}),
                 },
               })
               feedSuccessCount++
@@ -156,7 +137,7 @@ export const rssFeed = {
             status: 'error',
             triggerType,
             executedAt: new Date(),
-            errorMessage: truncateString(feedError?.message || '未知错误', 191),
+            errorMessage: feedError?.message || '未知错误',
             itemCount: 0,
           },
         })

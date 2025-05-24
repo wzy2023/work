@@ -20,7 +20,7 @@ COPY . .
 # 安装 openssl（Prisma 需要）
 RUN apt-get update && apt-get install -y openssl --no-install-recommends
 
-# Prisma 代码生成
+# Prisma
 RUN bun -bun run generate
 
 # 构建

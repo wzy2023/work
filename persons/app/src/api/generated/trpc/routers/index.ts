@@ -22,6 +22,8 @@ import createRssFetchLogRouter from "./RssFetchLog.router";
 import createAiRoleRouter from "./AiRole.router";
 import createAiInfoRouter from "./AiInfo.router";
 import createOrderDemandRouter from "./OrderDemand.router";
+import createStudyItemRouter from "./StudyItem.router";
+import createStudyOperateRouter from "./StudyOperate.router";
 import createUserItemRouter from "./UserItem.router";
 import createUserAccountRouter from "./UserAccount.router";
 import createUserSessionRouter from "./UserSession.router";
@@ -49,6 +51,8 @@ export function createRouter() {
         aiRole: createAiRoleRouter(),
         aiInfo: createAiInfoRouter(),
         orderDemand: createOrderDemandRouter(),
+        studyItem: createStudyItemRouter(),
+        studyOperate: createStudyOperateRouter(),
         userItem: createUserItemRouter(),
         userAccount: createUserAccountRouter(),
         userSession: createUserSessionRouter(),

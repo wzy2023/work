@@ -19,6 +19,8 @@ export * from './RssFetchLogInput.schema';
 export * from './AiRoleInput.schema';
 export * from './AiInfoInput.schema';
 export * from './OrderDemandInput.schema';
+export * from './StudyItemInput.schema';
+export * from './StudyOperateInput.schema';
 export * from './UserItemInput.schema';
 export * from './UserAccountInput.schema';
 export * from './UserSessionInput.schema'

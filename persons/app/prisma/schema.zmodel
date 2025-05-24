@@ -20,4 +20,7 @@ import "./models/AiInfo"
 
 import "./models/OrderDemand"
 
+import "./models/StudyItem"
+import "./models/StudyOperate"
+
 import "./models/User"

@@ -9,8 +9,7 @@ datasource db {
 }
 
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = ["debian-openssl-3.0.x"]
+  provider = "prisma-client-js"
 }
 
 generator json {
@@ -208,6 +207,32 @@ model OrderDemand {
   price      String?
   applyNum   String?
   createTime String?
+}
+
+model StudyItem {
+  id        String    @id() @default(cuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt()
+  isDeleted Boolean?  @default(false)
+  name      String?
+  /// ![Study.TagList]
+  tags      Json?
+}
+
+model StudyOperate {
+  id          String    @id() @default(cuid())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt()
+  isDeleted   Boolean?  @default(false)
+  name        String
+  /// ![Study.ContentType]
+  contentType String
+  /// ![Study.ViewType]
+  viewType    String
+  input       String?
+  output      String
+  model       String?
+  prompt      String?
 }
 
 model UserItem {

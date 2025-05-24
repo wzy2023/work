@@ -291,6 +291,46 @@ const policy: PolicyDef = {
             },
 
         },
+        studyItem: {
+            modelLevel: {
+                read: { guard: StudyItem_read, },
+                create: { guard: StudyItem_create, },
+                update: { guard: StudyItem_update, },
+                postUpdate: { guard: StudyItem_postUpdate, },
+                delete: { guard: StudyItem_delete, }
+            },
+            fieldLevel: {
+                read:
+                {
+
+                },
+                update:
+                {
+
+                },
+            },
+
+        },
+        studyOperate: {
+            modelLevel: {
+                read: { guard: StudyOperate_read, },
+                create: { guard: StudyOperate_create, },
+                update: { guard: StudyOperate_update, },
+                postUpdate: { guard: StudyOperate_postUpdate, },
+                delete: { guard: StudyOperate_delete, }
+            },
+            fieldLevel: {
+                read:
+                {
+
+                },
+                update:
+                {
+
+                },
+            },
+
+        },
         userItem: {
             modelLevel: {
                 read: { guard: UserItem_read, },
@@ -367,6 +407,8 @@ const policy: PolicyDef = {
         aiRole: { hasValidation: false },
         aiInfo: { hasValidation: false },
         orderDemand: { hasValidation: false },
+        studyItem: { hasValidation: false },
+        studyOperate: { hasValidation: false },
         userItem: { hasValidation: false },
         userAccount: { hasValidation: false },
         userSession: { hasValidation: false },
@@ -1041,6 +1083,102 @@ function OrderDemand_delete(context: QueryContext, db: CrudContract): any {
 }
 
 function $check_OrderDemand_delete(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function StudyItem_read(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_StudyItem_read(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function StudyItem_create(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_StudyItem_create(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function StudyItem_update(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_StudyItem_update(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function StudyItem_postUpdate(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_StudyItem_postUpdate(input: any, context: QueryContext): any {
+    return true;
+}
+
+function StudyItem_delete(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_StudyItem_delete(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function StudyOperate_read(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_StudyOperate_read(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function StudyOperate_create(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_StudyOperate_create(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function StudyOperate_update(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_StudyOperate_update(input: any, context: QueryContext): any {
+    if ((!input?.isDeleted)) { return true; }
+
+    return false;
+}
+
+function StudyOperate_postUpdate(context: QueryContext, db: CrudContract): any {
+    return { AND: [] };
+}
+
+function $check_StudyOperate_postUpdate(input: any, context: QueryContext): any {
+    return true;
+}
+
+function StudyOperate_delete(context: QueryContext, db: CrudContract): any {
+    return { NOT: { isDeleted: true } };
+}
+
+function $check_StudyOperate_delete(input: any, context: QueryContext): any {
     if ((!input?.isDeleted)) { return true; }
 
     return false;

@@ -1,0 +1,17 @@
+import "@wzyjs/next/dist/Base"
+
+model StudyOperate extends Base {
+  name String
+
+  /// ![Study.ContentType]
+  contentType String
+
+  /// ![Study.ViewType]
+  viewType String
+
+  input String?
+  output String
+
+  model String?
+  prompt String?
+}
